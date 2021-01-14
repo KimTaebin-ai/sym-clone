@@ -1,0 +1,1039 @@
+<ion-header>
+  <ion-grid class="header_Box">
+    <ion-row class="width100Per">
+      <ion-col size="2">
+        <img src="assets/image/icon-arrow-back.svg" (click)="goBack()">
+      </ion-col>
+      <ion-col size="8">
+        <span class="header_font">
+          추가 정보 입력
+        </span>
+      </ion-col>
+      <ion-col size="2">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+
+<ion-content class="moreInfoPage">
+  <ion-grid *ngIf="infoPage === 1">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row>
+            <ion-col>
+              <span class="moreInfo-term-font1">
+                이 서비스는 "정서-불안 증상 디지털 표현형 기반 전향적 추적 연구”를 위한 개인정보를 추가로 수집하고 있습니다. 연구에 동의하는 경우에는 수집된 정보를 연구용으로 사용하며, 동의하지 않을 시 데이터는 연구용으로 사용되지 않을 것입니다. 연구에 동의하지 않는 사용자도 본 서비스의 기능을 모두 사용하실 수 있습니다. 연구에 동의해 주시면, 보다 나은 서비스와 향후 디지털 치료제 개발에 큰 도움이 될 수 있습니다.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="moreInfo-term-box">
+              <button (click)="openIrbModal()"
+              [ngClass]="onlineIrb? 'term-button_disable': 'term-button'" [disabled]="onlineIrb">
+              <span *ngIf="!onlineIrb">
+                약관 내용 확인 및 동의
+              </span>
+              <span *ngIf="onlineIrb">
+                이미 동의하셨습니다.
+              </span>
+              </button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="moreInfo-term-font2">
+                병원에서 참여하신 임상 시험 정보가 있으시면
+                임상 시험 코드를 입력해주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid class="mgB1vh mgT3vh">
+                      <ion-row>
+                        <ion-col size="10" class="pdR1vw">
+                          <input class="term-add" [(ngModel)]="verificationCode">
+                        </ion-col>
+                        <ion-col size="2" class="term-pulse-button" (click)="addOfflineAgreement()">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                <img src="assets/image/psychological/Icon_plus_w.svg" class="term-pulse-button-img">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngFor="let item of irbList; let i = index">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="multiple-term-list">
+                        <ion-col size="9.5" class="pdR1vw">
+                          <span>{{item.projectNm}}</span>
+                        </ion-col>
+                        <ion-col size="2.5">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col class="text_right">
+                                <img src="assets/image/psychological/Icon_list_close.svg" class="close-term-img floatR" (click)="delOfflineAgreement(i)" *ngIf="item.type === 'NEW'">
+                                <span *ngIf="item.type === 'OLD'" class="state-font">{{item.stateNm}}</span>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+<!--                <ion-row *ngFor="let item of irbList; let i = index">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="multiple-term-list">
+                        <ion-col size="10" class="pdR1vw">
+                          <span>{{item.projectNm}}</span>
+                        </ion-col>
+                        <ion-col size="2">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                <img src="assets/image/psychological/Icon_list_close.svg" class="close-term-img floatR" (click)="delOfflineAgreement(i)">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>-->
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="infoPage === 2">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw mgT3vh">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                1.휴대폰 번호를 입력해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="9" class="pdR1vw">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col>
+                    <input placeholder="010-0000-0000" type="text" maxlength="200"
+                           [ngClass]="conditionValue.mobileReadOnly? 'auth-input_dis' : 'auth-input'"
+                           [(ngModel)]="usrInfo.mobileNum" [readOnly]="conditionValue.mobileReadOnly">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col size="3">
+              <button class="auth-button" (click)="mobileCertification()" [disabled]="!userInfoValidation('MOBILE')"
+              [ngClass]="userInfoValidation('MOBILE')? 'auth-button_active' : 'auth-button'" *ngIf="!conditionValue.mobileReadOnly">
+                <span>
+                  인증
+                </span>
+              </button>
+              <button class="auth-button_active" (click)="delPhoneNumber()" *ngIf="conditionValue.mobileReadOnly">
+                <span>
+                  변경
+                </span>
+              </button>
+            </ion-col>
+          </ion-row>
+          <ion-row class="mgT2vh" *ngIf="conditionValue.mobileAuthNum">
+            <ion-col size="9" class="pdR1vw">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col>
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col class="height100Per align_center-grid" size="9.5">
+                          <ion-grid class="height100Per mg0">
+                            <ion-row class="height100Per">
+                              <ion-col class="height100Per">
+                                <input class="auth-input" placeholder="인증번호를 입력해 주세요." [(ngModel)]="usrInfo.authNum">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                        <ion-col class="height100Per align_center-flex" size="2.5">
+                          <ion-grid class="height100Per mg0">
+                            <ion-row class="height100Per">
+                              <ion-col class="height100Per timerMessage">
+                                <span *ngIf="conditionValue.timer">{{timer.time}}</span>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col size="3">
+              <button (click)="certificationAuthNum()" [disabled]="!userInfoValidation('AUTH_NUM') ||  conditionValue.mobileReadOnly"
+                      [ngClass]="userInfoValidation('AUTH_NUM') && !conditionValue.mobileReadOnly? 'auth-button_active' : 'auth-button'">
+                <span>
+                  확인
+                </span>
+              </button>
+            </ion-col>
+          </ion-row>
+          <ion-row class="mgT1vh" *ngIf="conditionValue.mobileAuthNum">
+            <ion-col>
+              <span class="notice-font">
+                10분 이내로 인증번호 6자리를 입력해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="mgT1vh" *ngIf="errorMessage.mobile">
+            <ion-col>
+              <span class="timerMessage">
+                {{errorMessage.mobile}}
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw mgT3vh">
+          <ion-row>
+            <ion-col>
+              <span class="qus-label-font">
+                2.키와 몸무게를 입력해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT2vh">
+            <ion-col class="pdR1vw">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col size="10">
+                    <!--<input class="auth-input" placeholder="키를 입력해주세요." [(ngModel)]="patientMoreInfo.height"
+                    type="number">-->
+                    <input class="auth-input" type="number" (keydown)="maxLengthCheck('height', 5)"
+                           [(ngModel)]="patientMoreInfo.height"
+                           placeholder="키를 입력해주세요." />
+                  </ion-col>
+                  <ion-col size="2" class="text_center align_center-grid">
+                    <span>
+                      cm
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT2vh">
+            <ion-col class="pdR1vw">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col size="10">
+                    <!--<input class="auth-input" placeholder="몸무게를 입력해주세요." [(ngModel)]="patientMoreInfo.weight">-->
+                    <input class="auth-input" type="number" (keydown)="maxLengthCheck('weight', 5)"
+                           [(ngModel)]="patientMoreInfo.weight"
+                           placeholder="몸무게를 입력해주세요." />
+                  </ion-col>
+                  <ion-col size="2" class="text_center align_center-grid">
+                    <span>
+                      kg
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="infoPage === 3">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row>
+            <ion-col>
+              <span class="qus-label-font">
+                3. 신체적 질병이나 의학적 문제를 경험했던 적이 있으시면 선택해 주세요.(중복선택 가능)
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid *ngIf="pageInfo.infoDisease.length > 0">
+                <ion-row *ngFor="let item of pageInfo.infoDisease; let i = index" >
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row [ngClass]="checkSelectIndex(item,'DISEASE') ? 'moreInfo-select-box1' : 'moreInfo-select-box2'" (click)="selectList(item, 'DISEASE')">
+                        <ion-col>
+                          {{item.codeName}}
+                        </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="item.userInput === 'Y' && item.selected" >
+                        <ion-col>
+                          <input type="text" class="moreInfo-input-box1" placeholder="{{item.unit}}" [(ngModel)]="item.insertData.content">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="infoPage === 4">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row>
+            <ion-col>
+              <span class="qus-label-font">
+                3-1. 다음과 같은 상태 이었던 적이 있었나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid *ngIf="pageInfo.infoStatus.length > 0">
+                <ion-row *ngFor="let item of pageInfo.infoStatus; let i = index" (click)="selectMoreInfoModal(i, item, '3-1')"><!--(click)="selectMoreInfoModal(i, item, '3-1')"-->
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row [ngClass]="item.insertData.state ? 'moreInfo-select-box1' : 'moreInfo-select-box2'">
+                        <ion-col>
+                          {{item.codeName}}
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="infoPage === 5">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                4. 연 평균 가구 소득을 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw moreInfo-ion-select">
+              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.income">
+                <ion-select-option value="">연 평균 가구 소득 선택</ion-select-option>
+                <ion-select-option [value]="1">1000만원 이하</ion-select-option>
+                <ion-select-option [value]="2">2000만원</ion-select-option>
+                <ion-select-option [value]="3">3000만원</ion-select-option>
+                <ion-select-option [value]="4">4000만원</ion-select-option>
+                <ion-select-option [value]="5">5000만원</ion-select-option>
+                <ion-select-option [value]="6">6000만원 이상</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                5. 최종 학력을 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw moreInfo-ion-select">
+              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.educationCode">
+                <ion-select-option value="">최종 학력 선택</ion-select-option>
+                <ion-select-option [value]="item.codeSeq" *ngFor="let item of pageInfo.infoEducation">{{item.codeName}}</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT2vh" *ngIf="patientMoreInfo.educationCode">
+            <ion-col class="pdR1vw" *ngIf="checkSelectIndex(null, 'education_etc')">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col>
+                    <input class="auth-input" placeholder="최종학력을 입력해 주세요." [(ngModel)]="patientMoreInfo.educationEtc">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                6. 혼인 여부를 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="mgT1vh">
+            <ion-col class="pdR1vw" (click)="selectButton('married', 'N')"
+                    [ngClass]="patientMoreInfo.married === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>미혼</span>
+            </ion-col>
+            <ion-col class="pdR1vw " (click)="selectButton('married', 'Y')"
+                     [ngClass]="patientMoreInfo.married === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>기혼</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                7. 현재 직업이 있나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="mgT1vh">
+            <ion-col class="pdR1vw" (click)="selectButton('haveJob', 'Y')"
+                     [ngClass]="patientMoreInfo.haveJob === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('haveJob', 'N')"
+                     [ngClass]="patientMoreInfo.haveJob === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.haveJob === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font" >
+                7-1. 종사하고 계신 직종을 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw moreInfo-ion-select">
+              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.jobCode">
+                <ion-select-option value="">직종을 선택해주세요.</ion-select-option>
+                <ion-select-option [value]="item.codeSeq" *ngFor="let item of pageInfo.infoJob">{{item.codeName}}</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT2vh" *ngIf="patientMoreInfo.jobCode">
+            <ion-col class="pdR1vw" *ngIf="checkSelectIndex(null, 'job_etc')">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col>
+                    <input class="auth-input" placeholder="직종을 입력해 주세요." [(ngModel)]="patientMoreInfo.jobEtc">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                8. 현재 자녀 수를 입력해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT2vh">
+            <ion-col class="pdR1vw">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col size="10">
+                    <input class="auth-input" placeholder="현재 자녀 수를 입력해 주세요."  [(ngModel)]="patientMoreInfo.children">
+                  </ion-col>
+                  <ion-col size="2" class="text_center align_center-grid">
+                    <span>
+                      명
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                9. 종교를 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw moreInfo-ion-select">
+              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.religionCode">
+                <ion-select-option value="">종교 선택</ion-select-option>
+                <ion-select-option [value]="item.codeSeq" *ngFor="let item of pageInfo.infoReligion">{{item.codeName}}</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT2vh" *ngIf="patientMoreInfo.religionCode">
+            <ion-col class="pdR1vw" *ngIf="checkSelectIndex(null, 'religion_etc')">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col>
+                    <input class="auth-input" placeholder="종교를 입력해 주세요." [(ngModel)]="patientMoreInfo.religionEtc">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="infoPage === 6">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                10. 정신과적 진단을 받은 적이 있나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('disaese', 'Y')"
+                     [ngClass]="patientMoreInfo.disaese === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('disaese', 'N')"
+                     [ngClass]="patientMoreInfo.disaese === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.disaese === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                10-1. 현재 혹은 과거에 진단받은 정신과적 질병을 모두 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid *ngIf="pageInfo.infoDiseases.length > 0">
+                <ion-row *ngFor="let item of pageInfo.infoDiseases; let i = index" (click)="selectMoreInfoModal(i, item, '10-1')">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row [ngClass]="item.insertData.infoDiseaseSymptoms.length > 0 ? 'moreInfo-select-box1' : 'moreInfo-select-box2'">
+                        <ion-col>
+                          {{item.codeName}}
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+<!--        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                첫 발병 시기를 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR2vw" size="6">
+              <ion-grid class="width100Per">
+                <ion-row>
+                  <ion-col class="moreInfo-ion-select">
+                    <ion-select value="notifications" interface="action-sheet" >
+                      <ion-select-option value="1">중졸</ion-select-option>
+                      <ion-select-option value="2">고졸</ion-select-option>
+                      <ion-select-option value="3">대졸</ion-select-option>
+                      <ion-select-option value="4">석사</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col class="pdR1vw" size="6">
+              <ion-grid class="width100Per">
+                <ion-row>
+                  <ion-col class=" moreInfo-ion-select">
+                    <ion-select value="notifications" interface="action-sheet" >
+                      <ion-select-option value="1">중졸</ion-select-option>
+                      <ion-select-option value="2">고졸</ion-select-option>
+                      <ion-select-option value="3">대졸</ion-select-option>
+                      <ion-select-option value="4">석사</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>-->
+        <!--<ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                경험한 증상을 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row *ngFor="let item of diseaseInfo.diseaseList; let i = index" (click)="selectList(i, 'DISEASE')">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row [ngClass]="checkSelectIndex(i,'DISEASE') ? 'moreInfo-select-box1' : 'moreInfo-select-box2'">
+                        <ion-col>
+                          {{item.codeName}}
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>-->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="infoPage === 7">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                11. 과거에 흡연을 하신 적이 있었나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('smoke', 'Y')"
+                     [ngClass]="patientMoreInfo.smoke === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('smoke', 'N')"
+                     [ngClass]="patientMoreInfo.smoke === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.smoke === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                11-1. 지난 12주 간 흡연을 하셨나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('smokeNow', 'Y')"
+                     [ngClass]="patientMoreInfo.smokeNow === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('smokeNow', 'N')"
+                     [ngClass]="patientMoreInfo.smokeNow === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.smoke === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                11-2. 하루 평균 흡연량을 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR2vw">
+              <ion-grid class="width100Per">
+                <ion-row>
+                  <ion-col class="moreInfo-ion-select">
+                    <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.dayOfSmoke">
+                      <ion-select-option [value]="">일 평균 흡연량 선택</ion-select-option>
+                      <ion-select-option [value]="5">5개비 미만</ion-select-option>
+                      <ion-select-option [value]="10">10개비 이하</ion-select-option>
+                      <ion-select-option [value]="15">15개비 이하</ion-select-option>
+                      <ion-select-option [value]="19">20개비 미만</ion-select-option>
+                      <ion-select-option [value]="20">20개비 이상</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                12. 지금까지 음주를 해왔나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('drink', 'Y')"
+                     [ngClass]="patientMoreInfo.drink === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('drink', 'N')"
+                     [ngClass]="patientMoreInfo.drink === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.drink === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                12-1. 음주로 일상생활에 문제가 된 적이 있나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('drinkProblem', 'Y')"
+                     [ngClass]="patientMoreInfo.drinkProblem === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('drinkProblem', 'N')"
+                     [ngClass]="patientMoreInfo.drinkProblem === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.drink === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                12-2. 지금까지 음주를 어느 정도 해왔나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="qus-label-font">
+                음주 주종을 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid *ngIf="pageInfo.alcohol.length > 0">
+                <ion-row *ngFor="let item of pageInfo.alcohol; let i = index" (click)="selectMoreInfoModal(i, item, '12-2')">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row [ngClass]="item.insertData.drinkAmount ? 'moreInfo-select-box1' : 'moreInfo-select-box2'">
+                        <ion-col>
+                          {{item.codeName}}
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                13. 지난 12주간 음주를 하셨나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('drinkNow', 'Y')"
+                     [ngClass]="patientMoreInfo.drinkNow === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('drinkNow', 'N')"
+                     [ngClass]="patientMoreInfo.drinkNow === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.drinkNow === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                13-1. 주간 평균 음주 횟수와 양, 기간을 입력해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="qus-label-font">
+                음주 주종을 선택해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid *ngIf="pageInfo.alcoholNow.length > 0">
+                <ion-row *ngFor="let item of pageInfo.alcoholNow; let i = index" (click)="selectMoreInfoModal(i, item, '12-2')">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row [ngClass]="item.insertData.drinkAmount ? 'moreInfo-select-box1' : 'moreInfo-select-box2'">
+                        <ion-col>
+                          {{item.codeName}}
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.drinkNow === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                13-2. 현재 혹은 과거에 음주로 일상생활에 문제가 된 적이 있나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('drinkNowProblem', 'Y')"
+                     [ngClass]="patientMoreInfo.drinkNowProblem === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('drinkNowProblem', 'N')"
+                     [ngClass]="patientMoreInfo.drinkNowProblem === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="infoPage === 8">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                14. 폐경 여부를 선택해주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw"(click)="selectButton('menopause', 'Y')"
+                     [ngClass]="patientMoreInfo.menopause === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('menopause', 'N')"
+                     [ngClass]="patientMoreInfo.menopause === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('menopause', 'M')"
+                     [ngClass]="patientMoreInfo.menopause === 'M' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>해당없음</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                15. 과거에 자살을 시도한 적이 있나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('suicide', 'Y')"
+                     [ngClass]="patientMoreInfo.suicide === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('suicide', 'N')"
+                     [ngClass]="patientMoreInfo.suicide === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.suicide === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                첫 자살기도 시 연령을 입력해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT2vh">
+            <ion-col class="pdR1vw">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col size="10">
+                    <input class="auth-input" placeholder="만 나이를 입력해 주세요. ex)24" [(ngModel)]="patientMoreInfo.suicideWhen">
+                  </ion-col>
+                  <ion-col size="2" class="text_center align_center-grid">
+                    <span>
+                      세
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" *ngIf="patientMoreInfo.suicide === 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                과거 자살기도 횟수를 입력해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT2vh">
+            <ion-col class="pdR1vw">
+              <ion-grid class="auth-input-box">
+                <ion-row class="height100Per">
+                  <ion-col size="10">
+                    <input class="auth-input" placeholder="과거 자살기도 횟수를 입력해 주세요." [(ngModel)]="patientMoreInfo.suicideNum">
+                  </ion-col>
+                  <ion-col size="2" class="text_center align_center-grid">
+                    <span>
+                      회
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                16-1. 지난 1달간 죽고 싶은 생각이 든 적이 있나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('suicideNowFeel', 'Y')"
+                     [ngClass]="patientMoreInfo.suicideNowFeel === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('suicideNowFeel', 'N')"
+                     [ngClass]="patientMoreInfo.suicideNowFeel === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                16-2. 지난 1달간 자살 시도를 한 적이 있나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('suicideNow', 'Y')"
+                     [ngClass]="patientMoreInfo.suicideNow === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('suicideNow', 'N')"
+                     [ngClass]="patientMoreInfo.suicideNow === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="infoPage === 9">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                17. 지난 1개월간 처방받은 약물이 있나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw" (click)="selectButton('drugNow', 'Y')"
+                     [ngClass]="patientMoreInfo.drugNow === 'Y' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>예</span>
+            </ion-col>
+            <ion-col class="pdR1vw"  (click)="selectButton('drugNow', 'N')"
+                     [ngClass]="patientMoreInfo.drugNow === 'N' ? 'moreInfo-radioButton1' : 'moreInfo-radioButton2'">
+              <span>아니요</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw" [hidden]="patientMoreInfo.drugNow !== 'Y'">
+          <ion-row class="pdB1vh">
+            <ion-col>
+              <span class="qus-label-font">
+                17-1. 처방 받은 약물의 실제 복용량을 선택해주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row style="position: static">
+            <ion-col>
+              <div class="range-start"></div>
+            </ion-col>
+            <ion-col>
+              <div class="range-end"></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="pdR1vw rangeBox">
+              <ion-range min="0%" max="100%" pin color="secondary" class="infoRange"  id="perRange"  [(ngModel)]="patientMoreInfo.drugNowTaking" >
+              </ion-range>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <!--        <button [ngClass]="termList.length === selectedTerm.length ? 'common_button_active' : 'common_button'"
+                        [disabled]="termList.length !== selectedTerm.length" (click)="signUp()">
+                  다음
+                </button>-->
+        <button class="common_button_active" (click)="nextPage()">
+          <span *ngIf="infoPage < 9">다음</span>
+          <span *ngIf="infoPage === 9">저장하기</span>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

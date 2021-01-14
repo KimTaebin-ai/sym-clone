@@ -1,0 +1,137 @@
+-------------------------------------------------------------------------------------
+[페이지 -> 페이지, 페이지 -> 메인, 메인 -> 페이지]
+
+사용 서비스 : PageInfoService,
+사용 함수 : getToOtherPage()
+
+사용 방법
+    this.pageInfoService.getToOtherPage(출발 URL, 이동할 URL, 헤더 타이틀).then(() => {
+      this.navController.navigateRoot([이동할 URL]);
+    });
+-------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------
+메인 -> 메인 [TAB TO TAB]
+
+사용 서비스 : PageInfoService,
+사용 함수 : moveToTab()
+
+사용 방법
+    this.pageInfoService.moveToTab(이동할 TAB URL, 이동할 TAB 헤더명).then(data => {
+    this.navController.navigateRoot(['/main/main/home']);
+    });
+-------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------------
+뒤로가기
+
+사용 서비스 : PageInfoService,
+사용 함수 : getToBack()
+
+사용 방법
+    const lastUrl = this.pageInfoService.getToBack();
+    if (lastUrl) {
+      this.navController.navigateRoot([lastUrl]);
+    } else {
+      this.alertUtilService.showAlert(null, '이전 위치를 조회하는 도중 오류가 발생하였습니다.APP를 종료 후 다시 실행 시켜주세요.');
+    }
+-------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------
+로딩
+
+-------------------------------------------------------------------------------------
+사용 서비스 : LoadingService,
+사용 함수 : showLoading()
+
+사용 방법
+    로딩 시작
+    this.loadingService.showLoading(true, 로딩 실행시 출력할 문구);
+    로딩 종료
+    this.loadingService.showLoading(false, '');
+
+    * 초기 화면이 다 구성 된 이후 요청해야함
+-------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------
+딜레이
+
+사용 서비스 : CommonUtilService,
+사용 함수 : delay()
+
+사용 방법
+    this.commonUtilService.delay(요청할 시간).then(any => {
+    });
+-------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------
+알림 창
+
+사용 서비스 : AlertUtilService,
+사용 함수 : showAlert()
+
+사용 방법
+    this.alertUtilService.showAlert(알림타이틀(null가능), 알림내용);
+-------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------
+날짜
+
+사용 서비스 : DateService,
+
+데이트 모델 :
+  A. date: 요청한 날짜,
+  B. dateFormat: 요청한 포맷 형식의 날짜 포멧 날짜,
+  C. compareVal: 비교 요청에 대한 결과
+
+공통
+  - date 형식으로 받고 싶은 경우 format 값에 ''으로 ,
+    FORMAT된 형식으로 받고 싶은 경우 요청하는 FORMAT 형식을 (Ex. 'YYYY0-MM-DD')
+  - 포맷형식을 지정하지 않았다면 date를 사용
+  - 포맷을 지정하였다면 dateFormat를 사용
+  - 날짜 비교 요청을 한경우 compareVal를 사용 (boolean)
+  *getDateFormat은 해당이 되지 않음
+
+요청 방식 :
+  1. 오늘 날짜 불러오기
+    getToday(format);
+      A. format: 포멧형식 (''으로 요청시 데이트형식으로 리턴)
+
+  2. N일(시간) 후 날짜(시간) 불러오기
+    addDate(date, addNum, addType, format)
+      A. date: 기준 시간
+      B. addNum:  더할 시간(날짜)
+      C. addType: 년,월,일,시,분,초 선택(y: 년, M: 월, d: 일, h: 시, m: 분, s: 초)
+
+      D. format: 포멧형식 (''으로 요청시 데이트형식으로 리턴)
+  3. N일(시간) 이전 날짜(시간) 불러오기
+      subtractDate(date, subtractNum, subtractType, format)
+        A. date: 기준 시간
+        B. subtractNum:  뺄 시간(날짜)
+        C. subtractType: 년,월,일,시,분,초 선택(y: 년, M: 월, d: 일, h: 시, m: 분, s: 초)
+        D. format: 포멧형식 (''으로 요청시 데이트형식으로 리턴)
+
+  4. 달의 마지막 날 불러오기
+      getLastDay(date, format)
+        A. date: 기준 시간
+            - 요청한 날이 포함된 달의 마지막날 요청 (ex: 2020-10-07)
+        B. format: 포멧형식 (''으로 요청시 데이트형식으로 리턴)
+
+  5. 날짜 포맷
+      getDateFormat(date, format)
+        A. date: 기준 시간
+        B. format: 포멧형식
+
+  6. 날짜 이전, 이후, 같음 비교
+   - date1가 date2보다 compareType 한지 비교
+      compareDate(date1, date2, compareType)
+        A. date1: 기준 날짜
+        B. date2: 비교할 날짜
+        C. compareType: 비교 형식
+            - AFTER: 이후, BEFORE: 이전, SAME: 동일
+
+-------------------------------------------------------------------------------------

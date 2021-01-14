@@ -1,0 +1,55 @@
+<ion-content class="signature-page">
+  <ion-grid class="height100Per">
+    <ion-row class="height100Per">
+      <ion-col class="pdL7vw pdR7vw">
+        <ion-grid class="signature-header-box">
+          <ion-row class="signature-header">
+            <ion-col>
+            </ion-col>
+            <ion-col>
+              <span>
+                전자서명
+              </span>
+            </ion-col>
+            <ion-col class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="mgAuto text_right">
+                    <img src="assets/image/Icon_close.svg" (click)="dismiss()">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="signature-notice-box">
+          <ion-row>
+            <ion-col class="signature-notice">
+              <span>
+                이름을 정자로 입력해 주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="signature-box" id="signature">
+          <ion-row>
+            <ion-col #fixedContainer ion-fixed>
+              <canvas #signatureCanvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="button-box">
+          <ion-row>
+            <ion-col class="pdR2vw">
+              <button (click)="clearPad()" class="signature-button1">초기화</button>
+            </ion-col>
+            <ion-col class="pdL2vw">
+              <button (click)="savePad()" class="signature-button2">저장</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--<img src='{{signatureImg}}' />-->
+</ion-content>

@@ -1,0 +1,217 @@
+<app-loading></app-loading>
+<app-page-header></app-page-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-grid class="pdL4vw pdR4vw">
+      <ion-row class="mgT5vh">
+        <ion-col class="panic_input_title_text">시작 시간</ion-col>
+      </ion-row>
+      <!--<ion-row>
+        <ion-col><input #inputSD type="date" class="panicDiaryInput" [(ngModel)]="panicInsertVo.startDate"></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><input #inputST type="time" class="panicDiaryInput" [(ngModel)]="panicInsertVo.startTime" placeholder="시작시간"></ion-col>
+      </ion-row>-->
+      <ion-row class="date-inputBox1">
+        <ion-col class="height100Per">
+          <ion-grid class="height100Per">
+            <ion-row class="height100Per">
+              <ion-col size="10" class="height100Per align_center-grid">
+                <ion-datetime class="datetimeType"
+                              displayFormat="YYYY-MM-DD"
+                              pickerFormat="YYYY-MM-DD"
+                              cancelText="취소" doneText="선택"
+                              placeholder="선택해주세요."
+                              max="{{today}}"
+                              [(ngModel)]="panicInsertVo.startDate">
+                </ion-datetime>
+              </ion-col>
+              <ion-col size="2" class="mgAuto text_center">
+                <img src="assets/image/lifelog/Icon_date.svg">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row class="date-inputBox1">
+        <ion-col class="height100Per">
+          <ion-grid class="height100Per">
+            <ion-row class="height100Per">
+              <ion-col size="10" class="height100Per align_center-grid">
+                <ion-datetime class="datetimeType"
+                              displayFormat="HH:mm"
+                              pickerFormat="HH:mm"
+                              cancelText="취소" doneText="선택"
+                              placeholder="선택해주세요."
+                              [(ngModel)]="panicInsertVo.startTime">
+                </ion-datetime>
+              </ion-col>
+              <ion-col size="2" class="mgAuto text_center">
+                <img src="assets/image/lifelog/Icon_time.svg">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="pdL4vw pdR4vw">
+      <ion-row class="mgT5vh">
+        <ion-col class="panic_input_title_text">지속 시간</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-select class="panicDiaryInput" interface="popover" [(ngModel)]="panicInsertVo.panicTime">
+            <ion-select-option value="">지속 시간</ion-select-option>
+            <ion-select-option value="1">1분</ion-select-option>
+            <ion-select-option value="2">2분</ion-select-option>
+            <ion-select-option value="3">3분</ion-select-option>
+            <ion-select-option value="4">4분</ion-select-option>
+            <ion-select-option value="5">5분</ion-select-option>
+            <ion-select-option value="6">6분</ion-select-option>
+            <ion-select-option value="7">7분</ion-select-option>
+            <ion-select-option value="8">8분</ion-select-option>
+            <ion-select-option value="9">9분</ion-select-option>
+            <ion-select-option value="10">10분</ion-select-option>
+            <ion-select-option value="15">15분</ion-select-option>
+            <ion-select-option value="20">20분</ion-select-option>
+            <ion-select-option value="25">25분</ion-select-option>
+            <ion-select-option value="30">30분</ion-select-option>
+            <ion-select-option value="60">60분</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="pdL4vw pdR4vw">
+      <ion-row class="mgT5vh mgB4vh">
+        <ion-col class="panic_input_title_text">증상강도</ion-col>
+      </ion-row>
+      <ion-row class="text_center">
+        <ion-col (click)="clickPanicDegree(1)"><img src="../../../../../../assets/image/panic/intensity_1.svg"></ion-col>
+        <ion-col (click)="clickPanicDegree(2)"><img src="../../../../../../assets/image/panic/intensity_2.svg"></ion-col>
+        <ion-col (click)="clickPanicDegree(3)"><img src="../../../../../../assets/image/panic/intensity_3.svg"></ion-col>
+        <ion-col (click)="clickPanicDegree(4)"><img src="../../../../../../assets/image/panic/intensity_4.svg"></ion-col>
+        <ion-col (click)="clickPanicDegree(5)"><img src="../../../../../../assets/image/panic/intensity_5.svg"></ion-col>
+      </ion-row>
+      <ion-row class="text_center mgT1vh">
+        <ion-col (click)="clickPanicDegree(1)">
+          <img src="../../../../../../assets/image/panic/emptyCheck.svg" [hidden]="panicInsertVo.panicIntensity === 1">
+          <img src="../../../../../../assets/image/panic/clickCheck.svg" *ngIf="panicInsertVo.panicIntensity === 1">
+        </ion-col>
+        <ion-col (click)="clickPanicDegree(2)">
+          <img src="../../../../../../assets/image/panic/emptyCheck.svg" [hidden]="panicInsertVo.panicIntensity === 2">
+          <img src="../../../../../../assets/image/panic/clickCheck.svg" *ngIf="panicInsertVo.panicIntensity === 2">
+        </ion-col>
+        <ion-col (click)="clickPanicDegree(3)">
+          <img src="../../../../../../assets/image/panic/emptyCheck.svg" [hidden]="panicInsertVo.panicIntensity === 3">
+          <img src="../../../../../../assets/image/panic/clickCheck.svg" *ngIf="panicInsertVo.panicIntensity === 3">
+        </ion-col>
+        <ion-col (click)="clickPanicDegree(4)">
+          <img src="../../../../../../assets/image/panic/emptyCheck.svg" [hidden]="panicInsertVo.panicIntensity === 4">
+          <img src="../../../../../../assets/image/panic/clickCheck.svg" *ngIf="panicInsertVo.panicIntensity === 4">
+        </ion-col>
+        <ion-col (click)="clickPanicDegree(5)">
+          <img src="../../../../../../assets/image/panic/emptyCheck.svg" [hidden]="panicInsertVo.panicIntensity === 5">
+          <img src="../../../../../../assets/image/panic/clickCheck.svg" *ngIf="panicInsertVo.panicIntensity === 5">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="pdL4vw pdR4vw">
+      <ion-row class="mgT5vh">
+        <ion-col class="panic_input_title_text">동반증상 선택(다중선택 가능)</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let symptoms of panicSymptomList;  let i = index;">
+        <ion-col class="panic_symptom_text align_center-grid " (click)="clickPanicSymptom(symptoms, i)"
+                 [ngClass]="symptomClickList[i] == 'Y' ? 'panicSymptomPick' : 'panicDiaryInput'">{{symptoms.codeName}}</ion-col>
+      </ion-row>
+      <ion-row [hidden]="panicInsertEtc.etcValueYn === 'N'">
+        <ion-col>
+          <ion-grid>
+            <ion-row>
+              <ion-col class="panicDiaryInput_etc align_center-grid">
+                <input class="panic-input-box-etc" [(ngModel)]="panicInsertEtc.etcValue" maxlength="30" placeholder="기타 동반증상의 종류를 입력하세요.">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="pdL4vw pdR4vw border-bottom">
+      <ion-row class="mgT4vh mgB4vh">
+        <ion-col class="panicDiaryAddBtn addNoBtn align_center-grid" (click)="addPanicDiaryChk()"
+                 *ngIf="panicInsertVo.startDate == '' || panicInsertVo.startTime == '' || panicInsertVo.panicTime == '' || panicInsertVo.panicIntensity == 0 ||  panicInsertVo.symptoms.length == 0">추가</ion-col>
+        <ion-col class="panicDiaryAddBtn addOkBtn align_center-grid" (click)="addPanicDiaryChk()"
+                 *ngIf="panicInsertVo.startDate !== '' && panicInsertVo.startTime !== '' && panicInsertVo.panicTime !== '' && panicInsertVo.panicIntensity !== 0 &&  panicInsertVo.symptoms.length !== 0">추가</ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="panicDetailBox" *ngFor="let details of panicDataList;">
+      <ion-row class="panic-border-bottom pd3_8vw">
+        <ion-col size="11" class="panicDetailText">
+          <span>{{details.startDt}}</span>
+        </ion-col>
+        <ion-col size="1" class="text_center" (click)="deletePanicDiaryChk(details.panicSeq)">
+          <span><img src="../../../../../../assets/image/diary/Icon_del.svg"></span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="panic-border-bottom">
+        <ion-col size="6" class="panicDetailText panic-border-right pd3_8vw">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="7" class="align_center-flex">
+                증상강도
+              </ion-col>
+              <ion-col size="5">
+                <span *ngIf="details.panicIntensity == 1"><img src="../../../../../../assets/image/panic/v_intensity_1.svg" class="mgL3vw"></span>
+                <span *ngIf="details.panicIntensity == 2"><img src="../../../../../../assets/image/panic/v_intensity_2.svg" class="mgL3vw"></span>
+                <span *ngIf="details.panicIntensity == 3"><img src="../../../../../../assets/image/panic/v_intensity_3.svg" class="mgL3vw"></span>
+                <span *ngIf="details.panicIntensity == 4"><img src="../../../../../../assets/image/panic/v_intensity_4.svg" class="mgL3vw"></span>
+                <span *ngIf="details.panicIntensity == 5"><img src="../../../../../../assets/image/panic/v_intensity_5.svg" class="mgL3vw"></span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col size="6" class="panicDetailText pd3_8vw">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="7" class="align_center-flex">
+                지속시간
+              </ion-col>
+              <ion-col size="5" class="align_center-flex">
+                <span class="diaryCountColor">{{details.panicTime}}</span>&nbsp;분
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-grid class="pd3_8vw">
+        <ion-row>
+          <ion-col class="panicDetailText pdB1vh">동반증상</ion-col>
+        </ion-row>
+        <ion-row class="symtomListBox">
+          <ion-col >
+            <span *ngFor="let symptoms of details.symptoms" class="symtomText border-none pd1vw mgR2vw">
+              <span *ngIf="symptoms.symptomName !== '기타'">{{symptoms.symptomName}}</span>
+              <span *ngIf="symptoms.symptomName === '기타'">{{symptoms.symptomEtc}}</span>
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-grid>
+  </ion-grid>
+</ion-content>
+<!--<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button class="common_save_button">
+          저장
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>-->

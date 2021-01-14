@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="242" height="101.983" viewBox="0 0 242 101.983">
+    <defs>
+        <style>
+            .cls-2{font-family:Roboto-Medium,Roboto;font-weight:500}
+        </style>
+    </defs>
+    <g id="d_n_al" transform="translate(-59 -383.017)">
+        <text id="최근_1개월_동안의_데이터가_없습니다." fill="#bfc0c6" font-family="MalgunGothic, Malgun Gothic" font-size="15px" letter-spacing="-0.037em" transform="translate(180 481)">
+            <tspan x="-120.755" y="0">최근</tspan><tspan y="0" class="cls-2"> 1</tspan><tspan y="0">개월</tspan><tspan y="0" class="cls-2"> </tspan><tspan y="0">동안의</tspan><tspan y="0" class="cls-2"> </tspan><tspan y="0">데이터가</tspan><tspan y="0" class="cls-2"> </tspan><tspan y="0">없습니다</tspan><tspan y="0" class="cls-2">.</tspan>
+        </text>
+        <path id="Icon_notes" fill="#d8dae2" d="M58.607 3H9.179a6.17 6.17 0 0 0-6.148 6.179L3 64.785l12.357-12.357h43.25a6.2 6.2 0 0 0 6.179-6.179V9.179A6.2 6.2 0 0 0 58.607 3zM21.536 40.071h-6.179v-6.178h6.179zm0-9.268h-6.179v-6.178h6.179zm0-9.268h-6.179v-6.178h6.179zm21.625 18.536H27.714v-6.178h15.447zm9.267-9.271H27.714v-6.175h24.714zm0-9.268H27.714v-6.175h24.714z" transform="translate(146 380.017)"/>
+    </g>
+</svg>

@@ -1,0 +1,112 @@
+<app-main-header></app-main-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid class="dictionary-box">
+                      <ion-row class="dictionary-header">
+                        <ion-col>
+                          <span>
+                            증상백과
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-grid>
+                            <ion-row class="dictionary-input-box">
+                              <ion-col size="11" class="pdB10">
+                                <input type="text" class="dictionary-input" placeholder="궁금한 증상을 입력해 주세요." [(ngModel)]="searchKey" (keydown)="enterEvent($event)">
+                              </ion-col>
+                              <ion-col size="1" class="pdB10">
+                                <img src="assets/image/icon_search.svg" (click)="searchDictionary()">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid class="mgB10vh">
+                <ion-row>
+                  <ion-col>
+                    <ion-grid *ngIf="dictionaryList.length">
+                      <ion-row class="dictionary-list-box" *ngFor="let item of dictionaryList" (click)="openDetailModal(item.encySeqNo)">
+                        <ion-col>
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col size="11"><span>{{item.typeName}}</span></ion-col>
+                              <ion-col size="1" class="text_center"><img src="assets/image/Icon_arrow_view2.svg"></ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="dictionaryList.length > 0">
+                      <ion-infinite-scroll-content
+                              loadingSpinner="dots"
+                              loadingText="로딩중...">
+                      </ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                    <ion-grid *ngIf="checkNoData.noDataYn">
+                      <ion-row>
+                        <ion-col class="noDataBox">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                <img src="assets/image/d_n_al.svg" class="noDataImg">
+                              </ion-col>
+                            </ion-row>
+                            <ion-row *ngIf="checkNoData.searchKey">
+                              <ion-col>
+                                <span class="noDataFont">
+                                  <b>
+                                    '{{checkNoData.searchKey}}'
+                                  </b>
+                                  와(과)
+                                </span>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row *ngIf="checkNoData.searchKey">
+                              <ion-col>
+                                <span class="noDataFont">
+                                  일치하는 검색결과가 없습니다.
+                                </span>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row *ngIf="!checkNoData.searchKey">
+                              <ion-col>
+                                <span class="noDataFont">
+                                  등록되어 있는
+                                </span>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row *ngIf="!checkNoData.searchKey">
+                              <ion-col>
+                                <span class="noDataFont">
+                                  증상백과가 없습니다.
+                                </span>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

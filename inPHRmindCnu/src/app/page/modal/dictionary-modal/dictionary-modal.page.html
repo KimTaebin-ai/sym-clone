@@ -1,0 +1,134 @@
+<app-loading></app-loading>
+<ion-header>
+  <ion-grid class="header_Box">
+    <ion-row class="width100Per height100Per">
+      <ion-col size="2" class="mgAuto">
+        <img src="assets/image/icon-arrow-back.svg" (click)="dismiss()">
+      </ion-col>
+      <ion-col size="8" class="align_center-grid">
+        <span class="header_font">
+          증상백과
+        </span>
+      </ion-col>
+      <ion-col size="2">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content>
+  <ion-grid class="dictionary-modal-box">
+    <ion-row>
+      <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="modal-content-box">
+              <ion-grid>
+                <ion-row class="pdL4vw pdR4vw pdB4vh">
+                  <ion-col class="dictionary-font1">
+                    <span>
+                      {{dictionaryDetail.typeName}}
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="dictionaryDetail.imgPath">
+                  <ion-col>
+                    <img src="{{symUrlForImg + dictionaryDetail.imgPath}}" class="doc-img">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid *ngIf="dictionaryDetail.explanation">
+                <ion-row class="pdL4vw pdR4vw">
+                  <ion-col class="title-tag">
+                    <span>
+                      증상 설명
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdL4vw pdR4vw">
+                  <ion-col>
+                    <pre class="content-detail">
+                      {{dictionaryDetail.explanation}}
+                    </pre>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid *ngIf="dictionaryDetail.prevention || dictionaryDetail.method">
+                <ion-row class="pdL4vw pdR4vw">
+                  <ion-col class="title-tag">
+                    <span>
+                      예방 및 관리
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdL4vw pdR4vw pdT4vh" *ngIf="dictionaryDetail.prevention">
+                  <ion-col class="content-title">
+                    <span>
+                      예방 방법
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdL4vw pdR4vw" *ngIf="dictionaryDetail.prevention">
+                  <ion-col>
+                    <pre class="content-detail">
+                      {{dictionaryDetail.prevention}}
+                    </pre>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdL4vw pdR4vw pdT2vh" *ngIf="dictionaryDetail.method">
+                  <ion-col class="content-title">
+                    <span>
+                      증상 관리
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdL4vw pdR4vw" *ngIf="dictionaryDetail.method">
+                  <ion-col>
+                    <pre class="content-detail">
+                      {{dictionaryDetail.method}}
+                    </pre>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid *ngIf="dictionaryDetail.counseling" class="doc-box">
+                <ion-row class="pdL4vw pdR4vw">
+                  <ion-col>
+                    <ion-grid class="doc-card">
+                      <ion-row>
+                        <ion-col>
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col size="1.3">
+                                <img src="assets/image/Icon_doc.svg" class="doc-icon">
+                              </ion-col>
+                              <ion-col size="10.7" class="doc-title">
+                                <span>
+                                  의료진과 상담해주세요.
+                                </span>
+                              </ion-col>
+                            </ion-row>
+
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <pre class="content-detail">
+                            {{dictionaryDetail.counseling}}
+                          </pre>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

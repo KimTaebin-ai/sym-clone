@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="124.983" viewBox="0 0 264 124.983">
+    <defs>
+        <style>
+            .cls-2{font-family:Roboto-Regular,Roboto}
+        </style>
+    </defs>
+    <g id="d_n_al" transform="translate(-48 -383.017)">
+        <text id="공황_데이터가_없습니다._다이어리에서_공황_증상을_기록해_보세요." fill="#bfc0c6" font-family="MalgunGothic, Malgun Gothic" font-size="15px" letter-spacing="-0.037em" transform="translate(180 481)">
+            <tspan x="-78.922" y="0">공황</tspan><tspan y="0" class="cls-2"> </tspan><tspan y="0">데이터가</tspan><tspan y="0" class="cls-2"> </tspan><tspan y="0">없습니다</tspan><tspan y="0" class="cls-2">. </tspan><tspan x="-131.049" y="23">다이어리에서</tspan><tspan y="23" class="cls-2"> </tspan><tspan y="23">공황</tspan><tspan y="23" class="cls-2"> </tspan><tspan y="23">증상을</tspan><tspan y="23" class="cls-2"> </tspan><tspan y="23">기록해</tspan><tspan y="23" class="cls-2"> </tspan><tspan y="23">보세요</tspan><tspan y="23" class="cls-2">.</tspan>
+        </text>
+        <path id="Icon_notes" fill="#d8dae2" d="M58.607 3H9.179a6.17 6.17 0 0 0-6.148 6.179L3 64.785l12.357-12.357h43.25a6.2 6.2 0 0 0 6.179-6.179V9.179A6.2 6.2 0 0 0 58.607 3zM21.536 40.071h-6.179v-6.178h6.179zm0-9.268h-6.179v-6.178h6.179zm0-9.268h-6.179v-6.178h6.179zm21.625 18.536H27.714v-6.178h15.447zm9.267-9.271H27.714v-6.175h24.714zm0-9.268H27.714v-6.175h24.714z" transform="translate(146 380.017)"/>
+    </g>
+</svg>

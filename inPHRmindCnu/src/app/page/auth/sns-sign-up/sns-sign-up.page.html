@@ -1,0 +1,235 @@
+<app-page-header></app-page-header>
+
+<ion-content>
+  <ion-grid class="pd3vw">
+    <ion-row class="login_main_label">
+      <ion-col>
+        <span class="Roboto-Bold">약관 동의</span>
+      </ion-col>
+    </ion-row>
+    <ion-grid class="term-list-box mgT2vh">
+      <ion-row>
+        <ion-col>
+          <ion-grid class="term-list-box">
+            <ion-row class="term-list align_center" *ngFor="let item of termList; let i = index">
+              <ion-col size="1.5" class="text_center align_center-grid height100Per">
+                <img src="assets/image/check3_active.svg" (click)="selectTerm(i)"  *ngIf="checkTermYn('LIST', i)" class="checkImg">
+                <img src="assets/image/check3.svg" (click)="selectTerm(i)"  *ngIf="!checkTermYn('LIST', i)" class="checkImg">
+              </ion-col>
+              <ion-col size="9" class="text_left align_center-grid height100Per">
+                <span class="term-list-font">
+                  {{item.termName}}
+                </span>
+              </ion-col>
+              <ion-col size="1.5" class="text_center align_center-grid height100Per">
+                <img src="assets/image/icon_arrow_view.svg" (click)="openModal(item.termName, item.termContent)" class="checkImg">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="mgT2vh">
+      <ion-row>
+        <ion-col>
+          <button (click)="selectAll()" [ngClass]="checkTermYn('ALL', null)? 'common_button_active' : 'common_button'">모두 동의</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="pdT3_5vh">
+      <ion-row>
+        <ion-col class="text_center">
+          <span class="term-notice-font">
+            inPHR 통합 회원으로
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="text_center">
+          <span class="term-notice-font">
+            소프트넷의 모든 서비스를 이용할 수 있습니다.
+          </span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid>
+  <ion-grid class="pd3vw" [formGroup]="form">
+    <ion-row class="login_main_label">
+      <ion-col>
+        <span class="Roboto-Bold">가입정보입력</span>
+      </ion-col>
+    </ion-row>
+    <!--아이디-->
+    <ion-row class="login_label">
+      <ion-col>
+        <span class="login_label_font">아이디</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="login_input" *ngIf="conditionValue.emailYn">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <input class="disable_common_input" type="text" formControlName="loginId" readonly/>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-row>
+    <ion-row class="login_input" *ngIf="!conditionValue.emailYn">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="9">
+            <!--<input [ngClass]="conditionValue.certificationYn? 'disable_common_input' : 'common_input'" type="text" formControlName="loginId" [readOnly]="conditionValue.emailReadOnly"/>-->
+            <input type="text"
+                   [ngClass]="form.controls.certificationYn? 'disable_common_input' : 'common_input'"
+                   formControlName="loginId" maxlength="200" inputmode="text" [readOnly]="conditionValue.emailReadOnly"
+                   placeholder="이메일을 입력해주세요." appTextValidation inputType="text"
+                   (keypress)="keyPressForVal($event, 'loginId')" (keyup)="keyupForVal('loginId')">
+          </ion-col>
+          <ion-col size="3" class="pdL1vw">
+            <button [ngClass]="form.controls.loginId.invalid || conditionValue.certificationYn? 'common_button' : 'common_button_active'"
+                    [disabled]="form.controls.loginId.invalid || conditionValue.certificationYn" (click)="emailCertification()">
+              인증
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="checkInputValMessage.loginId">
+          <ion-col>
+            <span class="errorMessage">{{checkInputValMessage.loginId}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-row>
+    <ion-row class="login_input" *ngIf="conditionValue.showEmailAuthNum && !conditionValue.certificationYn">
+      <ion-col class="timer_input_box" size="9">
+        <ion-grid class="height100Per">
+          <ion-row class="height100Per">
+            <ion-col class="height100Per align_center-grid" size="9.5">
+              <ion-grid class="height100Per mg0">
+                <ion-row class="height100Per">
+                  <ion-col class="height100Per">
+                    <input class="common_button_input" type="text" placeholder="인증번호를 입력해주세요."
+                           (keypress)="numberOnly($event, 'authNumber')"  (keyup)="inputData($event, 'authNumber')">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col class="height100Per align_center-flex" size="2.5">
+              <ion-grid class="height100Per mg0">
+                <ion-row class="height100Per">
+                  <ion-col class="height100Per timerMessage">
+                    <span *ngIf="conditionValue.timer">{{timer.time}}</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col size="3" class="pdL1vw">
+        <button (click)="certificationAuthNum()" [ngClass]="authNumber.length === 6? 'common_button_active' : 'common_button'"
+                [disabled]="authNumber.length !== 6">
+          확인
+        </button>
+      </ion-col>
+    </ion-row>
+
+
+    <!--이름-->
+    <ion-row class="login_label">
+      <ion-col size="5">
+        <span class="login_label_font">성</span>
+      </ion-col>
+      <ion-col size="7">
+        <span class="login_label_font">이름</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="login_input">
+      <ion-col size="5" class="pdR1vw">
+        <!--<input class="common_input" type="text" formControlName="firstName">-->
+        <input class="common_input" type="text"
+               inputmode="text" inputType="NAME" maxlength="25"
+               formControlName="firstName"
+               appTextValidation
+               placeholder="성" />
+      </ion-col>
+      <ion-col size="7">
+        <!--<input class="common_input common_input" type="text" formControlName="lastName">-->
+        <input class="common_input" type="text"
+               inputmode="text" type="NAME" maxlength="25"
+               formControlName="lastName"
+               appTextValidation
+               placeholder="이름" />
+      </ion-col>
+    </ion-row>
+    <!--성별-->
+    <ion-row class="login_label">
+      <ion-col>
+        <span class="login_label_font">성별</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="pdB2vh">
+      <ion-col size="6" class="sex_button_M" (click)="selectSex('M')"
+      [ngClass]="checkSexType('M')? 'sex_button_box_active' : 'sex_button_box'">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <span [ngClass]="checkSexType('M')? 'sex_button_font_active' : 'sex_button_font'">
+                남자
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col size="6" class="sex_button_F" (click)="selectSex('F')"
+               [ngClass]="checkSexType('F')? 'sex_button_box_active' : 'sex_button_box'">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <span [ngClass]="checkSexType('F')? 'sex_button_font_active' : 'sex_button_font'">
+                여자
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <!--생년월일-->
+    <ion-row id="name" class="login_label">
+      <ion-col>
+        <span class="login_label_font">생년월일</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="login_input">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+<!--            <input class="common_input" type="text" formControlName="birthday"
+                   placeholder="생년월일을 입력해주세요."/>-->
+            <input class="common_input" type="text"
+                   inputmode="numeric" pattern="[0-9]*" maxlength="8"
+                   formControlName="birthday" appDigitOnly placeholder="생년월일을 입력해주세요."
+                   (keypress)="keyPressForVal($event, 'birthday')" (keyup)="keyupForVal('birthday')" />
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="checkInputValMessage.birthday">
+          <ion-col>
+            <span class="errorMessage">{{checkInputValMessage.birthday}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button
+        [disabled]="form.invalid || termList.length !== selectedTerm.length || !conditionValue.certificationYn" [ngClass]="form.invalid || termList.length !== selectedTerm.length || !conditionValue.certificationYn ? 'common_button' : 'common_button_active'"
+        (click)="signUpSns()">
+          가입완료
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

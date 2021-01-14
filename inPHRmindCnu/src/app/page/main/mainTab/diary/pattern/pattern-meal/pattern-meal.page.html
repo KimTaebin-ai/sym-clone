@@ -1,0 +1,60 @@
+<app-loading></app-loading>
+<app-page-header></app-page-header>
+
+<ion-content >
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid class="countBox">
+          <ion-row class="height12vh border-bottom">
+            <ion-col size="3" class="lifePatternTitle"><span>식사</span></ion-col>
+            <ion-col size="9" class="align_center-grid pdL4vw">
+              <div>
+                <span class="diaryCountColor1">{{totalMealCount}}</span><span class="diaryCountColor2"> 건</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd5vw">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdB3vh">
+                    <span class="pattern-text">1. 오늘 하신 식사를 모두 체크해 주세요.</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdB2vh">
+                    <div class="dayBox mgR3vw" [ngClass]="insertVo.breakfast === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('breakfast')">조식(아침)</div>
+                    <div class="dayBox" [ngClass]="insertVo.lunch === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('lunch')">중식(점심)</div>
+                    <div class="dayBox mgL3vw" [ngClass]="insertVo.dinner === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('dinner')">석식(저녁)</div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdB5vh">
+                    <div class="dayBox mgR3vw" [ngClass]="insertVo.snackMorning === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('snackMorning')">간식(오전)</div>
+                    <div class="dayBox" [ngClass]="insertVo.snackAfternoon === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('snackAfternoon')">간식(오후)</div>
+                    <div class="dayBox mgL3vw" [ngClass]="insertVo.snackMidnight === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('snackMidnight')">야식</div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button class="common_save_button" (click)="addMealDiaryAlert()">
+          저장
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

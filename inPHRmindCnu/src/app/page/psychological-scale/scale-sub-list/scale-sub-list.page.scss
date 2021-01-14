@@ -1,0 +1,245 @@
+// FONT
+
+.psychological-fon1 {
+  font-family: Roboto;
+  font-size: 2.5vh;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #3a4b5f;
+}
+
+.psychological-fon1_disable {
+  font-family: Roboto;
+  font-size: 2.5vh;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #bbbec2;
+}
+
+
+.psychological-fon2 {
+  font-family: Roboto;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: 0.28px;
+  color: #262626;
+}
+
+.psychological-fon2_disable {
+  font-family: Roboto;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: 0.28px;
+  color: #bbbec2;
+}
+
+.psychological-fon3 {
+  font-family: Roboto;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.psychological-fon4 {
+  font-family: Roboto;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: 0.28px;
+  color: #ffffff;
+}
+
+
+
+.psychological-box {
+  background-color: #fcfcfd;
+}
+.psychological-part1 {
+  background-color: #fcfcfd;
+  // height: calc(100vh - 18vh - 8.5vh);
+  padding: 0 4vw 2vh 4vw;
+}
+.psychological-header {
+  width: 100%;
+  height: 16vh;
+  padding: 0 4vw;
+  background-color: #3a4b5f;
+  align-items: center;
+}
+
+.psychological-list-box {
+  border-bottom: solid 1px #dde1eb;
+  padding-top: 3.5vh;
+  padding-bottom: 4vh;
+  margin-top: 3vh;
+  width: 100%;
+  height: 11vh;
+  padding: 0 0;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  align-items: center;
+}
+
+.psychological-list-box_disable {
+  border-bottom: solid 1px #dde1eb;
+  padding-top: 3.5vh;
+  padding-bottom: 4vh;
+  margin-top: 3vh;
+  width: 100%;
+  height: 11vh;
+  padding: 0 0;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ecedef;
+  align-items: center;
+}
+
+.psychological-progress {
+  --progress-background: #1178b4;
+  --buffer-background: #eeeff1;
+  height: 1.5vh;
+  border-radius: 15px;
+}
+
+.psychological-progress_disable {
+  --progress-background: #bbbec2;
+  --buffer-background: #e0e1e2;
+  height: 1.5vh;
+  border-radius: 15px;
+}
+
+.psychological-imgBox {
+  align-items: center;
+  display: grid;
+  text-align: center;
+}
+
+.psychological-imgBox_disable {
+  align-items: center;
+  display: grid;
+  text-align: center;
+}
+
+ion-progress-bar .progress {
+  border-radius: 15px;
+}
+
+.plus-img {
+  width: 3vh;
+}
+
+
+.psychological-chartCard1 {
+  width: 85%;
+  height: 30vh;
+  margin-left: 10%;
+  margin-right: 5%;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  margin-top: 6vh;
+}
+
+.psychological-chartCard2 {
+  width: 85%;
+  height: 30vh;
+  margin-left: 5%;
+  margin-right: 10%;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  margin-top: 6vh;
+}
+
+.psychological-chartCard-header {
+  height: 25%;
+  align-items: center;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  color: #3a4b5f;
+}
+
+.chartCard-header-color1 {
+  color: #44bbc8;
+}
+
+.chartCard-header-color2 {
+  color: #3a4b5f;
+}
+
+.psychological-chartCard-chart-Box {
+  height: 55%;
+  padding: 2vw;
+}
+
+
+.psychological-chartCard-date {
+  height: 20%;
+  text-align: center;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: -0.42px;
+  color: #49535f;
+}
+
+
+.scale-sliding-ion-item {
+  --inner-border-width: 0;
+}
+
+
+.scale-sliding-button {
+  margin-left: 4vw;
+  border-radius: 8px;
+}
+
+
+.scale-sliding-button-font {
+  font-family: Roboto;
+  font-size: 3vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  text-align: left;
+  color: #ffffff;
+}
+
+
+
+
+

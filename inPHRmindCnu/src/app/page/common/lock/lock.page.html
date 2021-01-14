@@ -1,0 +1,257 @@
+<ion-content>
+  <ion-grid>
+    <ion-row class="lock-body" style="background-color: red">
+      <ion-col>
+        <ion-grid class="lock-body_item mgT7vh" *ngIf="lockType.code === 0">
+          <ion-row class="lock-item-logoBox">
+            <ion-col>
+              <ion-grid class="signUpFont1">
+                <ion-row>
+                  <ion-col>
+                    <span>
+                      {{userInfo.firstName}}{{userInfo.lastName}}님,
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <span>
+                      회원가입이 완료되었습니다.
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid class="signUpFont2">
+                <ion-row>
+                  <ion-col>
+                    <span>
+                      회원님의 소중한 데이터 관리를 위해
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <span>
+                      잠금 화면 설정 기능을 제공합니다.
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="lock-body_item" *ngIf="lockType.code === 1">
+          <ion-row class="lock-item-logoBox">
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <img src="assets/image/auth/Icon_lock.svg" class="lock-img">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="lock-body_item">
+          <ion-row class="lock-item-keyPad">
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <span>
+                      비밀번호 4자리를 입력해주세요.
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="displayInline pdT3Vh">
+                  <ion-col class="displayFlex">
+                    <div class="lock-password" [ngClass]="password.length >= 1 ? 'lock-password-color2': 'lock-password-color1'"></div>
+                    <div class="lock-password" [ngClass]="password.length >= 2 ? 'lock-password-color2': 'lock-password-color1'"></div>
+                    <div class="lock-password" [ngClass]="password.length >= 3 ? 'lock-password-color2': 'lock-password-color1'"></div>
+                    <div class="lock-password" [ngClass]="password.length >= 4 ? 'lock-password-color2': 'lock-password-color1'"></div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="lock-body_item" *ngIf="lockType.code === 1">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row class="lock-notice">
+                  <ion-col>
+                    <ion-grid >
+                      <ion-row>
+                        <ion-col>
+                          <span>
+                            비밀번호를 잊어버리신 경우, 자동 로그아웃 되며
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <span>
+                            재 로그인을 통해 비밀번호 설정을 하실 수 있습니다.
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="lock-logout">
+                  <ion-col>
+                    <span (click)="logout()">
+                      로그아웃 하기
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row class="lock-keyPad">
+      <ion-col>
+        <ion-grid class="height100Per">
+          <ion-row class="lock-keyPad-num">
+            <ion-col (click)="selectNumber(1)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      1
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col (click)="selectNumber(2)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      2
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col (click)="selectNumber(3)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      3
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="lock-keyPad-num">
+            <ion-col (click)="selectNumber(4)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      4
+                    </div>
+
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col (click)="selectNumber(5)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      5
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col (click)="selectNumber(6)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      6
+                    </div>
+
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="lock-keyPad-num">
+            <ion-col (click)="selectNumber(7)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      7
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col (click)="selectNumber(8)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      8
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col (click)="selectNumber(9)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      9
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="lock-keyPad-num">
+            <ion-col>
+
+            </ion-col>
+            <ion-col (click)="selectNumber(0)" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      0
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col (click)="delPw()" class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="align_center-grid">
+                    <div class="lock-key">
+                      -
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

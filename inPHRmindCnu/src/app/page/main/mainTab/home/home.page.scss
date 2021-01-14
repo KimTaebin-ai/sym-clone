@@ -1,0 +1,337 @@
+
+.main-page {
+  background-color: #fefefe;
+}
+
+.main-header-box {
+  position: absolute;
+  top: 0;
+  padding: 4vw;
+  margin-top: 1vh;
+}
+
+.main-header-name {
+  font-family: Roboto;
+  font-size: 3vh;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: -0.6px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.main-header-time{
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  text-align: left;
+  color: #effdff;
+}
+
+.main-card1 {
+  box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
+  border-radius: 0 0 18px 18px;
+}
+
+.main-card1-position {
+  top: -12vh;
+  position: relative;
+}
+
+.main-card1-header {
+  width: 100%;
+  height: 9vh;
+  background-color: #effdff;
+  border-radius: 18px 18px 0 0;
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.51px;
+  color: #28a1ae;
+  align-items: center;
+}
+
+.main-card1-body {
+  height: 22vh;
+  background-color: #ffffff;
+  padding: 5vw;
+}
+
+.main-card1-psychological {
+  height: 12vh;
+  border-top: solid 1px #eeeff1;
+  align-items: center;
+}
+
+.main-card1-psychological-last {
+  height: 12vh;
+  border-top: solid 1px #eeeff1;
+  align-items: center;
+  border-radius: 0 0 18px 18px;
+}
+
+.main-card1-psychological-label {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.48px;
+  text-align: left;
+  color: #3a4b5f;
+}
+
+.main-card1-psychological-button1 {
+  align-items: center;
+  display: grid;
+  background-color: #eeeff1;
+  width: 7.3vw;
+  height: 7.3vw;
+  border-radius: 75px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  color: #7e8da0;
+}
+
+.main-card1-psychological-button1_active {
+  align-items: center;
+  display: grid;
+  background-color: #44bbc8;
+  width: 7.3vw;
+  height: 7.3vw;
+  border-radius: 75px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  color: #ffffff;
+}
+
+.weekDay-today {
+  color: #28a1ae;
+  font-weight: 900;
+}
+
+.weekDay-withData {
+  color: #3a4b5f;
+}
+
+.main-card1-date1 {
+  font-family: Roboto;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.18;
+  letter-spacing: -0.95px;
+  color: #3a4b5f;
+  margin-bottom: 2.5vh;
+}
+
+.main-card1-date2 {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.48px;
+  color: #7e8da0;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 1vh;
+}
+
+.main-card1-date3 {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.48px;
+  text-align: center;
+  color: #bbbec2;
+  margin-bottom: 1vh;
+}
+
+
+.main-card1-date3-point{
+  align-items: center;
+  display: grid;
+  background-color: #eeeff1;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 75px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  margin: auto;
+}
+
+.main-card1-date3-point{
+  background-color: #d2d5dc;
+ }
+
+.main-card1-date3-point0{
+  background-color: #63e189 !important;
+}
+
+.main-card1-date3-point1{
+  background-color: #ffd072 !important;
+}
+
+.main-card1-date3-point2{
+  background-color: #ff9f4c !important;
+}
+
+.main-card1-date3-point3{
+  background-color: #ff5d43 !important;
+}
+
+.main-card1-date3-point4{
+  background-color: #c41521 !important;
+}
+
+.main-card1-date3-line{
+  border-bottom: solid 1px #eeeff1;
+  width: 86%;
+  position: relative;
+  top: -1.2vh;
+  margin: auto;
+}
+
+
+.main-card2-body {
+  min-height: 27vh;
+  background-color: #ffffff;
+  padding: 5vw;
+}
+
+.main-card2-chart {
+  height: 65%;
+}
+
+.main-card2-report {
+  height: 20%;
+  height: 20%;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.48px;
+  text-align: center;
+  color: #3a4b5f;
+  align-items: center;
+}
+
+.main-card2-date {
+  height: 15%;
+  height: 15%;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  text-align: center;
+  color: #7e8da0;
+  align-items: center;
+}
+
+.main-card3-header {
+  font-size: 17px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #3a4b5f;
+  margin-bottom: 2.5vh;
+}
+
+.main-card3-list-box {
+  width: 100%;
+  height: 10.5vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  border-radius: 4px;
+  box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
+  background-color: #ffffff;
+  margin-top: 1.5vh;
+  align-items: center;
+}
+
+.main-card3-list1 {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.48px;
+  text-align: left;
+  color: #3a4b5f;
+}
+
+.main-card3-list2 {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.45px;
+  text-align: right;
+  color: #262626;
+  padding-right: 2vw;
+
+}
+
+.main-card3-list-img {
+  height: 4vw;
+}
+
+.d-day-num {
+  color: #28a1ae;
+  font-weight: 900;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,213 @@
+<app-page-header></app-page-header>
+<ion-content>
+  <ion-grid class="irb-agree-page" *ngIf="irbPageInfo">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="text_center mgT4vh">
+          <ion-row>
+            <ion-col>
+              <span class="agree-font1" (click)="agreeSave()">{{irbPageInfo.irbTitle}}</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="agree-font2 pdB3vh">
+            <ion-col>
+              <span>{{irbPageInfo.shortDescription}}</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="agree-modal">
+            <ion-col (click)="openModal()">
+              <span>연구 설명문 보기</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row class="agree-font2 pdT2vh">
+            <ion-col>
+              <span>{{irbPageInfo.preContent}}</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid class="pdR4vw pdL4vw" (click)="agreeContents(i)" *ngFor="let item of irbPageInfo.agreeContent; let i = index">
+                <ion-row class="agree-list-agree-box1">
+                  <ion-col size="1" class="align_center-grid">
+                    <img src="assets/image/irb/Icon_checkcircle.svg" class="agree-check-icon" *ngIf="item.agree">
+                    <img src="assets/image/irb/Icon_checkcircle_n.svg" class="agree-check-icon" *ngIf="!item.agree">
+                  </ion-col>
+                  <ion-col size="11">
+                    <span class="agree-font5">동의</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="agree-list-agree-box2">
+                  <ion-col>
+                    <span class="agree-font6">{{item.agreeContent}}</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+<!--              <ion-grid class="pdR4vw pdL4vw" (click)="agreeContents('agree2')">
+                <ion-row class="agree-list-agree-box1">
+                  <ion-col size="1" class="align_center-grid">
+                    <img src="assets/image/irb/Icon_checkcircle.svg" class="agree-check-icon" *ngIf="agreeVo.agree2">
+                    <img src="assets/image/irb/Icon_checkcircle_n.svg" class="agree-check-icon" *ngIf="!agreeVo.agree2">
+                  </ion-col>
+                  <ion-col size="11">
+                    <span>동의</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="agree-list-agree-box2">
+                  <ion-col>
+                    <span> 본인은 본 연구 참여에 대해 충분히 고려할 시간을 가졌으며, 모든 궁금한 사항에 대해 질문하였고 연구 관련자로부터 충분한 답변을받았습니다.</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid class="pdR4vw pdL4vw" (click)="agreeContents('agree3')">
+                <ion-row class="agree-list-agree-box1">
+                  <ion-col size="1" class="align_center-grid">
+                    <img src="assets/image/irb/Icon_checkcircle.svg" class="agree-check-icon" *ngIf="agreeVo.agree3">
+                    <img src="assets/image/irb/Icon_checkcircle_n.svg" class="agree-check-icon" *ngIf="!agreeVo.agree3">
+                  </ion-col>
+                  <ion-col size="11">
+                    <span>동의</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="agree-list-agree-box2">
+                  <ion-col>
+                    <span>본인은 본 연구에 동의한 경우라도 언제든지 자유롭게 동의를 철회할 수 있고, 철회 이후 다른 적절한 치료를 받을 수 있음을 확인하였습니다.</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid class="pdR4vw pdL4vw" (click)="agreeContents('agree4')">
+                <ion-row class="agree-list-agree-box1">
+                  <ion-col size="1" class="align_center-grid">
+                    <img src="assets/image/irb/Icon_checkcircle.svg" class="agree-check-icon" *ngIf="agreeVo.agree4">
+                    <img src="assets/image/irb/Icon_checkcircle_n.svg" class="agree-check-icon" *ngIf="!agreeVo.agree4">
+                  </ion-col>
+                  <ion-col size="11">
+                    <span>동의</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="agree-list-agree-box2">
+                  <ion-col>
+                    <span>본인은 이 동의서가 앱 상에서 저장된다는 것을 알고 있습니다.</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid class="pdR4vw pdL4vw" (click)="agreeContents('agree5')">
+                <ion-row class="agree-list-agree-box1">
+                  <ion-col size="1" class="align_center-grid">
+                    <img src="assets/image/irb/Icon_checkcircle.svg" class="agree-check-icon" *ngIf="agreeVo.agree5">
+                    <img src="assets/image/irb/Icon_checkcircle_n.svg" class="agree-check-icon" *ngIf="!agreeVo.agree5">
+                  </ion-col>
+                  <ion-col size="11">
+                    <span>동의</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="agree-list-agree-box2">
+                  <ion-col>
+                    <span>본인은 자유로운 의사에 따라 본 연구 참여에 대해 동의합니다.</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid class="pdR4vw pdL4vw" (click)="agreeContents('agree6')">
+                <ion-row class="agree-list-agree-box1">
+                  <ion-col size="1" class="align_center-grid">
+                    <img src="assets/image/irb/Icon_checkcircle.svg" class="agree-check-icon" *ngIf="agreeVo.agree6">
+                    <img src="assets/image/irb/Icon_checkcircle_n.svg" class="agree-check-icon" *ngIf="!agreeVo.agree6">
+                  </ion-col>
+                  <ion-col size="11">
+                    <span>동의</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="agree-list-agree-box2">
+                  <ion-col>
+                    <span>본인은 이 동의서에 서명함으로써 의학연구 목적으로 아래의 개인정보 수집 및 이용에 동의합니다.</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid class="pdR4vw pdL4vw" (click)="agreeContents('agree7')">
+                <ion-row class="agree-list-agree-box1">
+                  <ion-col size="1" class="align_center-grid">
+                    <img src="assets/image/irb/Icon_checkcircle.svg" class="agree-check-icon" *ngIf="agreeVo.agree7">
+                    <img src="assets/image/irb/Icon_checkcircle_n.svg" class="agree-check-icon" *ngIf="!agreeVo.agree7">
+                  </ion-col>
+                  <ion-col size="11">
+                    <span>동의</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="agree-list-agree-box2">
+                  <ion-col>
+                    <span>본인은 이 동의서에 서명함으로써 의학연구 목적으로 아래의 민감정보 수집 및 이용에 동의합니다.</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <ion-grid class="pdL4vw pdR4vw">
+                <ion-row class="agree-font3">
+                  <ion-col>
+                    <pre class="irb-pre">
+                      {{irbPageInfo.postContent}}
+                    </pre>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid class="pdL4vw pdR4vw mgB10vh mgT5vh">
+                <ion-row class="agree-font4">
+                  <ion-col class="text_center">
+                    <span>
+                      연구 대상자 동의
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="agree-modal2" (click)="openSignatureModal()" *ngIf="!signatureImg"
+                [ngClass]="checkAgree()? 'agree-modal2' : 'agree-modal2_disable'">
+                  <ion-col>
+                    <span>전자서명</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="signature-img" (click)="openSignatureModal()" *ngIf="signatureImg">
+                  <ion-col>
+                    <img src='{{signatureImg}}' />
+                  </ion-col>
+                </ion-row>
+<!--                <ion-row class="mgT2vh">
+                  <ion-col>
+                    <input class="agree-input" type="text" [(ngModel)]="agreeInfo.userNm"
+                           placeholder="이름을 입력해 주세요.">
+                  </ion-col>
+                </ion-row>
+                <ion-row class="mgT2vh">
+                  <ion-col>
+                    <input class="agree-input" type="text" [(ngModel)]="agreeInfo.agreeYn"
+                           placeholder="'동의'를 입력해 주세요.">
+                  </ion-col>
+                </ion-row>
+                <ion-row class="mgT2vh">
+                  <ion-col>
+                    <input class="agree-input" type="text" [(ngModel)]="agreeInfo.agreeDate"
+                           placeholder="오늘 날짜를 입력해 주세요. ex)20201201">
+                  </ion-col>
+                </ion-row>-->
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" class="agree-cancle" (click)="closeTermModal()">
+        <span>취소</span>
+      </ion-col>
+      <ion-col size="8">
+        <button (click)="agreeSave()" [ngClass]="checkAgree() && this.signatureImg? 'agree-save' : 'agree-save-disabled'"
+        [disabled]="!checkAgree() || !this.signatureImg">
+          <span>저장</span>
+        </button>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

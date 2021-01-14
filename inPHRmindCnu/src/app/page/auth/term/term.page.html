@@ -1,0 +1,83 @@
+<app-loading></app-loading>
+<app-page-header></app-page-header>
+
+<ion-content>
+  <ion-grid class="pd5vw term-page">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pdB2vh">
+          <ion-row>
+            <ion-col>
+              <span class="Roboto-Bold">
+                이용약관
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="term-list-box">
+          <ion-row>
+            <ion-col>
+              <ion-grid class="term-list-box">
+                <ion-row class="term-header align_center">
+                  <ion-col size="1.5" class="text_center align_center-grid height100Per">
+                    <img src="assets/image/check2_active.svg" (click)="selectAll()"  *ngIf="checkTermYn('ALL', null)" class="checkImg">
+                    <img src="assets/image/check2.svg" (click)="selectAll()"  *ngIf="!checkTermYn('ALL', null)" class="checkImg">
+                  </ion-col>
+                  <ion-col size="9" class="text_left align_center-grid height100Per">
+                    <span class="term-header-font">
+                      SYM 이용약관 전체동의
+                    </span>
+                  </ion-col>
+                  <ion-col size="1.5" class="text_center">
+                  </ion-col>
+                </ion-row>
+                <ion-row class="term-list align_center" *ngFor="let item of termList; let i = index">
+                  <ion-col size="1.5" class="text_center align_center-grid height100Per">
+                    <img src="assets/image/check3_active.svg" (click)="selectTerm(i)"  *ngIf="checkTermYn('LIST', i)" class="checkImg">
+                    <img src="assets/image/check3.svg" (click)="selectTerm(i)"  *ngIf="!checkTermYn('LIST', i)" class="checkImg">
+                  </ion-col>
+                  <ion-col size="9" class="text_left align_center-grid height100Per">
+                    <span class="term-list-font">
+                      {{item.termName}}
+                    </span>
+                  </ion-col>
+                  <ion-col size="1.5" class="text_center align_center-grid height100Per">
+                    <img src="assets/image/icon_arrow_view.svg" (click)="openModal(item.termName, item.termContent)" class="checkImg">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pdT3_5vh">
+          <ion-row>
+            <ion-col class="text_center">
+              <span class="term-notice-font">
+                inPHR 통합 회원으로
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text_center">
+              <span class="term-notice-font">
+                소프트넷의 모든 서비스를 이용할 수 있습니다.
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button [ngClass]="termList.length === selectedTerm.length ? 'common_button_active' : 'common_button'"
+                [disabled]="termList.length !== selectedTerm.length" (click)="signUp()">
+          다음
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

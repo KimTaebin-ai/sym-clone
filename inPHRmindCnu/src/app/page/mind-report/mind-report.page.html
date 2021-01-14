@@ -1,0 +1,452 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="openedFab" *ngIf="fabButtonOpened"></div>
+  <ion-grid class="mgB10vh">
+    <ion-row>
+      <ion-col>
+        <ion-grid>
+          <ion-row class="reportTitleNav">
+            <ion-col class="reportTitleText1">리포트</ion-col>
+          </ion-row>
+          <!--정서불안(emotion) / 공황(panic) / 생활패턴(lifePattern) / 심리척도(psychology)-->
+          <ion-row class="reportTopNav text_center border-top border-bottom">
+            <ion-col size="3" (click)="changeReportType('emotion')" [ngClass]="mindType == 'emotion' ? 'pickMindType' : 'reportTopNavText'">정서불안</ion-col>
+            <ion-col size="3" (click)="changeReportType('panic')" [ngClass]="mindType == 'panic' ? 'pickMindType' : 'reportTopNavText'">공황</ion-col>
+            <ion-col size="3" (click)="changeReportType('lifePattern')" [ngClass]="mindType == 'lifePattern' ? 'pickMindType' : 'reportTopNavText'">생활패턴</ion-col>
+            <ion-col size="3" (click)="changeReportType('psychology')" [ngClass]="mindType == 'psychology' ? 'pickMindType' : 'reportTopNavText'">심리척도</ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!--정서불안-->
+        <ion-grid [hidden]="mindType !== 'emotion'">
+          <ion-grid [hidden]="emotionDataList.length">
+            <ion-row>
+              <ion-col class="pdT15vh">
+                <img src="assets/image/report/d_n_al_emotion2.svg" class="noDataImg">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid [hidden]="!emotionDataList.length">
+            <ion-row>
+              <ion-col>
+                <ion-grid class="pd3vw pdB3vh">
+                  <ion-row>
+                    <ion-col>
+                      <ion-grid [hidden]="emotionTerm === 'month'">
+                        <ion-row class="dateInfo">
+                          <ion-col>({{this.weekDays.sixDaysAgo | date : 'M월 d일'}}~{{this.weekDays.today | date : 'M월 d일'}})</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col class="pdT5vh pdB5vh" [hidden]="emotionWeekList.length">
+                            <img src="assets/image/report/d_n_al_week.svg" class="noDataImg">
+                          </ion-col>
+                          <ion-col class="pdT3vh pdB1vh" [hidden]="!emotionWeekList.length">
+                            <canvas #emotionCanvas></canvas>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="dateInfo pdB3vh" [hidden]="!emotionWeekList.length">
+                          <ion-col>* 차트 클릭 시 상세 정보가 출력됩니다.</ion-col>
+                        </ion-row>
+                      </ion-grid>
+                      <ion-grid [hidden]="emotionTerm === 'week'">
+                        <ion-row class="dateInfo">
+                          <ion-col>({{this.oneMonthAgo | date : 'M월 d일'}}~{{this.weekDays.today | date : 'M월 d일'}})</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col class="pdT5vh pdB5vh" [hidden]="emotionMonthList.length">
+                            <img src="assets/image/report/d_n_al_month.svg" class="noDataImg">
+                          </ion-col>
+                          <ion-col class="pdT3vh pdB1vh" [hidden]="!emotionMonthList.length">
+                            <canvas #emotionCanvas_Month></canvas>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="dateInfo pdB3vh" [hidden]="!emotionMonthList.length">
+                          <ion-col>* 차트 클릭 시 상세 정보가 출력됩니다.</ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col class="reportTerm mgR1vw" (click)="changeEmotionTerm('week')" [class.reportTerm_pick]="emotionTerm === 'week'">1주</ion-col>
+                    <ion-col class="reportTerm mgL1vw" (click)="changeEmotionTerm('month')" [class.reportTerm_pick]="emotionTerm === 'month'">1개월</ion-col>
+                  </ion-row>
+                </ion-grid>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-grid *ngFor="let emoData of emotionDataList">
+                        <ion-row class="emoMiddleNav">
+                          <ion-col class="reportTopNavText" *ngIf="thisEmotionEndDate === emoData.endDt">
+                            <span>이번주</span>
+                          </ion-col>
+                          <ion-col class="reportTopNavText" *ngIf="thisEmotionEndDate !== emoData.endDt">
+                            {{emoData.startDt | date : 'M월 d일'}} ~ {{emoData.endDt | date : 'M월 d일'}}
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col>
+                            <ion-grid class="emotionWeeklyBox pdT3vh">
+                              <ion-row class="text_center pdR3vw pdB3vh pdL3vw" *ngFor="let datas of emoData.emotionData">
+                                <ion-col class="feelingDataImg align_center-grid mgR3vw" size="2"
+                                         *ngIf="datas.dataList[0][0] === 0 && datas.dataList[0][1] >= 1 || datas.dataList[0][0] === 0 && datas.dataList[0][1] === 0">
+                                  <span><img src="assets/image/diary/moodgraph-2.svg"></span>
+                                  <span class="emotionDataText" *ngIf="isToday(datas.setDt)">오늘</span>
+                                  <span class="emotionDataText" *ngIf="!isToday(datas.setDt)">{{formatDate(datas.setDt)}}</span>
+                                </ion-col>
+
+                                <ion-col class="feelingDataImg align_center-grid mgR3vw" size="2" *ngIf="datas.dataList[0][0] <= -1 && datas.dataList[0][1] >= 1">
+                                  <span><img src="assets/image/diary/moodgraph-3.svg"></span>
+                                  <span class="emotionDataText" *ngIf="isToday(datas.setDt)">오늘</span>
+                                  <span class="emotionDataText" *ngIf="!isToday(datas.setDt)">{{formatDate(datas.setDt)}}</span>
+                                </ion-col>
+                                <ion-col class="feelingDataImg align_center-grid mgR3vw" size="2" *ngIf="datas.dataList[0][0] <= -1 && datas.dataList[0][1] === 0">
+                                  <span><img src="assets/image/diary/moodgraph-1.svg"></span>
+                                  <span class="emotionDataText" *ngIf="isToday(datas.setDt)">오늘</span>
+                                  <span class="emotionDataText" *ngIf="!isToday(datas.setDt)">{{formatDate(datas.setDt)}}</span>
+                                </ion-col>
+                                <ion-col class="emotionSquare mgR3vw" size="2">
+                                  <ion-grid class="height100Per emotionLine_grid">
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.feelingPColor]="datas.dataList[0][0]===0 && datas.dataList[0][1]>=3"></ion-col>
+                                      <ion-col [class.feelingPColor]="datas.dataList[0][1]>=3"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.feelingPColor]="datas.dataList[0][0]===0 && datas.dataList[0][1]>=2"></ion-col>
+                                      <ion-col [class.feelingPColor]="datas.dataList[0][1]>=2"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine border-bottom-dashed">
+                                      <ion-col [class.feelingPColor]="datas.dataList[0][0]===0 && datas.dataList[0][1]>=1"></ion-col>
+                                      <ion-col [class.feelingPColor]="datas.dataList[0][1]>=1"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.feelingNColor]="datas.dataList[0][0]<=-1"></ion-col>
+                                      <ion-col [class.feelingNColor]="datas.dataList[0][0]<=-1 && datas.dataList[0][1]===0"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.feelingNColor]="datas.dataList[0][0]<=-2"></ion-col>
+                                      <ion-col [class.feelingNColor]="datas.dataList[0][0]<=-2 && datas.dataList[0][1]===0"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.feelingNColor]="datas.dataList[0][0]<=-3"></ion-col>
+                                      <ion-col [class.feelingNColor]="datas.dataList[0][0]<=-3 && datas.dataList[0][1]===0"></ion-col>
+                                    </ion-row>
+                                  </ion-grid>
+                                </ion-col>
+                                <ion-col class="emotionSquare ion-no-padding mgR3vw" size="2">
+                                  <ion-grid class="height100Per emotionLine_grid">
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.energyPColor]="datas.dataList[1][0]===0 && datas.dataList[1][1]>=3"></ion-col>
+                                      <ion-col [class.energyPColor]="datas.dataList[1][1]>=3"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.energyPColor]="datas.dataList[1][0]===0 && datas.dataList[1][1]>=2"></ion-col>
+                                      <ion-col [class.energyPColor]="datas.dataList[1][1]>=2"></ion-col>
+                                    </ion-row>
+                                    <ion-row  class="emotionLine border-bottom-dashed">
+                                      <ion-col [class.energyPColor]="datas.dataList[1][0]===0 && datas.dataList[1][1]>=1"></ion-col>
+                                      <ion-col [class.energyPColor]="datas.dataList[1][1]>=1"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.energyNColor]="datas.dataList[1][0]<=-1"></ion-col>
+                                      <ion-col [class.energyNColor]="datas.dataList[1][0]<=-1 && datas.dataList[1][1]===0"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.energyNColor]="datas.dataList[1][0]<=-2"></ion-col>
+                                      <ion-col [class.energyNColor]="datas.dataList[1][0]<=-2 && datas.dataList[1][1]===0"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.energyNColor]="datas.dataList[1][0]<=-3"></ion-col>
+                                      <ion-col [class.energyNColor]="datas.dataList[1][0]<=-3 && datas.dataList[1][1]===0"></ion-col>
+                                    </ion-row>
+                                  </ion-grid>
+                                </ion-col>
+                                <ion-col class="emotionSquare mgR3vw" size="2">
+                                  <ion-grid class="height100Per emotionLine_grid">
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.unrestColor]="datas.dataList[2]>=3"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.unrestColor]="datas.dataList[2]>=2"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine border-bottom-dashed">
+                                      <ion-col [class.unrestColor]="datas.dataList[2]>=1"></ion-col>
+                                    </ion-row>
+                                  </ion-grid>
+                                </ion-col>
+                                <ion-col class="emotionSquare mgR3vw" size="2">
+                                  <ion-grid class="height100Per emotionLine_grid">
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.annoyedColor]="datas.dataList[3]>=3"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine">
+                                      <ion-col [class.annoyedColor]="datas.dataList[3]>=2"></ion-col>
+                                    </ion-row>
+                                    <ion-row class="emotionLine border-bottom-dashed">
+                                      <ion-col [class.annoyedColor]="datas.dataList[3]>=1"></ion-col>
+                                    </ion-row>
+                                  </ion-grid>
+                                </ion-col>
+                              </ion-row>
+                            </ion-grid>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+                <ion-infinite-scroll threshold="100px" (ionInfinite)="loadEmotionData($event)" >
+                  <ion-infinite-scroll-content
+                          loadingSpinner="dots"
+                          loadingText="로딩중...">
+                  </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-grid>
+
+        <!--공황-->
+        <ion-grid [hidden]="mindType !== 'panic'">
+          <ion-grid [hidden]="panicDataList.length">
+            <ion-row>
+              <ion-col class="pdT15vh">
+                <img src="assets/image/report/d_n_al_panic2.svg" class="noDataImg">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid [hidden]="!panicDataList.length">
+            <ion-row>
+              <ion-col>
+                <ion-grid class="pd3vw pdB3vh panicChartBox">
+                  <ion-row>
+                    <ion-col>
+                      <ion-grid [hidden]="panicTerm === 'month'">
+                        <ion-row class="dateInfo">
+                          <ion-col>({{this.weekDays.sixDaysAgo | date : 'M월 d일'}}~{{this.weekDays.today | date : 'M월 d일'}})</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col class="pdT5vh pdB5vh" [hidden]="panicWeekList.length">
+                            <img src="assets/image/report/d_n_al_week.svg" class="noDataImg">
+                          </ion-col>
+                          <ion-col class="pdT3vh pdB1vh" [hidden]="!panicWeekList.length">
+                            <canvas #panicCanvas></canvas>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="dateInfo pdB3vh" [hidden]="!panicWeekList.length">
+                          <ion-col>* 차트 클릭 시 상세 정보가 출력됩니다.</ion-col>
+                        </ion-row>
+                      </ion-grid>
+                      <ion-grid [hidden]="panicTerm === 'week'">
+                        <ion-row class="dateInfo">
+                          <ion-col>({{this.oneMonthAgo | date : 'M월 d일'}}~{{this.weekDays.today | date : 'M월 d일'}})</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col class="pdT5vh pdB5vh" [hidden]="panicMonthList.length">
+                            <img src="assets/image/report/d_n_al_month.svg" class="noDataImg">
+                          </ion-col>
+                          <ion-col class="pdT3vh pdB1vh" [hidden]="!panicMonthList.length">
+                            <canvas #panicCanvas_Month></canvas>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="dateInfo pdB3vh" [hidden]="!panicMonthList.length">
+                          <ion-col>* 차트 클릭 시 상세 정보가 출력됩니다.</ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col class="reportTerm mgR1vw" (click)="changePanicTerm('week')" [class.reportTerm_pick]="panicTerm === 'week'">1주</ion-col>
+                    <ion-col class="reportTerm mgL1vw" (click)="changePanicTerm('month')" [class.reportTerm_pick]="panicTerm === 'month'">1개월</ion-col>
+                  </ion-row>
+                </ion-grid>
+                <ion-grid class="panicDetailBox" *ngFor="let panics of panicDataList; let i = index;">
+                  <ion-row class="panic-border-bottom pd3_8vw">
+                    <ion-col class="panicDetailText">
+                      <span>{{panics.startDt}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="panic-border-bottom">
+                    <ion-col size="6" class="panicDetailText panic-border-right pd3_8vw">
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col size="7" class="align_center-flex">
+                            증상강도
+                          </ion-col>
+                          <ion-col size="5">
+                            <span *ngIf="panics.panicIntensity == 1"><img src="../../../../../../assets/image/panic/v_intensity_1.svg" class="mgL3vw"></span>
+                            <span *ngIf="panics.panicIntensity == 2"><img src="../../../../../../assets/image/panic/v_intensity_2.svg" class="mgL3vw"></span>
+                            <span *ngIf="panics.panicIntensity == 3"><img src="../../../../../../assets/image/panic/v_intensity_3.svg" class="mgL3vw"></span>
+                            <span *ngIf="panics.panicIntensity == 4"><img src="../../../../../../assets/image/panic/v_intensity_4.svg" class="mgL3vw"></span>
+                            <span *ngIf="panics.panicIntensity == 5"><img src="../../../../../../assets/image/panic/v_intensity_5.svg" class="mgL3vw"></span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-col>
+                    <ion-col size="6" class="panicDetailText pd3_8vw">
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col size="7" class="align_center-flex">
+                            지속시간
+                          </ion-col>
+                          <ion-col size="5" class="align_center-flex">
+                            <span class="reportCountColor">{{panics.panicTime}}</span>&nbsp;분
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-col>
+                  </ion-row>
+                  <ion-grid class="pd3_8vw">
+                    <ion-row>
+                      <ion-col class="panicDetailText pdB1vh">동반증상</ion-col>
+                    </ion-row>
+                    <ion-row class="symtomListBox">
+                      <ion-col>
+                        <span *ngFor="let symptoms of panics.symptoms" class="symtomText border-none pd1vw mgR2vw">
+                            <span *ngIf="symptoms.symptomName !== '기타'">{{symptoms.symptomName}}</span>
+                            <span *ngIf="symptoms.symptomName === '기타'">{{symptoms.symptomEtc}}</span>
+                          </span>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-grid>
+                <ion-infinite-scroll threshold="100px" (ionInfinite)="loadPanicData($event)" >
+                  <ion-infinite-scroll-content
+                          loadingSpinner="dots"
+                          loadingText="로딩중...">
+                  </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-grid>
+
+        <!--생활패턴-->
+        <ion-grid [hidden]="mindType !== 'lifePattern'">
+          <ion-row class="lifePatternMiddleNav pd3_5vw">
+            <ion-col size="1" class="text_center align_center-grid" (click)="moveLastWeek()"><img src="../../../assets/image/arrow/icon_arrow_c_left.svg"></ion-col>
+            <ion-col size="10">
+              {{startDay | date : 'y년 M월 d일'}} ~ {{endDay | date : 'M월 d일'}}
+            </ion-col>
+            <ion-col size="1" class="text_center align_center-grid" (click)="moveNextWeek()" *ngIf="!isAfterToday()">
+              <img src="../../../assets/image/arrow/icon_arrow_c_right.svg">
+            </ion-col>
+            <ion-col size="1" class="text_center align_center-grid" *ngIf="isAfterToday() || isSameEndDay()">
+              <img src="../../../assets/image/arrow/Icon_arrow_d_right.svg">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid *ngIf="patternAllDataLength === 0">
+                <ion-row>
+                  <ion-col class="pdT15vh">
+                    <img src="assets/image/report/d_n_al_pattern.svg" class="noDataImg">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid *ngIf="patternAllDataLength !== 0">
+                <ion-row class="border-top border-bottom">
+                  <ion-col size="3" class="lifePatternTitle"><span>음주</span></ion-col>
+                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                    <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyDrinks}}</span>
+                    <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
+                    <span class="lifePatternText"> 건</span></ion-col>
+                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('drink')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                </ion-row>
+                <ion-row class="border-bottom">
+                  <ion-col size="3" class="lifePatternTitle"><span>카페인</span></ion-col>
+                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                    <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyCaffeines}}</span>
+                    <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
+                    <span class="lifePatternText"> 건</span></ion-col>
+                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('caffeine')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                </ion-row>
+                <ion-row class="border-bottom">
+                  <ion-col size="3" class="lifePatternTitle"><span>운동</span></ion-col>
+                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                    <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyExercises}}</span>
+                    <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
+                    <span class="lifePatternText"> 건</span></ion-col>
+                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('exercise')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                </ion-row>
+                <ion-row class="border-bottom">
+                  <ion-col size="3" class="lifePatternTitle"><span>흡연</span></ion-col>
+                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                    <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailySmokes}}</span>
+                    <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
+                    <span class="lifePatternText"> 건</span></ion-col>
+                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('smoke')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                </ion-row>
+                <ion-row class="border-bottom">
+                  <ion-col size="3" class="lifePatternTitle"><span>식사</span></ion-col>
+                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                    <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyMeals}}</span>
+                    <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
+                    <span class="lifePatternText"> 건</span></ion-col>
+                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal( 'meal')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                </ion-row>
+                <ion-row class="border-bottom">
+                  <ion-col size="3" class="lifePatternTitle"><span>생리</span></ion-col>
+                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                    <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyMenstruations}}</span>
+                    <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
+                    <span class="lifePatternText"> 건</span></ion-col>
+                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('menstruation')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+        <!--심리척도-->
+        <ion-grid [hidden]="mindType !== 'psychology'">
+          <ion-row class="mgT3vh mgB3vh">
+            <ion-col size="2.5" class="psychologyNav mgL3_3vw mgB2vh"
+                     *ngFor="let survey of psychoSurveyList"
+                     (click)="changeSurveyType(survey)"
+                     [class.psychoType_pick]="psychologyCodeSeq === survey.codeSeq">{{survey.codeName}}</ion-col>
+          </ion-row>
+          <ion-grid>
+            <ion-row *ngIf="surveyCategoryList.length">
+              <ion-col class="psychoStandardTitleText mgB2vh">
+                {{surveyCategory.titleKO}}({{surveyCategory.shortTitle}})
+              </ion-col>
+            </ion-row>
+            <ion-grid class="mgB2vh height30vh">
+              <ion-row [hidden]="surveyCategoryList.length">
+                <ion-col class="pdT6vh">
+                  <img src="assets/image/report/d_n_al.svg" class="noDataImg">
+                </ion-col>
+              </ion-row>
+              <ion-row [hidden]="!surveyCategoryList.length">
+                <ion-col class="pd3vw">
+                  <canvas #psychoCanvas></canvas>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-grid>
+                  <ion-row class="pdB3vh" *ngFor="let category of surveyCategoryList; let i = index" (click)="clickSurveyCategory(category)">
+                    <ion-col size="2" class="text_center align_center-grid">
+                      <img src="assets/image/Icon_checkcircle_n.svg" *ngIf="category.surveySeq !== surveyCategory.surveySeq">
+                      <img src="assets/image/Icon_checkcircle.svg" *ngIf="category.surveySeq === surveyCategory.surveySeq">
+                    </ion-col>
+                    <ion-col size="10" class="psychoStandardText align_center-grid"
+                             [class.psychoStandard_pick]="category.surveySeq === surveyCategory.surveySeq">
+                      {{category.surveyTitleKO}}({{category.surveyShortTitle}})
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<!--  <app-fab (fabOpened)="fabHandler($event)"></app-fab>-->
+</ion-content>
+

@@ -1,0 +1,115 @@
+.memberInfo-box {
+  border-top: solid 1px #dcdcdc;
+}
+
+.memberInfo-list-box {
+  padding-left: 4vw;
+  padding-right: 4vw;
+  width: 100%;
+  height: 11vh;
+  align-items: center;
+  display: flex;
+  font-family: Roboto;
+  font-size: 4.5vw;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.18;
+  letter-spacing: -0.95px;
+  color: #333333;
+  border-bottom: solid 1px #dcdcdc;
+}
+
+.memberInfo-list-next {
+  height: 3vw;
+}
+
+
+.content_base {
+  font-family: Roboto;
+  font-size: 4.5vw;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.5vh;
+  letter-spacing: -0.8px;
+  text-align: left;
+  color: #111111;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: pre-line;
+  white-space: -o-pre-wrap;
+  word-break: break-all;
+  padding: 6vw 4vw 6vw 4vw;
+}
+
+.content_base_line {
+  border-bottom: solid 1px #dcdcdc;
+}
+
+.auto-enter {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: pre-line;
+  white-space: -o-pre-wrap;
+  word-break:break-all;
+  padding: 6vw 4vw 6vw 4vw;
+}
+
+.del-irb-font1 {
+  font-family: Roboto;
+  font-size: 7vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.55px;
+  color: #3a4b5f;
+  text-align: center;
+}
+
+.del-irb-font2 {
+  font-family: Roboto;
+  font-size: 3.5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: -0.45px;
+  text-align: center;
+  color: #707070;
+}
+
+.del-irb-box {
+  text-align: center;
+  display: block;
+  margin-bottom: 5vh;
+}
+
+.del-irb-button {
+  width: 39vw;
+  height: 9vh;
+  border-radius: 4px;
+  background-color: #3a4b5f;
+  font-family: Roboto;
+  font-size: 5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.noDataBox {
+  height: 100%;
+  background-color: #fcfcfd;
+}
+
+.noDataImg {
+  height: 13vh;
+}

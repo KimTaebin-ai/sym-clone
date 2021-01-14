@@ -1,0 +1,12 @@
+  <ion-grid *ngIf="loading.active">
+    <ion-row class="loading-box">
+      <ion-col class="loading-bar">
+        <img src="assets/image/loading/loading1.gif" class="loading-img">
+      </ion-col>
+    </ion-row>
+    <ion-row class="text-box-padding">
+      <ion-col class="text-box">
+        <span>{{loading.text}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>

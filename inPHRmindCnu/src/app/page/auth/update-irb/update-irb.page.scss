@@ -1,0 +1,115 @@
+// 약간 동의 파트
+.moreInfo-term-font1 {
+  font-family: Roboto;
+  font-size: 3.3vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: -0.62px;
+  text-align: left;
+  color: #000000;
+}
+
+
+
+.moreInfo-term-box {
+  text-align: center;
+  margin-top: 4vh;
+  margin-bottom: 6vh;
+}
+
+.term-button {
+  width: 60vw;
+  height: 8vh;
+  padding: 0 4vw;
+  background-color: #1178b4;
+  border-radius: 6px;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.55px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.term-button_disable {
+  width: 60vw;
+  height: 8vh;
+  padding: 0 4vw;
+  background-color: #ecedef;
+  border-radius: 6px;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.55px;
+  text-align: center;
+  color: #bbbec2;
+}
+
+
+.moreInfo-term-font2 {
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #2e2e2e;
+}
+
+.term-add {
+  width: 100%;
+  height: calc(((100vw - 8vw)/12)*2);
+  padding: 0 4vw;
+  border: solid 1px #d2d5dc;
+  border-radius: 4px;
+}
+
+.term-pulse-button {
+  width: 100%;
+  height: calc(((100vw - 8vw)/12)*2);
+  background-color: #44bbc8;
+  border-radius: 4px;
+  text-align: center;
+  align-items: center;
+  display: inline-grid;
+}
+
+.term-pulse-button-img {
+  height: calc(((100vw - 8vw)/12)*1);
+}
+
+.multiple-term-list {
+  width: 100%;
+  padding: 0 4vw;
+  border-radius: 4px;
+  background-color: #f7f8f9;
+  min-height: calc(((100vw - 8vw)/12)*1.8);
+  align-items: center;
+  margin-top: 1.5vh;
+}
+
+.close-term-img {
+  height: calc(((100vw - 8vw)/12)/1.6);
+  text-align: center;
+}
+
+.state-font {
+  font-family: Roboto;
+  font-size: 4.5vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.54px;
+  color: #7e8da0;
+}

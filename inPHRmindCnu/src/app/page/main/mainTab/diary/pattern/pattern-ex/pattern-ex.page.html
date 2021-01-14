@@ -1,0 +1,224 @@
+<app-loading></app-loading>
+<app-page-header></app-page-header>
+
+<ion-content class="pattern-background">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid class="countBox">
+          <ion-row class="height12vh">
+            <ion-col size="3" class="lifePatternTitle"><span>운동</span></ion-col>
+            <ion-col size="9" class="align_center-grid pdL4vw">
+              <div>
+                <span class="diaryCountColor1">{{exerciseList.length}}</span><span class="diaryCountColor2"> 건</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd5vw pattern-page">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdB3vh">
+                    <span class="pattern-text">1. 언제 운동을 하셨나요?</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdB3vh">
+                  <ion-col class="dayBox mgR3vw" [ngClass]="insertVo.exerciseWhen === 'M'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectDay('M')">오전</ion-col>
+                  <ion-col class="dayBox mgR3vw" [ngClass]="insertVo.exerciseWhen === 'A'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectDay('A')">오후</ion-col>
+                  <ion-col class="dayBox" [ngClass]="insertVo.exerciseWhen === 'N'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectDay('N')">저녁(취침전)</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdB3vh">
+                    <span class="pattern-text">2. 어떤 종류로 얼마나 하셨나요?</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdB2vh">
+                  <ion-col class="pattern-select-box">
+                    <ion-grid>
+                      <ion-row class="width100Per pdR2vw">
+                        <ion-col>
+                            <ion-select value="notifications" interface="action-sheet" cancelText="취소" [(ngModel)]="insertVo.exerciseCode">
+                              <ion-select-option value="">운동 종류</ion-select-option>
+                              <ion-select-option *ngFor="let codes of exCodeList;" value="{{codes.codeSeq}}">{{codes.codeName}}</ion-select-option>
+                            </ion-select>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdB2vh" *ngIf="insertVo.exerciseCode == etcCode">
+                  <ion-col class="pattern-select-box">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <input class="pattern-input-box-etc" [(ngModel)]="insertVo.exerciseEtc" maxlength="30" placeholder="운동의 종류를 입력하세요.">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdB5vh">
+                    <ion-grid class="pattern-input-border">
+                      <ion-row class="height100Per align_center">
+                        <ion-col size="10">
+                          <input class="pattern-input-box" type="number" maxlength="3" [(ngModel)]="insertVo.exerciseTime">
+                        </ion-col>
+                        <ion-col class="text_center" size="2">분</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <button class="pattern-add-button" (click)="addExDiaryChk()">
+                    <span>
+                      추가
+                    </span>
+                    </button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="exerciseList.length !== 0">
+          <ion-row>
+            <ion-col class="pd5vw">
+              <ion-grid class="pattern-report-list-box">
+                <ion-row class="pattern-report-header">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <span>운동 리포트</span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row [hidden]="chkWhen.chkM === 'N'">
+                        <ion-col size="3" class="pattern-report-label">
+                          <span>오전</span>
+                        </ion-col>
+                        <ion-col size="9">
+                          <ion-grid *ngFor="let ex of exerciseList;" [hidden]="ex.exerciseWhen !== 'M'" class="border-bottom">
+                            <ion-row>
+                              <ion-col size="10" class="pattern-list-box pdL4vw">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col class="pattern-ex-list-box1">
+                                      <span *ngIf="ex.exerciseCode !== etcCode">{{ex.exerciseName}}</span>
+                                      <span *ngIf="ex.exerciseCode === etcCode">{{ex.exerciseEtc}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row>
+                                    <ion-col class="pattern-ex-list-box2">
+                                      <span class="pattern-list-font1">{{ex.exerciseTime}}</span><span class="pattern-list-font2">분</span>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
+                              </ion-col>
+                              <ion-col size="2" class="pattern-list-box">
+                                <img src="assets/image/pattern/Icon_trash.svg" class="mgAuto" (click)="deleteExAlert(ex)">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row [hidden]="chkWhen.chkA === 'N'">
+                        <ion-col size="3" class="pattern-report-label">
+                          <span>오후</span>
+                        </ion-col>
+                        <ion-col size="9">
+                          <ion-grid *ngFor="let ex of exerciseList;" [hidden]="ex.exerciseWhen !== 'A'" class="border-bottom">
+                            <ion-row>
+                              <ion-col size="10" class="pattern-list-box pdL4vw">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col class="pattern-ex-list-box1">
+                                      <span *ngIf="ex.exerciseCode !== etcCode">{{ex.exerciseName}}</span>
+                                      <span *ngIf="ex.exerciseCode === etcCode">{{ex.exerciseEtc}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row>
+                                    <ion-col class="pattern-ex-list-box2">
+                                      <span class="pattern-list-font1">{{ex.exerciseTime}}</span><span class="pattern-list-font2">분</span>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
+                              </ion-col>
+                              <ion-col size="2" class="pattern-list-box">
+                                <img src="assets/image/pattern/Icon_trash.svg" class="mgAuto" (click)="deleteExAlert(ex)">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row [hidden]="chkWhen.chkN === 'N'">
+                        <ion-col size="3" class="pattern-report-label">
+                          <span>저녁</span>
+                        </ion-col>
+                        <ion-col size="9">
+                          <ion-grid *ngFor="let ex of exerciseList;" [hidden]="ex.exerciseWhen !== 'N'" class="border-bottom">
+                            <ion-row>
+                              <ion-col size="10" class="pattern-list-box pdL4vw">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col class="pattern-ex-list-box1">
+                                      <span *ngIf="ex.exerciseCode !== etcCode">{{ex.exerciseName}}</span>
+                                      <span *ngIf="ex.exerciseCode === etcCode">{{ex.exerciseEtc}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row>
+                                    <ion-col class="pattern-ex-list-box2">
+                                      <span class="pattern-list-font1">{{ex.exerciseTime}}</span><span class="pattern-list-font2">분</span>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
+                              </ion-col>
+                              <ion-col size="2" class="pattern-list-box">
+                                <img src="assets/image/pattern/Icon_trash.svg" class="mgAuto" (click)="deleteExAlert(ex)">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<!--<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        &lt;!&ndash;        <button [ngClass]="termList.length === selectedTerm.length ? 'common_button_active' : 'common_button'"
+                        [disabled]="termList.length !== selectedTerm.length" (click)="signUp()">
+                  다음
+                </button>&ndash;&gt;
+        <button class="common_save_button">
+          저장
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>-->
+

@@ -1,0 +1,84 @@
+.login_main_label {
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+}
+
+.login_label{
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+}
+
+.login_input {
+  padding-bottom: 2vh;
+}
+
+.email-box {
+  text-align: center;
+  align-items: center;
+  display: grid;
+}
+
+.idNumber {
+  text-align: center;
+  font-size: 6vw;
+  letter-spacing: 0.5vh;
+  font-weight: 600;
+  align-items: center;
+  display: grid;
+}
+
+.showPw {
+  margin: auto;
+  text-align: center;
+}
+
+.sex_button_box {
+  height: 7.5vh;
+  align-items: center;
+  text-align: center;
+  display: grid;
+  width: 100%;
+  border: solid 1px #d2d5dc
+}
+
+.sex_button_box_active {
+  height: 7.5vh;
+  align-items: center;
+  text-align: center;
+  display: grid;
+  width: 100%;
+  border: solid 1px #28a1ae;
+  background-color: #effdff;
+}
+
+.sex_button_font {
+  font-family: Roboto;
+  font-size: 3.5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #737373;
+}
+
+.sex_button_font_active {
+  font-family: Roboto;
+  font-size: 3.5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #28a1ae;
+}
+
+.sex_button_M {
+  border-radius: 4px 0 0 4px;
+}
+
+.sex_button_F {
+  border-radius: 0 4px 4px 0;
+}

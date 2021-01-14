@@ -1,0 +1,157 @@
+<ion-header>
+  <ion-grid>
+    <ion-row class="lineHeight8vh">
+      <ion-col class="text_center align_center-grid" size="2" (click)="dismiss()">
+        <img src="assets/image/arrow/Icon ionic-ios-arrow-back.svg">
+      </ion-col>
+      <ion-col class="text_center" size="8">
+        <span class="reportTitleText">{{patternDetail.typeNm}} 리포트</span>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row class="border-top border-bottom">
+      <ion-col size="3" class="lifePatternTitle"><span>{{patternDetail.typeNm}}</span></ion-col>
+      <ion-col size="9" class="lineHeight12vh pdL4vw">
+        <span class="reportCountColor">{{patternAllDataList.length}}</span>
+        <span class="lifePatternText"> 건</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="bkcolor_fcfcfd" *ngIf="patternAllDataList.length">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd5vw">
+          <ion-row>
+            <ion-col>
+              <ion-grid class="pattern-report-list-box">
+                <ion-row>
+                  <ion-col>
+                    <ion-grid *ngIf="patternDetail.type === 'drink' || patternDetail.type === 'caffeine' || patternDetail.type === 'exercise'">
+                      <ion-row *ngFor="let patterns of patternAllDataList">
+                        <ion-col size="4" class="pattern-report-label box_border_bottom">
+                          <span>{{patterns.date}}</span>
+                        </ion-col>
+                        <ion-col size="8">
+
+                          <!--음주/카페인/운동-->
+                          <ion-grid *ngFor="let values of patterns.values;" class="box_border_bottom">
+                            <ion-row>
+                              <ion-col size="6" class="pattern-list-box pdL3vw" [hidden]="patternDetail.type !== 'drink'">
+                                <span *ngIf="values.drinkName !== '기타'">{{values.drinkName}}</span>
+                                <span *ngIf="values.drinkName === '기타'">{{values.drinkEtc}}</span>
+                              </ion-col>
+                              <ion-col class="pattern-list-box-ex pdL3vw mgT1vh" [hidden]="patternDetail.type !== 'caffeine'">
+                                <span *ngIf="values.caffeineName !== '기타'">{{values.caffeineName}}</span>
+                                <span *ngIf="values.caffeineName === '기타'">{{values.caffeineEtc}}</span>
+                              </ion-col>
+                              <ion-col class="pattern-list-box-ex pdL3vw mgT1vh" [hidden]="patternDetail.type !== 'exercise'">
+                                <span *ngIf="values.exerciseName !== '기타'">{{values.exerciseName}}</span>
+                                <span *ngIf="values.exerciseName === '기타'">{{values.exerciseEtc}}</span>
+                              </ion-col>
+                              <ion-col size="6" class="pattern-list-box pdR3vw" [hidden]="patternDetail.type !== 'drink'">
+                                <span class="reportCountColor">{{values.drinkAmount}}</span>
+                                <span class="lifePatternText">&nbsp;{{checkUnit(values.drinkCode)}}</span>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row [hidden]="patternDetail.type !== 'caffeine'">
+                              <ion-col class="pattern-list-box-ex mgB1vh">
+                                <span class="reportCountColor pdL3vw">{{values.caffeineAmount}}</span>
+                                <span class="lifePatternText">&nbsp;{{checkUnit(values.caffeineCode)}}</span>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row [hidden]="patternDetail.type !== 'exercise'">
+                              <ion-col class="pattern-lis`t-box-ex mgB1vh">
+                                <span class="reportCountColor pdL3vw">{{values.exerciseTime}}</span>
+                                <span class="lifePatternText">&nbsp;분</span>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                    <ion-grid *ngIf="patternDetail.type === 'smoke' || patternDetail.type === 'meal' || patternDetail.type === 'menstruation'">
+                      <ion-row *ngFor="let patterns of patternAllDataList">
+                        <ion-col>
+
+                          <!--흡연-->
+                          <ion-grid [hidden]="patternDetail.type !== 'smoke'">
+                            <ion-row class="box_border_bottom">
+                              <ion-col size="4" class="pattern-report-label">
+                                <span>{{patterns.smokeDt}}</span>
+                              </ion-col>
+                              <ion-col size="8" class="pattern-list-box">
+                                <span class="reportCountColor pdL3vw">{{patterns.smokeAmount}}</span>
+                                <span class="lifePatternText">&nbsp;개피</span>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+
+                          <!--식사-->
+                          <ion-grid [hidden]="patternDetail.type !== 'meal'">
+                            <ion-row class="box_border_bottom">
+                              <ion-col size="4" class="pattern-report-label">
+                                <span>{{patterns.eatDt}}</span>
+                              </ion-col>
+                              <ion-col size="8" class="pattern-list-box-ex pdL3vw pdR3vw">
+                                <ion-grid>
+                                  <ion-row class="mealListBox">
+                                    <ion-col>
+                                      <span>
+                                        <span class="mealText" *ngIf="patterns.breakfast === 'Y'">조식(아침)</span>
+                                        <span class="mealText" *ngIf="patterns.lunch === 'Y'">중식(점심)</span>
+                                        <span class="mealText" *ngIf="patterns.dinner === 'Y'">석식(저녁)</span>
+                                        <span class="mealText" *ngIf="patterns.snackMorning === 'Y'">간식(오전)</span>
+                                        <span class="mealText" *ngIf="patterns.snackAfternoon === 'Y'">간식(오후)</span>
+                                        <span class="mealText" *ngIf="patterns.snackMidnight === 'Y'">야식</span>
+                                      </span>
+                                    </ion-col>
+                                    <!--<ion-col *ngIf="patterns.breakfast === 'Y'"><span class="mealText">조식(아침)</span></ion-col>
+                                    <ion-col *ngIf="patterns.lunch === 'Y'"><span class="mealText">중식(점심)</span></ion-col>
+                                    <ion-col *ngIf="patterns.dinner === 'Y'"><span class="mealText">석식(저녁)</span></ion-col>
+                                    <ion-col *ngIf="patterns.snackMorning === 'Y'"><span class="mealText">간식(오전)</span></ion-col>
+                                    <ion-col *ngIf="patterns.snackAfternoon === 'Y'"><span class="mealText">간식(오후)</span></ion-col>
+                                    <ion-col *ngIf="patterns.snackMidnight === 'Y'"><span class="mealText">야식</span></ion-col>-->
+                                  </ion-row>
+                                </ion-grid>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+
+                          <!--생리-->
+                          <ion-grid [hidden]="patternDetail.type !== 'menstruation'">
+                            <ion-row class="box_border_bottom">
+                              <ion-col size="4" class="pattern-report-label">
+                                <span>{{patterns.menstruationDt}}</span>
+                              </ion-col>
+                              <ion-col size="8" class="pattern-list-box-ex pdL3vw pdR3vw">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col class="periodText">
+                                      <span>
+                                        <span *ngIf="patterns.menstruationYn === 'Y'">생리중</span>
+                                        <span *ngIf="patterns.menstruationYn === 'N'">생리 안함</span>
+                                        <span *ngIf="patterns.menstruationYn === 'U'">해당 없음</span>
+                                      </span>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

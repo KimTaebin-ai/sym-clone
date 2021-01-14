@@ -1,0 +1,231 @@
+<app-loading></app-loading>
+<app-main-header></app-main-header>
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="calendar-header">
+            <span>캘린더</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="calendar">
+              <div class="infoBox">
+                <div class="calendar-box">
+                  <div class="calendar-box">
+                    <div class="calendar-box">
+                      <div>
+                        <div class="calendar-selectBox">
+                          <div class="select-date">
+                            <div class="select-date-left" (click)="calcPrev()">
+                              <img class="pointer" src="assets/image/arrow/icon_arrow_c_left.svg" alt="arrow">
+                            </div>
+                            <div class="select-date-center">
+                                  <span class="date-text">
+                                    {{current.year}}년 {{current.month}}월
+                                  </span>
+                            </div>
+                            <div class="select-date-right" (click)="calcNext()">
+                              <img class="pointer" src="assets/image/arrow/icon_arrow_c_right.svg" alt="arrow">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="calendar-padding">
+                        <div class="calendar-week">
+                          <span class="calendar-week-text-sun">일</span>
+                        </div>
+                        <div class="calendar-week">
+                          <span class="calendar-week-text">월</span>
+                        </div>
+                        <div class="calendar-week">
+                          <span class="calendar-week-text">화</span>
+                        </div>
+                        <div class="calendar-week">
+                          <span class="calendar-week-text">수</span>
+                        </div>
+                        <div class="calendar-week">
+                          <span class="calendar-week-text">목</span>
+                        </div>
+                        <div class="calendar-week">
+                          <span class="calendar-week-text">금</span>
+                        </div>
+                        <div class="calendar-week">
+                          <span class="calendar-week-text">토</span>
+                        </div>
+                      </div>
+                      <div class="calendar-week-border"></div>
+                      <div class="calendar-padding calendar-padding-backColor">
+                        <div class="calendar-day pointer" [ngStyle]="{'color' : item.color}"
+                             *ngFor="let item of current.dates; let i = index" id="{{'someElementId'+i}}"
+                             [ngClass]="item.today === 'Y' && item.selectDay !== 'Y' && item.color !== 'lightgray' ? 'is-today' : '' || item.selectDay === 'Y'  && item.color !== 'lightgray' ? 'select-day' : ''"
+                             (click)="selectDate(item, i)">
+                          <div [ngClass]="item.color === 'gray' ? 'cal-today' : ''" >
+                            <span class="calendar-day-text">{{item.date}}</span>
+                          </div>
+                          <div class="calendar-point-height">
+<!--                            <div class="visit-point-box">
+                              <div [ngClass]="item.dynamic ? 'visit-point1' : 'visit-point-null'"></div>
+                            </div>-->
+                            <div [ngClass]="item.positive ? 'visit-point-box' : 'visit-point-box-None'">
+                              <div [ngClass]="item.positive ? 'visit-point1' : 'visit-point-null'"></div>
+                            </div>
+                            <div [ngClass]="item.negative ? 'visit-point-box' : 'visit-point-box-None'">
+                              <div [ngClass]="item.negative ? 'visit-point2' : 'visit-point-null'"></div>
+                            </div>
+                            <div [ngClass]="item.dynamic ? 'visit-point-box' : 'visit-point-box-None'">
+                              <div [ngClass]="item.dynamic ? 'visit-point3' : 'visit-point-null'"></div>
+                            </div>
+                            <div [ngClass]="item.static ? 'visit-point-box' : 'visit-point-box-None'">
+                              <div [ngClass]="item.static ? 'visit-point4' : 'visit-point-null'"></div>
+                            </div>
+                          </div>
+                          <!--<div class="calendar-point"></div>-->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="mgB10vh">
+        <ion-row (click)="openDiaryInsertModal('INSERT', null)">
+          <ion-col size="10"  class="diary-date-box1">
+            <span class="pdL4Vw">
+              {{formatDate(selectedDate, 'SELECT_DATE')}}
+            </span>
+          </ion-col>
+          <ion-col size="2" class="diary-date-box2">
+            <img src="assets/image/Icon_plus_w.svg">
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="calendarList.length > 0">
+          <ion-col>
+            <ion-grid>
+              <ion-row *ngFor="let item of calendarList" (click)="openDiaryInsertModal('UPDATE', item.calendarSeq)" >
+                <ion-col>
+                  <ion-grid class="diary-item">
+                    <ion-row>
+                      <ion-col size="2" class="align_center-grid text_center">
+                        <img src="{{symUrlForImg + item.imgPath}}" class="feelImg">
+                      </ion-col>
+                      <ion-col size="4" class="align_center-grid">
+                  <span class="diary-item-feel">
+                    {{item.feelingName}}
+                  </span>
+                      </ion-col>
+                      <ion-col size="5" class="align_center-grid">
+                  <span class="diary-item-date">
+                    {{formatDate(item.diaryDt, 'LIST_DATE')}}
+                  </span>
+                      </ion-col>
+                      <ion-col size="1" class="align_center-grid text_center">
+                        <img src="assets/image/Icon_arrow_next.svg">
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                  <ion-grid class="diary-detail-box">
+                    <ion-row>
+                      <ion-col class="pd5vw">
+                  <pre class="auto-enter">
+                    {{item.content}}
+                  </pre>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="calendarList.length <= 0" class="nodata-box">
+          <ion-col>
+              <ion-grid>
+                  <ion-row>
+                      <ion-col>
+                          <img src="assets/image/calendar_edit.svg" class="nodata-img"><span><b>오늘의 기분</b>을 입력해 보세요.</span>
+                      </ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-col>
+        </ion-row>
+
+<!--        <ion-row>
+          <ion-col>
+            <ion-grid class="diary-item">
+              <ion-row>
+                <ion-col size="2" class="align_center-grid text_center">
+                  <img src="assets/image/em_joy.svg" class="feelImg">
+                </ion-col>
+                <ion-col size="4" class="align_center-grid">
+              <span class="diary-item-feel">
+                행복
+              </span>
+                </ion-col>
+                <ion-col size="5" class="align_center-grid">
+                  <span class="diary-item-date">
+                    2020.08.31 16:10 PM
+                  </span>
+                </ion-col>
+                <ion-col size="1" class="align_center-grid text_center">
+                  <img src="assets/image/icon_arrow_up.svg">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-grid class="diary-detail-box">
+              <ion-row>
+                <ion-col class="pd5vw">
+                  <span>
+                    오늘 운동을 하고 밥을 먹었을 때 기뻤다.
+                  </span>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-grid class="diary-item">
+              <ion-row>
+                <ion-col size="2" class="align_center-grid text_center">
+                  <img src="assets/image/em_joy.svg" class="feelImg">
+                </ion-col>
+                <ion-col size="4" class="align_center-grid">
+              <span class="diary-item-feel">
+                행복
+              </span>
+                </ion-col>
+                <ion-col size="5" class="align_center-grid">
+              <span class="diary-item-date">
+                2020.08.31 16:10 PM
+              </span>
+                </ion-col>
+                <ion-col size="1" class="align_center-grid text_center">
+                  <img src="assets/image/icon_arrow_up.svg">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-grid class="diary-detail-box">
+              <ion-row>
+                <ion-col class="pd5vw">
+              <span>
+                오늘 운동을 하고 밥을 먹었을 때 기뻤다.
+              </span>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>-->
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

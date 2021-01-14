@@ -1,0 +1,57 @@
+<app-loading></app-loading>
+<app-page-header></app-page-header>
+
+<ion-content >
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid class="countBox">
+          <ion-row class="height12vh border-bottom">
+            <ion-col size="3" class="lifePatternTitle"><span>생리</span></ion-col>
+            <ion-col size="9" class="align_center-grid pdL4vw">
+              <div>
+                <!--<span class="diaryCountColor1">{{patternCount}}</span><span class="diaryCountColor2"> 건</span>-->
+                <span class="diaryCountColor1" *ngIf="insertVo.menstruationYn === 'Y'">네</span>
+                <span class="diaryCountColor1" *ngIf="insertVo.menstruationYn === 'N'">아니오</span>
+                <span class="diaryCountColor1" *ngIf="insertVo.menstruationYn === 'U'">해당없음</span>
+                <span class="diaryCountColor1" *ngIf="insertVo.menstruationYn === ''">-</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd5vw">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdB3vh">
+                    <span class="pattern-text">1. 오늘 생리를 하셨나요?</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdB2vh">
+                    <div class="dayBox mgR3vw" [ngClass]="insertVo.menstruationYn === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectPeriodInfo('Y')"><span>네</span></div>
+                    <div class="dayBox" [ngClass]="insertVo.menstruationYn === 'N'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectPeriodInfo('N' )"><span>아니오</span></div>
+                    <div class="dayBox mgL3vw" [ngClass]="insertVo.menstruationYn === 'U'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectPeriodInfo('U')"><span>해당없음</span></div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button class="common_save_button" (click)="addPeriodDiaryChk()">
+          저장
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

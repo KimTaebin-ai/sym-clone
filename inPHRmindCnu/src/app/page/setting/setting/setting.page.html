@@ -1,0 +1,47 @@
+<app-page-header></app-page-header>
+<ion-content>
+<ion-grid class="setting-page">
+  <ion-row>
+    <ion-col>
+      <ion-grid class="setting-list-box">
+        <ion-row class="align_center height100Per">
+          <ion-col size="8">
+            <span class="setting-font1">버전 정보</span>
+          </ion-col>
+          <ion-col size="4" class="text_right">
+            <span class="setting-font2">최신버전</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="setting-list-box" (click)="showLogoutAlert()">
+        <ion-row class="align_center height100Per">
+          <ion-col>
+            <span class="setting-font1">로그아웃</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="setting-list-box" (click)="goToPage('/device-connection', '기기 연동')">
+        <ion-row class="align_center height100Per">
+          <ion-col size="10">
+            <span class="setting-font1">기기 연동</span>
+          </ion-col>
+          <ion-col size="2" class="text_right">
+            <img src="assets/image/setting/Icon_arrow_next.svg" class="setting-icon">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="setting-list-box" *ngFor="let item of termList"
+                (click)="openTermModal(item)">
+        <ion-row class="align_center height100Per">
+          <ion-col size="10">
+            <span class="setting-font1">{{item.termName}}</span>
+          </ion-col>
+          <ion-col size="2" class="text_right">
+            <img src="assets/image/setting/Icon_arrow_next.svg" class="setting-icon">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

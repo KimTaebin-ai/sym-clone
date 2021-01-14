@@ -1,0 +1,320 @@
+// 공통
+.lineHeight11vh{
+  line-height: 11vh;
+}
+
+.diaryTopNav{
+  height: 8vh;
+  background-color: #3a4b5f;
+}
+
+.diaryTopText1{
+  font-family: Roboto;
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.35;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #ffffff;
+  align-items: center;
+  display: grid;
+  padding-left: 4vw;
+}
+
+.diaryTopText2{
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -0.48px;
+  text-align: right;
+  color: #ffffff;
+  align-items: center;
+  display: grid;
+  padding-right: 4vw;
+}
+
+.diaryTitleRow{
+  //height: 7.8vh;
+  padding: 13px 16px 14px;
+  background-color: #efefef;
+}
+
+.diaryTitleText{
+  font-family: Roboto;
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.18;
+  letter-spacing: -0.95px;
+  text-align: left;
+  color: #848484;
+  align-items: center;
+  display: grid;
+}
+
+.diaryCountColor{
+  font-family: Roboto;
+  font-size: 3.4vh;
+  font-weight: bold;
+  color: #44bbc8;
+}
+
+.diaryMovePageBtn{
+  text-align: center;
+  line-height: 11vh;
+}
+
+.border-bottom{
+  border-bottom: 1px solid #eaebef;
+}
+
+/*공황---------------------*/
+.panicCount {
+  text-align: center;
+  line-height: 11vh;
+  border-right: 1px solid #eaebef;
+}
+
+.panicText{
+  font-family: Roboto;
+  font-size: 2.6vh;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #454545;
+}
+
+.panicDetailBox{
+  margin: 6vw 5vw;
+  border-radius: 12px;
+  box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
+  background-color: #ffffff;
+}
+
+.panicDetailText{
+  font-family: Roboto;
+  font-size: 4.3vw;
+  color: #262626;
+  align-items: center;
+  display: flex;
+}
+
+.symtomListBox{
+  word-break: keep-all;
+  line-height: 2;
+}
+
+.symtomText{
+  font-family: Roboto;
+  font-size: 2.3vh;
+  font-weight: 500;
+  letter-spacing: -0.56px;
+  text-align: left;
+  color: #3a4b5f;
+  background-color: #f0f7ff;
+  border-radius: 4px;
+}
+
+.panic-border-right{
+  border-right: 1px solid #eeeff1;
+}
+.panic-border-bottom{
+  border-bottom: 1px solid #eeeff1;
+}
+/*------------------------*/
+
+/*정서---------------------*/
+.emotionDetailText{
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: -0.45px;
+  text-align: left;
+  color: #454545;
+}
+
+.emotionInfoText{
+  font-family: Roboto;
+  //font-size: 1rem;
+  font-size: 4.2vw;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  //line-height: 1.33;
+  letter-spacing: -0.45px;
+  color: #7e8da0;
+}
+
+.emotionDegreeBox {
+  border-bottom: solid 1px #eaebef;
+  background-color: #ffffff;
+}
+
+.emotionDegree{
+  /*height: 6.2vh;
+  padding: 1.6vw;
+  text-align: center;
+  align-items: center;
+  display: block;
+  background-color: #eeeff1;
+  font-family: Roboto;
+  font-size: 2.6vh;
+  font-weight: bold;
+  color: #7e8da0;
+  border-radius: 50%;*/
+  align-items: center;
+  display: grid;
+  background-color: #eeeff1;
+  height: 10.3vw;
+  border-radius: 50%;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  color: #7e8da0;
+  padding-bottom: 0.5vh;
+}
+
+.emotionDegreePick{
+  align-items: center;
+  display: grid;
+  background-color: #44bbc8;
+  height: 10.3vw;
+  border-radius: 50%;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  color: #ffffff;
+}
+
+.saveBtn{
+  width: 100%;
+  height: 7.5vh;
+  border-radius: 4px;
+  background-color: #44BBC8;
+  font-family: Roboto;
+  font-size: 2.7vh;
+  color: #ffffff;
+}
+.cancelBtn{
+  width: 100%;
+  height: 7.5vh;
+  border-radius: 4px;
+  background-color: #eeeff1;
+  font-family: Roboto;
+  font-size: 2.7vh;
+  color: #3a4b5f;
+}
+
+.bkcolor_fcfcfd{
+  background-color: #fcfcfd;
+}
+/*------------------------*/
+
+/*생활패턴------------------*/
+.lifePatternTitle{
+  text-align: center;
+  align-items: center;
+  display: grid;
+  font-family: Roboto;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #454545;
+  border-right: 1px solid #eaebef;
+}
+
+.pattern-report-list-box {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
+  background-color: #ffffff;
+}
+
+.pattern-report-header {
+  border-bottom: solid 1px #eeeff1;
+  width: 100%;
+  height: 8vh;
+  align-items: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  font-family: Roboto;
+  font-size: 2.4vh;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  color: #262626;
+}
+
+.pattern-report-label {
+  min-height: 8vh;
+  background-color: #eff1f5;
+  text-align: left;
+  font-family: Roboto;
+  font-size: 2.4vh;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  color: #262626;
+  padding-left: 5vw;
+  padding: 2vh;
+  border-bottom: 1px solid #eaebef;
+}
+
+.pattern-list-box {
+  min-height: 8vh;
+  align-items: center;
+  display: flex;
+  font-family: Roboto;
+  font-size: 2.4vh;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  color: #262626;
+}
+
+.countText{
+  font-family: Roboto;
+  font-size: 2.4vh;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  color: #262626;
+}
+
+.pattern-background {
+  --background: #fcfcfd;
+}
+
+.pattern-caffenie-list-box1 {
+  padding-top: 1.5vh;
+  padding-bottom: 1vh;
+  align-items: center;
+  display: flex;
+}
+
+.pattern-caffenie-list-box2 {
+  padding-bottom: 1.5vh;
+  align-items: center;
+  display: flow-root;
+}
+
+.periodText{
+  align-items: center;
+  display: grid;
+  font-size: 2.5vh;
+  font-weight: bold;
+  color: #44bbc8;
+}
+/*------------------------*/

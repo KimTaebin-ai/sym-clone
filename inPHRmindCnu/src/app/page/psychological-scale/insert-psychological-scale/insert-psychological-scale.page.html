@@ -1,0 +1,729 @@
+<app-loading></app-loading>
+<ion-header>
+  <ion-grid class="header_Box">
+    <ion-row class="width100Per height100Per">
+      <ion-col size="2" class="mgAuto">
+        <img src="assets/image/icon-arrow-back.svg" (click)="closeSurveyAlert()">
+      </ion-col>
+      <ion-col size="8" class="align_center-grid">
+        <span class="header_font">
+          {{pageTitle}}
+        </span>
+      </ion-col>
+      <ion-col size="2">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content>
+  <ion-grid *ngIf="surveyCompleteInfo === null">
+    <ion-row>
+      <ion-col>
+        <!--증상명-->
+        <ion-grid>
+          <ion-row>
+            <ion-col class="diseaseNm">
+              <span>{{roundInfo.surveyTitleKO}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <!--메인질문-->
+        <ion-grid>
+          <ion-row *ngFor="let item of surveyInfo.title; let i = index">
+            <ion-col [ngClass]="i === 0 ? 'main-Q' : 'sub-Q'">
+              <span>
+                {{item}}
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+<!--        &lt;!&ndash;하위질문&ndash;&gt;
+        <ion-grid>
+          <ion-row>
+            <ion-col class="sub-Q">
+              <span>
+                1. 지난 2주 동안 다음과 같은 문제를 얼마나 자주
+                겪었는지 해당되는 란에 표시해 주시기 바랍니다.
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>-->
+        <!--답변 형식-->
+
+        <ion-grid class="mgT1vh" >
+          <ion-row>
+            <ion-col>
+              <!--단답형 질문-->
+<!--              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdL4vw pdR4vw">
+                    <input type="text" class="inputType1">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <!--서술형 질문-->
+<!--              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdL4vw pdR4vw">
+                    <textarea class="inputType2"></textarea>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <!--복수 응답 질문-->
+              <ion-grid *ngIf="surveyInfo.questionType === 'listText'">
+                <ion-row>
+                  <ion-col>
+                    <ion-grid class="mgB1vh">
+                      <ion-row class="pdR4vw pdL4vw">
+                        <ion-col size="10" class="pdR1vw">
+                          <input class="inputType3" [(ngModel)]="multipleAnswers.answer">
+                        </ion-col>
+                        <ion-col size="2" class="pulse-button" (click)="addMultipleAnswers('listText')">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                <img src="assets/image/psychological/Icon_plus_w.svg" class="pulse-button-img">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngFor="let item of multipleAnswers.answers; let i = index">
+                  <ion-col>
+                    <ion-grid class="pdL4vw pdR4vw">
+                      <ion-row class="multiple-answers-list">
+                        <ion-col size="10" class="pdR1vw">
+                          <span>{{item}}</span>
+                        </ion-col>
+                        <ion-col size="2">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                <img src="assets/image/psychological/Icon_list_close.svg" class="list-close-img floatR" (click)="delMultipleAnswers(i, 'listText')">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <!--단답형 질문(숫자만 입력)-->
+              <ion-grid *ngIf="surveyInfo.questionType === 'number'">
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col class="pdL4vw pdR4vw">
+                          <!-- 넘버로 변경해야함 -->
+                          <input type="text" class="inputType1" [(ngModel)]="surveyAnswer.number.values.numberValue">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <!--단일 선택 질문-->
+              <ion-grid *ngIf="surveyInfo.questionType === 'radioGrid' || surveyInfo.questionType === 'radio'">
+                <ion-row class="pdR4vw pdL4vw mgB3vh" *ngFor="let item of surveyInfo.hints; let i = index" (click)="selectAnswer(surveyInfo.questionType, item)">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="1.5" class="align_center-flex">
+                          <img src="assets/image/psychological/surveyRadioButton_c.svg" class="surveyRadioButton_img"
+                          *ngIf="surveyAnswer[surveyInfo.questionType].values.displayOrder === item.displayOrder">
+                          <img src="assets/image/psychological/surveyRadioButton_n.svg" class="surveyRadioButton_img"
+                               *ngIf="surveyAnswer[surveyInfo.questionType].values.displayOrder !== item.displayOrder">
+                        </ion-col>
+                        <ion-col size="10.5" class="radioType1">
+                          <span>
+                            {{item.exampleContentKo}}
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <!--단일 선택 질문(radioGridByList)-->
+              <ion-grid *ngIf="surveyInfo.questionType === 'radioGridByList'">
+                <ion-row class="pdR4vw pdL4vw mgB3vh">
+                  <ion-col>
+                    <span>
+                      {{surveyInfo.selectedTitle}}
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdR4vw pdL4vw mgB3vh" *ngFor="let item of surveyInfo.hints; let i = index" (click)="selectAnswer(surveyInfo.questionType, item)">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="1.5" class="align_center-flex">
+                          <img src="assets/image/psychological/surveyRadioButton_c.svg" class="surveyRadioButton_img"
+                               *ngIf="surveyAnswer[surveyInfo.questionType].values.displayOrder === item.displayOrder">
+                          <img src="assets/image/psychological/surveyRadioButton_n.svg" class="surveyRadioButton_img"
+                               *ngIf="surveyAnswer[surveyInfo.questionType].values.displayOrder !== item.displayOrder">
+                        </ion-col>
+                        <ion-col size="10.5" class="radioType1">
+                          <span>
+                            {{item.exampleContentKo}}
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <!--스탭 단일 선택 질문-->
+              <ion-grid *ngIf="surveyInfo.questionType === 'stepGrid'">
+                <ion-row class="pdR4vw pdL4vw mgB3vh" *ngFor="let item of surveyInfo.hints; let i = index" (click)="selectAnswer(surveyInfo.questionType, item)">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="1.5" class="align_center-flex">
+                          <div [ngClass]="surveyAnswer.stepGrid.values.displayOrder === item.displayOrder ?
+                            'radioType2-active' : 'radioType2'">
+                            <span>{{item.displayOrder}}</span>
+                          </div>
+                        </ion-col>
+                        <ion-col size="10.5" class="radioType1">
+                          <div class="step-label" *ngIf="item.exampleContentKo">
+                            <span class="datetimeType-label text_right">
+                              {{item.exampleContentKo}}
+                            </span>
+                          </div>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <!--다중 선택 질문-->
+              <ion-grid *ngIf="surveyInfo.questionType === 'check'">
+                <ion-row class="pdR4vw pdL4vw mgB3vh"  *ngFor="let item of surveyInfo.hints; let i = index" (click)="selectAnswer(surveyInfo.questionType, item)">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="1.5" class="align_center-flex">
+                          <img src="assets/image/psychological/surveyCheckbox_c.svg" *ngIf="checkMultipleAnswer('check', item)">
+                          <img src="assets/image/psychological/surveyCheckbox_n.svg" class="surveyRadioButton_img" *ngIf="!checkMultipleAnswer('check', item)">
+                        </ion-col>
+                        <ion-col size="10.5" class="radioType1">
+                          <span>
+                            {{item.exampleContentKo}}
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <!--단일 선택 질문 (드롭다운)-->
+<!--              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdL4vw pdR4vw">
+                    <ion-select interface="action-sheet" class="dropdownType1">
+                      <ion-select-option value="enable">Enable</ion-select-option>
+                      <ion-select-option value="mute">Mute</ion-select-option>
+                      <ion-select-option value="mute_week">Mute for a week</ion-select-option>
+                      <ion-select-option value="mute_year">Mute for a year</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <!--척도형 질문(단일선택)-->
+              <!--<ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="pdR4vw pdL4vw">
+                        <ion-col>
+                          <div class="radioType2">
+                            <span>-3</span>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                          <div class="radioType2">
+                            <span>-2</span>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                          <div class="radioType2">
+                            <span>-1</span>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                          <div class="radioType2">
+                            <span>0</span>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                          <div class="radioType2">
+                            <span>1</span>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                          <div class="radioType2">
+                            <span>2</span>
+                          </div>
+                        </ion-col>
+                        <ion-col class="align_center-contents">
+                          <div class="radioType2">
+                            <span>3</span>
+                          </div>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <!--순위형 질문-->
+              <!--<ion-grid class="pdL4vw pdR4vw">
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="listType1_1">
+                        <ion-col>
+                          <span>
+                            보기1
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row class="listType1_2">
+                        <ion-col>
+                          <span>
+                            보기1
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid class="mgT3vh">
+                      <ion-row>
+                        <ion-col>
+                          <div class="listType1_rank">
+                            <span>
+                              1. 보기1
+                            </span>
+                          </div>
+                          <div class="listType1_rank">
+                            <span>
+                              1. 보기1
+                            </span>
+                          </div>
+                          <div class="listType1_rank">
+                            <span>
+                              1. 보기1
+                            </span>
+                          </div>
+                          <div class="listType1_rank">
+                            <span>
+                              1. 보기1
+                            </span>
+                          </div>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <!--날짜 질문-->
+              <!--<ion-grid class="pdL4vw pdR4vw">
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="YYYY- MM- DD"
+                                        pickerFormat="YYYY-MM-DD"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_date.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <!--날짜 기간 질문 질문-->
+<!--              <ion-grid class="pdL4vw pdR4vw">
+                <ion-row>
+                  <ion-col>
+                    <span class="datetimeType-label">
+                      시작
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="YYYY- MM- DD"
+                                        pickerFormat="YYYY-MM-DD"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_date.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="mgT4vh">
+                  <ion-col>
+                    <span class="datetimeType-label">
+                      종료
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="YYYY- MM- DD"
+                                        pickerFormat="YYYY-MM-DD"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_date.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              &lt;!&ndash;시간 질문 질문&ndash;&gt;
+              <ion-grid class="pdL4vw pdR4vw">
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="HH:mm"
+                                        pickerFormat="HH:mm"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_time.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <!--시간 기간 질문 질문-->
+<!--              <ion-grid class="pdL4vw pdR4vw">
+                <ion-row>
+                  <ion-col>
+                    <span class="datetimeType-label">
+                      시작
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="HH:mm"
+                                        pickerFormat="HH:mm"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_time.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="mgT4vh">
+                  <ion-col>
+                    <span class="datetimeType-label">
+                      종료
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="HH:mm"
+                                        pickerFormat="HH:mm"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_time.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+              <!--날짜 시간 설문 질문-->
+<!--              <ion-grid class="pdL4vw pdR4vw">
+                    <ion-row class="date-inputBox1">
+                      <ion-col class="height100Per">
+                        <ion-grid class="height100Per">
+                          <ion-row class="height100Per">
+                            <ion-col size="10" class="height100Per align_center-grid">
+                              <ion-datetime class="datetimeType"
+                                            displayFormat="YYYY- MM- DD"
+                                            pickerFormat="YYYY-MM-DD"
+                                            cancelText="취소" doneText="선택"
+                                            placeholder="선택해주세요."
+                              >
+                              </ion-datetime>
+                            </ion-col>
+                            <ion-col size="2" class="mgAuto text_right pdR4vw">
+                              <img src="assets/image/lifelog/Icon_date.svg" class="datetimeType">
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-col>
+                    </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="HH:mm"
+                                        pickerFormat="HH:mm"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_time.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                  </ion-grid>-->
+              <!--날짜 시간 기간 설문 질문-->
+              <!--<ion-grid class="pdR4vw pdL4vw mgB7vh mgT2vh">
+                <ion-row>
+                  <ion-col>
+                    <span class="datetimeType-label">
+                      시작
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="YYYY- MM- DD"
+                                        pickerFormat="YYYY-MM-DD"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_date.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="HH:mm"
+                                        pickerFormat="HH:mm"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_time.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="mgT4vh">
+                  <ion-col>
+                    <span class="datetimeType-label">
+                      종료
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="YYYY- MM- DD"
+                                        pickerFormat="YYYY-MM-DD"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_date.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="date-inputBox1">
+                  <ion-col class="height100Per">
+                    <ion-grid class="height100Per">
+                      <ion-row class="height100Per">
+                        <ion-col size="10" class="height100Per align_center-grid">
+                          <ion-datetime class="datetimeType"
+                                        displayFormat="HH:mm"
+                                        pickerFormat="HH:mm"
+                                        cancelText="취소" doneText="선택"
+                                        placeholder="선택해주세요."
+                          >
+                          </ion-datetime>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right pdR4vw">
+                          <img src="assets/image/lifelog/Icon_time.svg" class="datetimeType">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>-->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="surveyCompleteInfo !== null">
+    <ion-row>
+      <ion-col class="pd4vw">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="completeTitle">
+              <span>{{surveyCompleteInfo.outcomeTitleKo}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="completecontent">
+              <span>{{surveyCompleteInfo.outcomeContentKo}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="surveyCompleteInfo.outcomeImgKo != null">
+          <ion-row>
+            <ion-col >
+              <img src="{{symUrlForImg + surveyCompleteInfo.outcomeImgKo}}" class="outcome-img">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer [ngClass]="surveyCompleteInfo !== null ? '' : 'pdB2vh'">
+  <!--버튼-->
+  <ion-grid *ngIf="surveyCompleteInfo === null">
+    <ion-row class="mgB5vh">
+      <ion-col class="pdL4vw pdR2vw" (click)="setParamsForGSI('backward')">
+        <button class="lastButton">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2">
+                <img src="assets/image/psychological/Icon_surveyArrowleft.svg" class="lastNextButton-Img">
+              </ion-col>
+              <ion-col size="8">
+                      <span class="lastButton-font1">
+                        이전문항
+                      </span>
+              </ion-col>
+              <ion-col size="2">
+
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </button>
+      </ion-col>
+      <ion-col class="pdL2vw pdR4vw" (click)="setParamsForGSI('forward')">
+        <button class="nextButton">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2">
+
+              </ion-col>
+              <ion-col size="8">
+                      <span class="nextButton-font1">
+                        다음문항
+                      </span>
+              </ion-col>
+              <ion-col size="2">
+                <img src="assets/image/psychological/Icon_surveyArrowright.svg" class="lastNextButton-Img">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="surveyCompleteInfo !== null">
+    <ion-row>
+      <ion-col>
+        <button class="common_button"
+                (click)="closeSurveyAlert()">나가기</button>
+      </ion-col>
+      <ion-col>
+        <button class="common_button_active"
+                (click)="restartSurvey()">설문 다시하기</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

@@ -1,0 +1,23 @@
+.header_Box {
+  width: 100%;
+  height: 8.5vh;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  border-bottom: solid 1px #dcdcdc;
+}
+
+.header_font {
+  font-family: Roboto;
+  font-size: 2.5vh;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.64px;
+  text-align: center;
+  color: #262626;
+}
+
+ion-header {
+  position: revert;
+}

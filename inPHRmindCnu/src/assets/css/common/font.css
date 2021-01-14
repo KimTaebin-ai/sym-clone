@@ -1,0 +1,199 @@
+.alert-header {
+    font-family: Roboto;
+    font-size: 3.5vh;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.3;
+    letter-spacing: -0.64px;
+    text-align: left;
+    color: #000000;
+}
+
+.alert-body {
+    opacity: 0.6;
+    font-family: Roboto;
+    font-size: 3vh;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: -0.51px;
+    text-align: left;
+    color: #000000;
+}
+
+.alert-message-font {
+    font-family: Roboto;
+    font-size: 2.5vh;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.51px;
+    text-align: left;
+    color: #000000;
+}
+
+.alert-message-center-font {
+    font-family: Roboto;
+    font-size: 2.5vh;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.51px;
+    text-align: center;
+    color: #000000;
+}
+
+.alert-message-smallfont {
+    font-family: Roboto;
+    font-size: 2.1vh;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.51px;
+    text-align: center;
+    color: #374761;
+}
+
+.alert-btn-font {
+    font-family: Roboto;
+    font-size: 2vh;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: -0.45px;
+    text-align: center;
+    color: #374761;
+}
+
+.Roboto-Medium {
+    font-family: Roboto;
+    font-size: 1.8vh;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: -0.45px;
+    text-align: left;
+    color: #111111;
+}
+
+
+.Roboto-Regular {
+    font-family: Roboto;
+    font-size: 1.7vh;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: -0.45px;
+    text-align: left;
+    color: #111111;
+}
+
+
+.Roboto-Bold {
+    font-family: Roboto;
+    font-size: 2.3vh;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: -0.58px;
+    text-align: left;
+    color: #333333;
+}
+
+/*.Roboto-Regular {
+    font-family: Roboto;
+    font-size: 2.3vh;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: -0.51px;
+    text-align: left;
+    color: #2e2e2e;
+}*/
+
+.term-header-font {
+    font-family: Roboto;
+    font-size: 2.2vh;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: -0.51px;
+    text-align: left;
+    color: #333333;
+}
+
+.term-list-font {
+    font-family: Roboto;
+    font-size: 2.2vh;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: -0.51px;
+    text-align: left;
+    color: #111111;
+}
+
+
+
+.popup_font {
+    font-family: Roboto;
+    font-size: 4vw;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.51px;
+    text-align: left;
+    color: #000000;
+}
+
+.login_label_font {
+    font-family: Roboto;
+    font-size: 2.2vh;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: -0.45px;
+    text-align: left;
+    color: #111111;
+}
+
+/*타이머*/
+.timerMessage {
+    font-family: Roboto;
+    font-size: 3vw;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: -0.48px;
+    text-align: left;
+    color: #ff3b30;
+    align-items: center;
+    display: grid;
+}
+
+.errorMessage {
+    font-family: Roboto;
+    font-size: 1.4vh;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: -0.48px;
+    text-align: left;
+    color: #ff3b30;
+}

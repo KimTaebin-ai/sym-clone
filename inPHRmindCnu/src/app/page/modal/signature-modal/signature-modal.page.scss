@@ -1,0 +1,82 @@
+.signature-header-box {
+  height: 16%;
+  border-bottom: solid 1px #e5e5ea;
+}
+
+.signature-header {
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 3vh;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: -0.64px;
+  color: #333333;
+}
+
+.signature-box {
+  width: 100%;
+  height: 46%;
+  border: solid 1px #bbbec2;
+  background-color: #ffffff;
+  margin-top: 4%;
+}
+
+.button-box {
+  height: 26%;
+  align-items: center;
+  display: grid;
+}
+
+.signature-button1 {
+  width: 100%;
+  height: 8vh;
+  background-color: #e7e8eb;
+  font-family: Roboto;
+  font-size: 5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.55px;
+  text-align: center;
+  color: #262626;
+  border-radius: 4px;
+}
+
+.signature-button2 {
+  width: 100%;
+  height: 8vh;
+  background-color: #44bbc8;
+  font-family: Roboto;
+  font-size: 5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.55px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.signature-notice-box {
+  display: grid;
+  height: 9%;
+  align-items: end;
+}
+
+.signature-notice {
+  font-family: Roboto;
+  font-size: 2vh;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.18;
+  letter-spacing: -0.55px;
+  text-align: left;
+  color: #333333;
+}

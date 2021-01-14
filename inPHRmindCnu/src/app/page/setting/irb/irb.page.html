@@ -1,0 +1,101 @@
+<app-page-header></app-page-header>
+<ion-content class="memberInfo-box">
+  <ion-grid *ngIf="irbList.length > 0">
+    <ion-row>
+<!--      <ion-col *ngIf="list$|async as irbList">
+        <ion-grid *ngFor="let item of irbList" (click)="selectList(item)">-->
+      <ion-col>
+        <ion-grid *ngFor="let item of irbList">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row class="memberInfo-list-box"  (click)="selectList(item)">
+                  <ion-col size="8">
+                    <span>{{item.projectNm}}</span>
+                  </ion-col>
+                  <ion-col size="4" class="text_right">
+                    <img src="assets/image/Icon_arrow_d_up.svg" class="memberInfo-list-next" *ngIf="item.opened">
+                    <img src="assets/image/Icon_arrow_dv.svg" class="memberInfo-list-next" *ngIf="!item.opened">
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="item.opened" class="content_base_line">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <pre class="content_base">
+                            {{item.projectDescription}}
+                          </pre>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="item.opened && item.withdrawalDt" class="pdT5vh">
+                        <ion-col>
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col class="del-irb-font1">
+                                <span>
+                                  {{dateService.getDateFormat(item.withdrawalDt, 'YYYY월 MM월 DD일').dateFormat}}
+                                </span>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row class="pdT2vh">
+                              <ion-col class="del-irb-font2">
+                                <span>
+                                  사용자 동의 철회로 인하여 사용자의 정보는
+                                </span>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row class="pdT1vh pdB5vh">
+                              <ion-col class="del-irb-font2">
+                                <span>
+                                  위 프로젝트에서 활용되지 않습니다.
+                                </span>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="item.opened && !item.withdrawalDt" class="pdT5vh">
+                        <ion-col>
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col class="del-irb-box">
+                                <button class="del-irb-button" (click)="showWithdrawIrbConfirmAlert(item)">
+                                  <span>
+                                    철회하기
+                                  </span>
+                                </button>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="irbList.length === 0"  class="noDataBox">
+    <ion-row class="height100Per">
+      <ion-col class="mgAuto text_center">
+        <img src="assets/image/irb/no_data_irb.svg" class="noDataImg">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button class="common_save_button" (click)="getToPage('/update-irb', 'IRB 정보 수정')">
+          IRB 정보 수정
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

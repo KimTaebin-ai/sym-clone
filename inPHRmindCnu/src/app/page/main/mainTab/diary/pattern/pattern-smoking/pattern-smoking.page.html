@@ -1,0 +1,95 @@
+<app-loading></app-loading>
+<app-page-header></app-page-header>
+
+<ion-content class="pattern-background">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid class="countBox">
+          <ion-row class="height12vh border-bottom">
+            <ion-col size="3" class="lifePatternTitle"><span>흡연</span></ion-col>
+            <ion-col size="9" class="align_center-grid pdL4vw">
+              <div>
+                <span class="diaryCountColor1" *ngIf="smokeList.smokeAmount !== null">{{smokeList.smokeAmount}}</span>
+                <span class="diaryCountColor1" *ngIf="smokeList.smokeAmount === null">0</span>
+                <span class="diaryCountColor2"> 개피</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd5vw pattern-page">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdB3vh">
+                    <span class="pattern-text">1. 흡연을 얼마나 하셨나요?</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="pdB5vh">
+                  <ion-col class="pattern-select-box">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="10"><input class="pattern-input-box" type="number" maxlength="3" [(ngModel)]="insertVo.smokeAmount"></ion-col>
+                        <ion-col size="2"><span class="diaryCountColor2">개피</span></ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button class="pattern-add-button" (click)="addSmokeDiaryChk()">
+                    <span>
+                      추가
+                    </span>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="smokeList.smokeAmount !== null">
+          <ion-row>
+            <ion-col class="pd5vw">
+              <ion-grid class="pattern-report-list-box">
+                <ion-row class="pattern-report-header">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <span>흡연 리포트</span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col class="pattern-list-box">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col size="10" class="pattern-list-box pdL5vw">
+                                <span class="pattern-list-font1">{{smokeList.smokeAmount}}</span><span class="pattern-list-font2">개피</span>
+                              </ion-col>
+                              <ion-col size="2" class="pattern-list-box">
+                                <img src="assets/image/pattern/Icon_trash.svg" class="mgAuto" (click)="deleteSmokeAlert()">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

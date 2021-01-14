@@ -1,0 +1,359 @@
+<app-loading></app-loading>
+<ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="text_right pdR4vw pdT2vh">
+        <img src="assets/image/Icon_close.svg" (click)="dismiss()">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content>
+<ion-grid *ngIf="type === '10-1'">
+  <ion-row>
+    <ion-col>
+      <ion-grid class="moreInfo-modal-header">
+        <ion-row>
+          <ion-col>
+            <span>
+              {{moreInfoData.codeName}}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-grid class="pd4vw">
+              <ion-row>
+                <ion-col>
+              <span class="qus-label-font">
+                1. 첫 발병 시기를 선택해 주세요.
+              </span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="pdR2vw" size="6">
+                  <ion-grid class="width100Per">
+                    <ion-row>
+                      <ion-col class="moreInfo-ion-select">
+                        <ion-datetime class="datetimeType"
+                                      displayFormat="YYYY년"
+                                      pickerFormat="YYYY"
+                                      cancelText="취소" doneText="선택"
+                                      placeholder="년도"
+                                      [(ngModel)]="modalDate.year"
+                        >
+                        </ion-datetime>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+                <ion-col class="pdR1vw" size="6">
+                  <ion-grid class="width100Per">
+                    <ion-row>
+                      <ion-col class="moreInfo-ion-select">
+                        <ion-datetime class="datetimeType"
+                                      displayFormat="MM월"
+                                      pickerFormat="MM"
+                                      cancelText="취소" doneText="선택"
+                                      placeholder="월"
+                                      [(ngModel)]="modalDate.month"
+                        >
+                        </ion-datetime>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-grid class="pd4vw">
+        <ion-row>
+          <ion-col>
+              <span class="qus-label-font">
+                3. 신체적 질병이나 의학적 문제를 경험했던 적이 있으시면 선택해 주세요.(중복선택 가능)
+              </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-grid>
+              <ion-row *ngFor="let item of codeList; let i = index" (click)="selectList(i, 'symptom')">
+                <ion-col>
+                  <ion-grid>
+                    <ion-row [ngClass]="checkSelectIndex(i,'symptom') ? 'moreInfo-select-box1' : 'moreInfo-select-box2'">
+                      <ion-col>
+                        {{item.codeName}}
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-grid *ngIf="type === '3-1'">
+  <ion-row>
+    <ion-col>
+      <ion-grid class="moreInfo-modal-header">
+        <ion-row>
+          <ion-col>
+            <span>
+              {{moreInfoData.codeName}}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+  <ion-row  *ngIf="moreInfoData.userInput === 'Y'">
+    <ion-col>
+      <ion-grid class="pd4vw">
+        <ion-row class="pdT2vh">
+          <ion-col class="pdR1vw">
+            <ion-grid class="auth-input-box">
+              <ion-row class="height100Per">
+                <ion-col>
+                  <input class="auth-input" placeholder="증상을 입력해주세요." [(ngModel)]="moreInfoData.insertData.content">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-grid class="pd4vw">
+              <ion-row>
+                <ion-col>
+                  <span class="qus-label-font">
+                    발생연도
+                  </span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="pdR2vw">
+                  <ion-grid class="width100Per">
+                    <ion-row>
+                      <ion-col class="moreInfo-ion-select">
+                        <ion-datetime class="datetimeType"
+                                      displayFormat="YYYY년"
+                                      pickerFormat="YYYY"
+                                      cancelText="취소" doneText="선택"
+                                      placeholder="선택해주세요."
+                                      [(ngModel)]="moreInfoData.insertData.year"
+                        >
+                        </ion-datetime>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-grid class="pd4vw">
+              <ion-row>
+                <ion-col>
+                    <span class="qus-label-font">
+                      치료경과
+                    </span>
+                </ion-col>
+              </ion-row>
+              <ion-row class="pdT3vh">
+                <ion-col class="pdR2vw">
+                  <ion-grid class="width100Per">
+                    <ion-row>
+                      <ion-col class="align_center-flex" (click)="selectState('C')">
+                        <img src="assets/image/Icon_checkcircle.svg" *ngIf="moreInfoData.insertData.state === 'C'">
+                        <img src="assets/image/Icon_checkcircle_n.svg" *ngIf="moreInfoData.insertData.state !== 'C'">
+                        <span class="moreInfoModal-radio-font">완치</span>
+                      </ion-col>
+                      <ion-col class="align_center-flex" (click)="selectState('U')">
+                        <img src="assets/image/Icon_checkcircle.svg" *ngIf="moreInfoData.insertData.state === 'U'">
+                        <img src="assets/image/Icon_checkcircle_n.svg" *ngIf="moreInfoData.insertData.state !== 'U'">
+                        <span class="moreInfoModal-radio-font">치료중</span>
+                      </ion-col>
+                      <ion-col class="align_center-flex" (click)="selectState('N')">
+                        <img src="assets/image/Icon_checkcircle.svg" *ngIf="moreInfoData.insertData.state === 'N'" >
+                        <img src="assets/image/Icon_checkcircle_n.svg" *ngIf="moreInfoData.insertData.state !== 'N'">
+                        <span class="moreInfoModal-radio-font">치료 안받음</span>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  <ion-grid *ngIf="type === '12-2'">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="moreInfo-modal-header">
+          <ion-row>
+            <ion-col>
+            <span>
+              {{moreInfoData.codeName}}
+            </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-grid class="pd4vw">
+                <ion-row>
+                  <ion-col>
+                    <span class="qus-label-font">
+                      1회 음주량을 입력해 주세요.
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdR2vw">
+                    <ion-grid class="width100Per">
+                      <ion-row>
+                        <ion-col class="moreInfo-ion-select">
+                          <ion-grid class="auth-input-box">
+                            <ion-row class="height100Per">
+                              <ion-col size="9">
+                                <input class="auth-input" placeholder="숫자로 입력해 주세요." [(ngModel)]="moreInfoData.insertData.drinkAmount">
+                              </ion-col>
+                              <ion-col size="3" class="alcohol-unit-font">
+                                <span>{{moreInfoData.unit}}</span>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid class="pd4vw">
+                <ion-row>
+                  <ion-col>
+                    <span class="qus-label-font">
+                      주간 음주 횟수를 선택해 주세요.
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdR2vw">
+                    <ion-grid class="width100Per">
+                      <ion-row>
+                        <ion-col class="moreInfo-ion-select">
+                          <ion-select value="notifications" interface="action-sheet" [(ngModel)]="moreInfoData.insertData.perWeek">
+                            <ion-select-option value="">주간 음주 횟수 선택</ion-select-option>
+                            <ion-select-option value="1">주 1회</ion-select-option>
+                            <ion-select-option value="2">주 2회</ion-select-option>
+                            <ion-select-option value="3">주 3회</ion-select-option>
+                            <ion-select-option value="4">주 4회</ion-select-option>
+                            <ion-select-option value="5">주 5회</ion-select-option>
+                            <ion-select-option value="6">주 6회</ion-select-option>
+                            <ion-select-option value="7">매일</ion-select-option>
+                          </ion-select>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid class="pd4vw">
+                <ion-row>
+                  <ion-col>
+                    <span class="qus-label-font">
+                      음주 기간을 선택해 주세요.
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdR2vw">
+                    <ion-grid class="width100Per">
+                      <ion-row>
+                        <ion-col class="moreInfo-ion-select">
+                          <ion-select value="notifications" interface="action-sheet" [(ngModel)]="moreInfoData.insertData.numOfYears">
+                            <ion-select-option value="">음주 기간 선택</ion-select-option>
+                            <ion-select-option value="1">1년 미만</ion-select-option>
+                            <ion-select-option value="2">2년 미만</ion-select-option>
+                            <ion-select-option value="5">5년 미만</ion-select-option>
+                            <ion-select-option value="10">10년 미만</ion-select-option>
+                            <ion-select-option value="15">15년 미만</ion-select-option>
+                            <ion-select-option value="20">20년 미만</ion-select-option>
+                            <ion-select-option value="25">25년 미만</ion-select-option>
+                            <ion-select-option value="29">30년 미만</ion-select-option>
+                            <ion-select-option value="30">30년 이상</ion-select-option>
+                          </ion-select>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="pd4vw">
+        <!--        <button [ngClass]="termList.length === selectedTerm.length ? 'common_button_active' : 'common_button'"
+                        [disabled]="termList.length !== selectedTerm.length" (click)="signUp()">
+                  다음
+                </button>-->
+        <button class="common_button_active" (click)="insertInfo()">
+          확인
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
