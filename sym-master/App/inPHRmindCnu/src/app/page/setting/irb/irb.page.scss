@@ -1,0 +1,50 @@
+.memberInfo-box {
+  border-top: solid 1px #dcdcdc;
+}
+
+.memberInfo-list-box {
+  padding-left: 4vw;
+  padding-right: 4vw;
+  width: 100%;
+  height: 11vh;
+  align-items: center;
+  display: flex;
+  font-family: Roboto;
+  font-size: 4.5vw;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.18;
+  letter-spacing: -0.95px;
+  color: #333333;
+  border-bottom: solid 1px #dcdcdc;
+}
+
+.memberInfo-list-next {
+  height: 3vw;
+}
+
+
+.content_base {
+  font-family: Roboto;
+  font-size: 3.5vw;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.5vh;
+  letter-spacing: -0.8px;
+  text-align: left;
+  color: #111111;
+  margin: 0;
+}
+
+.auto-enter {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: pre-line;
+  white-space: -o-pre-wrap;
+  word-break:break-all;
+  padding: 6vw 4vw 6vw 4vw;
+  border-bottom: solid 1px #dcdcdc;
+}

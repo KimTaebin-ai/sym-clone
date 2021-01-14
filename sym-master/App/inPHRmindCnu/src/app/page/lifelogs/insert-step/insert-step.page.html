@@ -1,0 +1,143 @@
+<app-page-header></app-page-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pd4vw">
+          <ion-row>
+            <ion-col>
+              <span>활동 시작</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="lifelog-inputBox1">
+            <ion-col class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col size="10" class="height100Per align_center-grid">
+                    <ion-datetime class="datetime-lifelog"
+                                  displayFormat="YYYY년 MM월 DD일"
+                                  pickerFormat="YYYY-MM-DD"
+                                  cancelText="취소" doneText="선택"
+                                  [(ngModel)]="lifelogVo.startDate"
+                    >
+                    </ion-datetime>
+                  </ion-col>
+                  <ion-col size="2" class="mgAuto text_right pdR4vw">
+                    <img src="assets/image/lifelog/Icon_date.svg" class="lifelog-inputBox1_img">
+
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="lifelog-inputBox1">
+            <ion-col class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col size="10" class="height100Per align_center-grid">
+                    <ion-datetime class="datetime-lifelog"
+                                  displayFormat="A hh:mm"
+                                  pickerFormat="hh-mm-A"
+                                  cancelText="취소" doneText="선택"
+                                  [(ngModel)]="lifelogVo.startTime"
+                    >
+                    </ion-datetime>
+                  </ion-col>
+                  <ion-col size="2" class="mgAuto text_right pdR4vw">
+                    <img src="assets/image/lifelog/Icon_time.svg" class="lifelog-inputBox1_img">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw">
+          <ion-row>
+            <ion-col>
+              <span>활동 종료</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="lifelog-inputBox1">
+            <ion-col class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col size="10" class="height100Per align_center-grid">
+                    <ion-datetime class="datetime-lifelog"
+                                  displayFormat="YYYY년 MM월 DD일"
+                                  pickerFormat="YYYY-MM-DD"
+                                  cancelText="취소" doneText="선택"
+                                  [(ngModel)]="lifelogVo.endDate"
+                    >
+                    </ion-datetime>
+                  </ion-col>
+                  <ion-col size="2" class="mgAuto text_right pdR4vw">
+                    <img src="assets/image/lifelog/Icon_date.svg" class="lifelog-inputBox1_img">
+
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="lifelog-inputBox1">
+            <ion-col class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col size="10" class="height100Per align_center-grid">
+                    <ion-datetime class="datetime-lifelog"
+                                  displayFormat="A hh:mm"
+                                  pickerFormat="hh-mm-A"
+                                  cancelText="취소" doneText="선택"
+                                  [(ngModel)]="lifelogVo.endTime"
+                    >
+                    </ion-datetime>
+                  </ion-col>
+                  <ion-col size="2" class="mgAuto text_right pdR4vw">
+                    <img src="assets/image/lifelog/Icon_time.svg" class="lifelog-inputBox1_img">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd4vw mgT2vh">
+          <ion-row>
+            <ion-col>
+              <span>걸음수</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="lifelog-inputBox1">
+            <ion-col class="height100Per">
+              <ion-grid class="height100Per">
+                <ion-row class="height100Per">
+                  <ion-col class="height100Per">
+                    <input class="lifelog-inputBox1_insert"
+                           [ngModel]="lifelogVo.value" type="text" (keyup)="checkVal($event)" placeholder="걸음수를 입력해 주세요.">
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" class="lifelog-cancle">
+        <span>취소</span>
+      </ion-col>
+      <ion-col size="8">
+        <button  [ngClass]="validation() === true? 'lifelog-save' : 'lifelog-save-disabled'"
+                 [disabled]="!validation()">
+          <span>저장</span>
+        </button>
+        <!--        (click)="agreeSave()"
+                [disabled]="checkAgree()"-->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

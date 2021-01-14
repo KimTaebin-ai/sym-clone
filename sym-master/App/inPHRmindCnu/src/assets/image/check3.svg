@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+    <defs>
+        <clipPath id="clip-path">
+            <path id="Mask" fill="#fff" stroke="#fff" d="M10.817 1.046L4.094 7.815a.588.588 0 0 1-.856 0L.183 4.738a.6.6 0 0 1 0-.862.588.588 0 0 1 .856 0l2.628 2.647L9.961.185a.588.588 0 0 1 .856 0 .6.6 0 0 1 0 .861z"/>
+        </clipPath>
+        <style>
+        </style>
+    </defs>
+    <g id="line_check_oval_n" transform="translate(.5 .5)">
+        <circle id="Oval" cx="10" cy="10" r="10" fill="#fff" stroke="#cfd3d9" stroke-miterlimit="10"/>
+        <g id="그룹_214" transform="translate(5 6)">
+            <path id="Mask-2" fill="#cfd3d9" stroke="#cfd3d9" d="M10.817 1.046L4.094 7.815a.588.588 0 0 1-.856 0L.183 4.738a.6.6 0 0 1 0-.862.588.588 0 0 1 .856 0l2.628 2.647L9.961.185a.588.588 0 0 1 .856 0 .6.6 0 0 1 0 .861z"/>
+        </g>
+    </g>
+</svg>

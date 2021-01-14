@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46.802" height="46.802" viewBox="0 0 46.802 46.802">
+    <defs>
+        <style>
+            .cls-2{fill:#007e10}
+        </style>
+    </defs>
+    <g id="em_thrill" transform="translate(-257.848 -174)">
+        <g id="em_thrill-2" transform="translate(258.848 175)">
+            <circle id="타원_301" cx="22.401" cy="22.401" r="22.401" fill="#99eba0" stroke="#67d871" stroke-width="2px"/>
+            <circle id="타원_302" cx="2.797" cy="2.797" r="2.797" class="cls-2" transform="translate(11.178 15.054)"/>
+            <circle id="타원_303" cx="2.797" cy="2.797" r="2.797" class="cls-2" transform="translate(27.999 15.054)"/>
+            <path id="패스_53561" d="M242.57 110.714a17.047 17.047 0 0 1-7.57-2.062 2.472 2.472 0 1 1 2.175-4.435c4.237 2.09 6.553 2.09 10.776 0a2.473 2.473 0 0 1 2.189 4.435 17.047 17.047 0 0 1-7.57 2.062z" class="cls-2" transform="translate(-220.177 -75.548)"/>
+        </g>
+        <path id="Icon_metro-heart" d="M11.386 3.856a3.412 3.412 0 0 0-2.838 2.09 3.413 3.413 0 0 0-2.839-2.09 3.139 3.139 0 0 0-3.138 3.138c0 3.523 5.977 7.931 5.977 7.931s5.976-4.52 5.976-7.931a3.139 3.139 0 0 0-3.138-3.138z" class="cls-2" transform="translate(262.844 184.76)"/>
+        <path id="Icon_metro-heart-2" d="M11.386 3.856a3.412 3.412 0 0 0-2.838 2.09 3.413 3.413 0 0 0-2.839-2.09 3.139 3.139 0 0 0-3.138 3.138c0 3.523 5.977 7.931 5.977 7.931s5.976-4.52 5.976-7.931a3.139 3.139 0 0 0-3.138-3.138z" class="cls-2" transform="translate(281.844 184.76)"/>
+    </g>
+</svg>

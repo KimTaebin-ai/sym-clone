@@ -1,0 +1,65 @@
+.alarm-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(187deg, #16d9a4 -64%, #81a7ff 215%);
+}
+
+.alarm-list {
+  min-height: 6vh;
+  opacity: 0.77;
+  background-color: #ffffff;
+  margin-left: 4vw;
+  border-radius: 0 10px 10px 10px;
+  align-items: center;
+  padding: 3vw;
+  margin-top: 1vh;
+}
+
+.alarm-date {
+  text-align: center;
+  padding: 1vh;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: -0.21px;
+  color: #ffffff;
+}
+
+.alarm-sym-icon {
+  margin-top: 1vh;
+  vertical-align: top;
+}
+
+.alarm-sym-icon {
+  height: 8vw;
+}
+
+.alarm-text {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: -0.56px;
+  text-align: left;
+  color: #3a4b5f;
+  max-width: 100%;
+}
+
+.alarm-list-date {
+  font-family: Arial;
+  font-size: 3vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.15;
+  letter-spacing: normal;
+  color: #ffffff;
+  align-items: end;
+  display: inline-grid;
+  text-align: end;
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="surveyCheckbox_c" width="26" height="26" viewBox="0 0 26 26">
+    <defs>
+        <clipPath id="clip-path">
+            <path id="Mask" fill="#fff" stroke="#fff" d="M13.693 1.324l-8.51 8.57a.744.744 0 0 1-1.083 0L.232 6a.757.757 0 0 1 0-1.091.744.744 0 0 1 1.083 0l3.327 3.35L12.61.234a.744.744 0 0 1 1.083 0 .757.757 0 0 1 0 1.09z"/>
+        </clipPath>
+        <style>
+        </style>
+    </defs>
+    <rect id="사각형_1844" width="26" height="26" fill="#44bbc8" rx="4"/>
+    <path id="Mask-2" fill="#fff" stroke="#fff" stroke-width="1.3px" d="M13.275 1.152L5.025 8.6a.717.717 0 0 1-.525.2.717.717 0 0 1-.525-.2L.225 5.217a.612.612 0 0 1 0-.948.78.78 0 0 1 1.05 0L4.5 7.181 12.225.2a.78.78 0 0 1 1.05 0 .612.612 0 0 1 0 .952z" transform="translate(6.5 8.5)"/>
+</svg>

@@ -1,0 +1,7 @@
+{
+  "name": "inPHRmindCnu",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

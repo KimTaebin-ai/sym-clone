@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44" height="47" viewBox="0 0 44 47">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#205072;stroke-miterlimit:10;stroke-width:1.5px}
+        </style>
+    </defs>
+    <g id="icon_sleep" transform="translate(0 .385)">
+        <g id="그룹_374" transform="translate(5.827 2.913)">
+            <g id="수면" transform="translate(0 19.889)">
+                <path id="패스_53994" d="M482.568 1389.6a.89.89 0 0 0-.89-.882h-1.066v-7.28a1.764 1.764 0 0 0-1.764-1.764h-25.586a1.772 1.772 0 0 0-1.764 1.764v7.32h-1.066a.882.882 0 0 0-.882.882v5.14h1.964v1.195a1.764 1.764 0 0 0 1.764 1.764h25.585a1.756 1.756 0 0 0 1.764-1.764v-1.251h1.956z" class="cls-1" transform="translate(-449.478 -1379.67)"/>
+                <path id="패스_53995" fill="none" stroke="#205072" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5px" d="M4.488 109.93h27.349a2.838 2.838 0 0 1 2.838 2.838v3.151H1.65v-3.151a2.838 2.838 0 0 1 2.838-2.838z" transform="translate(-1.65 -100.854)"/>
+                <path id="패스_53996" d="M12.023 106.75h3.624a2.453 2.453 0 0 1 2.453 2.45v.056H9.57v-.056a2.453 2.453 0 0 1 2.453-2.45z" class="cls-1" transform="translate(-3.22 -100.224)"/>
+                <path id="패스_53997" d="M0 0h8.539v.056A2.454 2.454 0 0 1 6.086 2.51H2.461A2.454 2.454 0 0 1 .008.056V0z" class="cls-1" transform="rotate(180 13.346 4.518)"/>
+            </g>
+            <g id="그룹_375" fill="#205072" font-family="NanumSquareEB, NanumSquare" transform="translate(7.769)">
+                <text id="Z" font-size="15px" transform="translate(.404 12.702)">
+                    <tspan x="0" y="0">Z</tspan>
+                </text>
+                <text id="Z-2" font-size="8px" transform="translate(10.959 13.536)">
+                    <tspan x="0" y="0">Z</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

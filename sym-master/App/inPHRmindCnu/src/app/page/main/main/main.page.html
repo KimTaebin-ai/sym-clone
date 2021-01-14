@@ -1,0 +1,126 @@
+<!--
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom" class="tab_box">
+    <ion-tab-button tab="home">
+      <ion-grid class="main_tab" (click)="selectTab('HOME')">
+        <ion-row>
+          <ion-col>
+            <img [src]="imgNm.home" class="tab_img">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="main_tab-font">홈</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab1">
+      <ion-grid class="main_tab" (click)="selectTab('REPORT')">
+        <ion-row>
+          <ion-col>
+            <img [src]="imgNm.report" class="tab_img">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="main_tab-font">리포트</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-tab-button>
+    <ion-tab-button tab="diary" (click)="selectTab('DIARY')">
+      <ion-grid class="main_tab">
+        <ion-row>
+          <ion-col>
+            <img [src]="imgNm.diary">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="main_tab-font">다이어리</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-tab-button>
+    <ion-tab-button tab="psychological-scale">
+      <ion-grid class="main_tab" (click)="selectTab('SCALE')">
+        <ion-row>
+          <ion-col>
+            <img [src]="imgNm.chart" class="tab_img">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="main_tab-font">심리척도</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>
+-->
+<ion-router-outlet></ion-router-outlet>
+<ion-grid class="main_tab_box">
+  <ion-row class="align_center height100Per">
+    <ion-col>
+      <ion-grid class="main_tab" (click)="selectTab('HOME')">
+        <ion-row>
+          <ion-col>
+            <img [src]="imgNm.home" class="tab_img">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="main_tab-font">홈</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+    <ion-col>
+      <ion-grid class="main_tab" (click)="selectTab('REPORT')">
+        <ion-row>
+          <ion-col>
+            <img [src]="imgNm.report" class="tab_img">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="main_tab-font">리포트</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+    <ion-col>
+      <ion-grid class="main_tab" (click)="selectTab('DIARY')">
+        <ion-row>
+          <ion-col>
+            <img [src]="imgNm.diary">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="main_tab-font">다이어리</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+    <ion-col>
+      <ion-grid class="main_tab" (click)="selectTab('SCALE')">
+        <ion-row>
+          <ion-col>
+            <img [src]="imgNm.chart" class="tab_img">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="main_tab-font">심리척도</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>

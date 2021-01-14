@@ -1,0 +1,114 @@
+.lock-body {
+  height: 58vh;
+  width: 100%;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  background-image: linear-gradient(to bottom, #3867b4, #0f94b4);
+}
+
+.lock-body_item {
+  height: calc(100%/3);
+}
+
+.lock-item-logoBox {
+  text-align: center;
+  align-items: end;
+  display: grid;
+  height: 100%;
+}
+
+.lock-item-keyPad {
+  font-size: 4.5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.41;
+  letter-spacing: -0.63px;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 4vh;
+}
+
+.lock-keyPad {
+  height: 42vh;
+}
+
+.lock-password {
+  width: 12vw;
+  height: 12vw;
+  border-radius: 10px;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+.lock-password-color1 {
+  background-color: #1f6e9e;
+}
+
+.lock-password-color2 {
+  background-color: #0e4e73;
+}
+
+.lock-notice {
+  font-family: Roboto;
+  font-size: 3.5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.85;
+  letter-spacing: -0.48px;
+  text-align: center;
+  color: #eeeff1;
+  padding-top: 2vh;
+}
+
+.lock-logout{
+  font-family: Roboto;
+  font-size: 4.5vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.59px;
+  color: #52d0dd;
+  text-decoration: underline;
+  text-align: center;
+  padding-top: 2vh;
+}
+
+.lock-keyPad-num {
+  height: calc(100% / 4);
+}
+
+.lock-key {
+  text-align: center;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 3.5vh;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  color: #262626;
+  &:active {
+    background-color: #eeeff1;
+    width: 15vw;
+    height: 15vw;
+    border-radius: 50%;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+    align-items: center;
+    font-family: Roboto;
+    display: grid;
+    font-size: 3.5vh;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: normal;
+    color: #262626;
+  }
+}
+
+

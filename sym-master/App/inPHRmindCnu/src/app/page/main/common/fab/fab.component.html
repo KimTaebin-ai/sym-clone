@@ -1,0 +1,58 @@
+<ion-fab horizontal="end" vertical="bottom" slot="fixed" class="fab_box" (click)="openFabButton()">
+  <ion-fab-button class="fab_button">
+    <!--<ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>-->
+    <img src="assets/image/fab/Icon_plus_w.svg" class="fab_button-img">
+  </ion-fab-button>
+  <ion-fab-list side="top" class="botton8vh mgB4vh">
+    <ion-grid class="mgT2vh">
+      <ion-row>
+        <ion-col>
+          <ion-label>기기 연동 하기</ion-label>
+          <ion-fab-button class="fab_button-item">
+            <img src="assets/image/fab/Icon_bluetooth_s.svg" class="fab_button-img">
+          </ion-fab-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="mgT2vh">
+      <ion-row>
+        <ion-col>
+          <ion-label>미 완료 설문 참여</ion-label>
+          <ion-fab-button class="fab_button-item">
+            <img src="assets/image/fab/Icon_notes_medical_s.svg" class="fab_button-img">
+          </ion-fab-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="mgT2vh">
+      <ion-row>
+        <ion-col>
+          <ion-label>공황 증상 입력</ion-label>
+          <ion-fab-button class="fab_button-item">
+            <img src="assets/image/fab/Icon%20_pencil_s.svg" class="fab_button-img">
+          </ion-fab-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="mgT2vh">
+      <ion-row>
+        <ion-col>
+          <ion-label>라이프로그 입력</ion-label>
+          <ion-fab-button class="fab_button-item">
+            <img src="assets/image/fab/Icon_pulse_s.svg" class="fab_button-img">
+          </ion-fab-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="mgT2vh" (click)="goToPage('/main/main/calendar')">
+      <ion-row>
+        <ion-col>
+          <ion-label>캘린더</ion-label>
+          <ion-fab-button class="fab_button-item">
+            <img src="assets/image/fab/Icon_calendar_alt_s.svg" class="fab_button-img">
+          </ion-fab-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-fab-list>
+</ion-fab>

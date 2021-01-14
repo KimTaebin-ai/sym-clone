@@ -1,0 +1,213 @@
+<ion-header>
+  <ion-grid class="header_Box">
+    <ion-row class="width100Per">
+      <ion-col size="2">
+        <img src="assets/image/icon-arrow-back.svg" (click)="dismiss()">
+      </ion-col>
+      <ion-col size="8">
+        <span class="header_font">
+          다이어리
+        </span>
+      </ion-col>
+      <ion-col size="2">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="pd4Vw">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <span class="em-font">기분을 선택해 주세요.</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="text_center align_center-grid pdT2Vh">
+      <ion-row>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('PLEASURE')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_joy.svg" class="diary-img" *ngIf="selectedEm === 'PLEASURE'">
+                <img src="assets/image/em/em_n/em_joy_n.svg" class="diary-img" *ngIf="selectedEm !== 'PLEASURE'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                기쁨
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('HAPPINESS')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_happy.svg" class="diary-img" *ngIf="selectedEm === 'HAPPINESS'">
+                <img src="assets/image/em/em_n/em_happy_n.svg" class="diary-img" *ngIf="selectedEm !== 'HAPPINESS'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                행복
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('FLUTTER')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_thrill.svg" class="diary-img" *ngIf="selectedEm === 'FLUTTER'">
+                <img src="assets/image/em/em_n/em_thrill_n.svg" class="diary-img" *ngIf="selectedEm !== 'FLUTTER'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                설렘
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('DEPRESSED')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_blackbile.svg" class="diary-img" *ngIf="selectedEm === 'DEPRESSED'">
+                <img src="assets/image/em/em_n/em_blackbile_n.svg" class="diary-img" *ngIf="selectedEm !== 'DEPRESSED'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                우울
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('SADNESS')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_sadness.svg" class="diary-img" *ngIf="selectedEm === 'SADNESS'">
+                <img src="assets/image/em/em_n/em_sadness_n.svg" class="diary-img" *ngIf="selectedEm !== 'SADNESS'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                슬픔
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('REGRET')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_regret.svg" class="diary-img" *ngIf="selectedEm === 'REGRET'">
+                <img src="assets/image/em/em_n/em_regret_n.svg" class="diary-img" *ngIf="selectedEm !== 'REGRET'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                후회
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('PETULANCE')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_irritation.svg" class="diary-img" *ngIf="selectedEm === 'PETULANCE'">
+                <img src="assets/image/em/em_n/em_irritation_n.svg" class="diary-img" *ngIf="selectedEm !== 'PETULANCE'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                짜증
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('ANGER')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_anger.svg" class="diary-img" *ngIf="selectedEm === 'ANGER'">
+                <img src="assets/image/em/em_n/em_anger_n.svg" class="diary-img" *ngIf="selectedEm !== 'ANGER'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                분노
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col class="em-col">
+          <ion-grid (click)="selectEm('NORMAL')">
+            <ion-row>
+              <ion-col>
+                <img src="assets/image/em/em-active/em_plaineasy.svg" class="diary-img" *ngIf="selectedEm === 'NORMAL'">
+                <img src="assets/image/em/em_n/em_plaineasy_n.svg" class="diary-img" *ngIf="selectedEm !== 'NORMAL'">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <span class="em-font">
+                무난
+              </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class=" pdT2Vh">
+      <ion-row class="pdB1vh">
+        <ion-col>
+          <span class="em-font">오늘 당신의 이야기를 입력해 주세요.</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <textarea class="diary-modal-textarea" [(ngModel)]="myStory"></textarea>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button [ngClass]="myStory && selectedEm ? 'common_button_active' : 'common_button'"
+                [disabled]="!myStory && !selectedEm" (click)="regDiary()">
+          다음
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

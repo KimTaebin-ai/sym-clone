@@ -1,0 +1,169 @@
+<app-page-header></app-page-header>
+<ion-content>
+  <ion-grid [formGroup]="form">
+    <ion-row>
+      <ion-col class="pdR4vw pdL4vw">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="findPw-font1">
+              <span>
+                비밀번호를 잊으셨나요?
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="findPw-font2">
+              <span>
+                가입당시 입력하셨던 정보를 입력해주세요.
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="findPw-font3">
+              <span>
+                아이디
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="9" class="findPw-inputBox"
+                           [ngClass]="confirmInfo.userId
+                            ? 'findPw-inputBox-disable' : ''">
+                    <input  class="findPw-input" formControlName="id"
+                            [ngClass]="confirmInfo.userId
+                            ? 'findPw-input-disable' : ''">
+                  </ion-col>
+                  <ion-col size="3" class="pdL1vw">
+                    <button class="findPw-button1"
+                      [disabled]="form.controls.id.invalid || confirmInfo.userId" (click)="sendNewPw()"
+                            [ngClass]="form.controls.id.invalid || confirmInfo.userId
+                            ? 'findPw-button1' : 'findPw-button1_active'">
+                      <span>확인</span>
+                    </button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="findPw-chage-box" *ngIf="confirmInfo.userId">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="findPw-font3 pdT2vh">
+                    <span>
+                      임시 비밀번호 확인
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="findPw-inputBox">
+                        <ion-col size="10">
+                          <ion-grid class="height100Per">
+                            <ion-row class="height100Per">
+                              <ion-col class="align_center-grid">
+                                <input  class="findPw-input" type="{{pwInfo.pwType}}" formControlName="currPw">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right">
+                          <img src="assets/image/Icon_view_pw.svg" (click)="viewPassword()">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="findPw-font3 pdT2vh">
+                    <span>
+                      새 비밀번호
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="findPw-inputBox">
+                        <ion-col size="10">
+                          <ion-grid class="height100Per">
+                            <ion-row class="height100Per">
+                              <ion-col class="align_center-grid">
+                                <input  class="findPw-input" type="{{pwInfo.pwType}}" formControlName="newPw">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right">
+                          <img src="assets/image/Icon_view_pw.svg" (click)="viewPassword()">
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="findPw-font3 pdT2vh">
+                    <span>
+                      새 비밀번호 확인
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="findPw-inputBox">
+                        <ion-col size="10">
+                          <ion-grid class="height100Per">
+                            <ion-row class="height100Per">
+                              <ion-col class="align_center-grid">
+                                <input  class="findPw-input" type="{{pwInfo.pwType}}" formControlName="newPwChk">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                        <ion-col size="2" class="mgAuto text_right">
+                          <img src="assets/image/Icon_view_pw.svg" (click)="viewPassword()">
+                        </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="!pwCheck()">
+                        <ion-col>
+                          <span class="errorMessage">{{pwInfo.errMessage}}</span>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row class="pdT2vh pdB2vh">
+                        <button class="findPw-button1"
+                          [disabled]="!form.invalid || !pwCheck()" [ngClass]="!pwCheck() || form.invalid? 'findPw-button1' : 'findPw-button1_active'">
+                          <span>비밀번호 변경</span>
+                        </button>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

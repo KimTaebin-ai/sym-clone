@@ -1,0 +1,175 @@
+# 앱 환경 설정 파일입니다.
+
+1. 개발 가이드
+ - 자주 사용하는 cli 
+  > ionic g page <화면명> : page 생성
+  > ionic g component <컴포넌트명> : component 생성
+  > ionic g service <서비스명> : service 생성 
+  > ionic serve -w chrome : 크롬으로 ionic 프로젝트 실행
+  > ionic cordova build <android/ios> : android/ios 앱으로 build 
+  > ionic cordova run android : android 핸드폰에 앱 설치 후 실행 
+  > ionic cordova plugin add <플러그인명> : plugin 설치
+  > ionic cordova plugin remove <플러그인명> : plugin 제거 
+  > ionic cordova platform add <android/ios> : android/ios platform 추가 
+ - @ionic/angular에 포함된 controller를 사용할때 controller -> ctrl로 줄여서 사용 하도록 한다. 
+  ex) contructor(public alertController: AlertController) ->  contructor(public alertCtrl: AlertController)
+ - API 호출에 필요한 url은 url.service.ts에 등록된 변수를 사용한다.
+ - ngInit() 에서 초기화 할 내용을 선언하도록 한다.
+ - 컴포넌트는 데이터를 직접 가져오거나 직접 저장하도록 요청하지 않는 것이 좋다.
+ - 컴포넌트는 데이터를 표시에 집중하도록 한다.
+ - 데이터 처리 로직은 서비스에게 맡긴다.
+ - 여러 클래스에서 사용되는 정보를 공유하려면 서비스를 사용하도록 한다.
+ - 생성자에 로직이 들어가지 않도록 한다.
+ - 생성자에서 http 요청을 보내는 로직을 사용하지 않는다.
+ - 폴더 구조는 아래와 같다.
+  app 
+   ㄴ component: custom component 목록
+   ㄴ model: model class 목록
+    - member.model.ts: member model class
+   ㄴ page: page 목록, 화면별로 폴더 생성하여 구성
+    ㄴ main
+    ㄴ member
+    ㄴ ....
+   ㄴ service: service 목록
+    ㄴ common
+     ㄴ http
+      - rest-api.service.ts: REST API를 호출하는 http service ionic
+     ㄴ ionic: ionic component에서 공통으로 사용할 수 있는 service 
+      - alert.service.ts
+      - loading.service.ts 
+      - ....
+     ㄴ util: 공통 util
+      - date.util.ts
+      - regx.util.ts
+      - string.util.ts
+    ㄴ share: 앱에서 공유하려는 데이터 처리 service 
+     - member-share.service.ts: 회원 정보 공유 service 
+    ㄴ ibd: 앱에서 필요한 데이터 처리 service 
+     - member.service.ts: 회원에 관련된 데이터 처리 service 
+     - board.service.ts: 게시판 관련 데이터 처리 service
+     - ....
+
+2. node modules 및 plugin 설치 
+# node nodules moment 설치 -> date.util.ts에서 사용 
+ > npm install moment --save
+# fcm plugin
+ // ios platform 5에서 fcm 4버전 빌드 오류로 3.2.0으로 설치함
+ ionic cordova plugin add cordova-plugin-fcm-with-dependecy-updated@3.2.0
+ npm install @ionic-native/fcm --save
+#device
+npm install @ionic-native/device
+#device
+ionic cordova plugin add cordova-plugin-device
+npm install @ionic-native/device
+#App version
+ionic cordova plugin add cordova-plugin-app-version
+npm install @ionic-native/app-version
+#keyboard
+ionic cordova plugin add cordova-plugin-ionic-keyboard
+
+3. 추가 기능
+ - device motion 감지 https://www.gajotres.net/detecting-device-motion-with-ionic-framework-and-ngcordova/
+  -> device motion 감지하고 크론병환자 안내ioni 팝업 나타나기 (화장실 이용 편이)
+
+4. page 개발 공통
+ - ion-content에 paading 추가 할것.
+
+5. 이슈
+ - ionic serve 에러시
+  -> npm install @ionic/app-scripts@latest --save-dev
+
+ - ionic cordova run android -> 안드로이드 핸드폰에서 테스트하는 경우 http 에러
+  -> https://stackoverflow.com/questions/54752716/why-am-i-seeing-neterr-cleartext-not-permitted-errors-after-upgrading-to-cordo 참고
+  -> config.xml에 <platform name="android"> 태그밑에 추가
+   <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+       <application android:usesCleartextTraffic="true" />
+   </edit-config>
+  -> config.xml widget 태그에 xmlns:android="http://schemas.android.com/apk/res/android" 추가
+
+ - because it violates the following Content Security Policy directive: "default-src 'none'". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback 에러
+  -> ng update @angular/cli --force
+
+6. 다국어 설정 (사용법 참고 : https://tech.gitple.io/2017/12/06/angular-translate/)
+npm install @ngx-translate/core @ngx-translate/http-loader --save
+ionic cordova plugin add cordova-plugin-globalization
+npm install @ionic-native/globalization@beta --save
+
+
+7. chartjs annotation
+npm i chartjs-plugin-annotation
+
+
+8. chartjs plugin datalabels 설치
+npm install chartjs-plugin-datalabels --save
+
+
+9. datepicker
+ npm i ionic4-date-picker
+
+
+10. chartjs 설치
+npm i chart.js
+npm install @types/chart.js
+
+11.ionic4-long-press
+npm install --save ionic4-long-press
+npm install --save hammerjs @types/hammerjs
+https://developer.aliyun.com/mirror/npm/package/ionic4-long-press 참고
+
+12.앱버전
+ionic cordova plugin add cordova-plugin-app-version --save
+npm install @ionic-native/app-version --save
+
+
+13.Status Bar
+ionic cordova plugin add cordova-plugin-statusbar --save
+npm install @ionic-native/status-bar --save
+
+
+14. Screen Orientation
+ionic cordova plugin add cordova-plugin-screen-orientation --save
+npm install @ionic-native/screen-orientation --save
+
+
+15. toast 설치
+ionic cordova plugin add cordova-plugin-x-toast --save
+npm i --save @ionic-native/toast
+
+
+16.platform.resume 사용하였을 때 ts 와 view가 연동이 안되는 Angular오류
+
+this.platform.resume.subscribe(() => this.ngZone.run(() => {
+  // code
+}));
+
+ngZone으로 해결
+-- 참고 페이지 --
+https://github.com/ionic-team/ionic-framework/issues/19539
+https://angular.io/api/core/NgZone
+
+
+#해시키(https://developers.kakao.com/docs/latest/ko/getting-started/sdk-android-v1)
+//AV4A36DcA2EO/8A2IXQSts7NwsU=
+디버그 해시키
+LMGH5YWfjtH4xXxPZWIXpJtVqqY=
+
+EahPLDw+58CCblw0br8ZTErOZuo=
+
+8. add plugin
+#Add In App Browser
+ionic cordova plugin add cordova-plugin-inappbrowser
+npm install --save @ionic-native/in-app-browser
+
+
+#애플 로그인
+ionic cordova plugin add cordova-plugin-sign-in-with-apple
+npm i -s @ionic-native/sign-in-with-apple@5.27
+
+
+#nativestorage
+ionic cordova plugin add cordova-plugin-nativestorage
+npm install @ionic-native/native-storage
+
+#useAndroidX 이슈 발생시
+cordova plugin add cordova-plugin-androidx
+cordova plugin add cordova-plugin-androidx-adapter

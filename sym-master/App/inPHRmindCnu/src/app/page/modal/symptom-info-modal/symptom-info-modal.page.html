@@ -1,0 +1,78 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="mgT3vh pdL5vw pdR5vw">
+              <img src="assets/image/main/tpmdsImage.svg" class="height100Per">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="symptom-point1"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">기록 없음</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="symptom-point2"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">증상없음</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="symptom-point3"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">공황 1회 or 지속시간 30분 이내</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="symptom-point4"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">공황 2회 or 지속시간 30분 이상</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="symptom-point5"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">공황 3회 or 지속시간 1시간 이상</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="symptom-point6"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">공황 4회 or 지속시간 1시간 30분 이상</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="symptomInfoModal-footer">
+  <ion-grid>
+    <ion-row>
+      <ion-col (click)="dismiss()">
+        <span>닫기</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

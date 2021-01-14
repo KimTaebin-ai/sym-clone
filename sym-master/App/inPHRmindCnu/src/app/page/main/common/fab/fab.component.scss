@@ -1,0 +1,53 @@
+.fab_box {
+  bottom: 11vh;
+  right: 5vw;
+  position: fixed;
+}
+
+.fab_button {
+  width: 15vw;
+  height: 15vw;
+  --background: #3867b4;
+  --background-focused: #3867b4;
+  --background-activated-opacity: #3867b4;
+  --background-activated: #3867b4;
+}
+
+.fab_button-img {
+  height: 3vh;
+}
+
+.fab_button-item {
+  width: 15vw;
+  height: 15vw;
+  --background: #ffffff;
+  --background-focused: #ffffff;
+  --background-activated-opacity: #ffffff;
+  --background-activated: #ffffff;
+}
+
+#ListBackdrop{
+  background-color: white !important;
+  position: fixed !important;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.8
+}
+
+
+ion-label {
+  position: absolute;
+  top: 3vh;
+  right: 21vw;
+  font-family: Roboto;
+  font-size: 2.5vh;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.54px;
+  text-align: right;
+  color: #ffffff;
+  width: 50vw;
+}

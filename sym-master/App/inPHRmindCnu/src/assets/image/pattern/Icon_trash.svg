@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16.911" height="18.656" viewBox="0 0 16.911 18.656">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#7e8da0;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.2px}
+        </style>
+    </defs>
+    <g id="Icon_trash" transform="translate(-3.9 -2.4)">
+        <path id="패스_56467" d="M4.5 9h15.711" class="cls-1" transform="translate(0 -2.509)"/>
+        <path id="패스_56468" d="M19.719 6.491v12.22a1.746 1.746 0 0 1-1.746 1.746H9.246A1.746 1.746 0 0 1 7.5 18.711V6.491m2.618 0V4.746A1.746 1.746 0 0 1 11.864 3h3.491A1.746 1.746 0 0 1 17.1 4.746v1.745" class="cls-1" transform="translate(-1.254)"/>
+        <path id="패스_56469" d="M15 16.5v5.237" class="cls-1" transform="translate(-4.39 -5.645)"/>
+        <path id="패스_56470" d="M21 16.5v5.237" class="cls-1" transform="translate(-6.899 -5.645)"/>
+    </g>
+</svg>

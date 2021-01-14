@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="314" height="168" viewBox="0 0 314 168">
+    <defs>
+        <filter id="패스_54429" width="314" height="140" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="3"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="사각형_1640" width="61" height="121" x="244" y="28" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur-2" stdDeviation="3"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-2" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <style>
+            .cls-1{fill:#fff}.cls-2{fill:#7e8da0}.cls-2,.cls-3{font-size:13px}.cls-12,.cls-2{font-family:MalgunGothic,Malgun Gothic}.cls-2,.cls-3{letter-spacing:-.03em}.cls-3{fill:#3a4b5f;font-family:Roboto-Medium,Roboto;font-weight:500}.cls-4{fill:#e5e5e5}.cls-10{fill:#63e189}.cls-12{font-weight:400}
+        </style>
+    </defs>
+    <g id="tpmdsImage" transform="translate(-23 -158)">
+        <g filter="url(#패스_54429)" transform="translate(23 158)">
+            <path id="패스_54429-2" d="M0 0h296v122H0z" class="cls-1" transform="translate(9 6)"/>
+        </g>
+        <g filter="url(#사각형_1640)" transform="translate(23 158)">
+            <rect id="사각형_1640-2" width="43" height="103" class="cls-1" rx="4" transform="translate(253 34)"/>
+        </g>
+        <g id="그룹_3343" transform="translate(0 47)">
+            <g id="그룹_268" transform="translate(60.338 161.206)">
+                <text id="목" class="cls-2" transform="translate(-.338 13.794)">
+                    <tspan x="0" y="0">목</tspan>
+                </text>
+                <text id="금" class="cls-2" transform="translate(36.662 13.794)">
+                    <tspan x="0" y="0">금</tspan>
+                </text>
+                <text id="토" class="cls-2" transform="translate(75.662 13.794)">
+                    <tspan x="0" y="0">토</tspan>
+                </text>
+                <text id="일" class="cls-2" transform="translate(114.662 13.794)">
+                    <tspan x="0" y="0">일</tspan>
+                </text>
+                <text id="월" class="cls-2" transform="translate(151.662 13.794)">
+                    <tspan x="0" y="0">월</tspan>
+                </text>
+                <text id="화" class="cls-2" transform="translate(190.662 13.794)">
+                    <tspan x="0" y="0">화</tspan>
+                </text>
+            </g>
+            <g id="그룹_273" transform="translate(58.669 183.737)">
+                <text id="_12" class="cls-3" transform="translate(.331 14.264)">
+                    <tspan x="0" y="0">12</tspan>
+                </text>
+                <text id="_13" class="cls-3" transform="translate(37.331 14.264)">
+                    <tspan x="0" y="0">13</tspan>
+                </text>
+                <text id="_14" class="cls-3" transform="translate(76.331 14.264)">
+                    <tspan x="0" y="0">14</tspan>
+                </text>
+                <text id="_15" class="cls-3" transform="translate(116.331 14.264)">
+                    <tspan x="0" y="0">15</tspan>
+                </text>
+                <text id="_16" class="cls-3" transform="translate(153.331 14.264)">
+                    <tspan x="0" y="0">16</tspan>
+                </text>
+                <text id="_17" class="cls-3" transform="translate(192.331 14.264)">
+                    <tspan x="0" y="0">17</tspan>
+                </text>
+            </g>
+            <g id="그룹_274" transform="translate(60.338 207.101)">
+                <path id="empty_line" d="M0 0H47V1H0z" class="cls-4" transform="translate(144.662 8.899)"/>
+                <path id="empty_line-2" d="M0 0H25V1H0z" class="cls-4" transform="translate(190.662 8.899)"/>
+                <path id="empty_line-3" d="M0 0H48V1H0z" class="cls-4" transform="translate(96.662 8.899)"/>
+                <path id="color_line" d="M0 0h48.4v.834H0z" class="cls-4" transform="translate(.834 9.179)"/>
+                <path id="color_line-2" d="M0 0H48V1H0z" class="cls-4" transform="translate(48.662 8.899)"/>
+                <circle id="color_circle" cx="6" cy="6" r="6" fill="#ff9f4c" transform="translate(-.338 2.899)"/>
+                <ellipse id="color_circle-2" cx="5.5" cy="6" fill="#c41521" rx="5.5" ry="6" transform="translate(39.662 2.899)"/>
+                <circle id="color_circle-3" cx="6" cy="6" r="6" fill="#ff5d43" transform="translate(76.662 2.899)"/>
+                <circle id="color_circle-4" cx="6" cy="6" r="6" fill="#d2d5dc" transform="translate(114.662 2.899)"/>
+                <circle id="color_circle-5" cx="6" cy="6" r="6" fill="#ffd072" transform="translate(153.662 2.899)"/>
+                <circle id="color_circle-6" cx="6" cy="6" r="6" class="cls-10" transform="translate(190.662 2.899)"/>
+            </g>
+            <text id="_2020년_7월" fill="#3a4b5f" font-family="Roboto-Medium, Roboto" font-size="14px" font-weight="500" letter-spacing="-0.056em" transform="translate(57 147)">
+                <tspan x="0" y="0">2020</tspan><tspan y="0" class="cls-12">년</tspan><tspan y="0"> 11</tspan><tspan y="0" class="cls-12">월</tspan>
+            </text>
+        </g>
+        <g id="그룹_3348" transform="translate(0 -7)">
+            <text id="수" fill="#28a1ae" font-family="MalgunGothicBold, Malgun Gothic" font-size="16px" letter-spacing="-0.03em" transform="translate(290 230)">
+                <tspan x="0" y="0">수</tspan>
+            </text>
+            <text id="_18" fill="#28a1ae" font-family="Roboto-Black, Roboto" font-size="16px" font-weight="800" letter-spacing="-0.03em" transform="translate(288 254)">
+                <tspan x="0" y="0">18</tspan>
+            </text>
+            <g id="그룹_3347">
+                <circle id="icon" cx="11.5" cy="11.5" r="11.5" fill="#c4eef5" transform="translate(286 266)"/>
+                <circle id="color_circle-7" cx="7.5" cy="7.5" r="7.5" class="cls-10" transform="translate(290 270)"/>
+            </g>
+        </g>
+        <text id="오늘" fill="#7e8da0" font-family="MalgunGothic, Malgun Gothic" font-size="15px" letter-spacing="-0.03em" transform="translate(283 322)">
+            <tspan x="0" y="0">오늘</tspan>
+        </text>
+    </g>
+</svg>

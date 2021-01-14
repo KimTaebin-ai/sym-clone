@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29">
+    <defs>
+        <style>
+            .cls-1{fill:#44bbc8}
+        </style>
+    </defs>
+    <g id="v_intensity_5" transform="translate(-1.255 -.356)">
+        <path id="사각형_1771" d="M2 0a2 2 0 0 1 2 2v11H0V2a2 2 0 0 1 2-2z" class="cls-1" transform="translate(1.255 16.356)"/>
+        <path id="사각형_1772" d="M2 0a2 2 0 0 1 2 2v15H0V2a2 2 0 0 1 2-2z" class="cls-1" transform="translate(7.255 12.356)"/>
+        <path id="사각형_1773" d="M2 0a2 2 0 0 1 2 2v20H0V2a2 2 0 0 1 2-2z" class="cls-1" transform="translate(13.255 7.356)"/>
+        <path id="사각형_1774" d="M2 0a2 2 0 0 1 2 2v24H0V2a2 2 0 0 1 2-2z" class="cls-1" transform="translate(19.255 3.356)"/>
+        <path id="사각형_1775" d="M2 0a2 2 0 0 1 2 2v27H0V2a2 2 0 0 1 2-2z" class="cls-1" transform="translate(25.255 .356)"/>
+    </g>
+</svg>

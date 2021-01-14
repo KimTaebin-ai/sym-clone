@@ -1,0 +1,148 @@
+<app-page-header></app-page-header>
+
+<ion-content class="pattern-background">
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-grid class="countBox">
+        <ion-row class="height20vw">
+          <ion-col size="3" class="lifePatternTitle"><span>음주</span></ion-col>
+          <ion-col size="9" class="align_center-grid pdL4vw">
+            <div>
+              <span class="diaryCountColor1">{{patternCount}}</span><span class="diaryCountColor2"> 건</span>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="pd5vw pattern-page">
+        <ion-row>
+          <ion-col>
+            <ion-grid>
+              <ion-row>
+                <ion-col class="pdB3vh">
+                  <span class="pattern-text">1. 언제 음주를 하셨나요? (다중 선택 가능)</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="pdB5vh">
+                  <div class="dayBox mgR3vw" [ngClass]="reportVo.day === 'MORNING'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectDay('MORNING')">오전</div>
+                  <div class="dayBox" [ngClass]="reportVo.day === 'AFTERNOON'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectDay('AFTERNOON')">오후</div>
+                  <div class="dayBox mgL3vw" [ngClass]="reportVo.day === 'NIGHT'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectDay('NIGHT')">저녁(취침전)</div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-grid>
+              <ion-row>
+                <ion-col class="pdB3vh">
+                  <span class="pattern-text">2. 어떤 종류로 얼마나 마셨는지 입력해 주세요.</span>
+                </ion-col>
+              </ion-row>
+              <ion-row class="pdB6vh">
+                <ion-col size="7" class="pdR3vw">
+                  <ion-grid class="pattern-select-box">
+                    <ion-row class="width100Per">
+                      <ion-col>
+                          <ion-select class="pdR3vw" value="notifications" interface="action-sheet" [(ngModel)]="reportVo.type">
+                            <ion-select-option value="SOJU">소주</ion-select-option>
+                            <ion-select-option value="BEER">맥주</ion-select-option>
+                            <ion-select-option value="MAKGEOLLI">막걸리</ion-select-option>
+                          </ion-select>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+                <ion-col size="5" class="pattern-select-box">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="8">
+                        <input class="pattern-input-box" [(ngModel)]="reportVo.count">
+                      </ion-col>
+                      <ion-col size="4">
+                        <span>잔</span>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <button class="pattern-add-button" (click)="addReportConfirmAlert()">
+                    <span>
+                      추가
+                    </span>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngIf="reportList.length !== 0">
+        <ion-row>
+          <ion-col class="pd5vw">
+            <ion-grid class="pattern-report-list-box">
+              <ion-row class="pattern-report-header">
+                <ion-col>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col>
+                        <span>음주 리포트</span>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-grid>
+                    <ion-row *ngFor="let dayItem of reportList let dayIndex = index">
+                      <ion-col size="3" class="pattern-report-label">
+                        <span>{{dayItem.dayNm}}</span>
+                      </ion-col>
+                      <ion-col size="9">
+                        <ion-grid class="border-bottom" *ngFor="let itemList of dayItem.dataList; let dataIndex = index">
+                          <ion-row>
+                            <ion-col size="7" class="pattern-list-box pdL4vw">
+                              <span>{{itemList.typeNm}}</span>
+                            </ion-col>
+                            <ion-col size="3" class="pattern-list-box">
+                              <span class="pattern-list-font1">{{itemList.count}}</span><span class="pattern-list-font2">잔</span>
+                            </ion-col>
+                            <ion-col size="2" class="pattern-list-box">
+                              <img src="assets/image/pattern/Icon_trash.svg" (click)="delListConfirmAlert(dayIndex, dataIndex)">
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <!--<button [ngClass]="termList.length === selectedTerm.length ? 'common_button_active' : 'common_button'"
+                [disabled]="termList.length !== selectedTerm.length" (click)="signUp()">
+          다음
+        </button>-->
+        <button class="common_save_button">
+          저장
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

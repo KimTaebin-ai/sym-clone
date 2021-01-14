@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46.801" height="46.801" viewBox="0 0 46.801 46.801">
+    <defs>
+        <style>
+            .cls-2{fill:#ff7b00}
+        </style>
+    </defs>
+    <g id="em_plaineasy" transform="translate(1 1)">
+        <ellipse id="타원_306" cx="22.4" cy="22.401" fill="#ffe163" stroke="#ffbf2b" stroke-width="2px" rx="22.4" ry="22.401"/>
+        <path id="패스_53564" d="M172.649 97.972a2.825 2.825 0 1 1-2.825-2.712 2.825 2.825 0 0 1 2.825 2.712z" class="cls-2" transform="translate(-155.911 -79.15)"/>
+        <path id="패스_53565" d="M184.589 97.972a2.825 2.825 0 1 1-2.825-2.712 2.825 2.825 0 0 1 2.825 2.712z" class="cls-2" transform="translate(-150.987 -79.15)"/>
+        <path id="패스_53566" d="M182.122 109.091h-9.816a2.472 2.472 0 1 1 0-4.929h9.816a2.472 2.472 0 0 1 0 4.929z" class="cls-2" transform="translate(-154.819 -75.481)"/>
+    </g>
+</svg>

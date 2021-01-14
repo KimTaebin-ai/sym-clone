@@ -1,0 +1,45 @@
+.pw-text{
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.62px;
+  text-align: left;
+  color: #2e2e2e;
+}
+.pw-input-border {
+  width: 100%;
+  height: 7vh;
+  border: solid 1px #d2d5dc;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+.pw-input-box {
+  width: 100%;
+  border: 0;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.pw-input-box:focus {outline:none;}
+
+.showPwImg{
+  vertical-align: middle;
+  display: inline;
+}
+
+.errorMessage {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: -0.48px;
+  text-align: left;
+  color: #ff3b30;
+}

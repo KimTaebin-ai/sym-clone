@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46.801" height="46.801" viewBox="0 0 46.801 46.801">
+    <defs>
+        <style>
+            .cls-3{fill:#f6f6ff}.cls-4{fill:none;stroke:#5676c0;stroke-linecap:round;stroke-width:2.8px}
+        </style>
+    </defs>
+    <g id="em_sadness" transform="translate(-156 -292.498)">
+        <g id="em_sadness-2" transform="translate(157 293.498)">
+            <circle id="타원_308" cx="22.401" cy="22.401" r="22.401" fill="#ceceff" stroke="#a6bdf2" stroke-width="2px"/>
+            <path id="패스_53586" fill="#5676c0" d="M120.653 110.474a2.5 2.5 0 0 1-1.088-.254c-5.1-2.514-8.051-2.514-13.135 0a2.472 2.472 0 0 1-2.189-4.421c6.455-3.192 11.045-3.192 17.5 0a2.458 2.458 0 0 1-1.088 4.675z" transform="translate(-90.588 -75.753)"/>
+            <path id="Icon_ionic-md-water" d="M10.379 6.979A33.13 33.13 0 0 0 8.757 2.25a33.13 33.13 0 0 0-1.623 4.729 5.123 5.123 0 0 0 0 2.846s.787 1.2 1.6 1.2 1.647-1.2 1.647-1.2a5.123 5.123 0 0 0-.002-2.846z" class="cls-3" transform="translate(24.619 18.637)"/>
+            <path id="Icon_ionic-md-water-2" d="M10.379 6.979A33.13 33.13 0 0 0 8.757 2.25a33.13 33.13 0 0 0-1.623 4.729 5.123 5.123 0 0 0 0 2.846s.787 1.2 1.6 1.2 1.647-1.2 1.647-1.2a5.123 5.123 0 0 0-.002-2.846z" class="cls-3" transform="translate(3.362 18.637)"/>
+        </g>
+        <path id="선_99" d="M0 0L6.339 1.016" class="cls-4" transform="translate(185.845 311.811)"/>
+        <path id="선_100" d="M6.339 0L0 1.016" class="cls-4" transform="translate(167.941 311.811)"/>
+    </g>
+</svg>

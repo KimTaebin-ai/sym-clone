@@ -1,0 +1,63 @@
+<app-page-header></app-page-header>
+
+<ion-content >
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid class="countBox">
+          <ion-row class="height20vw border-bottom">
+            <ion-col size="3" class="lifePatternTitle"><span>식사</span></ion-col>
+            <ion-col size="9" class="align_center-grid pdL4vw">
+              <div>
+                <span class="diaryCountColor1">{{patternCount}}</span><span class="diaryCountColor2"> 건</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd5vw">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdB3vh">
+                    <span class="pattern-text">1. 오늘 하신 식사를 체크해 주세요.</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdB2vh">
+                    <div class="dayBox mgR3vw" [ngClass]="reportList.breakfast === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('BREAKFAST')">조식(아침)</div>
+                    <div class="dayBox" [ngClass]="reportList.lunch === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('LUNCH')">중식(점심)</div>
+                    <div class="dayBox mgL3vw" [ngClass]="reportList.dinner === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('DINNER')">석식(저녁)</div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdB5vh">
+                    <div class="dayBox mgR3vw" [ngClass]="reportList.snackMonig === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('SNACK_MONING')">조식(오전)</div>
+                    <div class="dayBox" [ngClass]="reportList.snackAfternoon === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('SNACK_AFTERNOON')">조식(오후)</div>
+                    <div class="dayBox mgL3vw" [ngClass]="reportList.snackNight === 'Y'? 'on-day_pattern' : 'off-day_pattern'" (click)="selectMeaalInfo('SNACK_NIGHT')">야식</div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <!--        <button [ngClass]="termList.length === selectedTerm.length ? 'common_button_active' : 'common_button'"
+                        [disabled]="termList.length !== selectedTerm.length" (click)="signUp()">
+                  다음
+                </button>-->
+        <button class="common_save_button">
+          저장
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

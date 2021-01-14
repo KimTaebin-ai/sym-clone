@@ -1,0 +1,44 @@
+<app-page-header></app-page-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="height20vw border-top border-bottom">
+      <ion-col size="3" class="lifePatternTitle"><span>{{patternDetail.patternTypeNm}}</span></ion-col>
+      <ion-col size="9" class="lineHeight20vw pdL4vw"><span class="reportCountColor">{{patternDetail.patternDataList.length}}</span>건</ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="pd5vw bkcolor_fcfcfd">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="pattern-report-list-box">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row class="box_border_bottom" *ngFor="let patterns of patternDetail.patternDataList">
+                  <ion-col size="4" class="pattern-report-label">
+                    <span>{{patterns.date}}</span>
+                  </ion-col>
+                  <ion-col size="8">
+                    <ion-grid *ngFor="let datas of patterns.dataList; let dataIndex = index">
+                      <ion-row>
+                        <ion-col size="9" class="pattern-list-box pdL4vw">
+                          <span>{{datas.typeNm}}</span>
+                        </ion-col>
+                        <ion-col size="3" class="pattern-list-box">
+                          <span class="reportCountColor">{{datas.ammount}}</span>
+                          <span *ngIf="patternDetail.patternType === 'drinking' || patternDetail.patternType === 'caffeine'">&nbsp;잔</span>
+                          <span *ngIf="patternDetail.patternType === 'smoking'">&nbsp;개피</span>
+                          <span *ngIf="patternDetail.patternType === 'ex'">&nbsp;분</span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

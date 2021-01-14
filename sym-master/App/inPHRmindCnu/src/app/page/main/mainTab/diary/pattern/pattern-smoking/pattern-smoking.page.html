@@ -1,0 +1,107 @@
+<app-page-header></app-page-header>
+
+<ion-content class="pattern-background">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid class="countBox">
+          <ion-row class="height20vw border-bottom">
+            <ion-col size="3" class="lifePatternTitle"><span>흡연</span></ion-col>
+            <ion-col size="9" class="align_center-grid pdL4vw">
+              <div>
+                <span class="diaryCountColor1">{{patternCount}}</span><span class="diaryCountColor2"> 개피</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pd5vw pattern-page">
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="pdB3vh">
+                    <span class="pattern-text">1. 흡연을 얼마나 하셨나요?</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="pdB5vh">
+                    <ion-grid class="pattern-input-border">
+                      <ion-row class="height100Per align_center">
+                        <ion-col size="10"><input class="pattern-input-box" [(ngModel)]="reportVo.count"></ion-col>
+                        <ion-col size="2">개피</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button class="pattern-add-button" (click)="addReportConfirmAlert()">
+                    <span>
+                      추가
+                    </span>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="reportList.length !== 0">
+          <ion-row>
+            <ion-col class="pd5vw">
+              <ion-grid class="pattern-report-list-box">
+                <ion-row class="pattern-report-header">
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <span>흡연 리포트</span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row  *ngFor="let item of reportList; let i = index">
+                        <ion-col class="pattern-list-box">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col size="10" class="pattern-list-box pdL4vw">
+                                <span class="pattern-list-font1">{{item}}</span><span class="pattern-list-font2">개피</span>
+                              </ion-col>
+                              <ion-col size="2" class="pattern-list-box">
+                                <img src="assets/image/pattern/Icon_trash.svg" (click)="delListConfirmAlert(i)">
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <!--        <button [ngClass]="termList.length === selectedTerm.length ? 'common_button_active' : 'common_button'"
+                        [disabled]="termList.length !== selectedTerm.length" (click)="signUp()">
+                  다음
+                </button>-->
+        <button class="common_save_button">
+          저장
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

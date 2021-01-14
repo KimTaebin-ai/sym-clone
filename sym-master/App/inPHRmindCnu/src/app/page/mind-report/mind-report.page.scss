@@ -1,0 +1,255 @@
+.reportTitleNav{
+  height: 50px;
+  padding: 13px 16px 14px;
+  background-color: #3a4b5f;
+}
+.reportTitleText1{
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.35;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #ffffff;
+}
+.reportTopNav{
+  height: 50px;
+  background-color: #fdfdfd;
+  padding: 3vw;
+}
+.pickMindType{
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  color: #28a1ae;
+  align-items: center;
+  display: grid;
+}
+.reportTopNavText{
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  color: #3a4b5f;
+  align-items: center;
+  display: grid;
+}
+.reportCountColor{
+  font-weight: bold;
+  font-size: 1.375rem;
+  color: #44bbc8;
+}
+.reportTerm{
+  text-align: center;
+  padding: 2vw;
+  border-radius: 5px;
+  border: 1px solid #cfd3d9;
+  color: #3a4b5f;
+  background-color: #ffffff;
+}
+.reportTerm_pick{
+  text-align: center;
+  font-weight: bold;
+  padding: 2vw;
+  border-radius: 5px;
+  border: 1px solid #44bbc8;
+  color: #28a1ae;
+  background-color: #effdff;
+}
+.noDataImg{
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+  margin-bottom: 3vh;
+}
+
+/*정서불안------------------*/
+.emoMiddleNav{
+  height: 48px;
+  padding: 3vw;
+  border-top: 1px solid #d2d5dc;
+  border-bottom: 1px solid #d2d5dc;
+}
+.emoThisWeekBox{
+  padding: 1vh 3vw;
+}
+//background: linear-gradient(to top, #ccc 50%, maroon 50%);
+.emotionFullCircle{
+  border: 4px solid #19d288;
+  border-radius: 50%;
+  height: 8.5vh;
+}
+.emotionHalfCircle{
+  border: 4px solid #19d288;
+  border-left-color: #14817e;
+  //border-color: linear-gradient(to right, #19d288 50%, #14817e 50%);
+  border-radius: 50%;
+  height: 8.5vh;
+}
+.emotionSquare{
+  border: 1px solid #d2d5dc;
+  align-items: center;
+  display: flex;
+}
+.feelingPColor{
+  background-color: #19d288 !important;
+}
+.feelingNColor{
+  background-color: #14817e !important;
+}
+.energyPColor{
+  background-color: #4bb5f2 !important;
+}
+.energyNColor{
+  background-color: #1717a6 !important;
+}
+.unrestColor{
+  background-color: #836ae3 !important;
+}
+.annoyedColor{
+  background-color: #ff7661 !important;
+}
+.emotionLine {
+  height: calc(100%/6);
+  background-color: #ffffff;
+}
+
+/*------------------------*/
+
+/*공황---------------------*/
+.panicChartBox{
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+}
+.panicCount {
+  text-align: center;
+  line-height: 20vw;
+  border-right: 1px solid #eaebef;
+}
+.panicDetailBox{
+  margin: 7vw 5vw;
+  border-radius: 12px;
+  box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
+  background-color: #ffffff;
+}
+.panicDetailText{
+  font-family: Roboto;
+  font-size: 16px;
+  color: #262626;
+  align-items: center;
+  display: flex;
+}
+.symtomListBox{
+  word-break: normal;
+  line-height: 2.6;
+}
+.symtomText{
+  color: #3a4b5f;
+  background-color: #f0f7ff;
+  border-radius: 4px;
+}
+
+.panic-border-right{
+  border-right: 1px solid #eeeff1;
+}
+.panic-border-bottom{
+  border-bottom: 1px solid #eeeff1;
+}
+/*------------------------*/
+
+/*생활패턴------------------*/
+.lifePatternTitle{
+  text-align: center;
+  align-items: center;
+  display: grid;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #454545;
+  border-right: 1px solid #eaebef;
+}
+.lifePatternTerm{
+  color: #262626;
+  background-color: #f0f2f7;
+}
+/*------------------------*/
+
+/*심리척도------------------*/
+.psychologyNav{
+  border-radius: 4px;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  padding-top: 1.3vh;
+  padding-bottom: 1.3vh;
+  border: 1px solid #cfd3d9;
+  color: #3a4b5f;
+  background-color: #ffffff;
+}
+.psychoType_pick{
+  border-radius: 4px;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  padding-top: 1.3vh;
+  padding-bottom: 1.3vh;
+  background-color: #effdff;
+  border: 1px solid #28a1ae;
+  color: #28a1ae;
+}
+.psychoStandardTitleText{
+  font-family: Roboto;
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.32;
+  letter-spacing: -0.31px;
+  text-align: center;
+  color: #3a4b5f;
+}
+.psychoStandardText{
+  font-family: Roboto;
+  font-size: 1rem;
+  line-height: 1.33;
+  letter-spacing: -0.48px;
+  text-align: left;
+  color: #7e8da0;
+}
+.psychoStandard_pick{
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.33;
+  letter-spacing: -0.48px;
+  text-align: left;
+  color: #3a4b5f;
+}
+/*------------------------*/
+
+/*공통---------------------*/
+.border-top{
+  border-top: 1px solid #eaebef;
+}
+.border-right{
+  border-right: 1px solid #eaebef;
+}
+.border-bottom{
+  border-bottom: 1px solid #eaebef;
+}
+.border-left{
+  border-left: 1px solid #eaebef;
+}
+.height20vw{
+  height: 20vw;
+}
+.height30vh{
+  height: 30vh;
+}
+.lineHeight20vw{
+  line-height: 20vw;
+}
+/*------------------------*/
+
+
+

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "314288663682",
+    "firebase_url": "https://symcnu.firebaseio.com",
+    "project_id": "symcnu",
+    "storage_bucket": "symcnu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314288663682:android:b2fea42fd2acaf63df989b",
+        "android_client_info": {
+          "package_name": "kr.co.softnet.symCnu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314288663682-3q5dggamht6frkbphuf9eit959vugqkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcBpnAw8kgojwWoBATCcpfdDKZ5z7zi_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314288663682-3q5dggamht6frkbphuf9eit959vugqkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

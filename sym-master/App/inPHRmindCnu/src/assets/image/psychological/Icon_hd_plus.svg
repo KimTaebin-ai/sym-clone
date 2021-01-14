@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22.38" height="22.38" viewBox="0 0 22.38 22.38">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#5a5c5e;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px}
+        </style>
+    </defs>
+    <g id="Icon_hd_plus" transform="translate(-6 -6)">
+        <path id="패스_56404" d="M18 7.5v19.38" class="cls-1" transform="translate(-.81)"/>
+        <path id="패스_56405" d="M7.5 18h19.38" class="cls-1" transform="translate(0 -.81)"/>
+    </g>
+</svg>

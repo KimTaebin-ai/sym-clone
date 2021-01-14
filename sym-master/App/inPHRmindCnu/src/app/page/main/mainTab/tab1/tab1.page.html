@@ -1,0 +1,84 @@
+<ion-content [fullscreen]="true">
+  <app-main-header></app-main-header>
+  <div (click)="startScan()" style="font-size: 50px" #ddd>
+    디바이스 테스트
+  </div>
+  {{devices.length}}
+
+  <div *ngFor="let item of devices" (click)="connectDevice(item, item.deviceName)">
+    <span style="font-size: 20px" >divice:{{item.name}}</span>
+  </div>
+  <div (click)="onAuthEvent()">
+    <span style="font-size: 20px"><br><br><br>FITBIT TEST</span>
+  </div>
+<!--  <div>
+    STEP: {{testInfo.step.detail.step}}
+  </div>
+  <div>
+    HEALTH: {{testInfo.health.detail.weight}}
+  </div>
+  <div>
+    PUS: {{testInfo.pus.detail}}
+  </div>
+  <div>
+    SLEEP: {{testInfo.sleep.detail}}
+  </div>-->
+  <p style="font-size: 100px">
+    {{light}}
+  </p>
+
+  <div (click)="mibandTest()">
+    미밴드 테스트
+  </div>
+  <div>
+    걸음수
+    <div *ngIf="stepList.length > 0">
+      <div *ngFor="let item of stepList">
+        <span>시작시간{{item.startDate}}</span>
+        <span>종료시간{{item.endDate}}</span>
+        <span>값{{item.value}}</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    심박수
+    <div *ngIf="heartRate.length > 0">
+      <div *ngFor="let item of heartRate">
+        <span>시작시간{{item.startDate}}</span>
+        <span>종료시간{{item.endDate}}</span>
+        <span>값{{item.value}}</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    수면
+    <div *ngIf="sleepList.length > 0">
+      <div *ngFor="let item of sleepList">
+        <span>시작시간{{item.startDate}}</span>
+        <span>종료시간{{item.endDate}}</span>
+        <span>값{{item.value}}</span>
+      </div>
+    </div>
+  </div>
+
+<!--  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <app-explore-container name="Tab 1 page"></app-explore-container>-->
+</ion-content>

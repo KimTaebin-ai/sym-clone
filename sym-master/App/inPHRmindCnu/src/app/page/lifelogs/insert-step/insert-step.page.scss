@@ -1,0 +1,87 @@
+.lifelog-inputBox1 {
+  width: 100%;
+  height: 8vh;
+  border: solid 1px #d2d5dc;
+  margin-top: 2vh;
+  border-radius: 4px;
+  background-color: #ffffff;
+  align-items: center;
+}
+
+.lifelog-inputBox1_insert{
+  width: 100%;
+  padding: 0 4vw;
+  height: 100%;
+  border: 0;
+}
+
+.lifelog-inputBox1_img {
+  height: 7vw;
+}
+
+.lifelog-save {
+  width: 100%;
+  height: 7vh;
+  background-color: #44bbc8;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  font-family: Roboto;
+  font-size: 3.8vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.58px;
+  color: #ffffff;
+}
+
+.lifelog-save:active {
+  background-color: #28a1ae;
+}
+
+.lifelog-save-disabled {
+  width: 100%;
+  height: 7vh;
+  background-color: #ecedef;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  font-family: Roboto;
+  font-size: 3.8vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.58px;
+  color: #bbbec2;
+}
+
+.lifelog-cancle {
+  width: 100%;
+  height: 7vh;
+  background-color: #e7e8eb;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  font-family: Roboto;
+  font-size: 3.8vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.58px;
+  color: #737373;
+}
+
+.datetime-lifelog {
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #262626;
+  display: initial;
+}

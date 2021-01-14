@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g>
+        <g fill="none" stroke="#a4aebc" stroke-width="2px" transform="translate(-228 -224) translate(228 224)">
+            <rect width="24" height="24" stroke="none" rx="6"/>
+            <rect width="22" height="22" x="1" y="1" rx="5"/>
+        </g>
+        <text fill="#a4aebc" font-family="Roboto-Medium, Roboto" font-size="18px" font-weight="500" transform="translate(-228 -224) translate(240 243)">
+            <tspan x="-4.377" y="0">?</tspan>
+        </text>
+    </g>
+</svg>

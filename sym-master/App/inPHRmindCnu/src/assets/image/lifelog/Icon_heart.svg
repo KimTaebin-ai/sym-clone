@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Icon_heart" width="44" height="47" viewBox="0 0 44 47">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#205072;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-width:1.5px}
+        </style>
+    </defs>
+    <g id="Icons_heart" transform="translate(5.827 10.683)">
+        <g id="Icons_heart-2">
+            <path id="Path" d="M28.783 2.36a8.084 8.084 0 0 0-11.417 0L15.8 3.991a.56.56 0 0 1-.6 0L13.64 2.36a7.94 7.94 0 0 0-11.3 0 8.129 8.129 0 0 0 0 11.421l1.923 1.865 11.06 11.07a.56.56 0 0 0 .6 0L26.98 15.645l1.92-1.864a8.021 8.021 0 0 0-.117-11.421z" class="cls-1"/>
+            <path id="Path-2" d="M0 3.5h3.605l2.4-2.331 2.4 4.662L10.816 0l2.4 3.5h3.605" class="cls-1" transform="translate(7.151 8.187)"/>
+        </g>
+    </g>
+</svg>
