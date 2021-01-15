@@ -16,46 +16,26 @@
             <ion-col>
               <input class="common_input" type="text"
                      inputmode="text" inputmode="text" maxlength="200"
-                     appTextValidation
-                     placeholder="이메일을 입력해주세요." />
-
-                     <!-- <input class="common_input" type="text"
-                     inputmode="text" inputmode="text" maxlength="200"
                      formControlName="userId"
                      appTextValidation
-                     placeholder="이메일을 입력해주세요." /> -->
+                     placeholder="이메일을 입력해주세요." />
               <!--<input class="common_input" type="text" maxlength="200" formControlName="userId">-->
             </ion-col>
           </ion-row>
           <ion-row class="pd1vw">
             <ion-col>
               <input class="common_input" type="password"
-                inputmode="text" inputmode="text" maxlength="20"
-                formControlName="password"
-                appTextValidation
-                placeholder="비밀번호를 입력해주세요." />
-
-              <!-- <input class="common_input" type="password"
                      inputmode="text" inputmode="text" maxlength="20"
                      formControlName="password"
                      appTextValidation
-                     placeholder="비밀번호를 입력해주세요." /> -->
+                     placeholder="비밀번호를 입력해주세요." />
               <!--<input class="common_input" type="password" maxlength="20" formControlName="password">-->
             </ion-col>
           </ion-row>
           <ion-row class="pd1vw pdB2vh">
             <ion-col class="pd0">
               <ion-grid>
-                <ion-row>
-                  <ion-col size="1" class="align_center-grid">
-                    <img src="assets/image/check1.svg" class="check1">
-                    <!-- <img src="assets/image/check1_active.svg" class="check1"> -->
-                  </ion-col>
-                  <ion-col size="10" class="align_center-grid">
-                    <span class="Roboto-Medium">자동 로그인</span>
-                  </ion-col>
-                </ion-row>
-                <!-- <ion-row (click)="selectAutoLoginType()">
+                <ion-row (click)="selectAutoLoginType()">
                   <ion-col size="1" class="align_center-grid">
                     <img src="assets/image/check1.svg" class="check1" *ngIf="!systemInfo.autoLogin">
                     <img src="assets/image/check1_active.svg" class="check1" *ngIf="systemInfo.autoLogin">
@@ -63,20 +43,18 @@
                   <ion-col size="10" class="align_center-grid">
                     <span class="Roboto-Medium">자동 로그인</span>
                   </ion-col>
-                </ion-row> -->
+                </ion-row>
               </ion-grid>
             </ion-col>
           </ion-row>
           <ion-row class="pd1vw">
             <ion-col>
-              <button class="common_button_active"><span>로그인</span></button>
+              <button class="common_button_active" (click)="login('D')"><span>로그인</span></button>
             </ion-col>
           </ion-row>
           <ion-row class="pd1vw pdT2Vh pdB2vh">
             <ion-col class="text_center">
-              <span class="Roboto-Regular">비밀번호 찾기  </span>
-              <img src="assets/image/auth/Line_3.svg" class="pdL2vw pdR2vw">
-              <span class="Roboto-Regular"> 회원가입</span>
+              <span class="Roboto-Regular" (click)="goToPage('/find-pw', '비밀번호 찾기')">비밀번호 찾기  </span><img src="assets/image/auth/Line_3.svg" class="pdL2vw pdR2vw"><span class="Roboto-Regular" (click)="goToPage('/term', '약관')"> 회원가입</span>
             </ion-col>
           </ion-row>
         </ion-grid>
