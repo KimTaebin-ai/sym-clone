@@ -1,0 +1,7 @@
+{
+  "name": "inPHRtaebin",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
