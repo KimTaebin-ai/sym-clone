@@ -9,6 +9,7 @@ import { TemplatePageRoutingModule } from './template-routing.module';
 import { TemplatePage } from './template.page';
 import { HeaderComponent } from 'src/app/common/header/header.component';
 import { TabsPage } from 'src/app/common/tabs/tabs.page';
+import { HomePage } from '../home/home.page';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { TabsPage } from 'src/app/common/tabs/tabs.page';
     IonicModule,
     TemplatePageRoutingModule
   ],
-  declarations: [TemplatePage, HeaderComponent, TabsPage]
+  declarations: [TemplatePage, HeaderComponent, TabsPage, HomePage]
 })
 export class TemplatePageModule {}
