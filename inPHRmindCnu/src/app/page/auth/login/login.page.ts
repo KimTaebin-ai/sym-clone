@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavController, Platform} from '@ionic/angular';
@@ -24,3 +25,5 @@ export class LoginPage {
   constructor(public loginService: LoginService) {}
 
 }
+=======
+>>>>>>> Stashed changes

@@ -201,9 +201,6 @@ const routes: Routes = [
     loadChildren: () => import('./page/modal/emotion-info-modal/emotion-info-modal.module').then(m => m.EmotionInfoModalPageModule)
   },
 
-
-
-
 ];
 @NgModule({
     imports: [
