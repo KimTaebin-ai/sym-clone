@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PageInfoService {
 
-  constructor(private router: Router) { 
-  }
+  constructor() { }
 
-
-  getPageInfo(type: string) {
-    const pageInfo = '';
-    let value = '';
-    
-    if (pageInfo.length && type === 'title') {
-      // value = pageInfo[pageInfo.length - 1].title;
+  getPageInfo(userData?: any) {
+    const data:any = {
+      home: {
+        page_title: `${userData.name}님, 좋은 아침입니다!`,
+      },
+      diary: {
+        page_title: '다이어리',
+      }
     }
+
+    return data;
   }
 }

@@ -3,11 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'qwer',
     loadChildren: () => import('./pages/template/template.module').then( m => m.TemplatePageModule)
-  },
-
- 
+  },  
 ];
 
 @NgModule({
