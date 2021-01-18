@@ -18,6 +18,7 @@ export class TemplatePage implements OnInit {
   }
 
   //라우터 별 데이터
+
   getPage() {
     const page = 'home';
     const userData: any = {name: '김태빈'};
