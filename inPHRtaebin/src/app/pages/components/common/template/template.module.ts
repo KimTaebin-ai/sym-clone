@@ -7,9 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { TemplatePageRoutingModule } from './template-routing.module';
 
 import { TemplatePage } from './template.page';
-import { HeaderComponent } from 'src/app/common/header/header.component';
-import { TabsPage } from 'src/app/common/tabs/tabs.page';
-import { HomePage } from '../../pages/home/home.page';
+import { HeaderComponent } from 'src/app/pages/components/common/header/header.component';
+import { TabsPage } from 'src/app/pages/components/common/tabs/tabs.page';
+import { HomePage } from '../../../home/home.page';
 
 @NgModule({
   imports: [

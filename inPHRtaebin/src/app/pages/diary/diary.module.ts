@@ -7,9 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { DiaryPageRoutingModule } from './diary-routing.module';
 
 import { DiaryPage } from './diary.page';
-import { TemplatePage } from 'src/app/common/template/template.page';
-import { HeaderComponent } from 'src/app/common/header/header.component';
-import { TabsPage } from 'src/app/common/tabs/tabs.page';
+import { TemplatePage } from 'src/app/pages/components/common/template/template.page';
+import { HeaderComponent } from 'src/app/pages/components/common/header/header.component';
+import { TabsPage } from 'src/app/pages/components/common/tabs/tabs.page';
 
 @NgModule({
   imports: [
