@@ -1,8 +1,9 @@
 .login-find-link {
-    padding: 0!important;
+    display: flex;
+    justify-content: space-around;
 
     .login-find-link-item {
-        padding: 0 1vw!important;
-        font-size: .8rem;
+        font-size: 1em;
+        text-decoration: none;;
     }
 }
