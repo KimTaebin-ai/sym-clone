@@ -6,7 +6,7 @@
       <ion-col>
         <ion-grid class="pdL4vw pdR4vw device-box">
           <ion-row class="pdT5vh">
-            <ion-col class="device-font1">
+            <ion-col class="device-font1" >
               <img class="squareIcon-img" src="assets/image/device/squareIcon.svg">
               <span>
                 fitbit
@@ -21,7 +21,7 @@
             <ion-col>
               <img class="device-img" src="assets/image/device/devicenam_fitbit.svg">
             </ion-col>
-            <ion-col class="align_center-grid">
+            <ion-col class="align_center-grid" (click)="onAuthEvent()">
               <button class="device-button"><span>데이터 불러오기</span></button>
             </ion-col>
           </ion-row>
@@ -51,7 +51,7 @@
             <ion-col>
               <img class="device-img" src="assets/image/device/devicenam_miband.svg">
             </ion-col>
-            <ion-col class="align_center-grid">
+            <ion-col class="align_center-grid" (click)="miband()">
               <button class="device-button"><span>데이터 불러오기</span></button>
             </ion-col>
           </ion-row>

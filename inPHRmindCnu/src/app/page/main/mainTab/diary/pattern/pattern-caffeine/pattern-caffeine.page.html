@@ -5,10 +5,17 @@
   <ion-grid>
     <ion-row>
       <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="panicDateInfo text_center">
+              {{selectedDateKo}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         <ion-grid class="countBox">
-          <ion-row class="height12vh border-bottom">
-            <ion-col size="3" class="lifePatternTitle"><span>카페인</span></ion-col>
-            <ion-col size="9" class="align_center-grid pdL4vw">
+          <ion-row>
+            <ion-col size="3" class="lifePatternTitle height4_8rem"><span>카페인</span></ion-col>
+            <ion-col size="9" class="align_center-grid pdL4vw height4_8rem">
               <div>
                 <span class="diaryCountColor1">{{caffeineList.length}}</span><span class="diaryCountColor2"> 건</span>
               </div>
@@ -65,24 +72,19 @@
                     </ion-grid>
                   </ion-col>
                 </ion-row>
-                <ion-row>
-                  <ion-col class="pdB5vh">
+                <ion-row *ngIf="insertVo.caffeineCode">
+                  <ion-col>
                     <ion-grid class="pattern-input-border">
-                      <ion-row class="height100Per align_center">
-                        <ion-col size="9">
+                      <ion-row class="height100Per width100Per align_center text_right">
+                        <ion-col>
                           <input class="pattern-input-box" type="number" maxlength="3" [(ngModel)]="insertVo.caffeineAmount" *ngIf="insertVo.caffeineCode">
-                        </ion-col>
-                        <ion-col size="3" class="text_center" *ngIf="!insertVo.caffeineCode">
-                          <span>잔</span>
-                        </ion-col>
-                        <ion-col size="3" class="text_center" *ngIf="insertVo.caffeineCode">
-                          {{checkUnit(insertVo.caffeineCode)}}
+                          <span class="pdR3vw" *ngIf="insertVo.caffeineCode">{{checkUnit(insertVo.caffeineCode)}}</span>
                         </ion-col>
                       </ion-row>
                     </ion-grid>
                   </ion-col>
                 </ion-row>
-                <ion-row>
+                <ion-row class="pdT5vh">
                   <ion-col>
                     <button class="pattern-add-button" (click)="addCaffeineDiaryChk()">
                     <span>

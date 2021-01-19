@@ -29,6 +29,7 @@ import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {Health} from '@ionic-native/health/ngx';
 import {HealthKit} from '@ionic-native/health-kit/ngx';
 import {TokenInterceptorService} from './mind-module/http/token-interceptor.service';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 @NgModule({
     declarations: [
         AppComponent,
@@ -62,6 +63,7 @@ import {TokenInterceptorService} from './mind-module/http/token-interceptor.serv
         Health,
         HealthKit,
         Toast,
+        Keyboard,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptorService,

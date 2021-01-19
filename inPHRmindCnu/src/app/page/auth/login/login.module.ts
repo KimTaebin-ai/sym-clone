@@ -22,5 +22,4 @@ import {DirectivesModule} from '../../../util/common/directives.module';
     ],
   declarations: [LoginPage]
 })
-
 export class LoginPageModule {}

@@ -3,6 +3,7 @@ import {ModalController, NavController} from '@ionic/angular';
 import {MindManager} from '../../../mind-module/mind.manager';
 import {PageInfoService} from '../../../services/page-info.service';
 import {EventBusService} from '../../../services/event-bus.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-side-menu',
@@ -11,6 +12,8 @@ import {EventBusService} from '../../../services/event-bus.service';
 })
 export class SideMenuPage implements OnInit {
   userInfo: any = this.mindManager.getMemberModel();
+  // 이벤트 버스
+  eventSubscription: Subscription;
   constructor(
       private navController: NavController,
       private modalCtrl: ModalController,
@@ -20,6 +23,13 @@ export class SideMenuPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.eventSubscription = this.eventBusService.modal$.subscribe(event => {
+      if (event === 'OFF') {
+        this.modalCtrl.dismiss({
+          dismissed: true
+        });
+      }
+    });
   }
 
   goToPage(url, title, type) {

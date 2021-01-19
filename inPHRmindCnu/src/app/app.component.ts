@@ -1,6 +1,6 @@
 import {Component, NgZone} from '@angular/core';
 
-import {Events, NavController, Platform} from '@ionic/angular';
+import {AlertController, Events, NavController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {Device} from '@ionic-native/device/ngx';
@@ -14,6 +14,8 @@ import {Toast} from '@ionic-native/toast/ngx';
 import {CodeService} from './services/code.service';
 import {NavigationExtras, Router} from '@angular/router';
 import {StorageUtil} from './mind-module/util/storage.util';
+import {EventBusService} from './services/event-bus.service';
+import {AuthService} from './mind-module/service/auth.service';
 const TimePeriodToExit = 2000;
 @Component({
   selector: 'app-root',
@@ -58,6 +60,9 @@ export class AppComponent {
       private codeService: CodeService,
       private ngZone: NgZone,
       private router: Router,
+      private eventBusService: EventBusService,
+      private authService: AuthService,
+      private alertCtrl: AlertController
   ) {
     this.initializeApp();
     this.platform.backButton.subscribeWithPriority(0, () => {
@@ -129,12 +134,16 @@ export class AppComponent {
       if (autoLogin && lockState && !from.startsWith('/lock')) {
         console.log(this.mindManager.getLockPw())
         if (this.mindManager.getLockPw()) {
+          if (this.mindManager.getModalONOff() === 'ON') {
+            this.eventBusService.modal$.next('OFF');
+          }
           // code : 0 = 회원가입 완료 후 잠금화면, 1 = 로그인 후 잠금화면
           // pwYN : true = 비밀번호 미설정, false = 비밀번호 설정 완료
           const navigationExtras: NavigationExtras = {
             queryParams: {
               code: 1,
-              pwYn: true
+              pwYn: true,
+              from: ''
             }
           };
           let startUrl = this.pageInfoService.getPageInfo('url');
@@ -145,6 +154,9 @@ export class AppComponent {
           this.pageInfoService.getToOtherPage(startUrl, '/lock', '잠금화면').then(() => {
             this.navController.navigateRoot(['/lock'], navigationExtras);
           });
+/*          this.pageInfoService.getToOtherPage(startUrl, '/lock', '잠금화면').then(() => {
+            this.navController.navigateRoot(['/lock'], navigationExtras);
+          });*/
         } else {
           // code : 0 = 회원가입 완료 후 잠금화면, 1 = 로그인 후 잠금화면
           // pwYN : true = 비밀번호 미설정, false = 비밀번호 설정 완료
@@ -178,8 +190,10 @@ export class AppComponent {
         const systemSetting = this.mindManager.getSystemInfo();
         const versionInfo = this.mindManager.getLastVersionInfo();
         systemSetting.autoLogin = false;
+        const popupInfo = this.mindManager.getAutoLoginPopupInfo();
         this.mindManager.removeMemberToken();
         StorageUtil.clear();
+        this.mindManager.setAutoLoginPopupInfo(popupInfo);
         this.mindManager.setLastVersionInfo(versionInfo);
         this.mindManager.setSystemInfo(systemSetting);
         this.toast.show('자동로그인을 설정하여야 잠금 화면을 이용할 수 있습니다.', '5000', 'bottom').subscribe(
@@ -241,61 +255,34 @@ export class AppComponent {
   // 버전 정보 조회
   getVersionInfo() {
     if (this.platform.is('cordova')) {
+      let version = '';
       this.appVersion.getVersionNumber().then(response => {
         localStorage.setItem('versionNumber', response);
-
+        version = response;
         console.log('버전 정보 조회:', response);
+        const reqVo: any = {
+          osType: '',
+          userType: 'P',
+          nowVersion: version
+        }
+        reqVo.osType = this.deviceInfo.platform === 'Android' ? 'A' : 'I';
+        this.authService.getVersionInfo(reqVo).subscribe(res => {
+          this.mindManager.setLastVersionInfo(res);
+          // 업그레이드 여부 확인
+          if (this.deviceInfo.platform === 'Android' && res.osType === 'A') {
+            if (res.forceYn === 'Y') {
+              this.updateVersionAlert('COMPULSORY', res.url);
+            }else{
+              this.updateVersionAlert('NON-COMPULSORY', res.url);
+            }
+          }
+        }, err => {
+
+        });
       });
       this.appVersion.getVersionCode().then(response => {
         localStorage.setItem('versionCode', response.toString());
       });
-      /*this.commonService.getVersionNumber().subscribe(response => {
-        if (response.code === 200){
-          if (this.platform.is('ios')) {
-            for (let i = 0; i < response.data.length; i++){
-              if (response.data[i].osType === 'IOS'){
-                this.ibdManager.setLastVersionInfo(response.data[i]);
-                console.log('APP TYPE: IOS');
-                break;
-              }
-            }
-          } else if (this.platform.is('android')) {
-            for(let i = 0; i < response.data.length; i++){
-              if(response.data[i].osType === 'ANDROID'){
-                this.ibdManager.setLastVersionInfo(response.data[i]);
-                console.log('APP TYPE: ANDROID');
-                break;
-              }
-            }
-          } else {
-            for(let i = 0; i < response.data.length; i++){
-              if(response.data[i].osType === 'IOS'){
-                this.ibdManager.setLastVersionInfo(response.data[i]);
-                console.log('APP TYPE: IOS');
-                break;
-              }
-            }
-          }
-
-          if (this.ibdManager.getLastVersionInfo()!=null && this.ibdManager.getLastVersionInfo()!=''){
-            let version = this.ibdManager.getLastVersionInfo();
-            let serverVersion = version.version.toString().replace(/\./g,'0');
-            let deviceVersion = localStorage.getItem('versionNumber').replace(/\./g,'0');
-
-            if(Number(serverVersion) > Number(deviceVersion)){
-              if(version.forceYn ==='Y'){
-                /!*this.forceAlert();*!/
-                this.updateVersionAlert('COMPULSORY',version.downloadUrl);
-              }
-              else{
-                this.updateVersionAlert('NON-COMPULSORY',version.downloadUrl);
-              }
-
-            }
-
-          }
-        }
-      });*/
     } else {
       localStorage.setItem('versionNumber', '1.0.0');
       localStorage.setItem('versionCode', '100000');
@@ -315,7 +302,25 @@ export class AppComponent {
       } else if (lastUrl === 'LOGOUT') {
         this.reactExit('뒤로가기 버튼을 한번 더 누르시면 로그아웃 후 앱이 종료됩니다.', 'LOGOUT');
       } else {
-        this.navController.navigateRoot([lastUrl]);
+        const modalOnOffInfo = this.mindManager.getModalONOff();
+        if (modalOnOffInfo === 'ON') {
+          this.eventBusService.modal$.next('OFF');
+          this.mindManager.setModalONOff('OFF');
+        } else {
+          const from = this.router.url;
+          if (from.startsWith('/insert-psychological-scale')) {
+            const surveyCategoryCode = JSON.parse(this.mindManager.getSurveyData()).surveyCategoryCode;
+            console.log(this.mindManager.getSurveyData())
+            const navigationExtras: NavigationExtras = {
+              queryParams: {
+                surveyCategoryCode
+              }
+            };
+            this.navController.navigateRoot(['/scale-sub-list'], navigationExtras);
+          } else {
+            this.navController.navigateRoot([lastUrl]);
+          }
+        }
       }
     } else {
       this.alertUtilService.showAlert(null, '이전 위치를 조회하는 도중 오류가 발생하였습니다.APP를 종료 후 다시 실행 시켜주세요.');
@@ -359,6 +364,49 @@ export class AppComponent {
     this.pageInfoService.resetPageInfo([]).then(() => {
       this.navController.navigateRoot(['/login']);
     });
+  }
+
+  // 버전확인
+  async updateVersionAlert(type, downUrl) {
+    if (type === 'COMPULSORY'){
+      const alert = await this.alertCtrl.create({
+        header: '최신버전 업데이트',
+        message: '현재 앱 버전이<br>최신버전이 아닙니다.<br>업데이트 후 이용 바랍니다.',
+        buttons: [
+          {
+            text: '확인',
+            handler: data => {
+              window.open(downUrl, '_system');
+              navigator['app'].exitApp();
+            }
+          }
+        ],
+        backdropDismiss: false
+      });
+      await alert.present();
+    } else {
+      const alert = await this.alertCtrl.create({
+        header: '최신버전 업데이트',
+        message: '현재 앱 버전이 최신버전이 아닙니다.<br>업데이트 하시겠습니까?',
+        buttons: [
+          {
+            text: '확인',
+            handler: data => {
+              window.open(downUrl, '_system');
+              /*this.iab.create(downUrl, "_system");*/
+            }
+          },
+          {
+            text: '취소',
+            role: 'cancel',
+            handler: data => {
+            }
+          }
+        ],
+        backdropDismiss: false
+      });
+      await alert.present();
+    }
   }
 
 }

@@ -5,6 +5,7 @@ import {MindManager} from "../../../../../../mind-module/mind.manager";
 import * as moment from "moment";
 import {DiaryService} from "../../../../../../mind-module/service/diary.service";
 import {LoadingService} from "../../../../../../util/loading.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pattern-meal',
@@ -12,8 +13,9 @@ import {LoadingService} from "../../../../../../util/loading.service";
   styleUrls: ['./pattern-meal.page.scss'],
 })
 export class PatternMealPage implements OnInit {
+  selectedDate = '';
+  selectedDateKo = '';
 
-  today = moment(new Date).format('YYYY-MM-DD');
   totalMealCount = 0;
 
   insertVo: any = {
@@ -23,7 +25,7 @@ export class PatternMealPage implements OnInit {
     snackMorning: 'N',
     snackAfternoon: 'N',
     snackMidnight: 'N',
-    eatDt: this.today
+    eatDt: this.selectedDate
   };
 
   mealList: any = []
@@ -33,19 +35,29 @@ export class PatternMealPage implements OnInit {
       private alertUtilService: AlertUtilService,
       private mindManager: MindManager,
       private diaryService: DiaryService,
-      private loadingService: LoadingService
+      private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
+    const dateBindingInfo = this.mindManager.getDateBinding();
+    if(dateBindingInfo) {
+      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    }
+    moment.locale('ko');
     this.getMealList();
+  }
+
+  getDirayDateInfo(date){
+    this.selectedDate = date;
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.insertVo.eatDt = this.selectedDate;
   }
 
   // 식사 리스트 조회
   getMealList(){
-    this.diaryService.getMealList(this.today).subscribe(res => {
+    this.diaryService.getMealList(this.selectedDate).subscribe(res => {
       if(res.data) {
         this.mealList = res.data;
-        console.log('mealList', this.mealList);
         this.insertVo.breakfast = this.mealList.breakfast;
         this.insertVo.lunch = this.mealList.lunch;
         this.insertVo.dinner = this.mealList.dinner;
@@ -124,6 +136,16 @@ export class PatternMealPage implements OnInit {
     }
   }
 
+  // 식사 입력값 확인
+  addMealDiaryChk(){
+    if (this.insertVo.breakfast === 'N' && this.insertVo.lunch === 'N' && this.insertVo.dinner === 'N' && this.insertVo.snackMorning === 'N' && this.insertVo.snackAfternoon === 'N' && this.insertVo.snackMidnight === 'N') {
+      this.alertUtilService.showAlert(null, '<p class="alert-message-font">식사 여부를 선택해 주세요.</p>');
+      return false;
+    }
+    this.addMealDiaryAlert();
+
+  }
+
   // 식사 추가 알림
   async addMealDiaryAlert() {
     const alert = await this.alertCtrl.create({
@@ -158,18 +180,5 @@ export class PatternMealPage implements OnInit {
       this.loadingService.showLoading(false, '');
       console.log('err', err);
     });
-  }
-
-  // 데이터 초기화
-  dataReset(){
-    this.insertVo = {
-      breakfast: 'N',
-      lunch: 'N',
-      dinner: 'N',
-      snackMorning: 'N',
-      snackAfternoon: 'N',
-      snackMidnight: 'N',
-      eatDt: this.today
-    };
   }
 }

@@ -73,7 +73,7 @@
 
 .Roboto-Medium {
     font-family: Roboto;
-    font-size: 1.8vh;
+    font-size: 0.9rem;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
@@ -86,7 +86,7 @@
 
 .Roboto-Regular {
     font-family: Roboto;
-    font-size: 1.7vh;
+    font-size: 1rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -99,7 +99,7 @@
 
 .Roboto-Bold {
     font-family: Roboto;
-    font-size: 2.3vh;
+    font-size: 1.2rem;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -161,7 +161,7 @@
 
 .login_label_font {
     font-family: Roboto;
-    font-size: 2.2vh;
+    font-size: 1rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -174,7 +174,7 @@
 /*타이머*/
 .timerMessage {
     font-family: Roboto;
-    font-size: 3vw;
+    font-size: 0.5rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -188,7 +188,7 @@
 
 .errorMessage {
     font-family: Roboto;
-    font-size: 1.4vh;
+    font-size: 0.5rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

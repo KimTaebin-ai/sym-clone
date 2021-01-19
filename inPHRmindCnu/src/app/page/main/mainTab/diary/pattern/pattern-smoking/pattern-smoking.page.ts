@@ -5,6 +5,7 @@ import {MindManager} from "../../../../../../mind-module/mind.manager";
 import {DiaryService} from "../../../../../../mind-module/service/diary.service";
 import * as moment from "moment";
 import {LoadingService} from "../../../../../../util/loading.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pattern-smoking',
@@ -12,12 +13,12 @@ import {LoadingService} from "../../../../../../util/loading.service";
   styleUrls: ['./pattern-smoking.page.scss'],
 })
 export class PatternSmokingPage implements OnInit {
-
-  today = moment(new Date).format('YYYY-MM-DD');
+  selectedDate = '';
+  selectedDateKo = '';
 
   insertVo: any = {
     smokeAmount: '',
-    smokeDt: this.today
+    smokeDt: this.selectedDate
   };
 
   smokeList: any = [];
@@ -27,16 +28,28 @@ export class PatternSmokingPage implements OnInit {
       private alertUtilService: AlertUtilService,
       private mindManager: MindManager,
       private diaryService: DiaryService,
-      private loadingService: LoadingService
+      private loadingService: LoadingService,
+      private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    const dateBindingInfo = this.mindManager.getDateBinding();
+    if(dateBindingInfo) {
+      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    }
+    moment.locale('ko');
     this.getSmokeList();
+  }
+
+  getDirayDateInfo(date){
+    this.selectedDate = date;
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.insertVo.smokeDt = this.selectedDate;
   }
 
   // 흡연 리스트 조회
   getSmokeList(){
-    this.diaryService.getSmokeList(this.today).subscribe(res => {
+    this.diaryService.getSmokeList(this.selectedDate).subscribe(res => {
       if(res.data) {
         this.smokeList = res.data;
       }
@@ -97,7 +110,7 @@ export class PatternSmokingPage implements OnInit {
   async deleteSmokeAlert() {
     const alert = await this.alertCtrl.create({
       header: '삭제하기',
-      message: '<p class="alert-message-font">선택하신 목록을 삭제하시겠습니까?</p>',
+      message: '<p class="alert-message-font">해당 목록을 삭제하시겠습니까?</p>',
       buttons: [
         {
           text: '예',
@@ -117,7 +130,7 @@ export class PatternSmokingPage implements OnInit {
   }
   // 흡연 삭제
   deleteSmokeDiary() {
-    const date = this.today;
+    const date = this.selectedDate;
     this.diaryService.deleteSmokeDiary(date).subscribe(res => {
       console.log('resTs3', res);
       this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
@@ -132,7 +145,7 @@ export class PatternSmokingPage implements OnInit {
   dataReset(){
     this.insertVo = {
       smokeAmount: '',
-      smokeDt: this.today
+      smokeDt: this.selectedDate
     };
     this.smokeList = [];
   }

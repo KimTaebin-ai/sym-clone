@@ -94,6 +94,17 @@ ion-col {
   border-top-right-radius: 8px;
 }
 
+.autoLoginPopup .modal-wrapper {
+  height: 90%;
+  width: 92%;
+  top: 5%;
+  position: absolute;
+  display: block;
+  border-top-left-radius: 3%;
+  border-top-right-radius: 3%;
+  border-bottom-right-radius: 3%;
+  border-bottom-left-radius: 3%;
+}
 
 
 .tab-selected {
@@ -145,6 +156,7 @@ ion-fab-button button {
   text-align: left;
   padding-right: 8vw;
   max-height: none;
+  font-size: 2.4vh;
 }
 
 .alert-button.sc-ion-alert-ios {
@@ -302,21 +314,18 @@ ion-fab-button button {
   word-break: keep-all;
 }
 
-.emotion_info_modal{
+.emotion_info_modal .modal-wrapper{
   width: 80%;
-  height: 38%;
+  height: 46%;
   left: 10%;
   right: 10%;
-  top: 32%;
-  bottom: 32%;
+  top: 27%;
+  bottom: 27%;
   border-radius: 10px;
-  /* border: 1px solid #454545; */
-  box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
-  /*.icon-inner {
-    display: none !important;
-  }
-  position: relative;
-  display: block;*/
+  //border: 1px solid #454545;
+  //box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
+  position: absolute;
+  display: block;
 }
 
 /*---------------------------------------------------*/

@@ -19,7 +19,8 @@ export class LockPage implements OnInit, OnDestroy {
   lockType: any = {
     code: 0,
     pwYn: false,
-    pw: 0
+    pw: 0,
+    from: ''
   };
   userInfo: any = {};
 
@@ -94,21 +95,29 @@ export class LockPage implements OnInit, OnDestroy {
         let lockPw = '';
         for (const i in this.password) {
           lockPw = lockPw + this.password[i].toString();
-          console.log(this.password[i].toString());
         }
-        console.log(lockPw);
         if (recentlyData.toString() === lockPw.toString()) {
           this.password = [];
           this.pwCount = 0;
           const url = this.pageInfoService.moveToPageForLock();
-          console.log(url)
           if (url) {
             if (url === 'LOGOUT') {
               // 로그아웃 처리
             } else if (url === 'TOAST') {
               // 마지막 페이지 처리
             }
-            this.navController.navigateRoot([url]);
+            if (url === '/insert-psychological-scale') {
+              const data = this.mindManager.getSurveyData();
+              const navigationExtras: NavigationExtras = {
+                queryParams: {
+                  data
+                }
+              };
+              this.navController.navigateRoot(['/insert-psychological-scale'], navigationExtras);
+            } else {
+              this.navController.navigateRoot([url]);
+            }
+
           } else {
             this.alertUtilService.showAlert(null, '잠금번호를 확인하는 도중 오류가 발생하였습니다.');
           }
@@ -134,11 +143,13 @@ export class LockPage implements OnInit, OnDestroy {
     const systemSetting = this.mindManager.getSystemInfo();
     const versionInfo = this.mindManager.getLastVersionInfo();
     systemSetting.autoLogin = false;
+    const popupInfo = this.mindManager.getAutoLoginPopupInfo();
     this.mindManager.removeMemberToken();
     StorageUtil.clear();
     localStorage.setItem('versionNumber', versionNumber);
     localStorage.setItem('versionCode', versionCode);
     localStorage.setItem('osType', osType);
+    this.mindManager.setAutoLoginPopupInfo(popupInfo);
     this.mindManager.setLastVersionInfo(versionInfo);
     this.mindManager.setSystemInfo(systemSetting);
     this.mindManager.setLockState(false);

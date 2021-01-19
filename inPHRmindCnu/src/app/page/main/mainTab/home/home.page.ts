@@ -61,6 +61,7 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.eventBusService.tabInfo$.next('HOME');
     moment.locale('ko');
     this.getMainInfo();
   }
@@ -116,10 +117,12 @@ export class HomePage implements OnInit, OnDestroy {
         unrest: dailyEmotion.unrest
       };
     }
+    console.log(this.dailyEmotion)
   }
 
   getMainInfo() {
     this.mainService.getMainInfo().subscribe(res => {
+      console.log('ddddddd', res)
       this.mainInfo = res;
       this.setDayInfo();
       if (res.weekSurveyPercent !== null) {
@@ -129,6 +132,7 @@ export class HomePage implements OnInit, OnDestroy {
       this.setDayInfo();
     });
   }
+
   createChart(): any {
     // 차트 초기화-------------------
     if (this.Chart1){
@@ -489,7 +493,7 @@ export class HomePage implements OnInit, OnDestroy {
           } else if (panicInfos.countPanic === 3) {
             if (panicInfos.panicTime >= 90) {
               classNm = 'main-card1-date3-point4';
-            } else if (panicInfos.panicTime >= 60 && panicInfos.panicTime < 90 ) {
+            } else {
               classNm = 'main-card1-date3-point3';
             }
           } else if (panicInfos.countPanic === 4) {

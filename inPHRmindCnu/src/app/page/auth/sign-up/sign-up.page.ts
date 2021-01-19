@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MindManager} from '../../../mind-module/mind.manager';
 import * as moment from 'moment';
 import {DateService} from '../../../util/common/date.service';
@@ -6,7 +6,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../../services/validation.service';
 import {AlertUtilService} from '../../../util/common/alert-util.service';
 import {AuthService} from '../../../mind-module/service/auth.service';
-import {AlertController, NavController} from '@ionic/angular';
+import {AlertController, IonContent, NavController} from '@ionic/angular';
 import {PageInfoService} from '../../../services/page-info.service';
 import {NavigationExtras} from '@angular/router';
 @Component({
@@ -15,6 +15,10 @@ import {NavigationExtras} from '@angular/router';
   styleUrls: ['./sign-up.page.scss'],
 })
 export class SignUpPage implements OnInit, OnDestroy {
+  // keyboard 높이
+  keyboardHight = '100vh';
+  @ViewChild(IonContent) content: IonContent;
+
   form: FormGroup;
 
   // 타이머
@@ -69,6 +73,17 @@ export class SignUpPage implements OnInit, OnDestroy {
       sex: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]),
       certificationYn: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]),
     });
+/*    window.addEventListener('keyboardWillShow', (event) => {
+      // Describe your logic which will be run each time when keyboard is about to be shown.
+      console.log(event);
+      // this.keyboardHight = 'calc(100vh + ' + (event.keyboardHeight * 4) + 'px)';
+      // this.content.scrollToPoint(0, 350);
+    });
+
+    window.addEventListener('keyboardWillHide', () => {
+      console.log('키보드 닫기')
+      this.keyboardHight = '100vh';
+    });*/
   }
 
   ngOnDestroy(): void {

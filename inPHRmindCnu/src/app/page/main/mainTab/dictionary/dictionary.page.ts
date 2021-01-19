@@ -5,6 +5,7 @@ import {AlertUtilService} from '../../../../util/common/alert-util.service';
 import {DiaryRegModalPage} from '../../../modal/diary-reg-modal/diary-reg-modal.page';
 import {ModalController} from '@ionic/angular';
 import {DictionaryModalPage} from '../../../modal/dictionary-modal/dictionary-modal.page';
+import {MindManager} from '../../../../mind-module/mind.manager';
 
 @Component({
   selector: 'app-dictionary',
@@ -26,12 +27,13 @@ export class DictionaryPage implements OnInit {
   checkNoData: any = {
     searchKey: '',
     noDataYn : false
-  }
+  };
 
   constructor(
       private dictionaryService: DictionaryService,
       private alertUtilService: AlertUtilService,
-      private modalController: ModalController
+      private modalController: ModalController,
+      private mindManager: MindManager
   ) { }
 
   ngOnInit() {
@@ -84,9 +86,9 @@ export class DictionaryPage implements OnInit {
       this.checkNoData.noDataYn = false;
     }, err => {
       if (err.code !== ResponseCode.NO_MATCHING) {
-        this.alertUtilService.showAlert(null, err.message);
+        this.alertUtilService.showAlert(null, err.message)
       }
-      this.checkNoData.noDataYn = this.pageInfo.page === 1 ? true : false;
+      this.checkNoData.noDataYn = this.pageInfo.page === 1
       this.dictionaryList = this.pageInfo.page === 1 ? [] : this.dictionaryList;
       this.pageInfo.page = this.pageInfo.page === 1 ? 1 : this.pageInfo.page - 1;
       this.checkNoData.searchKey = '' ;
@@ -125,12 +127,17 @@ export class DictionaryPage implements OnInit {
 
   // 증상 백과 상세 화면 모달
   async openDetailModal(seq) {
+    this.mindManager.setModalONOff('ON');
     const modal = await this.modalController.create({
       component: DictionaryModalPage,
       componentProps: {
         seq
       }
     });
+    modal.onDidDismiss()
+        .then(() => {
+          this.mindManager.setModalONOff('OFF');
+        });
     return await modal.present();
   }
 /*

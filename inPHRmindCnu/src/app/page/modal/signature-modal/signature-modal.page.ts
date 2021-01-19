@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ModalController, Platform} from '@ionic/angular';
 import {AlertUtilService} from '../../../util/common/alert-util.service';
+import {EventBusService} from '../../../services/event-bus.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-signature-modal',
@@ -16,14 +18,25 @@ export class SignatureModalPage implements OnInit {
   _CONTEXT: any;
   drawingYn = 0;
 
+  // 이벤트 버스
+  eventSubscription: Subscription;
+
   constructor(
       private plt: Platform,
       private alertUtilService: AlertUtilService,
-      private modalCtrl: ModalController
+      private modalCtrl: ModalController,
+      private eventBusService: EventBusService
   ) { }
   private canvasElement: any;
 
   ngOnInit() {
+    this.eventSubscription = this.eventBusService.modal$.subscribe(event => {
+      if (event === 'OFF') {
+        this.modalCtrl.dismiss({
+          dismissed: true
+        });
+      }
+    });
   }
 
   ionViewDidEnter() {

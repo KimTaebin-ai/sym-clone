@@ -5,6 +5,7 @@ import {MindManager} from '../../../../../../mind-module/mind.manager';
 import {DiaryService} from "../../../../../../mind-module/service/diary.service";
 import * as moment from "moment";
 import {LoadingService} from "../../../../../../util/loading.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pattern-drinking',
@@ -12,21 +13,21 @@ import {LoadingService} from "../../../../../../util/loading.service";
   styleUrls: ['./pattern-drinking.page.scss'],
 })
 export class PatternDrinkingPage implements OnInit {
+  selectedDate = '';
+  selectedDateKo = '';
 
-  today = moment(new Date).format('YYYY-MM-DD');
   etcCode = '';
 
   insertVo: any = {
     drinkAmount : '',
     drinkCode : '',
+    drinkDt : this.selectedDate,
     drinkEtc : null,
-    drinkDt : this.today,
     drinkWhen : ''
   };
 
   drinkList: any = [];
   drinkCodeList : any = [];
-  codeUnit = '1잔(50ml)';
 
   chkWhen = {
     chkM : 'N',
@@ -39,17 +40,28 @@ export class PatternDrinkingPage implements OnInit {
       private alertUtilService: AlertUtilService,
       private mindManager: MindManager,
       private diaryService: DiaryService,
-      private loadingService: LoadingService
+      private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
+    const dateBindingInfo = this.mindManager.getDateBinding();
+    if(dateBindingInfo) {
+      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    }
+    moment.locale('ko');
     this.getDrinkList();
     this.getDrinkCodeList();
   }
 
+  getDirayDateInfo(date){
+    this.selectedDate = date;
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.insertVo.drinkDt = this.selectedDate;
+  }
+
   // 음주 리스트 조회
   getDrinkList(){
-    this.diaryService.getDrinkList(this.today).subscribe(res => {
+    this.diaryService.getDrinkList(this.selectedDate).subscribe(res => {
       if(res.data) {
         this.drinkList = res.data;
         for(let i = 0; i < this.drinkList.length; i++){
@@ -64,7 +76,6 @@ export class PatternDrinkingPage implements OnInit {
           }
         }
       }
-      console.log('drinkList', this.drinkList);
     }, err =>{
       console.log('err', err);
     });
@@ -184,7 +195,7 @@ export class PatternDrinkingPage implements OnInit {
   deleteDrinkDiary(drinkDetail) {
     const deleteVo = {
       code : drinkDetail.drinkCode,
-      date : this.today,
+      date : this.selectedDate,
       etc : drinkDetail.drinkEtc,
       when : drinkDetail.drinkWhen
     }
@@ -212,8 +223,8 @@ export class PatternDrinkingPage implements OnInit {
     this.insertVo = {
       drinkAmount : '',
       drinkCode : '',
+      drinkDt : this.selectedDate,
       drinkEtc : null,
-      drinkDt : this.today,
       drinkWhen : ''
     }
     this.drinkList = [];

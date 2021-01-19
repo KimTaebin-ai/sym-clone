@@ -84,6 +84,7 @@ export class IrbAgreePage implements OnInit {
 
   // 동의서 설명문 모달 출력
   async openModal() {
+    this.mindManager.setModalONOff('ON');
     const modal = await this.modalController.create({
       component: IrbAgreeModalPage,
       cssClass: 'irb-agree-modal-page',
@@ -92,6 +93,10 @@ export class IrbAgreePage implements OnInit {
         detail: this.irbPageInfo.fullDescription
       }
     });
+    modal.onDidDismiss()
+        .then(() => {
+          this.mindManager.setModalONOff('OFF');
+        });
     this.termOpenedYn = true;
     return await modal.present();
   }
@@ -102,6 +107,7 @@ export class IrbAgreePage implements OnInit {
   }
 
   async openSignatureModal() {
+    this.mindManager.setModalONOff('ON');
     if (this.checkAgree()) {
       const modal = await this.modalController.create({
         component: SignatureModalPage,
@@ -109,6 +115,7 @@ export class IrbAgreePage implements OnInit {
       });
       modal.onDidDismiss()
           .then((data) => {
+            this.mindManager.setModalONOff('OFF');
             if (data.data.data) {
               this.signatureImg = data.data.data.img;
             }

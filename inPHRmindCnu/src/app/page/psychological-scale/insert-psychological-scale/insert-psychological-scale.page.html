@@ -665,6 +665,22 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        <ion-grid *ngIf="surveyCompleteInfo.outcomePath != null">
+          <ion-row>
+            <ion-col (click)="viewWebBroser()" class="outcome-button">
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="align_center-flex">
+                    <img src="assets/image/psychological/Icon-plus2.svg">
+                    <span class="pdL2vw">
+                      결과 상세보기
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -720,7 +736,7 @@
                 (click)="closeSurveyAlert()">나가기</button>
       </ion-col>
       <ion-col>
-        <button class="common_button_active"
+        <button class="common_save_button"
                 (click)="restartSurvey()">설문 다시하기</button>
       </ion-col>
     </ion-row>

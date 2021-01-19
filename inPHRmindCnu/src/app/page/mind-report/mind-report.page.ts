@@ -13,6 +13,7 @@ import {DictionaryModalPage} from "../modal/dictionary-modal/dictionary-modal.pa
 import {PatternReportPage} from "./pattern-report/pattern-report.page";
 import {ChartOptions} from "chart.js";
 import {EventBusService} from "../../services/event-bus.service";
+import {MindManager} from "../../mind-module/mind.manager";
 
 @Component({
   selector: 'app-mind-report',
@@ -110,7 +111,8 @@ export class MindReportPage implements OnInit, OnDestroy {
       private reportService: ReportService,
       private route: ActivatedRoute,
       private modalController: ModalController,
-      private eventBusService: EventBusService
+      private eventBusService: EventBusService,
+      private mindManager: MindManager
   ) {
   }
 
@@ -730,6 +732,7 @@ export class MindReportPage implements OnInit, OnDestroy {
 
   // 생활패턴 상세조회 모달
   async openPatternModal(type) {
+    this.mindManager.setModalONOff('ON');
     const startDt = this.startDay;
     const modal = await this.modalController.create({
       component: PatternReportPage,
@@ -737,6 +740,10 @@ export class MindReportPage implements OnInit, OnDestroy {
         type, startDt
       }
     });
+    modal.onDidDismiss()
+        .then(()=>{
+          this.mindManager.setModalONOff('OFF');
+        });
     return await modal.present();
   }
 

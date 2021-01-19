@@ -1,7 +1,7 @@
 
 
 .check1 {
-    height: 2.8vh;
+    height: 1.2rem;
 }
 
 
@@ -341,6 +341,11 @@
 .mgB10vh {
     margin-bottom: 10vh;
 }
+
+.mgB15vh {
+    margin-bottom: 15vh;
+}
+
 .mgL1vw{
     margin-left: 1vw;
 }
@@ -437,6 +442,14 @@
 
 .width100Per {
     width: 100% !important;
+}
+
+.width75Per {
+    width: 85% !important;
+}
+
+.width25Per {
+    width: 25% !important;
 }
 
 .width100vw {

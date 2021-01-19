@@ -1,6 +1,6 @@
 <app-page-header></app-page-header>
 
-<ion-content>
+<ion-content [ngStyle]="{'height': keyboardHight}">
   <ion-grid class="pd3vw" [formGroup]="form">
     <ion-row class="login_main_label">
       <ion-col>
@@ -17,14 +17,11 @@
       <ion-grid>
         <ion-row>
           <ion-col size="9" >
-            <input type="text"
+            <input type="text" in="loginId"
                    [ngClass]="form.controls.certificationYn.value === 'Y'? 'disable_common_input' : 'common_input'"
                    formControlName="loginId" maxlength="200" inputmode="text" [readOnly]="conditionValue.emailReadOnly"
                    placeholder="이메일을 입력해주세요." appTextValidation inputType="text"
                    (keypress)="keyPressForVal($event, 'loginId')" (keyup)="keyupForVal('loginId')">
-<!--            <input type="text" formControlName="loginId"
-                   placeholder="이메일을 입력해주세요." [readOnly]="conditionValue.emailReadOnly"
-            [ngClass]="form.controls.certificationYn.value === 'Y'? 'disable_common_input' : 'common_input'"/>-->
           </ion-col>
           <ion-col size="3" class="pdL1vw">
             <button [ngClass]="form.controls.loginId.invalid || form.controls.certificationYn.value === 'Y'? 'common_button' : 'common_button_active'"
@@ -192,7 +189,7 @@
       </ion-col>
     </ion-row>
     <!--생년월일-->
-    <ion-row id="name" class="login_label">
+    <ion-row id="birthday" class="login_label">
       <ion-col>
         <span class="login_label_font">생년월일</span>
       </ion-col>
@@ -216,11 +213,15 @@
         </ion-row>
       </ion-grid>
     </ion-row>
+</ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
     <ion-row>
       <ion-col>
         <button [disabled]="form.invalid" [ngClass]="form.invalid? 'common_button' : 'common_button_active'"
-        (click)="signUp()">가입완료</button>
+                (click)="signUp()">가입완료</button>
       </ion-col>
     </ion-row>
-</ion-grid>
-</ion-content>
+  </ion-grid>
+</ion-footer>

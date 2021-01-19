@@ -196,9 +196,17 @@ const routes: Routes = [
         path: 'dictionary-modal',
         loadChildren: () => import('./page/modal/dictionary-modal/dictionary-modal.module').then(m => m.DictionaryModalPageModule)
     },
+    {
+        path: 'emotion-info-modal',
+        loadChildren: () => import('./page/modal/emotion-info-modal/emotion-info-modal.module').then(m => m.EmotionInfoModalPageModule)
+    },
+    {
+        path: 'auto-login-modal',
+        loadChildren: () => import('./page/modal/auto-login-modal/auto-login-modal.module').then(m => m.AutoLoginModalPageModule)
+    },
   {
-    path: 'emotion-info-modal',
-    loadChildren: () => import('./page/modal/emotion-info-modal/emotion-info-modal.module').then(m => m.EmotionInfoModalPageModule)
+    path: 'setting-term',
+    loadChildren: () => import('./page/setting/setting-term/setting-term.module').then(m => m.SettingTermPageModule)
   },
 
 ];

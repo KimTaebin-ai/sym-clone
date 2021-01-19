@@ -6,6 +6,8 @@ import * as moment from "moment";
 import {ResponseCode} from "../../../mind-module/data/response.data";
 import {ReportService} from "../../../report.service";
 import {PageInfoService} from "../../../services/page-info.service";
+import {Subscription} from "rxjs";
+import {EventBusService} from "../../../services/event-bus.service";
 
 @Component({
   selector: 'app-pattern-report',
@@ -23,13 +25,16 @@ export class PatternReportPage implements OnInit {
   patternAllDataList: any = [];
   patternCodeList : any = [];
 
+  eventSubscription: Subscription;
+
   constructor(
       private navController: NavController,
       private mindManager: MindManager,
       private route: ActivatedRoute,
       private reportService: ReportService,
       private pageInfoService: PageInfoService,
-      private modalController: ModalController
+      private modalController: ModalController,
+      private eventBusService: EventBusService
   ) { }
 
   ngOnInit() {
@@ -38,6 +43,14 @@ export class PatternReportPage implements OnInit {
     this.getCodeList();
     this.pickPatternType();
     this.getPatternDataList();
+
+    this.eventSubscription = this.eventBusService.modal$.subscribe(event => {
+      if (event === 'OFF') {
+        this.modalController.dismiss({
+          dismissed: true
+        });
+      }
+    });
   }
 
   ionViewWillEnter() {

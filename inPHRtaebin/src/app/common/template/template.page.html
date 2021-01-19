@@ -1,23 +1,19 @@
 <!-- header -->
-<!-- <div class="template"> -->
-    <app-header [title]="Title">
-        <!-- @Input 으로 header에 title을 보내줌 -->
-    </app-header>
-    
-    <!-- content -->
-    <!-- ngswitchcase로 처리할 예정... -->
-    <!-- 
-        src/app/pages/components 에 만든 컴포넌트들을 @Component로 모듈화 시킴.
-    
-        컴포넌트 별로 나눠서 개발할 수 있고, 페이지를 로드할 때마다 중복되는 데이터를 불러오지 않아도 된다는 장점이 있음 :)
-    
-        !! 안드로이드 백 버튼 처리하기가 힘들다는 의견이 있음...
-        -> 어떻게 처리하지?
-     -->
-     <ng-content>
-         
-     </ng-content>
-    
-    <!-- tabs -->
-    <app-tabs></app-tabs>
-<!-- </div> -->
+<app-header [title]="Title">
+    <!-- @Input 으로 header에 title을 보내줌 -->
+</app-header>
+
+<!-- content -->
+<!-- 
+    src/app/pages/components 에 만든 컴포넌트들을 @Component로 모듈화 시킴.
+
+    컴포넌트 별로 나눠서 개발할 수 있고, 페이지를 로드할 때마다 중복되는 데이터를 불러오지 않아도 된다는 장점이 있음 :)
+
+    !! 안드로이드 백 버튼 처리하기가 힘들다는 의견이 있음...
+    -> 어떻게 처리하지?
+    -->
+    <ng-content>
+    </ng-content>
+
+<!-- tabs -->
+<app-tabs></app-tabs>

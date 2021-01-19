@@ -8,6 +8,7 @@ export class UrlService {
   /*-------계정관리-------------------------------------*/
   public loginUrl = '/api/patient/login'; // 로그인
   public getTermListUrl = '/api/term'; // 약관리스트 조회
+  public getTermInfoList = '/api/settings/term'; // 최근 약관정보리스트 조회
   public kakaoLogin = ''; // 카카오 로그인
   public findPw = ''; // 비밀번호 찾기
   public joinCertKeySend = '/api/patient/joinCertKeySend'; // 가입 인증 번호 발송(이메일)
@@ -93,4 +94,8 @@ export class UrlService {
   public main = '/api/main'; // 조도 관리
   /*---------------------------------------------------*/
 
+  /*-------디바이스 관리-------------------------------------*/
+  public device = '/api/lifeLog'; // 디바이스 관리
+  public version = '/api/settings/version'; // 버전 관리
+  /*---------------------------------------------------*/
 }

@@ -210,9 +210,12 @@ export class PatientSurveyService {
                           } else if (resData.questionType === 'listText') {
                               // 이전 데이터 조회
                               resData.nowAnswers.answers = [];
-                              for (const item of data.nowAnswers) {
-                                  resData.nowAnswers.answers.push(item.shortText);
+                              if (data.nowAnswers) {
+                                  for (const item of data.nowAnswers) {
+                                      resData.nowAnswers.answers.push(item.shortText);
+                                  }
                               }
+
                           } else if (resData.questionType === 'number') {
                               // 이전 데이터 조회
                               if (data.nowAnswers) {

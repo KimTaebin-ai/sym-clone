@@ -5,6 +5,7 @@ import {MindManager} from "../../../../../../mind-module/mind.manager";
 import {DiaryService} from "../../../../../../mind-module/service/diary.service";
 import * as moment from "moment";
 import {LoadingService} from "../../../../../../util/loading.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pattern-caffeine',
@@ -14,12 +15,15 @@ import {LoadingService} from "../../../../../../util/loading.service";
 export class PatternCaffeinePage implements OnInit {
 
   today = moment(new Date).format('YYYY-MM-DD');
+  selectedDate = '';
+  selectedDateKo = '';
+
   etcCode = '';
 
   insertVo: any = {
     caffeineAmount : '',
     caffeineCode : '',
-    caffeineDt : this.today,
+    caffeineDt : this.selectedDate,
     caffeineEtc : null,
     caffeineWhen: ''
   };
@@ -33,24 +37,33 @@ export class PatternCaffeinePage implements OnInit {
     chkN : 'N'
   }
 
-
-
   constructor(
       private alertCtrl: AlertController,
       private alertUtilService: AlertUtilService,
       private mindManager: MindManager,
       private diaryService: DiaryService,
-      private loadingService: LoadingService
+      private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
+    const dateBindingInfo = this.mindManager.getDateBinding();
+    if(dateBindingInfo) {
+      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    }
+    moment.locale('ko');
     this.getCaffeineList();
     this.getCaffeineCodeList();
   }
 
+  getDirayDateInfo(date){
+    this.selectedDate = date;
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.insertVo.caffeineDt = this.selectedDate;
+  }
+
   // 카페인 리스트 조회
   getCaffeineList(){
-    this.diaryService.getCaffeineList(this.today).subscribe(res => {
+    this.diaryService.getCaffeineList(this.selectedDate).subscribe(res => {
       if(res.data) {
         this.caffeineList = res.data;
         for(let i = 0; i < this.caffeineList.length; i++){
@@ -121,7 +134,6 @@ export class PatternCaffeinePage implements OnInit {
 
   // 카페인 추가 알림
   async addCaffeineDiaryAlert() {
-    console.log('insertVo', this.insertVo);
     const alert = await this.alertCtrl.create({
       header: '추가하기',
       message: '<p class="alert-message-font">추가하시겠습니까?</p>',
@@ -183,7 +195,7 @@ export class PatternCaffeinePage implements OnInit {
   deleteCaffeineDiary(caffeineDetail) {
     const deleteVo = {
       code : caffeineDetail.caffeineCode,
-      date : this.today,
+      date : this.selectedDate,
       etc : caffeineDetail.caffeineEtc,
       when : caffeineDetail.caffeineWhen
     }
@@ -211,7 +223,7 @@ export class PatternCaffeinePage implements OnInit {
     this.insertVo = {
       caffeineAmount : '',
       caffeineCode : '',
-      caffeineDt : this.today,
+      caffeineDt : this.selectedDate,
       caffeineEtc : null,
       caffeineWhen: ''
     };

@@ -3,8 +3,15 @@
 
 <ion-content>
   <ion-grid>
+    <ion-row>
+      <ion-col class="panicDateInfo text_center">
+        {{selectedDateKo}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
     <ion-grid class="pdL4vw pdR4vw">
-      <ion-row class="mgT5vh">
+      <ion-row class="mgT3vh">
         <ion-col class="panic_input_title_text">시작 시간</ion-col>
       </ion-row>
       <!--<ion-row>
@@ -13,19 +20,13 @@
       <ion-row>
         <ion-col><input #inputST type="time" class="panicDiaryInput" [(ngModel)]="panicInsertVo.startTime" placeholder="시작시간"></ion-col>
       </ion-row>-->
-      <ion-row class="date-inputBox1">
+      <!--<ion-row class="date-inputBox1">
         <ion-col class="height100Per">
           <ion-grid class="height100Per">
-            <ion-row class="height100Per">
+            <ion-row class="height100Per pdL4vw">
               <ion-col size="10" class="height100Per align_center-grid">
-                <ion-datetime class="datetimeType"
-                              displayFormat="YYYY-MM-DD"
-                              pickerFormat="YYYY-MM-DD"
-                              cancelText="취소" doneText="선택"
-                              placeholder="선택해주세요."
-                              max="{{today}}"
-                              [(ngModel)]="panicInsertVo.startDate">
-                </ion-datetime>
+                {{selectedDate | date : 'yyyy년 M월 d일'}}
+
               </ion-col>
               <ion-col size="2" class="mgAuto text_center">
                 <img src="assets/image/lifelog/Icon_date.svg">
@@ -33,23 +34,23 @@
             </ion-row>
           </ion-grid>
         </ion-col>
-      </ion-row>
+      </ion-row>-->
       <ion-row class="date-inputBox1">
         <ion-col class="height100Per">
           <ion-grid class="height100Per">
             <ion-row class="height100Per">
-              <ion-col size="10" class="height100Per align_center-grid">
+              <ion-col class="height100Per align_center-grid">
                 <ion-datetime class="datetimeType"
                               displayFormat="HH:mm"
                               pickerFormat="HH:mm"
                               cancelText="취소" doneText="선택"
-                              placeholder="선택해주세요."
+                              placeholder="시간을 선택해주세요."
                               [(ngModel)]="panicInsertVo.startTime">
                 </ion-datetime>
               </ion-col>
-              <ion-col size="2" class="mgAuto text_center">
+             <!-- <ion-col size="2" class="mgAuto text_center">
                 <img src="assets/image/lifelog/Icon_time.svg">
-              </ion-col>
+              </ion-col>-->
             </ion-row>
           </ion-grid>
         </ion-col>
@@ -143,9 +144,9 @@
     <ion-grid class="pdL4vw pdR4vw border-bottom">
       <ion-row class="mgT4vh mgB4vh">
         <ion-col class="panicDiaryAddBtn addNoBtn align_center-grid" (click)="addPanicDiaryChk()"
-                 *ngIf="panicInsertVo.startDate == '' || panicInsertVo.startTime == '' || panicInsertVo.panicTime == '' || panicInsertVo.panicIntensity == 0 ||  panicInsertVo.symptoms.length == 0">추가</ion-col>
+                 *ngIf="panicInsertVo.startTime == '' || panicInsertVo.panicTime == '' || panicInsertVo.panicIntensity == 0 ||  panicInsertVo.symptoms.length == 0">추가</ion-col>
         <ion-col class="panicDiaryAddBtn addOkBtn align_center-grid" (click)="addPanicDiaryChk()"
-                 *ngIf="panicInsertVo.startDate !== '' && panicInsertVo.startTime !== '' && panicInsertVo.panicTime !== '' && panicInsertVo.panicIntensity !== 0 &&  panicInsertVo.symptoms.length !== 0">추가</ion-col>
+                 *ngIf="panicInsertVo.startTime !== '' && panicInsertVo.panicTime !== '' && panicInsertVo.panicIntensity !== 0 &&  panicInsertVo.symptoms.length !== 0">추가</ion-col>
       </ion-row>
     </ion-grid>
 

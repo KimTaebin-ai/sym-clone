@@ -1,0 +1,27 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img src="assets/image/popup/autologin-img.png">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row class="popup-login-button">
+      <ion-col class="popup-login-buttonL" (click)="popupAnymore()">
+        <span>다시보지 않기</span>
+      </ion-col>
+      <ion-col class="popup-login-buttonR" (click)="dismiss()">
+        <span>닫기</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

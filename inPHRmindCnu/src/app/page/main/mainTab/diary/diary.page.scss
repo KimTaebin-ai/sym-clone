@@ -10,7 +10,7 @@
 
 .diaryTopText1{
   font-family: Roboto;
-  font-size: 1.1rem;
+  font-size: 2.6vh;
   font-weight: bold;
   line-height: 1.35;
   letter-spacing: -0.51px;
@@ -23,7 +23,7 @@
 
 .diaryTopText2{
   font-family: Roboto;
-  font-size: 1rem;
+  font-size: 2.5vh;
   font-weight: 300;
   line-height: 1.35;
   letter-spacing: -0.48px;
@@ -34,6 +34,18 @@
   padding-right: 4vw;
 }
 
+.diaryMiddleNav{
+  height: 8vh;
+  font-family: Roboto;
+  font-size: 2.4vh;
+  font-weight: bold;
+  //line-height: 1.31;
+  letter-spacing: -0.59px;
+  text-align: center;
+  color: #454545;
+  background-color: #fcfcfd;
+}
+
 .diaryTitleRow{
   //height: 7.8vh;
   padding: 13px 16px 14px;
@@ -42,7 +54,7 @@
 
 .diaryTitleText{
   font-family: Roboto;
-  font-size: 1.1rem;
+  font-size:  2.5vh;
   font-weight: bold;
   line-height: 1.18;
   letter-spacing: -0.95px;
@@ -54,7 +66,7 @@
 
 .diaryCountColor{
   font-family: Roboto;
-  font-size: 3.4vh;
+  font-size: 3.3vh;
   font-weight: bold;
   color: #44bbc8;
 }
@@ -68,6 +80,9 @@
   border-bottom: 1px solid #eaebef;
 }
 
+.bkcolor_fcfcfd{
+  background-color: #fcfcfd;
+}
 /*공황---------------------*/
 .panicCount {
   text-align: center;
@@ -77,14 +92,13 @@
 
 .panicText{
   font-family: Roboto;
-  font-size: 2.6vh;
+  font-size: 2.4vh;
   letter-spacing: -0.51px;
   text-align: left;
   color: #454545;
 }
 
 .panicDetailBox{
-  margin: 6vw 5vw;
   border-radius: 12px;
   box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
   background-color: #ffffff;
@@ -92,7 +106,7 @@
 
 .panicDetailText{
   font-family: Roboto;
-  font-size: 4.3vw;
+  font-size: 2.3vh;
   color: #262626;
   align-items: center;
   display: flex;
@@ -105,7 +119,7 @@
 
 .symtomText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 2.2vh;
   font-weight: 500;
   letter-spacing: -0.56px;
   text-align: left;
@@ -125,7 +139,7 @@
 /*정서---------------------*/
 .emotionDetailText{
   font-family: Roboto;
-  font-size: 1rem;
+  font-size: 2.4vh;
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: -0.45px;
@@ -135,8 +149,7 @@
 
 .emotionInfoText{
   font-family: Roboto;
-  //font-size: 1rem;
-  font-size: 4.2vw;
+  font-size: 2.3vh;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -169,7 +182,7 @@
   border-radius: 50%;
   text-align: center;
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: 2.2vh;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -186,7 +199,7 @@
   border-radius: 50%;
   text-align: center;
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: 2.2vh;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -200,7 +213,7 @@
   border-radius: 4px;
   background-color: #44BBC8;
   font-family: Roboto;
-  font-size: 2.7vh;
+  font-size: 2.5vh;
   color: #ffffff;
 }
 .cancelBtn{
@@ -209,12 +222,8 @@
   border-radius: 4px;
   background-color: #eeeff1;
   font-family: Roboto;
-  font-size: 2.7vh;
+  font-size: 2.5vh;
   color: #3a4b5f;
-}
-
-.bkcolor_fcfcfd{
-  background-color: #fcfcfd;
 }
 /*------------------------*/
 
@@ -224,7 +233,7 @@
   align-items: center;
   display: grid;
   font-family: Roboto;
-  font-size: 1.1rem;
+  font-size: 2.4vh;
   font-weight: bold;
   color: #454545;
   border-right: 1px solid #eaebef;
@@ -245,7 +254,7 @@
   padding-left: 5vw;
   padding-right: 5vw;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 2.3vh;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -259,7 +268,7 @@
   background-color: #eff1f5;
   text-align: left;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 2.3vh;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -276,7 +285,7 @@
   align-items: center;
   display: flex;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 2.3vh;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -285,9 +294,15 @@
   color: #262626;
 }
 
+.pattern-list-box2 {
+  padding-bottom: 1.5vh;
+  align-items: center;
+  display: flow-root;
+}
+
 .countText{
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 2.3vh;
   line-height: 1.31;
   letter-spacing: -0.59px;
   color: #262626;
@@ -304,16 +319,10 @@
   display: flex;
 }
 
-.pattern-caffenie-list-box2 {
-  padding-bottom: 1.5vh;
-  align-items: center;
-  display: flow-root;
-}
-
 .periodText{
   align-items: center;
   display: grid;
-  font-size: 2.5vh;
+  font-size: 2.3vh;
   font-weight: bold;
   color: #44bbc8;
 }

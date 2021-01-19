@@ -7,6 +7,8 @@ import {AlertUtilService} from "../../../../util/common/alert-util.service";
 import {EventBusService} from "../../../../services/event-bus.service";
 import {PatternReportPage} from "../../../mind-report/pattern-report/pattern-report.page";
 import {EmotionInfoModalPage} from "../../../modal/emotion-info-modal/emotion-info-modal.page";
+import {MindManager} from "../../../../mind-module/mind.manager";
+import {NavigationExtras} from "@angular/router";
 
 @Component({
   selector: 'app-diary',
@@ -15,9 +17,12 @@ import {EmotionInfoModalPage} from "../../../modal/emotion-info-modal/emotion-in
 })
 export class DiaryPage implements OnInit, OnDestroy {
   fabButtonOpened = false;
-  today = moment(new Date).format('YYYY-MM-DD');
+  today = new Date();
 
   allDiaryDataList: any = [];
+
+  selectedDate = new Date();
+  selectedDateKo = '';
 
   /*공황------------------------*/
   panicDetailOpen = 'N';
@@ -34,7 +39,7 @@ export class DiaryPage implements OnInit, OnDestroy {
     energyNegative: '',
     unrest: '',
     petulance: '',
-    setDt : this.today
+    setDt : moment(this.selectedDate).format('YYYY-MM-DD')
   }
   emotionDataList: any = [];
 
@@ -83,16 +88,30 @@ export class DiaryPage implements OnInit, OnDestroy {
       private navController: NavController,
       private pageInfoService: PageInfoService,
       private diaryService: DiaryService,
-      private eventBusService: EventBusService
+      private eventBusService: EventBusService,
+      private mindManager: MindManager
   ) { }
 
   ngOnInit() {
     this.eventBusService.tabInfo$.next('DIARY');
     console.log('Init');
     moment.locale('ko');
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
     this.dataReset();
-    this.getDiaryList();
+    this.getDiaryList(this.selectedDate);
     this.getCodeList();
+
+    // 날짜 정보 받아와서 selectedDate 설정
+    const dateBindingInfo = this.mindManager.getDateBinding();
+    if(dateBindingInfo) {
+      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    }
+  }
+
+  getDirayDateInfo(date){
+    this.selectedDate = date;
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.getDiaryList(this.selectedDate);
   }
 
   ngOnDestroy() {
@@ -100,8 +119,8 @@ export class DiaryPage implements OnInit, OnDestroy {
   }
 
   // 전체 다이어리 조회
-  getDiaryList() {
-    this.diaryService.getDiaryList(this.today).subscribe(res => {
+  getDiaryList(date) {
+    this.diaryService.getDiaryList(moment(date).format('YYYY-MM-DD')).subscribe(res => {
       if(res.data){
         this.allDiaryDataList = res.data;
       }
@@ -122,7 +141,7 @@ export class DiaryPage implements OnInit, OnDestroy {
           energyNegative: this.emotionDataList.energyNegative,
           unrest: this.emotionDataList.unrest,
           petulance: this.emotionDataList.petulance,
-          setDt: this.today
+          setDt: moment(this.selectedDate).format('YYYY-MM-DD')
         }
       }
 
@@ -130,13 +149,13 @@ export class DiaryPage implements OnInit, OnDestroy {
         this.drinkList = res.data.drinks;
         for(let i = 0; i < this.drinkList.length; i++){
           if(this.drinkList[i].drinkWhen === 'M'){
-            this.chkDrinkWhen.chkM = 'Y'
+            this.chkDrinkWhen.chkM = 'Y';
           }
           if(this.drinkList[i].drinkWhen === 'A'){
-            this.chkDrinkWhen.chkA = 'Y'
+            this.chkDrinkWhen.chkA = 'Y';
           }
           if(this.drinkList[i].drinkWhen === 'N'){
-            this.chkDrinkWhen.chkN = 'Y'
+            this.chkDrinkWhen.chkN = 'Y';
           }
         }
       }
@@ -144,13 +163,13 @@ export class DiaryPage implements OnInit, OnDestroy {
         this.caffeineList = res.data.caffeines;
         for(let i = 0; i < this.caffeineList.length; i++){
           if(this.caffeineList[i].caffeineWhen === 'M'){
-            this.chkCaffeineWhen.chkM = 'Y'
+            this.chkCaffeineWhen.chkM = 'Y';
           }
           if(this.caffeineList[i].caffeineWhen === 'A'){
-            this.chkCaffeineWhen.chkA = 'Y'
+            this.chkCaffeineWhen.chkA = 'Y';
           }
           if(this.caffeineList[i].caffeineWhen === 'N'){
-            this.chkCaffeineWhen.chkN = 'Y'
+            this.chkCaffeineWhen.chkN = 'Y';
           }
         }
       }
@@ -158,13 +177,13 @@ export class DiaryPage implements OnInit, OnDestroy {
         this.exerciseList = res.data.exercises;
         for(let i = 0; i < this.exerciseList.length; i++){
           if(this.exerciseList[i].exerciseWhen === 'M'){
-            this.chkExerciseWhen.chkM = 'Y'
+            this.chkExerciseWhen.chkM = 'Y';
           }
           if(this.exerciseList[i].exerciseWhen === 'A'){
-            this.chkExerciseWhen.chkA = 'Y'
+            this.chkExerciseWhen.chkA = 'Y';
           }
           if(this.exerciseList[i].exerciseWhen === 'N'){
-            this.chkExerciseWhen.chkN = 'Y'
+            this.chkExerciseWhen.chkN = 'Y';
           }
         }
       }
@@ -176,22 +195,22 @@ export class DiaryPage implements OnInit, OnDestroy {
 
         this.totalMealCount = 0;
         if(this.mealList.breakfast === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.lunch === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.dinner === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.snackMorning === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.snackAfternoon === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.snackMidnight === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
       }
       if(res.data.menstruation) {
@@ -219,10 +238,10 @@ export class DiaryPage implements OnInit, OnDestroy {
     });
   }
 
-  // 입력창 유닛 설정
+  // 유닛 설정
   checkDrinkUnit(drinkCode){
     if(this.drinkCodeList.length) {
-      const index = this.drinkCodeList.findIndex(obj => obj.codeSeq == drinkCode);
+      const index = this.drinkCodeList.findIndex(obj => obj.codeSeq === drinkCode);
       const unit = this.drinkCodeList[index].unit;
 
       return unit;
@@ -230,13 +249,32 @@ export class DiaryPage implements OnInit, OnDestroy {
   }
   checkCaffeinUnit(caffeineCode){
     if(this.caffeineCodeList.length) {
-      const index = this.caffeineCodeList.findIndex(obj => obj.codeSeq == caffeineCode);
+      const index = this.caffeineCodeList.findIndex(obj => obj.codeSeq === caffeineCode);
       const unit = this.caffeineCodeList[index].unit;
 
       return unit;
     }
   }
 
+  // 전 날로 이동
+  moveLastDay() {
+    this.selectedDate = moment(this.selectedDate).subtract(1, 'day').toDate();
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.dataReset();
+    this.getDiaryList(this.selectedDate);
+  }
+
+  // 다음 날로 이동
+  moveNextDay(){
+    this.selectedDate = moment(this.selectedDate).add(1, 'day').toDate();
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.dataReset();
+    this.getDiaryList(this.selectedDate);
+  }
+
+  isSameToday(): boolean {
+    return moment(this.selectedDate).isSame(this.today, 'day');
+  }
   /*공황 --------------------------------------------------------*/
 
 
@@ -326,7 +364,7 @@ export class DiaryPage implements OnInit, OnDestroy {
     }
     this.diaryService.saveEmotionDiary(this.emotionInsertVo).subscribe(res => {
       this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">저장되었습니다.</p>');
-      this.getDiaryList();
+      this.getDiaryList(this.selectedDate);
     }, err => {
       console.log('err', err);
     })
@@ -342,12 +380,13 @@ export class DiaryPage implements OnInit, OnDestroy {
       energyNegative: '',
       unrest: '',
       petulance: '',
-      setDt : this.today
+      setDt : moment(new Date).format('YYYY-MM-DD')
     }
   }
 
-  // 긍정/부정 입력 info
+  // 긍정/부정 입력 info 모달
   async showInformation(type) {
+    this.mindManager.setModalONOff('ON');
     const modal = await this.modalController.create({
       component: EmotionInfoModalPage,
       cssClass: 'emotion_info_modal',
@@ -355,6 +394,10 @@ export class DiaryPage implements OnInit, OnDestroy {
         type
       }
     });
+    modal.onDidDismiss()
+        .then(()=>{
+          this.mindManager.setModalONOff('OFF');
+        });
     return await modal.present();
   }
   /*-------------------------------------------*/
@@ -398,16 +441,42 @@ export class DiaryPage implements OnInit, OnDestroy {
   // 페이지 이동
   goToPage(url, title) {
     this.pageInfoService.getToOtherPage('/main/main/diary', url, title).then(() => {
+      const diaryDateInfo = this.mindManager.getDateBinding();
+      if (diaryDateInfo) {
+        diaryDateInfo.dirayDate = moment(this.selectedDate).format('YYYY-MM-DD');
+        this.mindManager.setDateBinding(diaryDateInfo);
+      } else {
+        this.mindManager.setDateBinding({
+          dirayDate : moment(this.selectedDate).format('YYYY-MM-DD')
+        });
+      }
       this.navController.navigateRoot([url]);
     });
   }
 
-
   dataReset(){
-    this.panicDataList = [];
+    this.allDiaryDataList = [];
 
+    this.panicDataList = [];
+    this.panicDetailOpen = 'N';
+    this.totalPanicDuration = 0;
+
+    this.emotionInsertVo = {
+      feelingPositive: '',
+      feelingNegative: '',
+      energyPositive: '',
+      energyNegative: '',
+      unrest: '',
+      petulance: '',
+      setDt : moment(this.selectedDate).format('YYYY-MM-DD')
+    }
     this.emotionDataList = [];
 
+    this.openYn = {
+      drinkDetailOpen: 'N',
+      caffeineDetailOpen: 'N',
+      exDetailOpen: 'N'
+    }
     this.drinkList = [];
     this.drinkList= [];
     this.smokeList = {};
@@ -415,6 +484,8 @@ export class DiaryPage implements OnInit, OnDestroy {
     this.mealList = {};
     this.exerciseList = [];
     this.periodList = {};
+
+    this.totalMealCount = 0;
 
     this.chkDrinkWhen = {
       chkM : 'N',

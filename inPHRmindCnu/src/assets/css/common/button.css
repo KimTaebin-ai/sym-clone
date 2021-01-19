@@ -4,12 +4,12 @@
 
 .common_button_active {
     width: 100%;
-    height: 7.5vh;
+    height: 3.5rem;
     object-fit: contain;
     border-radius: 4px;
     background-color: #44bbc8;
     font-family: Roboto;
-    font-size: 2vh;
+    font-size: 1.125rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -21,13 +21,13 @@
 
 .common_button {
     width: 100%;
-    height: 7.5vh;
+    height: 3.5rem;
     object-fit: contain;
-    border-radius: 4px;
+    /*border-radius: 4px;*/
     border: solid 1px #ecedef;
     background-color: #ecedef;
     font-family: Roboto;
-    font-size: 2vh;
+    font-size: 1.125rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -39,11 +39,11 @@
 
 .common_save_button{
     width: 100%;
-    height: 8.5vh;
+    height: 3.5rem;
     object-fit: contain;
     background-color: #44bbc8;
     font-family: Roboto;
-    font-size: 2.8vh;
+    font-size: 1.125rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -55,11 +55,11 @@
 
 .common_disabled_button{
     width: 100%;
-    height: 8.5vh;
+    height: 3.5rem;
     object-fit: contain;
     background-color: #e7e8eb;
     font-family: Roboto;
-    font-size: 2.8vh;
+    font-size: 1.125rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

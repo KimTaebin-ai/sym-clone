@@ -5,7 +5,7 @@
 
 .reportTitleText1{
   font-family: Roboto;
-  font-size: 1.1rem;
+  font-size: 2.6vh;
   font-weight: bold;
   line-height: 1.35;
   letter-spacing: -0.51px;
@@ -24,7 +24,7 @@
 
 .pickMindType{
   font-family: Roboto;
-  font-size: 2.6vh;
+  font-size: 2.4vh;
   font-weight: bold;
   color: #28a1ae;
   align-items: center;
@@ -33,21 +33,21 @@
 
 .reportTopNavText{
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 2.4vh;
   color: #3a4b5f;
   align-items: center;
   display: grid;
 }
 
 .reportCountColor{
-  font-size: 3.4vh;
+  font-size: 3.3vh;
   font-weight: bold;
   color: #44bbc8;
 }
 
 .reportTerm{
   text-align: center;
-  font-size: 2.5vh;
+  font-size: 2.4vh;
   padding: 2vw;
   border-radius: 5px;
   border: 1px solid #cfd3d9;
@@ -57,7 +57,7 @@
 
 .reportTerm_pick{
   text-align: center;
-  font-size: 2.5vh;
+  font-size: 2.4vh;
   font-weight: bold;
   padding: 2vw;
   border-radius: 5px;
@@ -72,7 +72,7 @@
 }
 
 .dateInfo{
-  font-size: 0.8rem;
+  font-size: 2vh;
   text-align: right;
   color: #848484;
 }
@@ -119,7 +119,7 @@
   top: 50%;
   left: 50%;
   transform: translate( -50%, -50% );
-  font-size: 2.2vh;
+  font-size: 3.9vw;
 }
 
 .emotionSquare{
@@ -175,7 +175,7 @@
 
 .panicDetailText{
   font-family: Roboto;
-  font-size: 4.3vw;
+  font-size: 2.3vh;
   color: #262626;
   align-items: center;
   display: flex;
@@ -210,7 +210,7 @@
 .lifePatternMiddleNav{
   height: 8vh;
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 2.4vh;
   font-weight: bold;
   //line-height: 1.31;
   letter-spacing: -0.59px;
@@ -224,7 +224,7 @@
   align-items: center;
   display: grid;
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 2.4vh;
   font-weight: bold;
   color: #454545;
   border-right: 1px solid #eaebef;
@@ -232,7 +232,7 @@
 
 .lifePatternText{
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 2.3vh;
   line-height: 1.31;
   letter-spacing: -0.59px;
   text-align: left;
@@ -250,7 +250,7 @@
   padding-bottom: 1.3vh;
   border: 1px solid #cfd3d9;
   font-family: Roboto;
-  font-size: 4.4vw;
+  font-size: 2.2vh;
   color: #3a4b5f;
   background-color: #ffffff;
 }
@@ -264,14 +264,14 @@
   padding-bottom: 1.3vh;
   border: 1px solid #28a1ae;
   font-family: Roboto;
-  font-size: 4.4vw;
+  font-size: 2.2vh;
   color: #28a1ae;
   background-color: #effdff;
 }
 
 .psychoStandardTitleText{
   font-family: Roboto;
-  font-size: 5.2vw;
+  font-size: 2.6vh;
   font-weight: bold;
   line-height: 1.32;
   letter-spacing: -0.31px;
@@ -281,7 +281,7 @@
 
 .psychoStandardText{
   font-family: Roboto;
-  font-size: 4.2vw;
+  font-size: 2.3vh;
   line-height: 1.33;
   letter-spacing: -0.48px;
   text-align: left;
@@ -290,7 +290,7 @@
 
 .psychoStandard_pick{
   font-family: Roboto;
-  font-size: 4.2vw;
+  font-size: 2.3vh;
   font-weight: bold;
   line-height: 1.33;
   letter-spacing: -0.48px;

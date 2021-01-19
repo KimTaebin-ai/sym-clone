@@ -2,14 +2,14 @@
 //-------증상백과 시작-----------------------------
 .dictionary-box {
   width: 100%;
-  height: 17vh;
+  height: 7.5rem;
   background-color: #3a4b5f;
-  padding: 2vh;
+  padding: 0.8rem;
 }
 
 .dictionary-input-box {
   border-bottom: solid 1px #c3ccdd;
-  padding-top: 3vh;
+  padding-top: 1.5rem;
 }
 
 .dictionary-input {
@@ -18,7 +18,7 @@
   background: transparent;
   width: 100%;
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -30,7 +30,7 @@
 
 .dictionary-input-font {
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -43,7 +43,7 @@
 
 ::placeholder  {
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -55,7 +55,7 @@
 
 .dictionary-header {
   font-family: Roboto;
-  font-size: 17px;
+  font-size: 1rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -67,14 +67,14 @@
 
 .dictionary-list-box {
   width: 100%;
-  height: 10vh;
+  height: 4.5rem;
   border: solid 1px #eeeeee;
   background-color: #ffffff;
   align-items: center;
   padding-left: 5vw;
   padding-right: 1vw;
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -96,7 +96,7 @@
 
 .noDataFont {
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;

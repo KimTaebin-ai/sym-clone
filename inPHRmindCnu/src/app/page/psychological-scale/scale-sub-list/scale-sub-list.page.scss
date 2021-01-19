@@ -27,7 +27,7 @@
 
 .psychological-fon2 {
   font-family: Roboto;
-  font-size: 1.1rem;
+  font-size: 2.3vh;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -38,7 +38,7 @@
 
 .psychological-fon2_disable {
   font-family: Roboto;
-  font-size: 1.1rem;
+  font-size: 2.3vh;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -49,7 +49,7 @@
 
 .psychological-fon3 {
   font-family: Roboto;
-  font-size: 1.2rem;
+  font-size: 2.5vh;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -61,7 +61,7 @@
 
 .psychological-fon4 {
   font-family: Roboto;
-  font-size: 1.1rem;
+  font-size: 2.3vh;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -173,20 +173,6 @@ ion-progress-bar .progress {
   margin-top: 6vh;
 }
 
-.psychological-chartCard-header {
-  height: 25%;
-  align-items: center;
-  text-align: center;
-  font-family: Roboto;
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.31;
-  letter-spacing: -0.59px;
-  color: #3a4b5f;
-}
-
 .chartCard-header-color1 {
   color: #44bbc8;
 }
@@ -199,22 +185,6 @@ ion-progress-bar .progress {
   height: 55%;
   padding: 2vw;
 }
-
-
-.psychological-chartCard-date {
-  height: 20%;
-  text-align: center;
-  align-items: center;
-  font-family: Roboto;
-  font-size: 1rem;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.36;
-  letter-spacing: -0.42px;
-  color: #49535f;
-}
-
 
 .scale-sliding-ion-item {
   --inner-border-width: 0;

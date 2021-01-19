@@ -1,14 +1,27 @@
+.panicDateInfo{
+  height: 3.2rem;
+  background-color: #fcfcfd;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #454545;
+  border-bottom: 1px solid #eeeff1;
+}
+
 .panicDiaryInput {
   align-items: center;
   width: 100%;
-  height: 8vh;
+  height: 3.1rem;
   border-radius: 4px;
   border: solid 1px #d2d5dc;
   background-color: #ffffff;
   margin-top: 3vw;
   padding: 0 5vw;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -22,7 +35,7 @@
 
 .panic_input_title_text{
   font-family: Roboto;
-  font-size: 4.4vw;
+  font-size: 1rem;
   line-height: 1.31;
   letter-spacing: -0.51px;
   text-align: left;
@@ -31,17 +44,22 @@
 
 .date-inputBox1 {
   width: 100%;
-  height: 8vh;
+  height: 3.1rem;
   border: solid 1px #d2d5dc;
-  margin-top: 1vh;
+  margin-top: 1rem;
   border-radius: 4px;
   background-color: #ffffff;
   align-items: center;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
 }
 
 .datetimeType {
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -53,15 +71,16 @@
 
 .panic_symptom_text{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 0.9375rem;
   line-height: 1.33;
   letter-spacing: -0.48px;
   text-align: left;
   color: #262626;
 }
+
 .panicSymptomPick{
   width: 100%;
-  height: 8vh;
+  height: 3.1rem;
   border-radius: 4px;
   border: solid 1px #28a1ae;
   background-color: #effdff;
@@ -69,18 +88,21 @@
   padding: 0 5vw;
   color: #28a1ae;
 }
+
 .panicDiaryAddBtn{
   width: 100%;
-  height: 8vh;
+  height: 3.1rem;
   border-radius: 4px;
   font-family: Roboto;
-  font-size: 2.6vh;
+  font-size: 1rem;
   text-align: center;
   color: #ffffff;
 }
+
 .addOkBtn{
   background-color: #44bbc8;
 }
+
 .addNoBtn{
   background-color: #dbdde2;
 }
@@ -90,14 +112,9 @@
 }
 
 .diaryCountColor{
-  font-size: 3.4vh;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #44bbc8;
-}
-.panicCount {
-  text-align: center;
-  line-height: 12vh;
-  border-right: 1px solid #eaebef;
 }
 .panicDetailBox{
   margin: 6vw 5vw;
@@ -107,7 +124,7 @@
 }
 .panicDetailText{
   font-family: Roboto;
-  font-size: 4.3vw;
+  font-size: 1rem;
   color: #262626;
   align-items: center;
   display: flex;
@@ -118,7 +135,7 @@
 }
 .symtomText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: -0.56px;
   text-align: left;
@@ -141,21 +158,12 @@
 .panicDiaryInput_etc{
   align-items: center;
   width: 100%;
-  height: 8vh;
+  height: 3.1rem;
   border-radius: 4px;
   border: solid 1px #28a1ae;
   background-color: #ffffff;
   margin-top: 3vw;
   padding: 0 5vw;
-  font-family: Roboto;
-  font-size: 2.4vh;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.31;
-  letter-spacing: -0.51px;
-  text-align: left;
-  color: #262626;
 }
 .panic-input-box-etc {
   width: 100%;
@@ -163,7 +171,7 @@
   text-align: left;
   border-radius: 4px;
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 0.9375rem;
   line-height: 1.33;
   letter-spacing: -0.48px;
   color: #262626;

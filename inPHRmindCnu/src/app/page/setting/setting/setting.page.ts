@@ -13,8 +13,8 @@ import {MindManager} from '../../../mind-module/mind.manager';
 })
 export class SettingPage implements OnInit {
 
-  //약관 리스트
-  termList: any = [];
+  versionInfo: any = this.mindManager.getLastVersionInfo();
+  nowVersion = localStorage.getItem('versionNumber');
 
   constructor(
       private pageInfoService: PageInfoService,
@@ -26,22 +26,25 @@ export class SettingPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getTermList();
+    console.log(this.versionInfo)
   }
 
-  // 약관 리스트 조회
-  getTermList() {
-    this.authService.getTermList().subscribe(res => {
-      if (res) {
-        this.termList = res;
-      } else {
-        this.termList = [];
-      }
-    }, err => {
-      console.log(err);
-      this.termList = [];
-    });
+  compareVersion() {
+    let returnVal = '';
+    const serverVersion = Number(this.versionInfo.version.toString().replace('.', ''));
+    const nowVersion = Number(this.nowVersion.toString().replace('.', ''));
+    if (nowVersion >= serverVersion) {
+      returnVal = '최신버전';
+    } else if (serverVersion > nowVersion) {
+      returnVal = 'ver' + nowVersion.toString();
+    }
+    return returnVal;
   }
+
+  updateApp() {
+    window.open(this.versionInfo.url, '_system');
+  }
+
 
   async openTermModal(item) {
     const modal = await this.modalController.create({
@@ -89,11 +92,13 @@ export class SettingPage implements OnInit {
     const systemSetting = this.mindManager.getSystemInfo();
     const versionInfo = this.mindManager.getLastVersionInfo();
     systemSetting.autoLogin = false;
+    const popupInfo = this.mindManager.getAutoLoginPopupInfo();
     this.mindManager.removeMemberToken();
     StorageUtil.clear();
     localStorage.setItem('versionNumber', versionNumber);
     localStorage.setItem('versionCode', versionCode);
     localStorage.setItem('osType', osType);
+    this.mindManager.setAutoLoginPopupInfo(popupInfo);
     this.mindManager.setLastVersionInfo(versionInfo);
     this.mindManager.setSystemInfo(systemSetting);
     this.mindManager.setLockState(false);

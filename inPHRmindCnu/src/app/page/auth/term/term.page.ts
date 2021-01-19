@@ -99,6 +99,7 @@ export class TermPage implements OnInit, OnDestroy {
 
 
   async openModal(term, detail) {
+    this.mindManager.setModalONOff('ON');
     const modal = await this.modalController.create({
       component: TermModalPage,
       cssClass: 'modal60per',
@@ -107,6 +108,10 @@ export class TermPage implements OnInit, OnDestroy {
         termDetail: detail
       }
     });
+    modal.onDidDismiss()
+        .then(() => {
+          this.mindManager.setModalONOff('OFF');
+        });
     return await modal.present();
   }
 

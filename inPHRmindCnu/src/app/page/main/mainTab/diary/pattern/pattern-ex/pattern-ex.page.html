@@ -5,10 +5,17 @@
   <ion-grid>
     <ion-row>
       <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="panicDateInfo text_center">
+              {{selectedDateKo}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         <ion-grid class="countBox">
-          <ion-row class="height12vh">
-            <ion-col size="3" class="lifePatternTitle"><span>운동</span></ion-col>
-            <ion-col size="9" class="align_center-grid pdL4vw">
+          <ion-row>
+            <ion-col size="3" class="lifePatternTitle height4_8rem"><span>운동</span></ion-col>
+            <ion-col size="9" class="align_center-grid pdL4vw height4_8rem">
               <div>
                 <span class="diaryCountColor1">{{exerciseList.length}}</span><span class="diaryCountColor2"> 건</span>
               </div>
@@ -65,8 +72,8 @@
                     </ion-grid>
                   </ion-col>
                 </ion-row>
-                <ion-row>
-                  <ion-col class="pdB5vh">
+                <ion-row *ngIf="insertVo.exerciseCode">
+                  <ion-col>
                     <ion-grid class="pattern-input-border">
                       <ion-row class="height100Per align_center">
                         <ion-col size="10">
@@ -77,7 +84,7 @@
                     </ion-grid>
                   </ion-col>
                 </ion-row>
-                <ion-row>
+                <ion-row class="pdT5vh">
                   <ion-col>
                     <button class="pattern-add-button" (click)="addExDiaryChk()">
                     <span>

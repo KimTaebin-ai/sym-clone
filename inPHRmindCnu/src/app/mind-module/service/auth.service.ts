@@ -169,7 +169,26 @@ export class AuthService {
   }
 
 
-  /*비밀번호 찾기--------------------------------------------------------------------------------------------*/
+    // 최근 약관 정보 조회
+    getTermInfoList(): Observable<any> {
+        return this.restApiService.getData(environment.simApi + this.urlService.getTermInfoList).pipe(
+            switchMap(res => {
+                if (res) {
+                    if (res.code === ResponseCode.OK) {
+                        return of(res.data);
+                    } else {
+                        return throwError(res);
+                    }
+                } else {
+                    return throwError(res);
+                }
+            })
+        );
+    }
+
+
+
+    /*비밀번호 찾기--------------------------------------------------------------------------------------------*/
   // 임시 비밀번호 발급
   sendTempPw(reqVo: any): Observable<any> {
       console.log('eeeeee')
@@ -264,23 +283,24 @@ export class AuthService {
   updatePw(reqVo: any): Observable<any> {
       return this.restApiService.postData(environment.simApi + this.urlService.updatePw, reqVo).pipe(
         switchMap(res => {
+            console.log('eee', res);
             if (res) {
                 if (res.code === ResponseCode.OK) {
                     const result: any = {
                         code: ResponseCode.OK,
-                        message: '<p class="alert-message-center-font">비밀번호가 변경되었습니다.</p>'
+                        message: '<p class="alert-message-font">비밀번호가 변경되었습니다.</p>'
                     };
                     return of(result);
                 } else if (res.code === ResponseCode.NO_MATCHING) {
                     const err: any = {
                         code: ResponseCode.NO_MATCHING,
-                        message: '<p class="alert-message-center-font">현재 비밀번호를 잘못 입력하셨습니다.</p>'
+                        message: '<p class="alert-message-font">현재 비밀번호를 잘못 입력하셨습니다.</p>'
                     };
                     return throwError(err);
                 } else if (res.code === ResponseCode.BAD_REQUEST) {
                     const err: any = {
                         code: ResponseCode.BAD_REQUEST,
-                        message: '<p class="alert-message-center-font">현재 비밀번호와 새 비밀번호가 동일합니다.</p>'
+                        message: '<p class="alert-message-font">현재 비밀번호와 새 비밀번호가 동일합니다.</p>'
                     };
                     return throwError(err);
                 } else if (res.code === ResponseCode.FAIL) {
@@ -292,7 +312,7 @@ export class AuthService {
                 } else {
                     const err: any = {
                         code: ResponseCode.FAIL,
-                        message: '<p class="alert-message-center-font">임시 비밀번호를 발급받는 도중 오류가 발생하였습니다.</p>'
+                        message: '<p class="alert-message-font">임시 비밀번호를 발급받는 도중 오류가 발생하였습니다.</p>'
                     };
                     return throwError(err);
                 }
@@ -880,4 +900,22 @@ export class AuthService {
         return returnData;
     }
 
+
+    // 가입 인증번호 발송 (이메일)
+    getVersionInfo(reqVo): Observable<any> {
+        return this.restApiService.getData(environment.simApi + this.urlService.version + '/' + reqVo.userType + '/' + reqVo.osType + '/' + reqVo.nowVersion).pipe(
+            switchMap(res => {
+                if (res) {
+                    console.log(res)
+                    if (res.code === ResponseCode.OK) {
+                        return of(res.data);
+                    } else {
+                        return throwError('데이터를 불러오는 도중 오류가 발생하였습니다.');
+                    }
+                } else {
+                    return throwError('데이터를 불러오는 도중 오류가 발생하였습니다.');
+                }
+            })
+        );
+    }
 }

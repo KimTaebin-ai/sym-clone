@@ -5,18 +5,27 @@
     <ion-col>
       <ion-grid class="setting-list-box">
         <ion-row class="align_center height100Per">
-          <ion-col size="8">
+          <ion-col size="6">
             <span class="setting-font1">버전 정보</span>
           </ion-col>
-          <ion-col size="4" class="text_right">
-            <span class="setting-font2">최신버전</span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="setting-list-box" (click)="showLogoutAlert()">
-        <ion-row class="align_center height100Per">
-          <ion-col>
-            <span class="setting-font1">로그아웃</span>
+          <ion-col size="6" class="text_right">
+            <ion-grid>
+              <ion-row class="align_center">
+                <ion-col>
+                  <span class="setting-font2">{{compareVersion()}}</span>
+                </ion-col>
+                <ion-col *ngIf="compareVersion() !== '최신버전'" (click)="updateApp()">
+                  <ion-grid class="updateButton">
+                    <ion-row>
+                      <ion-col>
+                        <span>업데이트</span>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -30,7 +39,24 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-grid class="setting-list-box" *ngFor="let item of termList"
+      <ion-grid class="setting-list-box" (click)="goToPage('/setting-term', '약관 동의 확인')">
+        <ion-row class="align_center height100Per">
+          <ion-col size="10">
+            <span class="setting-font1">약관 동의 확인</span>
+          </ion-col>
+          <ion-col size="2" class="text_right">
+            <img src="assets/image/setting/Icon_arrow_next.svg" class="setting-icon">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="setting-list-box" (click)="showLogoutAlert()">
+        <ion-row class="align_center height100Per">
+          <ion-col>
+            <span class="setting-font1">로그아웃</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!--<ion-grid class="setting-list-box" *ngFor="let item of termList"
                 (click)="openTermModal(item)">
         <ion-row class="align_center height100Per">
           <ion-col size="10">
@@ -40,7 +66,7 @@
             <img src="assets/image/setting/Icon_arrow_next.svg" class="setting-icon">
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid>-->
     </ion-col>
   </ion-row>
 </ion-grid>

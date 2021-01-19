@@ -5,9 +5,9 @@
 export const environment = {
   production: false
 
-  // , simApi: 'http://10.20.0.29:8081'
+  , simApi: 'http://10.20.0.29:8081'
   // , simApi: 'http://192.168.43.33:8082'
-  , simApi: 'http://beta.inphrcare.com:33300'
+  // , simApi: 'http://beta.inphrcare.com:33300'
   //, simApi: 'http://localhost:8081'
   , inPHRApi: 'https://www.inphrcare.com'
 

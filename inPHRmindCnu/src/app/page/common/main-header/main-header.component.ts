@@ -5,6 +5,8 @@ import {sideMenuEnterAnimation} from '../../../mind-module/animations/sideMenuEn
 import {sideMenuLeaveAnimation} from '../../../mind-module/animations/sideMenuLeave';
 import {Router} from '@angular/router';
 import {PageInfoService} from '../../../services/page-info.service';
+import {SignatureModalPage} from '../../modal/signature-modal/signature-modal.page';
+import {MindManager} from '../../../mind-module/mind.manager';
 
 @Component({
   selector: 'app-main-header',
@@ -17,7 +19,8 @@ export class MainHeaderComponent implements OnInit {
       public modalController: ModalController,
       private navController: NavController,
       private router: Router,
-      private pageInfoService: PageInfoService
+      private pageInfoService: PageInfoService,
+      private mindManager: MindManager
   ) { }
 
   ngOnInit() {
@@ -33,7 +36,7 @@ export class MainHeaderComponent implements OnInit {
     });
     return await modal.present();
 */
-
+/*
     this.modalController.create({
       component: SideMenuPage,
       cssClass: 'sideMenu',
@@ -41,7 +44,20 @@ export class MainHeaderComponent implements OnInit {
       leaveAnimation: sideMenuLeaveAnimation
     }).then((modals) => {
       modals.present();
+    });*/
+
+    this.mindManager.setModalONOff('ON');
+    const modal = await this.modalController.create({
+      component: SideMenuPage,
+      cssClass: 'sideMenu',
+      enterAnimation: sideMenuEnterAnimation,
+      leaveAnimation: sideMenuLeaveAnimation
     });
+    modal.onDidDismiss()
+        .then(() => {
+          this.mindManager.setModalONOff('OFF');
+        });
+    return await modal.present();
   }
 
   goToPage(url, title) {
@@ -51,5 +67,9 @@ export class MainHeaderComponent implements OnInit {
     this.pageInfoService.getToOtherPage(fromArray[0], url, title).then(() => {
       this.navController.navigateRoot([url]);
     });
+  }
+
+  test() {
+    this.navController.navigateRoot(['/main/main/tab1']);
   }
 }

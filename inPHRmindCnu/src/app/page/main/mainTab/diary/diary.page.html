@@ -6,7 +6,19 @@
   <ion-grid>
     <ion-row class="diaryTopNav">
       <ion-col class="diaryTopText1">다이어리</ion-col>
-      <ion-col class="diaryTopText2">{{today | date :'y년 M월 d일'}}</ion-col>
+<!--      <ion-col class="diaryTopText2">{{today | date :'y년 M월 d일'}}</ion-col>-->
+    </ion-row>
+    <ion-row class="diaryMiddleNav pd3_5vw">
+      <ion-col size="1" class="text_center align_center-grid" (click)="moveLastDay()"><img src="assets/image/arrow/icon_arrow_c_left.svg"></ion-col>
+      <ion-col size="10" class="align_center-grid">
+        {{selectedDateKo}}
+      </ion-col>
+      <ion-col size="1" class="text_center align_center-grid" (click)="moveNextDay()" *ngIf="!isSameToday()">
+        <img src="assets/image/arrow/icon_arrow_c_right.svg">
+      </ion-col>
+      <ion-col size="1" class="text_center align_center-grid" *ngIf="isSameToday()">
+        <img src="assets/image/arrow/Icon_arrow_d_right.svg">
+      </ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid class="ion-no-padding">
@@ -20,57 +32,65 @@
       <ion-col size="2" class="diaryMovePageBtn" (click)="openPanicDetail()" *ngIf="panicDataList.length !== 0 && panicDetailOpen == 'N'"><img src="../../../../../assets/image/arrow/Icon_arrow_dr.svg"></ion-col>
       <ion-col size="2" class="diaryMovePageBtn pdT0_5vh" (click)="goToPage('/panic-diary', '공황 증상 입력')" [hidden]="panicDataList.length !== 0"><img src="assets/image/diary/Icon_plus.svg"></ion-col>
     </ion-row>
-    <ion-row *ngIf="panicDataList.length !== 0" [hidden]="panicDetailOpen == 'N'">
+    <ion-row class="bkcolor_fcfcfd" *ngIf="panicDataList.length !== 0" [hidden]="panicDetailOpen == 'N'">
       <ion-col>
-        <ion-grid class="panicDetailBox" *ngFor="let panics of panicDataList; let i = index;">
-          <ion-row class="panic-border-bottom pd3_8vw">
-            <ion-col size="11" class="panicDetailText">
-              <span>{{panics.startDt}}</span>
-            </ion-col>
-            <ion-col size="1" (click)="goToPage('/panic-diary', '공황 증상 입력')"><img src="assets/image/diary/Icon_plus.svg"></ion-col>
-          </ion-row>
-          <ion-row class="panic-border-bottom">
-            <ion-col size="6" class="panicDetailText panic-border-right pd3_5vw">
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="7" class="align_center-flex">
-                    증상강도
-                  </ion-col>
-                  <ion-col size="5">
-                    <span *ngIf="panics.panicIntensity == 1"><img src="../../../../../../assets/image/panic/v_intensity_1.svg" class="mgL3vw"></span>
-                    <span *ngIf="panics.panicIntensity == 2"><img src="../../../../../../assets/image/panic/v_intensity_2.svg" class="mgL3vw"></span>
-                    <span *ngIf="panics.panicIntensity == 3"><img src="../../../../../../assets/image/panic/v_intensity_3.svg" class="mgL3vw"></span>
-                    <span *ngIf="panics.panicIntensity == 4"><img src="../../../../../../assets/image/panic/v_intensity_4.svg" class="mgL3vw"></span>
-                    <span *ngIf="panics.panicIntensity == 5"><img src="../../../../../../assets/image/panic/v_intensity_5.svg" class="mgL3vw"></span>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-col>
-            <ion-col size="6" class="panicDetailText pd3_5vw">
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="7" class="align_center-flex">
-                    지속시간
-                  </ion-col>
-                  <ion-col size="5" class="align_center-flex">
-                    <span class="diaryCountColor">{{panics.panicTime}}</span>&nbsp;분
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="text_center pdT2vh pdR5vw pdL5vw"><button class="saveBtn" (click)="goToPage('/panic-diary', '공황 증상 입력')">공황 증상 입력</button></ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-grid class="pd3_8vw">
-                <ion-row>
-                  <ion-col class="panicDetailText pdB1vh">동반증상</ion-col>
+              <ion-grid class="panicDetailBox mg5vw" *ngFor="let panics of panicDataList; let i = index;">
+                <ion-row class="panic-border-bottom pd3_8vw">
+                  <ion-col size="11" class="panicDetailText">
+                    <span>{{panics.startDt}}</span>
+                  </ion-col>
                 </ion-row>
-                <ion-row class="symtomListBox">
+                <ion-row class="panic-border-bottom">
+                  <ion-col size="6" class="panicDetailText panic-border-right pd3_5vw">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="7" class="align_center-flex">
+                          증상강도
+                        </ion-col>
+                        <ion-col size="5">
+                          <span *ngIf="panics.panicIntensity == 1"><img src="../../../../../../assets/image/panic/v_intensity_1.svg" class="mgL3vw"></span>
+                          <span *ngIf="panics.panicIntensity == 2"><img src="../../../../../../assets/image/panic/v_intensity_2.svg" class="mgL3vw"></span>
+                          <span *ngIf="panics.panicIntensity == 3"><img src="../../../../../../assets/image/panic/v_intensity_3.svg" class="mgL3vw"></span>
+                          <span *ngIf="panics.panicIntensity == 4"><img src="../../../../../../assets/image/panic/v_intensity_4.svg" class="mgL3vw"></span>
+                          <span *ngIf="panics.panicIntensity == 5"><img src="../../../../../../assets/image/panic/v_intensity_5.svg" class="mgL3vw"></span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                  <ion-col size="6" class="panicDetailText pd3_5vw">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="7" class="align_center-flex">
+                          지속시간
+                        </ion-col>
+                        <ion-col size="5" class="align_center-flex">
+                          <span class="diaryCountColor">{{panics.panicTime}}</span>&nbsp;분
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
                   <ion-col>
-                    <span *ngFor="let symptoms of panics.symptoms" class="symtomText border-none pd1vw mgR2vw">
-                      <span *ngIf="symptoms.symptomName !== '기타'">{{symptoms.symptomName}}</span>
-                      <span *ngIf="symptoms.symptomName === '기타'">{{symptoms.symptomEtc}}</span>
-                    </span>
+                    <ion-grid class="pd3_8vw">
+                      <ion-row>
+                        <ion-col class="panicDetailText pdB1vh">동반증상</ion-col>
+                      </ion-row>
+                      <ion-row class="symtomListBox">
+                        <ion-col>
+                          <span *ngFor="let symptoms of panics.symptoms" class="symtomText border-none pd1vw mgR2vw">
+                            <span *ngIf="symptoms.symptomName !== '기타'">{{symptoms.symptomName}}</span>
+                            <span *ngIf="symptoms.symptomName === '기타'">{{symptoms.symptomEtc}}</span>
+                          </span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -89,7 +109,7 @@
         <ion-grid class="emotionDegreeBox pdT1vh">
           <ion-row class="pd4vw">
             <ion-col size="2" class="emotionDetailText">기분</ion-col>
-            <ion-col size="9" class="emotionInfoText text_right">긍정/부정 기분을 각각 선택 가능</ion-col>
+            <ion-col size="9" class="emotionInfoText text_right">긍정/부정을 각각 선택 가능</ion-col>
             <ion-col size="1" class="text_center align_center-grid" (click)="showInformation('feeling')"><img src="assets/image/diary/Icon-info2.svg"></ion-col>
           </ion-row>
           <ion-row>
@@ -108,7 +128,7 @@
         <ion-grid class="emotionDegreeBox pdT1vh">
           <ion-row class="pd4vw">
             <ion-col size="2" class="emotionDetailText">에너지</ion-col>
-            <ion-col size="9" class="emotionInfoText text_right">긍정/부정 에너지를 각각 선택 가능</ion-col>
+            <ion-col size="9" class="emotionInfoText text_right">긍정/부정을 각각 선택 가능</ion-col>
             <ion-col size="1" class="text_center align_center-grid" (click)="showInformation('energy')"><img src="assets/image/diary/Icon-info2.svg"></ion-col>
           </ion-row>
           <ion-row>
@@ -149,11 +169,11 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="emotionDataList.length === 0" class="bkcolor_fcfcfd">
-      <ion-col size="4" class="text_center pdT5vh pdR4vw pdL4vw pdB5vh"><button class="cancelBtn" (click)="cancelEmotionDegree()">취소</button></ion-col>
-      <ion-col size="8" class="text_center pdT5vh pdR4vw pdB5vh"><button class="saveBtn" (click)="saveEmotionDataChk()">저장</button></ion-col>
+      <ion-col size="4" class="text_center pdT4vh pdR4vw pdL4vw pdB4vh"><button class="cancelBtn" (click)="cancelEmotionDegree()">취소</button></ion-col>
+      <ion-col size="8" class="text_center pdT4vh pdR4vw pdB4vh"><button class="saveBtn" (click)="saveEmotionDataChk()">저장</button></ion-col>
     </ion-row>
     <ion-row *ngIf="emotionDataList.length !== 0" class="bkcolor_fcfcfd">
-      <ion-col class="text_center pdT5vh pdR4vw pdB5vh pdL4vw"><button class="saveBtn" (click)="saveEmotionDataChk()">수정</button></ion-col>
+      <ion-col class="text_center pdT4vh pdR4vw pdB4vh pdL4vw"><button class="saveBtn" (click)="saveEmotionDataChk()">수정</button></ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid class="mgB10vh">
@@ -191,12 +211,20 @@
                         <ion-col size="9">
                           <ion-grid *ngFor="let drink of drinkList let i = index" [hidden]="drink.drinkWhen !== 'M'" class="border-bottom">
                             <ion-row>
-                              <ion-col size="7" class="pattern-list-box pdL4vw">
-                                <span *ngIf="drink.drinkName !== '기타'">{{drink.drinkName}}</span>
-                                <span *ngIf="drink.drinkName === '기타'">{{drink.drinkEtc}}</span>
-                              </ion-col>
-                              <ion-col size="5" class="pattern-list-box">
-                                <span class="diaryCountColor">{{drink.drinkAmount}}</span><span class="countText">&nbsp;{{checkDrinkUnit(drink.drinkCode)}}</span>
+                              <ion-col class="pattern-list-box pdL4vw">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col class="pattern-caffenie-list-box1">
+                                      <span *ngIf="drink.drinkName !== '기타'">{{drink.drinkName}}</span>
+                                      <span *ngIf="drink.drinkName === '기타'">{{drink.drinkEtc}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row>
+                                    <ion-col class="pattern-list-box2">
+                                      <span class="diaryCountColor">{{drink.drinkAmount}}</span><span class="countText">&nbsp;{{checkDrinkUnit(drink.drinkCode)}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
                               </ion-col>
                             </ion-row>
                           </ion-grid>
@@ -209,12 +237,20 @@
                         <ion-col size="9">
                           <ion-grid *ngFor="let drink of drinkList let i = index" [hidden]="drink.drinkWhen !== 'A'" class="border-bottom">
                             <ion-row>
-                              <ion-col size="7" class="pattern-list-box pdL4vw">
-                                <span *ngIf="drink.drinkName !== '기타'">{{drink.drinkName}}</span>
-                                <span *ngIf="drink.drinkName === '기타'">{{drink.drinkEtc}}</span>
-                              </ion-col>
-                              <ion-col size="5" class="pattern-list-box">
-                                <span class="diaryCountColor">{{drink.drinkAmount}}</span><span class="countText">&nbsp;{{checkDrinkUnit(drink.drinkCode)}}</span>
+                              <ion-col class="pattern-list-box pdL4vw">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col class="pattern-caffenie-list-box1">
+                                      <span *ngIf="drink.drinkName !== '기타'">{{drink.drinkName}}</span>
+                                      <span *ngIf="drink.drinkName === '기타'">{{drink.drinkEtc}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row>
+                                    <ion-col class="pattern-list-box2">
+                                      <span class="diaryCountColor">{{drink.drinkAmount}}</span><span class="countText">&nbsp;{{checkDrinkUnit(drink.drinkCode)}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
                               </ion-col>
                             </ion-row>
                           </ion-grid>
@@ -227,12 +263,20 @@
                         <ion-col size="9">
                           <ion-grid *ngFor="let drink of drinkList let i = index" [hidden]="drink.drinkWhen !== 'N'" class="border-bottom">
                             <ion-row>
-                              <ion-col size="7" class="pattern-list-box pdL4vw">
-                                <span *ngIf="drink.drinkName !== '기타'">{{drink.drinkName}}</span>
-                                <span *ngIf="drink.drinkName === '기타'">{{drink.drinkEtc}}</span>
-                              </ion-col>
-                              <ion-col size="5" class="pattern-list-box">
-                                <span class="diaryCountColor">{{drink.drinkAmount}}</span><span class="countText">&nbsp;{{checkDrinkUnit(drink.drinkCode)}}</span>
+                              <ion-col class="pattern-list-box pdL4vw">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col class="pattern-caffenie-list-box1">
+                                      <span *ngIf="drink.drinkName !== '기타'">{{drink.drinkName}}</span>
+                                      <span *ngIf="drink.drinkName === '기타'">{{drink.drinkEtc}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row>
+                                    <ion-col class="pattern-list-box2">
+                                      <span class="diaryCountColor">{{drink.drinkAmount}}</span><span class="countText">&nbsp;{{checkDrinkUnit(drink.drinkCode)}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
                               </ion-col>
                             </ion-row>
                           </ion-grid>
@@ -287,7 +331,7 @@
                                     </ion-col>
                                   </ion-row>
                                   <ion-row>
-                                    <ion-col class="pattern-caffenie-list-box2">
+                                    <ion-col class="pattern-list-box2">
                                       <span class="diaryCountColor">{{caffeine.caffeineAmount}}</span><span class="countText">&nbsp;{{checkCaffeinUnit(caffeine.caffeineCode)}}</span>
                                     </ion-col>
                                   </ion-row>
@@ -313,7 +357,7 @@
                                     </ion-col>
                                   </ion-row>
                                   <ion-row>
-                                    <ion-col class="pattern-caffenie-list-box2">
+                                    <ion-col class="pattern-list-box2">
                                       <span class="diaryCountColor">{{caffeine.caffeineAmount}}</span><span class="countText">&nbsp;{{checkCaffeinUnit(caffeine.caffeineCode)}}</span>
                                     </ion-col>
                                   </ion-row>
@@ -339,7 +383,7 @@
                                     </ion-col>
                                   </ion-row>
                                   <ion-row>
-                                    <ion-col class="pattern-caffenie-list-box2">
+                                    <ion-col class="pattern-list-box2">
                                       <span class="diaryCountColor">{{caffeine.caffeineAmount}}</span><span class="countText">&nbsp;{{checkCaffeinUnit(caffeine.caffeineCode)}}</span>
                                     </ion-col>
                                   </ion-row>
@@ -398,7 +442,7 @@
                                     </ion-col>
                                   </ion-row>
                                   <ion-row>
-                                    <ion-col class="pattern-caffenie-list-box2">
+                                    <ion-col class="pattern-list-box2">
                                       <span class="diaryCountColor">{{ex.exerciseTime}}</span><span class="countText">&nbsp;분</span>
                                     </ion-col>
                                   </ion-row>
@@ -424,7 +468,7 @@
                                     </ion-col>
                                   </ion-row>
                                   <ion-row>
-                                    <ion-col class="pattern-caffenie-list-box2">
+                                    <ion-col class="pattern-list-box2">
                                       <span class="diaryCountColor">{{ex.exerciseTime}}</span><span class="countText">&nbsp;분</span>
                                     </ion-col>
                                   </ion-row>
@@ -450,7 +494,7 @@
                                     </ion-col>
                                   </ion-row>
                                   <ion-row>
-                                    <ion-col class="pattern-caffenie-list-box2">
+                                    <ion-col class="pattern-list-box2">
                                       <span class="diaryCountColor">{{ex.exerciseTime}}</span><span class="countText">&nbsp;분</span>
                                     </ion-col>
                                   </ion-row>

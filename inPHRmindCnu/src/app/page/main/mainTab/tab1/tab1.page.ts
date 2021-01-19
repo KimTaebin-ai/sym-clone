@@ -24,6 +24,7 @@ import * as moment from 'moment';
 import {CommonUtilService} from '../../../../util/common/common-util.service';
 import {LoadingService} from '../../../../util/loading.service';
 import {PatientSurveyService} from '../../../../mind-module/service/patient-survey.service';
+import {LifelogService} from '../../../../mind-module/service/lifelog.service';
 
 
 @Component({
@@ -77,12 +78,13 @@ export class Tab1Page implements OnInit {
       private healthKit: HealthKit,
       private commonUtillService: CommonUtilService,
       private loadingService: LoadingService,
-      private surveyService: PatientSurveyService
+      private surveyService: PatientSurveyService,
+      private lifelogService: LifelogService
   ) {}
 
   ngOnInit(): void {
 
-    this.test();
+    //this.test();
 
 /*    this.platformService.getDeviceList().subscribe(res => {
       console.log(res)
@@ -173,175 +175,11 @@ export class Tab1Page implements OnInit {
   }
 
 
-  mibandTest() {
-/*    alert('ddddㄴ')
-    this.health.isAvailable()
-        .then((available:boolean) => {
-          console.log(available);
-          this.health.requestAuthorization([
-            'distance', 'nutrition',  //read and write permissions
-            {
-              read: ['steps']       //read only permission
-            }
-          ])
-              .then(res => {
-                    console.log('미밴드 5 : ', res);
-                    alert(JSON.stringify(res));
-                    /!*this.testInfo = res;*!/
-                    this.getMiBandData();
-              }
-              )
-              .catch(e => console.log('미밴드 5 연동 오류: ', e));
-        })
-        .catch(e => console.log('미밴드 5 연동 오류2: ', e));*/
-    this.health.isAvailable()
-        .then((available: boolean) => {
-          this.health.requestAuthorization([
-            'distance',
-            'nutrition',
-            'activity',
-            {
-              read: ['steps', 'height', 'weight', 'heart_rate', 'activity']
-            },
-          ])
-              .then((res) => {
-                alert(JSON.stringify(res))
-                this.getStepsFromMiBand();
-                this.getHeartRateFromMiBand();
-                this.getSleepFromMiBand();
-              })
-              .catch((e) => alert(JSON.stringify(e)));
-        });
 
-/*          this.health.queryAggregated({
-            startDate: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000),
-            endDate: new Date(), // now
-            dataType: 'steps',
-            bucket: 'day'*/
 
-/*          console.log(available);
-          this.health.requestAuthorization([
-            'distance', 'nutrition',  //read and write permissions
-            {
-              read: ['steps']       //read only permission
-            }
-          ])
-              .then(res => {
-                    console.log('미밴드 5 : ', res);
-                    alert(JSON.stringify(res));
-                    this.getMiBandData();
-                  }
-              )
-              .catch(e => console.log('미밴드 5 연동 오류: ', e));
-        })
-        .catch(e => console.log('미밴드 5 연동 오류2: ', e));*/
-    /*if (this.health.isAuthorized(['steps'])) {
-      console.log('Already Authorised');
-      this.health.requestAuthorization([
-        'distance',
-        'nutrition',
-        {
-          read: ['steps', 'height', 'weight'],
-          write: ['height', 'weight'],
-        },
-      ])
-          .then((res) => alert(JSON.stringify(res)))
-          .catch((e) => alert(JSON.stringify(e)))
-      alert(1)
-      this.health.queryAggregated({
-        startDate: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000),
-        endDate: new Date(), // now
-        dataType: 'steps',
-        bucket: 'day'
-      })
-          .then(res => alert(JSON.stringify(res)))
-          .catch(e => alert(JSON.stringify(e)));
-    } else {
-      alert(2)
-      this.health
-          .requestAuthorization([
-            'distance',
-            'nutrition',
-            {
-              read: ['steps'],
-              write: ['height', 'weight'],
-            },
-          ])
-          .then((res) => alert(JSON.stringify(res)))
-          .catch((e) => alert(JSON.stringify(e)));
-    }
-*/
-  }
 
-  getHeartRateFromMiBand(){
-    const startDt = moment(new Date()).format('YYYY-MM-DD') + ' 00:00:00';
-    this.health.query({
-      startDate: new Date(startDt),
-      endDate: new Date(), // now
-      filtered: true,
-      dataType: 'heart_rate'
-    })
-        .then(res => {
-          alert(JSON.stringify(res));
-          const resultData: any = res;
-          if (resultData.length > 0){
-            for (let i = 0; i < resultData.length; i++) {
-              resultData[i].startDate = moment(res[i].startDate).format('YYYY-MM-DD HH:mm:ss');
-              resultData[i].endDate = moment(res[i].endDate).format('YYYY-MM-DD HH:mm:ss');
-            }
-          }
-          this.heartRate = resultData;
-        })
-        .catch(e => alert(JSON.stringify(e)));
-  }
-  getSleepFromMiBand(){
-    const startDt = moment('2020-11-01').format('YYYY-MM-DD');
-    alert(startDt)
-    alert(new Date(startDt))
-    this.health.query({
-      startDate: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000),
-      /*startDate: new Date(startDt),*/
-      endDate: new Date(), // now
-      filtered: true,
-      dataType: 'activity'/*,
-            bucket: 'day'*/
-    })
-        .then(res => {
-          alert(JSON.stringify(res));
-          const resultData: any = res;
-          if (resultData.length > 0){
-            for (let i = 0; i < resultData.length; i++) {
-              resultData[i].startDate = moment(res[i].startDate).format('YYYY-MM-DD HH:mm:ss');
-              resultData[i].endDate = moment(res[i].endDate).format('YYYY-MM-DD HH:mm:ss');
-            }
-          }
-          this.sleepList = resultData;
-        })
-        .catch(e => alert(JSON.stringify(e)));
-  }
-  getStepsFromMiBand(){
-    const startDt = moment(new Date()).format('YYYY-MM-DD') + ' 00:00:00';
-    this.health.query({
-        /*startDate: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000),*/
-        startDate: new Date(startDt),
-        endDate: new Date(), // now
-        filtered: true,
-        dataType: 'steps'/*,
-            bucket: 'day'*/
-      })
-          .then(res => {
-            alert(JSON.stringify(res));
-            const resultData: any = res;
-            if (resultData.length > 0){
-              for (let i = 0; i < resultData.length; i++) {
-                resultData[i].startDate = moment(res[i].startDate).format('YYYY-MM-DD HH:mm:ss');
-                resultData[i].endDate = moment(res[i].endDate).format('YYYY-MM-DD HH:mm:ss');
-              }
-            }
-            this.stepList = resultData;
-          })
-          .catch(e => alert(JSON.stringify(e)));
-  }
+
+
 
   getMiBandData() {
     if (this.health.isAuthorized(['steps'])) {
@@ -404,93 +242,6 @@ export class Tab1Page implements OnInit {
 
 
 
-  // ------------------------------------------------------------------------------------
-  // Event Function
-  // ------------------------------------------------------------------------------------
-
-  onAuthEvent() {
-
-    const item: any = this.fitbitInfo;
-    item.memberSeq = 0;
-    const message = item.providerName + ' 연동을 진행하시겠습니까?';
-
-    this.mindManager.authHealthPlatform(item).then(async result => {
-       console.log('============ authHealthPlatform:', result);
-      if (result.code === ResponseCode.OK) {
-        // 최초 연동시 계정 동기화
-        await this.syncFitbit();
-        // this.updatePlatformList();
-        this.toastUtil.show('연동 완료되었습니다.', '5000', 'center');
-      } else {
-        this.toastUtil.show('연동 중 오류가 발생되었습니다. 다시 시도해 주십시오.', '5000', 'center');
-      }
-    }).catch(err => {
-      this.toastUtil.show('연동 중 오류가 발생되었습니다. 다시 시도해 주십시오.', '5000', 'center');
-    });
-  }
-
-  async syncFitbit() {
-    const provider = this.fitbitInfo;
-    provider.startDate = '2020-11-20';
-    provider.endDate = '2020-12-02';
-    // provider.memberSeq = this.mindManager.getgetMemberModel().inphrMemberSeqNo;
-
-/*    await loading.present();*/
-
-    this.mindManager.syncHealthPlatform(provider).then(res => {
-      console.log(res, 'resrser')
-      if (res.code === ResponseCode.OK) {
-        if (res.data && 0 < res.data.length) {
-          let step: any = {};
-          let health: any = {};
-          let pus: any = {};
-          let sleep: any = {};
-          for (let i = 0; i < res.data.length; i++) {
-            if (res.data[i].header.lifelogTypeCd === 'LIFELOG_TYPE_STP') {
-              step = res.data[i];
-              console.log(res.data[i], 'step');
-            } else if (res.data[i].header.lifelogTypeCd === 'LIFELOG_TYPE_BDW') {
-              health = res.data[i];
-              console.log(res.data[i], 'health');
-            } else if (res.data[i].header.lifelogTypeCd === 'LIFELOG_TYPE_PUS') {
-              pus = res.data[i];
-            } else if (res.data[i].lifelogTypeCd === 'LIFELOG_TYPE_SLP') {
-              console.log(res.data[i], 'sleep 데이터');
-              sleep = res.data[i];
-            }
-          }
-          this.testInfo.step = step;
-          this.testInfo.health = health;
-          this.testInfo.pus = pus;
-          this.testInfo.sleep = sleep;
-          console.log(this.testInfo);
-          /*const target1: LifelogModel[] = res.data.filter(
-              it => it instanceof LifelogModel && it.header.lifelogTypeCd === 'LIFELOG_TYPE_STP'
-          );
-          const target2: LifelogModel[] = res.data.filter(
-              it => it instanceof LifelogModel && it.header.lifelogTypeCd === 'LIFELOG_GRP_HEALTH'
-          );
-
-          if (target1.length) {
-            console.log(target1[0].detail, 'console.log(target[0].detail);');
-            console.log(target2[0].detail, 'console.log(target[0].detail);');
-            //this.cd.detectChanges();
-            // this.setData(target[0].detail);
-          }*/
-        } else {
-          const model = new StepModel();
-          model.step = 0;
-          console.log(model, 'model');
-          //this.cd.detectChanges();
-          //this.setData(model);
-        }
-      } else {
-        this.toastUtil.show('연동 중 오류가 발생되었습니다. 다시 시도해 주십시오.', '5000', 'center');
-      }
-    }).finally(async () => {
-      await this.loadingController.dismiss();
-    });
-  }
 
   /*setData(data: any) {
     if (this.lifeType == 'BT') {
@@ -608,6 +359,7 @@ export class Tab1Page implements OnInit {
     });
 
   }
+
 
 
 }

@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {MindManager} from '../../../../mind-module/mind.manager';
 import {PageInfoService} from '../../../../services/page-info.service';
+import {EventBusService} from '../../../../services/event-bus.service';
 
 @Component({
   selector: 'app-fab',
@@ -17,7 +18,8 @@ export class FabComponent implements OnInit {
   constructor(
       private navController: NavController,
       private mindManager: MindManager,
-      private pageInfoService: PageInfoService
+      private pageInfoService: PageInfoService,
+      private eventBusService: EventBusService
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,9 @@ export class FabComponent implements OnInit {
   goToPage(url, title, type) {
     if (type === 'TAB') {
       this.pageInfoService.moveToTab(url, title).then(data => {
+        if (url === '/main/main/psychological-scale') {
+          this.eventBusService.tabInfo$.next('SCALE');
+        }
         this.navController.navigateRoot([url]);
       });
     } else {

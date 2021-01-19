@@ -5,10 +5,17 @@
 <ion-grid>
   <ion-row>
     <ion-col>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="panicDateInfo text_center">
+            {{selectedDateKo}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
       <ion-grid class="countBox">
-        <ion-row class="height12vh">
-          <ion-col size="3" class="lifePatternTitle"><span>음주</span></ion-col>
-          <ion-col size="9" class="align_center-grid pdL4vw">
+        <ion-row class="height4_8rem">
+          <ion-col size="3" class="lifePatternTitle height4_8rem"><span>음주</span></ion-col>
+          <ion-col size="9" class="align_center-grid pdL4vw height4_8rem">
             <div>
               <span class="diaryCountColor1">{{drinkList.length}}</span><span class="diaryCountColor2"> 건</span>
             </div>
@@ -40,7 +47,7 @@
                   <span class="pattern-text">2. 어떤 종류로 얼마나 마셨는지 입력해 주세요.</span>
                 </ion-col>
               </ion-row>
-              <ion-row class="pdB1vh">
+              <ion-row class="pdB2vh">
                 <ion-col>
                   <ion-grid class="pattern-select-box">
                     <ion-row class="width100Per">
@@ -54,7 +61,7 @@
                   </ion-grid>
                 </ion-col>
               </ion-row>
-              <ion-row class="pdT1vh pdB2vh" *ngIf="insertVo.drinkCode == etcCode">
+              <ion-row class="pdB2vh" *ngIf="insertVo.drinkCode == etcCode">
                 <ion-col class="pattern-select-box">
                   <ion-grid>
                     <ion-row>
@@ -65,24 +72,21 @@
                   </ion-grid>
                 </ion-col>
               </ion-row>
-              <ion-row class="pdB1vh">
-                <ion-col class="pattern-select-box">
+              <ion-row *ngIf="insertVo.drinkCode">
+                <ion-col>
                   <ion-grid class="pattern-input-border">
                     <ion-row class="height100Per align_center">
-                      <ion-col size="8">
+                      <ion-col size="9">
                         <input class="pattern-input-box" type="number" maxlength="3" [(ngModel)]="insertVo.drinkAmount" *ngIf="insertVo.drinkCode">
                       </ion-col>
-                      <ion-col class="text_right pdR5vw" *ngIf="!insertVo.drinkCode">
-                        <span>잔</span>
-                      </ion-col>
-                      <ion-col size="4" class="text_center" *ngIf="insertVo.drinkCode">
-                        {{checkUnit(insertVo.drinkCode)}}
+                      <ion-col size="3">
+                        <span class="text_center" *ngIf="insertVo.drinkCode">{{checkUnit(insertVo.drinkCode)}}</span>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
                 </ion-col>
               </ion-row>
-              <ion-row class="pdT2vh">
+              <ion-row class="pdT5vh">
                 <ion-col>
                   <button class="pattern-add-button" (click)="addDrinkDiaryChk()">
                     <span>
@@ -120,15 +124,23 @@
                       <ion-col size="9">
                         <ion-grid *ngFor="let drink of drinkList let i = index" [hidden]="drink.drinkWhen !== 'M'" class="border-bottom">
                           <ion-row>
-                            <ion-col size="5" class="pattern-list-box pdL4vw">
-                              <span *ngIf="drink.drinkCode !== etcCode">{{drink.drinkName}}</span>
-                              <span *ngIf="drink.drinkCode == etcCode">{{drink.drinkEtc}}</span>
-                            </ion-col>
-                            <ion-col size="5" class="pattern-list-box">
-                              <span class="pattern-list-font1">{{drink.drinkAmount}}</span><span class="pattern-list-font2">{{checkUnit(drink.drinkCode)}}</span>
+                            <ion-col size="10" class="pattern-list-box pdL4vw">
+                              <ion-grid>
+                                <ion-row>
+                                  <ion-col class="pattern-drink-list-box1">
+                                    <span *ngIf="drink.drinkCode !== etcCode">{{drink.drinkName}}</span>
+                                    <span *ngIf="drink.drinkCode === etcCode">{{drink.drinkEtc}}</span>
+                                  </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                  <ion-col class="pattern-drink-list-box2">
+                                    <span class="pattern-list-font1">{{drink.drinkAmount}}</span><span class="pattern-list-font2">{{checkUnit(drink.drinkCode)}}</span>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
                             </ion-col>
                             <ion-col size="2" class="pattern-list-box">
-                             <img src="assets/image/pattern/Icon_trash.svg" class="mgAuto" (click)="deleteDrinkAlert(drink)">
+                              <img src="assets/image/pattern/Icon_trash.svg" class="mgAuto" (click)="deleteDrinkAlert(drink)">
                             </ion-col>
                           </ion-row>
                         </ion-grid>
@@ -141,12 +153,20 @@
                       <ion-col size="9">
                         <ion-grid *ngFor="let drink of drinkList let i = index" [hidden]="drink.drinkWhen !== 'A'" class="border-bottom">
                           <ion-row>
-                            <ion-col size="5" class="pattern-list-box pdL4vw">
-                              <span *ngIf="drink.drinkCode !== etcCode">{{drink.drinkName}}</span>
-                              <span *ngIf="drink.drinkCode == etcCode">{{drink.drinkEtc}}</span>
-                            </ion-col>
-                            <ion-col size="5" class="pattern-list-box">
-                              <span class="pattern-list-font1">{{drink.drinkAmount}}</span><span class="pattern-list-font2">{{checkUnit(drink.drinkCode)}}</span>
+                            <ion-col size="10" class="pattern-list-box pdL4vw">
+                              <ion-grid>
+                                <ion-row>
+                                  <ion-col class="pattern-drink-list-box1">
+                                    <span *ngIf="drink.drinkCode !== etcCode">{{drink.drinkName}}</span>
+                                    <span *ngIf="drink.drinkCode === etcCode">{{drink.drinkEtc}}</span>
+                                  </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                  <ion-col class="pattern-drink-list-box2">
+                                    <span class="pattern-list-font1">{{drink.drinkAmount}}</span><span class="pattern-list-font2">{{checkUnit(drink.drinkCode)}}</span>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
                             </ion-col>
                             <ion-col size="2" class="pattern-list-box">
                               <img src="assets/image/pattern/Icon_trash.svg" class="mgAuto" (click)="deleteDrinkAlert(drink)">
@@ -162,12 +182,20 @@
                       <ion-col size="9">
                         <ion-grid *ngFor="let drink of drinkList let i = index" [hidden]="drink.drinkWhen !== 'N'" class="border-bottom">
                           <ion-row>
-                            <ion-col size="5" class="pattern-list-box pdL4vw">
-                              <span *ngIf="drink.drinkCode !== etcCode">{{drink.drinkName}}</span>
-                              <span *ngIf="drink.drinkCode == etcCode">{{drink.drinkEtc}}</span>
-                            </ion-col>
-                            <ion-col size="5" class="pattern-list-box">
-                              <span class="pattern-list-font1">{{drink.drinkAmount}}</span><span class="pattern-list-font2">{{checkUnit(drink.drinkCode)}}</span>
+                            <ion-col size="10" class="pattern-list-box pdL4vw">
+                              <ion-grid>
+                                <ion-row>
+                                  <ion-col class="pattern-drink-list-box1">
+                                    <span *ngIf="drink.drinkCode !== etcCode">{{drink.drinkName}}</span>
+                                    <span *ngIf="drink.drinkCode === etcCode">{{drink.drinkEtc}}</span>
+                                  </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                  <ion-col class="pattern-drink-list-box2">
+                                    <span class="pattern-list-font1">{{drink.drinkAmount}}</span><span class="pattern-list-font2">{{checkUnit(drink.drinkCode)}}</span>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
                             </ion-col>
                             <ion-col size="2" class="pattern-list-box">
                               <img src="assets/image/pattern/Icon_trash.svg" class="mgAuto" (click)="deleteDrinkAlert(drink)">

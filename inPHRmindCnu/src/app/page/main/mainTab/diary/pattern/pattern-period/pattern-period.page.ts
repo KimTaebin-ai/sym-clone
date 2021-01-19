@@ -5,6 +5,7 @@ import {MindManager} from '../../../../../../mind-module/mind.manager';
 import * as moment from "moment";
 import {DiaryService} from "../../../../../../mind-module/service/diary.service";
 import {LoadingService} from "../../../../../../util/loading.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pattern-period',
@@ -12,11 +13,11 @@ import {LoadingService} from "../../../../../../util/loading.service";
   styleUrls: ['./pattern-period.page.scss'],
 })
 export class PatternPeriodPage implements OnInit {
-
-  today = moment(new Date).format('YYYY-MM-DD');
+  selectedDate = '';
+  selectedDateKo = '';
 
   insertVo: any = {
-    menstruationDt: this.today,
+    menstruationDt: this.selectedDate,
     menstruationYn: ''
   };
 
@@ -27,19 +28,30 @@ export class PatternPeriodPage implements OnInit {
       private alertUtilService: AlertUtilService,
       private mindManager: MindManager,
       private diaryService: DiaryService,
-      private loadingService: LoadingService
+      private loadingService: LoadingService,
+      private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    const dateBindingInfo = this.mindManager.getDateBinding();
+    if(dateBindingInfo) {
+      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    }
+    moment.locale('ko');
     this.getPeriodList();
+  }
+
+  getDirayDateInfo(date){
+    this.selectedDate = date;
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.insertVo.menstruationDt = this.selectedDate;
   }
 
   // 생리 리스트 조회
   getPeriodList(){
-    this.diaryService.getPeriodList(this.today).subscribe(res => {
+    this.diaryService.getPeriodList(this.selectedDate).subscribe(res => {
       if(res.data) {
         this.periodList = res.data;
-        console.log('periodList', this.periodList);
         this.insertVo.menstruationYn = res.data.menstruationYn;
       }
     }, err =>{
@@ -91,7 +103,6 @@ export class PatternPeriodPage implements OnInit {
     this.diaryService.addPeriodDiary(this.insertVo).subscribe(res => {
       this.loadingService.showLoading(false, '');
       this.getPeriodList();
-      this.dataReset();
       this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">저장되었습니다.</p>');
     }, err =>{
       this.loadingService.showLoading(false, '');
@@ -99,8 +110,4 @@ export class PatternPeriodPage implements OnInit {
     });
   }
 
-  // 데이터 초기화
-  dataReset(){
-
-  }
 }

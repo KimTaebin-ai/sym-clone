@@ -11,6 +11,8 @@ export const CommonKey = {
     storagekeySnsInfo: 'SNS_INFO',                         // sns 연동 정보
     storagekeyLockPw: 'LOCK_PASSWORD',              /*잠금비밀번호 설정*/
     storagekeyPageInfo: 'PAGE_INFO',              /*페이지 정보*/
-    storagekeyLockState: 'LOCK_State'                   // 잠금 화면 ON/OFF 정보
+    storagekeyLockState: 'LOCK_State',                   // 잠금 화면 ON/OFF 정보
+    storagekeyautoLoginPopup: 'AutoLogin_Popup'         // 오토로그인 팝업 정보
+
 };
 

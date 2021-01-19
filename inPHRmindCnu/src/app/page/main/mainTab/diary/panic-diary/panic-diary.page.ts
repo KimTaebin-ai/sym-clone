@@ -1,10 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {MindManager} from "../../../../../mind-module/mind.manager";
 import {AlertController, NavController} from "@ionic/angular";
 import {DiaryService} from "../../../../../mind-module/service/diary.service";
 import * as moment from 'moment';
 import {AlertUtilService} from "../../../../../util/common/alert-util.service";
 import {LoadingService} from "../../../../../util/loading.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-panic-diary',
@@ -12,13 +13,11 @@ import {LoadingService} from "../../../../../util/loading.service";
   styleUrls: ['./panic-diary.page.scss'],
 })
 export class PanicDiaryPage implements OnInit {
-    @ViewChild('inputSD', {static: false}) sd: ElementRef; // 기본값 필요하기 때문에 static: false
-    @ViewChild('inputST', {static: false}) st: ElementRef;
 
-    today = moment(new Date()).format('YYYY-MM-DD');
+    selectedDate = '';
+    selectedDateKo = '';
 
     panicInsertVo: any = {
-      startDate: this.today,
       startTime : '',
       panicTime : '',
       panicIntensity : 0,
@@ -41,46 +40,60 @@ export class PanicDiaryPage implements OnInit {
       private navController: NavController,
       private mindManager: MindManager,
       private diaryService: DiaryService,
-      private loadingService: LoadingService
+      private loadingService: LoadingService,
+      private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    const dateBindingInfo = this.mindManager.getDateBinding();
+    if(dateBindingInfo) {
+      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    }
 
-      this.getPanicList();
-      this.getPanicSymptomList();
-
+    this.getPanicList();
+    this.getPanicSymptomList();
   }
+
+    getDirayDateInfo(date){
+      this.selectedDate = date;
+      this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    }
 
   // 일간 공황 리스트 조회
     getPanicList(){
-      const date = moment(new Date).format('YYYY-MM-DD')
+      const date = this.selectedDate;
+      console.log('date', date);
         this.diaryService.getPanicList(date).subscribe(res => {
             console.log('resTs', res);
-            this.panicDataList = res.data;
+            if(res.data) {
+                this.panicDataList = res.data;
+            }
         }, err => {
             console.log('err', err);
         })
     }
 
-  // 공황 동반증상 리스트 조회
+    // 공황 동반증상 리스트 조회
     getPanicSymptomList(){
       this.diaryService.getCodeList('panicSymptom').subscribe(res => {
-          this.panicSymptomList = res.data;
-          for(let i = 0; i < this.panicSymptomList.length; i++){
-              this.symptomClickList.push('N');
-          }
+        if(res.data) {
+            this.panicSymptomList = res.data;
+            for (let i = 0; i < this.panicSymptomList.length; i++) {
+                this.symptomClickList.push('N');
+            }
+        }
       }, err => {
           console.log('err', err);
       })
     }
 
-  // 공황 강도 선택
+    // 공황 강도 선택
     clickPanicDegree(degree){
       this.panicInsertVo.panicIntensity = degree;
     }
 
-  // 공황 증상 선택
-  clickPanicSymptom(symptom, symptomNum) {
+    // 공황 증상 선택
+    clickPanicSymptom(symptom, symptomNum) {
       for(let i = 0; i < this.panicSymptomList.length; i++){
           if(i === symptomNum){
               if(this.symptomClickList[i] === 'N'){
@@ -111,20 +124,17 @@ export class PanicDiaryPage implements OnInit {
               this.panicInsertVo.symptoms.push({symptomCode: symptom.codeSeq});
           }
       }
-  }
+    }
 
-  // 공황 추가 확인창
+    // 공황 추가 확인창
     async addPanicDiaryChk() {
         const index = this.panicInsertVo.symptoms.findIndex(obj => obj.symptomCode === this.panicInsertEtc.etcCode); // 동반증상리스트에 기타가 있는지 확인
         if(index !== -1){ // 있으면
             this.panicInsertVo.symptoms.splice(index, 1); // 제거
             this.panicInsertVo.symptoms.push({symptomCode: this.panicInsertEtc.etcCode, symptomEtc: this.panicInsertEtc.etcValue}); // 기타입력값까지 삽입
         }
-         if(this.panicInsertVo.startDate === ''){
-            this.sd.nativeElement.focus();
-            return false;
-        } else if(this.panicInsertVo.startTime === ''){
-            this.st.nativeElement.focus();
+         if(this.panicInsertVo.startTime === ''){
+             this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">시작시간을 선택해 주세요.</p>');
             return false;
         } else if(this.panicInsertVo.panicTime === ''){
             this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">지속시간을 선택해 주세요.</p>');
@@ -163,10 +173,10 @@ export class PanicDiaryPage implements OnInit {
         }
     }
 
-  // 공황 추가
+    // 공황 추가
     addPanicDiary(){
           const reqVo = {
-              startDt : moment(this.panicInsertVo.startDate).format('YYYY-MM-DD') + ' ' + moment(this.panicInsertVo.startTime).format('HH:mm'),
+              startDt : this.selectedDate + ' ' + moment(this.panicInsertVo.startTime).format('HH:mm'),
               panicTime : this.panicInsertVo.panicTime,
               panicIntensity : this.panicInsertVo.panicIntensity,
               symptoms : this.panicInsertVo.symptoms
@@ -185,8 +195,8 @@ export class PanicDiaryPage implements OnInit {
 
     }
 
-  // 공황 삭제 확인창
-  async deletePanicDiaryChk(panicSeq) {
+    // 공황 삭제 확인창
+    async deletePanicDiaryChk(panicSeq) {
       const alert = await this.alertCtrl.create({
           header: '',
           message: '<p class="alert-message-font">선택하신 공황 증상을 삭제하시겠습니까?</p>',
@@ -208,21 +218,20 @@ export class PanicDiaryPage implements OnInit {
           ]
       });
       await alert.present();
-  }
+    }
 
-  // 공황 삭제
-  deletePanicDiary(panicSeq){
+    // 공황 삭제
+    deletePanicDiary(panicSeq){
       this.diaryService.deletePanicDiary(panicSeq).subscribe(res => {
           this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
           this.getPanicList();
       }, err => {
           console.log('err', err);
       })
-  }
+    }
 
-  dataReset(){
+    dataReset(){
       this.panicInsertVo = {
-          startDate: moment(new Date).format('YYYY-MM-DD'),
           startTime : '',
           panicTime : '',
           panicIntensity : 0,
@@ -239,6 +248,6 @@ export class PanicDiaryPage implements OnInit {
       for(let i = 0; i < this.panicSymptomList.length; i++){
           this.symptomClickList.push('N');
       }
-  }
+    }
 
 }

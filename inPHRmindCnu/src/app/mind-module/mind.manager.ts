@@ -51,6 +51,13 @@ export class MindManager {
     private deviceModel: DeviceModel;
     // 코드 리스트
     private codeList: any;
+    // 모달 실행여부 정보
+    private sideMenuOnOff: any;
+    // 설문 정보
+    private surveyDataInfo: any;
+    // 자동로그인 안내 정보
+    private autoLoginPopupInfo: any;
+
 
     private fitbitCtrl: FitbitController;
     private supportedPlatformList: Array<ProviderModel>;
@@ -59,6 +66,11 @@ export class MindManager {
     /*공통------------------------------------------------------*/
     // 페이지 정보
     private pageInfo: any;
+
+    /*----------------------------------------------------------*/
+
+    /*선영 추가--------------------------------------------------*/
+    private diaryDateInfo: any;
 
     /*----------------------------------------------------------*/
 
@@ -174,6 +186,24 @@ export class MindManager {
         this.codeList = codeList;
     }
 
+    // 모달 정보
+    public getModalONOff(): any {
+        return this.sideMenuOnOff;
+    }
+
+    public setModalONOff(sideMenuOnOff) {
+        this.sideMenuOnOff = sideMenuOnOff;
+    }
+
+    // 설문 정보
+    public getSurveyData(): any {
+        return this.surveyDataInfo;
+    }
+
+    public setSurveyData(surveyData) {
+        this.surveyDataInfo = surveyData;
+    }
+
 
     /*사용자 토큰------------------------------------------------------*/
 
@@ -194,7 +224,21 @@ export class MindManager {
     public removeMemberToken() {
         this.memberToken = null;
     }
+    /*------------------------------------------------------------------*/
 
+    /*자동 로그인 안내------------------------------------------------------*/
+
+    public getAutoLoginPopupInfo() {
+        if (!this.autoLoginPopupInfo) {
+            this.autoLoginPopupInfo = StorageUtil.get(CommonKey.storagekeyautoLoginPopup);
+        }
+        return this.autoLoginPopupInfo;
+    }
+
+    public setAutoLoginPopupInfo(popup) {
+        this.autoLoginPopupInfo = popup;
+        StorageUtil.set(CommonKey.storagekeyautoLoginPopup, this.autoLoginPopupInfo);
+    }
     /*------------------------------------------------------------------*/
 
 
@@ -551,6 +595,7 @@ export class MindManager {
 
                     response.code = ResponseCode.OK;
                     response.data = data;
+                    console.log(data, 'response.data = data;')
 
                     resolve(response);
                     /*
@@ -631,13 +676,11 @@ export class MindManager {
     public synchronization(providerModel: ProviderModel): Observable<any> {
         return new Observable<any>(observer => {
             const controller = this.getController(providerModel.providerName);
-            console.log(controller, 'controllercontrollercontroller');
             // 이미 동기화 중인지 체크
             if (controller.isSynchronization()) {
                 observer.error('이미 동기화 진행중');
             } else {
                 controller.synchronization(providerModel).subscribe(data => {
-                    console.log(data, '123123');
                     observer.next(data);
                     observer.complete();
                 }, err => {
@@ -726,4 +769,15 @@ export class MindManager {
 
 
     /*------------------------------------------------------------------*/
+    /*선영 추가-----------------------------------------------------------*/
+    // 선택 날짜 정보
+    public getDateBinding(): any {
+        return this.diaryDateInfo;
+    }
+
+    public setDateBinding(date) {
+        this.diaryDateInfo = date;
+    }
+    /*------------------------------------------------------------------*/
+
 }

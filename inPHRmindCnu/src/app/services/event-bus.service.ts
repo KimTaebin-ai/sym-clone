@@ -16,4 +16,7 @@ export class EventBusService {
 
   // 로딩 정보
   readonly loading$ = new Subject<any>();
+
+  // 모달 정보
+  readonly modal$ = new Subject<any>();
 }

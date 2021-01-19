@@ -1,9 +1,17 @@
-.height12vh{
-  height: 12vh;
+.panicDateInfo{
+  height: 3.2rem;
+  background-color: #ffffff;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #454545;
 }
 
-.lineHeight12vh{
-  line-height: 12vh;
+.height4_8rem{
+  height: 4.8rem;
 }
 
 .lifePatternTitle{
@@ -11,7 +19,7 @@
   align-items: center;
   display: grid;
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: bold;
   color: #454545;
   border-right: 1px solid #eaebef;
@@ -19,7 +27,7 @@
 
 .diaryCountColor1{
   font-weight: bold;
-  font-size: 3.4vh;
+  font-size: 1.375rem;
   color: #44bbc8;
   font-stretch: normal;
   font-style: normal;
@@ -29,7 +37,7 @@
 }
 
 .diaryCountColor2{
-  font-size: 2.4vh;
+  font-size: 1rem;
   color: #44bbc8;
   font-weight: 500;
   font-stretch: normal;
@@ -41,20 +49,19 @@
 
 .countBox {
   width: 100%;
-  height: 12vh;
   border: solid 1px #eaebef;
   background-color: #ffffff;
 }
 
 .dayBox {
   width: 28vw;
-  height: 8vh;
+  height: 3.2rem;
   border-radius: 4px;
   align-items: center;
   display: inline-grid;
   text-align: center;
   font-family: Roboto;
-  font-size: 2.2vh;
+  font-size: 0.9375rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -78,11 +85,11 @@
   display: flex;
   border: solid 1px #d2d5dc;
   background-color: #ffffff;
-  height: 8vh;
+  height: 3.2rem;
   align-items: center;
   border-radius: 4px;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -94,12 +101,12 @@
 
 .pattern-input-border {
   width: 100%;
-  height: 8vh;
+  height: 3.2rem;
   border: solid 1px #d2d5dc;
   background-color: #ffffff;
   border-radius: 4px;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -110,10 +117,9 @@
 }
 
 .pattern-input-box {
-  width: 100%;
   border: 0;
-  padding-left: 4vw;
-  //padding-right: 4vw;
+  //padding-left: 4vw;
+  padding-right: 3vw;
   text-align: right;
   border-radius: 4px;
 }
@@ -132,12 +138,12 @@
 .pattern-add-button {
   display: grid;
   width: 100%;
-  height: 8vh;
+  height: 3.2rem;
   border-radius: 4px;
   background-color: #44bbc8;
   align-items: center;
   font-family: Roboto;
-  font-size: 2.7vh;
+  font-size: 1.125rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -157,12 +163,12 @@
 .pattern-report-header {
   border-bottom: solid 1px #eeeff1;
   width: 100%;
-  height: 8vh;
+  height: 3.2rem;
   align-items: center;
   padding-left: 5vw;
   padding-right: 5vw;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -172,11 +178,11 @@
 }
 
 .pattern-report-label {
-  min-height: 8vh;
+  min-height: 3.2rem;
   background-color: #eff1f5;
   text-align: left;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -189,11 +195,10 @@
 }
 
 .pattern-list-box {
-  min-height: 10vh;
   align-items: center;
   display: flex;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -215,7 +220,7 @@
 
 .pattern-text {
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -227,7 +232,7 @@
 
 .pattern-list-font1 {
   font-family: Roboto;
-  font-size: 3.3vh;
+  font-size: 1.375rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -239,7 +244,7 @@
 
 .pattern-list-font2 {
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

@@ -40,31 +40,33 @@
                           <!--음주/카페인/운동-->
                           <ion-grid *ngFor="let values of patterns.values;" class="box_border_bottom">
                             <ion-row>
-                              <ion-col size="6" class="pattern-list-box pdL3vw" [hidden]="patternDetail.type !== 'drink'">
+                              <ion-col class="pdL3vw mgT1vh" [hidden]="patternDetail.type !== 'drink'">
                                 <span *ngIf="values.drinkName !== '기타'">{{values.drinkName}}</span>
                                 <span *ngIf="values.drinkName === '기타'">{{values.drinkEtc}}</span>
                               </ion-col>
-                              <ion-col class="pattern-list-box-ex pdL3vw mgT1vh" [hidden]="patternDetail.type !== 'caffeine'">
+                              <ion-col class="pdL3vw mgT1vh" [hidden]="patternDetail.type !== 'caffeine'">
                                 <span *ngIf="values.caffeineName !== '기타'">{{values.caffeineName}}</span>
                                 <span *ngIf="values.caffeineName === '기타'">{{values.caffeineEtc}}</span>
                               </ion-col>
-                              <ion-col class="pattern-list-box-ex pdL3vw mgT1vh" [hidden]="patternDetail.type !== 'exercise'">
+                              <ion-col class="pdL3vw mgT1vh" [hidden]="patternDetail.type !== 'exercise'">
                                 <span *ngIf="values.exerciseName !== '기타'">{{values.exerciseName}}</span>
                                 <span *ngIf="values.exerciseName === '기타'">{{values.exerciseEtc}}</span>
                               </ion-col>
-                              <ion-col size="6" class="pattern-list-box pdR3vw" [hidden]="patternDetail.type !== 'drink'">
-                                <span class="reportCountColor">{{values.drinkAmount}}</span>
+                            </ion-row>
+                            <ion-row [hidden]="patternDetail.type !== 'drink'">
+                              <ion-col class="pattern-list-box2 mgB1vh">
+                                <span class="reportCountColor pdL3vw">{{values.drinkAmount}}</span>
                                 <span class="lifePatternText">&nbsp;{{checkUnit(values.drinkCode)}}</span>
                               </ion-col>
                             </ion-row>
                             <ion-row [hidden]="patternDetail.type !== 'caffeine'">
-                              <ion-col class="pattern-list-box-ex mgB1vh">
+                              <ion-col class="pattern-list-box2 mgB1vh">
                                 <span class="reportCountColor pdL3vw">{{values.caffeineAmount}}</span>
                                 <span class="lifePatternText">&nbsp;{{checkUnit(values.caffeineCode)}}</span>
                               </ion-col>
                             </ion-row>
                             <ion-row [hidden]="patternDetail.type !== 'exercise'">
-                              <ion-col class="pattern-lis`t-box-ex mgB1vh">
+                              <ion-col class="pattern-list-box2 mgB1vh">
                                 <span class="reportCountColor pdL3vw">{{values.exerciseTime}}</span>
                                 <span class="lifePatternText">&nbsp;분</span>
                               </ion-col>

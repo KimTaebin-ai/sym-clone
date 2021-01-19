@@ -9,6 +9,8 @@ import {CommonUtilService} from '../../../util/common/common-util.service';
 import {Sensors} from '@ionic-native/sensors/ngx';
 import {PageInfoService} from '../../../services/page-info.service';
 import {AlertController, IonContent, NavController} from '@ionic/angular';
+import {MindManager} from '../../../mind-module/mind.manager';
+import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-insert-psychological-scale',
@@ -90,7 +92,9 @@ export class InsertPsychologicalScalePage implements OnInit {
       private sensors: Sensors,
       private pageInfoService: PageInfoService,
       private navController: NavController,
-      private alertCtrl: AlertController
+      private alertCtrl: AlertController,
+      private mindManager: MindManager,
+      private iab: InAppBrowser
   ) { }
 
   ngOnInit() {
@@ -99,6 +103,7 @@ export class InsertPsychologicalScalePage implements OnInit {
       if (params) {
         console.log(JSON.parse(params.data))
         this.roundInfo = JSON.parse(params.data);
+        this.mindManager.setSurveyData(params.data)
         // surveyCategoryCode
         const paramData: any = {
           roundNo: this.roundInfo.roundNo,
@@ -325,6 +330,7 @@ export class InsertPsychologicalScalePage implements OnInit {
   }
 
   closeSurvey() {
+    this.mindManager.setSurveyData(null)
     const lastUrl = this.pageInfoService.getToBack();
     if (lastUrl) {
       const navigationExtras: NavigationExtras = {
@@ -336,6 +342,17 @@ export class InsertPsychologicalScalePage implements OnInit {
     } else {
       this.alertUtilService.showAlert(null, '이전 위치를 조회하는 도중 오류가 발생하였습니다.APP를 종료 후 다시 실행 시켜주세요.');
     }
+  }
+
+  // 리소스 참고 사이트 이동
+  viewWebBroser() {
+    const options = 'closebuttoncaption=닫기,hideurlbar=yes,location=no,toolbar=yes,toolbarposition=top';
+    const url = this.surveyCompleteInfo.outcomePath;
+    /*this.iab.create(url, '_blank' , options);*/
+    const browser = this.iab.create(url,  '_blank', options);
+    browser.on('loadstop').subscribe(event => {
+      browser.insertCSS({ code: 'html{height: 100%;} body{height: calc(100% - 45px);}' });
+    });
   }
 
 }

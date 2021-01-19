@@ -135,6 +135,7 @@ export class MoreInfoPage implements OnInit {
                 };
                 item.insertData = insertData;
             } else {
+                this.mindManager.setModalONOff('ON');
                 const modal = await this.modalController.create({
                     component: MoreInfoModalPage,
                     cssClass: 'moreInfoModal1',
@@ -148,6 +149,7 @@ export class MoreInfoPage implements OnInit {
 
                 modal.onDidDismiss()
                     .then((data) => {
+                        this.mindManager.setModalONOff('OFF');
                         if (data.data.modalResultYn === 'Y') {
                             if (data.data.data) {
                                 item.insertData = data.data.data;
@@ -167,6 +169,7 @@ export class MoreInfoPage implements OnInit {
                 };
                 item.insertData = insertData;
             } else {
+                this.mindManager.setModalONOff('ON');
                 const modal = await this.modalController.create({
                     component: MoreInfoModalPage,
                     cssClass: 'moreInfoModal2',
@@ -180,6 +183,7 @@ export class MoreInfoPage implements OnInit {
 
                 modal.onDidDismiss()
                     .then((data) => {
+                        this.mindManager.setModalONOff('OFF');
                         if (data.data.data) {
                             item.insertData = data.data.data;
                         }
@@ -198,6 +202,7 @@ export class MoreInfoPage implements OnInit {
                 };
                 item.insertData = insertData;
             } else {
+                this.mindManager.setModalONOff('ON');
                 const modal = await this.modalController.create({
                     component: MoreInfoModalPage,
                     cssClass: 'moreInfoModal2',
@@ -211,6 +216,7 @@ export class MoreInfoPage implements OnInit {
 
                 modal.onDidDismiss()
                     .then((data) => {
+                        this.mindManager.setModalONOff('OFF');
                         if (data.data.data) {
                             item.insertData = data.data.data;
                         }
@@ -289,7 +295,7 @@ export class MoreInfoPage implements OnInit {
 
     nextPage() {
         if (this.infoPage === 9) {
-            this.insertMoreUserInfo();
+            this.insertMoreUserInfo('LAST');
         } else {
             this.content.scrollToTop();
             if (this.infoPage === 2) {
@@ -307,14 +313,14 @@ export class MoreInfoPage implements OnInit {
                         return false;
                     }
                 } else {
-                    this.infoPage++;
+                    this.insertMoreUserInfo('ADD');
                 }
             } else if (this.infoPage === 1) {
                 this.mindManager.setLockState(false);
-                this.infoPage++;
+                this.insertMoreUserInfo('ADD');
             } else if (this.infoPage === 2) {
                 this.mindManager.setLockState(true);
-                this.infoPage++;
+                this.insertMoreUserInfo('ADD');
             } else if (this.infoPage === 3) {
                 if (!this.authService.infoDiseaseValidation(this.pageInfo.infoDisease)) {
                     this.alertUtilService.showAlert(null, '상세 내용을 입력해주세요.');
@@ -324,7 +330,7 @@ export class MoreInfoPage implements OnInit {
                     if (subInfo === false) {
                         this.infoPage = this.infoPage + 2;
                     } else {
-                        this.infoPage++;
+                        this.insertMoreUserInfo('ADD');
                     }
                 }
             } else if (this.infoPage === 5) {
@@ -343,10 +349,10 @@ export class MoreInfoPage implements OnInit {
                     this.alertUtilService.showAlert(null, '상세 내용을 모두 입력해주세요.');
                     return false;
                 } else {
-                    this.infoPage++;
+                    this.insertMoreUserInfo('ADD');
                 }
             } else {
-                this.infoPage++;
+                this.insertMoreUserInfo('ADD');
             }
 
         }
@@ -543,24 +549,29 @@ export class MoreInfoPage implements OnInit {
         }
     }
 
-    insertMoreUserInfo() {
+    insertMoreUserInfo(type) {
         console.log(this.pageInfo, this.patientMoreInfo);
         const reqVo: any = this.authService.setMoreInfoInsertData(this.pageInfo, this.patientMoreInfo);
         this.authService.setMoreInfo(reqVo).subscribe(res => {
-            this.alertUtilService.showAlert(null, '추가 정보 입력을 완료하였습니다.');
-            const paramVo = {
-                queryParams: {
-                    login : 'LOGIN'
+            console.log('결과', res)
+            if (type === 'ADD') {
+                this.infoPage++;
+            } else if (type === 'LAST') {
+                this.alertUtilService.showAlert(null, '추가 정보 입력을 완료하였습니다.');
+                const paramVo = {
+                    queryParams: {
+                        login : 'LOGIN'
+                    }
                 }
+                const navigationExtras: NavigationExtras = paramVo;
+                const data: any = {
+                    url: '/main/main/home',
+                    title: '메인페이지/홈'
+                }
+                this.pageInfoService.resetPageInfo(data).then(() => {
+                    this.navController.navigateRoot(['/main'], navigationExtras);
+                });
             }
-            const navigationExtras: NavigationExtras = paramVo;
-            const data: any = {
-                url: '/main/main/home',
-                title: '메인페이지/홈'
-            }
-            this.pageInfoService.resetPageInfo(data).then(() => {
-                this.navController.navigateRoot(['/main'], navigationExtras);
-            });
         }, err => {
             this.alertUtilService.showAlert(null, err);
         });
@@ -793,12 +804,14 @@ export class MoreInfoPage implements OnInit {
         const osType = localStorage.getItem('osType');
         const systemSetting = this.mindManager.getSystemInfo();
         const versionInfo = this.mindManager.getLastVersionInfo();
+        const popupInfo = this.mindManager.getAutoLoginPopupInfo();
         systemSetting.autoLogin = false;
         this.mindManager.removeMemberToken();
         StorageUtil.clear();
         localStorage.setItem('versionNumber', versionNumber);
         localStorage.setItem('versionCode', versionCode);
         localStorage.setItem('osType', osType);
+        this.mindManager.setAutoLoginPopupInfo(popupInfo);
         this.mindManager.setLastVersionInfo(versionInfo);
         this.mindManager.setSystemInfo(systemSetting);
         this.mindManager.setLockState(false);

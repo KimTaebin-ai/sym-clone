@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {AlertUtilService} from '../../../util/common/alert-util.service';
 import {DateService} from '../../../util/common/date.service';
+import {EventBusService} from '../../../services/event-bus.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-more-info-modal',
@@ -13,6 +15,8 @@ export class MoreInfoModalPage implements OnInit {
   @Input() type: string;
   @Input() codeList: any;
 
+  // 이벤트 버스
+  eventSubscription: Subscription;
 
   /*===========10-1 질문==========================*/
   modalDate: any = {
@@ -26,10 +30,18 @@ export class MoreInfoModalPage implements OnInit {
   constructor(
       public modalCtrl: ModalController,
       private alertUtilService: AlertUtilService,
-      private dateService: DateService
+      private dateService: DateService,
+      private eventBusService: EventBusService
   ){}
 
   ngOnInit() {
+    this.eventSubscription = this.eventBusService.modal$.subscribe(event => {
+      if (event === 'OFF') {
+        this.modalCtrl.dismiss({
+          dismissed: true
+        });
+      }
+    });
   }
 
 

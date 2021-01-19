@@ -325,7 +325,7 @@
         <ion-grid [hidden]="mindType !== 'lifePattern'">
           <ion-row class="lifePatternMiddleNav pd3_5vw">
             <ion-col size="1" class="text_center align_center-grid" (click)="moveLastWeek()"><img src="../../../assets/image/arrow/icon_arrow_c_left.svg"></ion-col>
-            <ion-col size="10">
+            <ion-col size="10" class="align_center-grid">
               {{startDay | date : 'y년 M월 d일'}} ~ {{endDay | date : 'M월 d일'}}
             </ion-col>
             <ion-col size="1" class="text_center align_center-grid" (click)="moveNextWeek()" *ngIf="!isAfterToday()">

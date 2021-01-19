@@ -4,6 +4,9 @@ import {PatientSurveyService} from '../../../../mind-module/service/patient-surv
 import {PageInfoService} from '../../../../services/page-info.service';
 import {NavigationExtras} from '@angular/router';
 import {NavController} from '@ionic/angular';
+import {ResponseCode} from '../../../../mind-module/data/response.data';
+import {AlertUtilService} from '../../../../util/common/alert-util.service';
+import {EventBusService} from '../../../../services/event-bus.service';
 
 @Component({
   selector: 'app-psychological-scale',
@@ -25,7 +28,9 @@ export class PsychologicalScalePage implements OnInit {
   constructor(
       private surveyService: PatientSurveyService,
       private pageInfoService: PageInfoService,
-      private navController: NavController
+      private navController: NavController,
+      private alertUtilService: AlertUtilService,
+      private eventBusService: EventBusService
   ) {
   }
 
@@ -39,7 +44,14 @@ export class PsychologicalScalePage implements OnInit {
     this.surveyService.getSurveyList().subscribe(res => {
       this.surveyList = res;
     }, err => {
+      if (err.code === ResponseCode.NO_MATCHING) {
+        this.alertUtilService.showAlert(null, '참여중인 설문이 없습니다.');
 
+        this.pageInfoService.moveToTab('/main/main/psychological-scale', '메인화면/홈').then(data => {
+          this.eventBusService.tabInfo$.next('HOME');
+          this.navController.navigateRoot(['/main/main/home']);
+        });
+      }
     });
   }
 

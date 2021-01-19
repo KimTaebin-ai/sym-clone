@@ -5,6 +5,7 @@ import {MindManager} from "../../../../../../mind-module/mind.manager";
 import {DiaryService} from "../../../../../../mind-module/service/diary.service";
 import * as moment from "moment";
 import {LoadingService} from "../../../../../../util/loading.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pattern-ex',
@@ -12,13 +13,14 @@ import {LoadingService} from "../../../../../../util/loading.service";
   styleUrls: ['./pattern-ex.page.scss'],
 })
 export class PatternExPage implements OnInit {
+  selectedDate = '';
+  selectedDateKo = '';
 
-  today = moment(new Date).format('YYYY-MM-DD');
   etcCode = '';
 
   insertVo: any = {
     exerciseCode: '',
-    exerciseDt: this.today,
+    exerciseDt: this.selectedDate,
     exerciseEtc: null,
     exerciseTime: '',
     exerciseWhen: ''
@@ -38,18 +40,29 @@ export class PatternExPage implements OnInit {
       private alertUtilService: AlertUtilService,
       private mindManager: MindManager,
       private diaryService: DiaryService,
-      private loadingService: LoadingService
+      private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
+    const dateBindingInfo = this.mindManager.getDateBinding();
+    if(dateBindingInfo) {
+      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    }
+    moment.locale('ko');
     this.getExList();
     this.getExCodeList();
 
   }
 
+  getDirayDateInfo(date){
+    this.selectedDate = date;
+    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
+    this.insertVo.exerciseDt = this.selectedDate;
+  }
+
   // 운동 리스트 조회
   getExList(){
-    this.diaryService.getExList(this.today).subscribe(res => {
+    this.diaryService.getExList(this.selectedDate).subscribe(res => {
       if(res.data) {
         this.exerciseList = res.data;
         for(let i = 0; i < this.exerciseList.length; i++){
@@ -173,12 +186,11 @@ export class PatternExPage implements OnInit {
   deleteExDiary(exDetail){
     const deleteVo = {
       code : exDetail.exerciseCode,
-      date : this.today,
+      date : this.selectedDate,
       etc : exDetail.exerciseEtc,
       when : exDetail.exerciseWhen
     }
     if(exDetail.exerciseCode === this.etcCode) {
-      console.log('etc');
       this.diaryService.deleteExDiaryEtc(deleteVo).subscribe(res => {
         this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
         this.dataReset();
@@ -187,7 +199,6 @@ export class PatternExPage implements OnInit {
         console.log('err', err);
       });
     } else {
-      console.log('etcX');
       this.diaryService.deleteExDiary(deleteVo).subscribe(res => {
         this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
         this.dataReset();
@@ -202,7 +213,7 @@ export class PatternExPage implements OnInit {
   dataReset(){
     this.insertVo = {
       exerciseCode: '',
-      exerciseDt: this.today,
+      exerciseDt: this.selectedDate,
       exerciseEtc: null,
       exerciseTime: '',
       exerciseWhen: ''

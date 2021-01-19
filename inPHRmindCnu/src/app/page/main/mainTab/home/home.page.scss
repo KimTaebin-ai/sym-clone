@@ -4,15 +4,15 @@
 }
 
 .main-header-box {
-  position: absolute;
+/*  position: absolute;
   top: 0;
   padding: 4vw;
-  margin-top: 1vh;
+  margin-top: 1vh;*/
 }
 
 .main-header-name {
   font-family: Roboto;
-  font-size: 3vh;
+  font-size: 2.6vh;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -39,9 +39,15 @@
   border-radius: 0 0 18px 18px;
 }
 
-.main-card1-position {
-  top: -12vh;
+.main-card-box {
   position: relative;
+}
+
+.main-card1-position {
+  top: 0;
+  position: absolute;
+  width: 100vw;
+  padding-top: 4vh;
 }
 
 .main-card1-header {
@@ -219,7 +225,7 @@
   border-bottom: solid 1px #eeeff1;
   width: 86%;
   position: relative;
-  top: -1.2vh;
+  top: 1.2vh;
   margin: auto;
 }
 

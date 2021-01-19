@@ -1,0 +1,132 @@
+<app-loading></app-loading>
+<ion-content>
+  <app-loading></app-loading>
+  <ion-grid class="pd3vw">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="login_logo_box">
+          <ion-row>
+            <ion-col class="pdT3Vh">
+              <img src="assets/image/sim_logo.svg" (click)="test()">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid [formGroup]="form">
+          <ion-row class="pd1vw">
+            <ion-col>
+              <input class="common_input" type="text"
+                     inputmode="text" inputmode="text" maxlength="200"
+                     formControlName="userId"
+                     appTextValidation
+                     placeholder="이메일을 입력해주세요." />
+              <!--<input class="common_input" type="text" maxlength="200" formControlName="userId">-->
+            </ion-col>
+          </ion-row>
+          <ion-row class="pd1vw">
+            <ion-col>
+              <input class="common_input" type="password"
+                     inputmode="text" inputmode="text" maxlength="20"
+                     formControlName="password"
+                     appTextValidation
+                     placeholder="비밀번호를 입력해주세요." />
+              <!--<input class="common_input" type="password" maxlength="20" formControlName="password">-->
+            </ion-col>
+          </ion-row>
+          <ion-row class="pd1vw pdB2vh">
+            <ion-col class="pd0">
+              <ion-grid>
+                <ion-row (click)="selectAutoLoginType()">
+                  <ion-col size="1" class="align_center-grid">
+                    <img src="assets/image/check1.svg" class="check1" *ngIf="!systemInfo.autoLogin">
+                    <img src="assets/image/check1_active.svg" class="check1" *ngIf="systemInfo.autoLogin">
+                  </ion-col>
+                  <ion-col size="10" class="align_center-grid">
+                    <span class="Roboto-Medium">자동 로그인</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pd1vw">
+            <ion-col>
+              <button class="common_button_active" (click)="login('D')"><span>로그인</span></button>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pd1vw pdT2Vh pdB2vh">
+            <ion-col class="text_center">
+              <span class="Roboto-Regular" (click)="goToPage('/find-pw', '비밀번호 찾기')">비밀번호 찾기  </span><img src="assets/image/auth/Line_3.svg" class="pdL2vw pdR2vw"><span class="Roboto-Regular" (click)="goToPage('/term', '약관')"> 회원가입</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="pdT2Vh">
+          <ion-row class="pd1vw">
+            <ion-col>
+              <span class="Roboto-Regular">SNS계정으로 간편 로그인 하세요.</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pd1vw">
+            <ion-col>
+              <ion-grid (click)="snsLogin('KAKAO')" [ngClass]="deviceInfo.platform === 'IOS' ? 'kakao_button_IOS' : 'kakao_button'">
+                <ion-row>
+                  <ion-col class="sns-icon" size="2">
+                    <img src="assets/image/kakao.svg">
+                  </ion-col>
+                  <ion-col class="sns-nm" size="10">
+                    <span [ngClass]="deviceInfo.platform === 'IOS' ? 'kakao_font_IOS' : 'kakao_font'">카카오로 로그인</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pd1vw">
+            <ion-col>
+              <ion-grid (click)="snsLogin('NAVER')" [ngClass]="deviceInfo.platform === 'IOS' ? 'naver_button_IOS' : 'naver_button'">
+                <ion-row>
+                  <ion-col class="sns-icon" size="2">
+                    <img src="assets/image/naver.svg">
+                  </ion-col>
+                  <ion-col class="sns-nm" size="10">
+                    <span [ngClass]="deviceInfo.platform === 'IOS' ? 'others_font_IOS' : 'others_font'">네이버로 로그인</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pd1vw">
+            <ion-col>
+              <ion-grid (click)="snsLogin('FACEBOOK')" [ngClass]="deviceInfo.platform === 'IOS' ? 'facebook_button_IOS' : 'facebook_button'">
+                <ion-row>
+                  <ion-col class="sns-icon" size="2">
+                    <img src="assets/image/facebook.svg">
+                  </ion-col>
+                  <ion-col class="sns-nm" size="10">
+                    <span [ngClass]="deviceInfo.platform === 'IOS' ? 'others_font_IOS' : 'others_font'">페이스북으로 로그인</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pd1vw" *ngIf="deviceInfo.platform === 'IOS'">
+            <ion-col>
+              <ion-grid class="apple_button" (click)="snsLogin('APPLE')">
+                <ion-row>
+                  <ion-col class="sns-icon" size="2">
+                    <img src="assets/image/apple.svg">
+                  </ion-col>
+                  <ion-col class="sns-nm" size="10">
+                    <span class="others_font">Apple로 로그인</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row class="pdT3Vh text_center">
+            <ion-col>
+              <img src="assets/image/softnet_corp.svg">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
