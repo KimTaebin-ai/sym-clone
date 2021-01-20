@@ -1,4 +1,5 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, Directive, OnInit, Pipe } from '@angular/core';
+import { ConfigAPIService } from 'src/app/services/API/config-api.service';
 
 @Component({
   selector: 'app-login',
@@ -6,11 +7,30 @@ import { Component, OnInit, Pipe } from '@angular/core';
   styleUrls: ['./login.page.scss'],
 })
 
-export class LoginPage implements OnInit {
+@Directive({
+  selector: '[login-submit]',
+  host: {
+    '(click)': 'login()'
+  }
+})
 
-  constructor() { }
+export class LoginPage implements OnInit {
+  id: string;
+  password: string;
+
+
+  constructor(
+   private configApiService: ConfigAPIService
+  ) { 
+
+  }
 
   ngOnInit() {
   }
 
+  login(id: string, pw: string) {
+    if (id && pw) {
+      this.configApiService.Login(id, pw);
+    }
+  }
 }

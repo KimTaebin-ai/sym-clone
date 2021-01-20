@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigAPIService {
+export class UserServiceService {
+
 
   constructor() { }
 
-  public Login(id: string, pw: string) {
-    
+  getFull(): any {
+
   }
 }
