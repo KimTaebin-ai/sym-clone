@@ -2,7 +2,7 @@
 <ion-header>
   <ion-grid>
     <ion-row>
-      <ion-col class="text_right pdR4vw pdT2vh displayGrid">
+      <ion-col class="text_right pdR4vw pdT2vh">
         <img src="assets/image/Icon_close.svg" (click)="dismiss()">
       </ion-col>
     </ion-row>
@@ -254,7 +254,12 @@
                           <ion-grid class="auth-input-box">
                             <ion-row class="height100Per">
                               <ion-col size="9">
-                                <input class="auth-input" placeholder="숫자로 입력해 주세요." [(ngModel)]="moreInfoData.insertData.drinkAmount">
+                                <input class="auth-input" type="text"
+                                       inputmode="numeric" pattern="[0-9]*" maxlength="3"
+                                       [(ngModel)]="moreInfoData.insertData.drinkAmount"
+                                       appDigitOnly placeholder="숫자로 입력해 주세요."
+                                       (keypress)="keyPressForVal($event)"/>
+                                <!--<input class="auth-input" placeholder="숫자로 입력해 주세요." [(ngModel)]="moreInfoData.insertData.drinkAmount">-->
                               </ion-col>
                               <ion-col size="3" class="alcohol-unit-font">
                                 <span>{{moreInfoData.unit}}</span>
@@ -284,7 +289,7 @@
                     <ion-grid class="width100Per">
                       <ion-row>
                         <ion-col class="moreInfo-ion-select">
-                          <ion-select value="notifications" interface="action-sheet" [(ngModel)]="moreInfoData.insertData.perWeek">
+                          <ion-select value="notifications" interface="action-sheet" [(ngModel)]="moreInfoData.insertData.perWeek" cancelText="닫기">
                             <ion-select-option value="">주간 음주 횟수 선택</ion-select-option>
                             <ion-select-option value="1">주 1회</ion-select-option>
                             <ion-select-option value="2">주 2회</ion-select-option>
@@ -317,7 +322,7 @@
                     <ion-grid class="width100Per">
                       <ion-row>
                         <ion-col class="moreInfo-ion-select">
-                          <ion-select value="notifications" interface="action-sheet" [(ngModel)]="moreInfoData.insertData.numOfYears">
+                          <ion-select value="notifications" interface="action-sheet" [(ngModel)]="moreInfoData.insertData.numOfYears" cancelText="닫기">
                             <ion-select-option value="">음주 기간 선택</ion-select-option>
                             <ion-select-option value="1">1년 미만</ion-select-option>
                             <ion-select-option value="2">2년 미만</ion-select-option>

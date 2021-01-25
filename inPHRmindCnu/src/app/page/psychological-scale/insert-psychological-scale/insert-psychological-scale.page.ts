@@ -6,7 +6,6 @@ import {ResponseCode} from '../../../mind-module/data/response.data';
 import {environment} from '../../../../environments/environment';
 import {LoadingService} from '../../../util/loading.service';
 import {CommonUtilService} from '../../../util/common/common-util.service';
-import {Sensors} from '@ionic-native/sensors/ngx';
 import {PageInfoService} from '../../../services/page-info.service';
 import {AlertController, IonContent, NavController} from '@ionic/angular';
 import {MindManager} from '../../../mind-module/mind.manager';
@@ -89,7 +88,6 @@ export class InsertPsychologicalScalePage implements OnInit {
       private alertUtilService: AlertUtilService,
       private loadingService: LoadingService,
       private commonUtillService: CommonUtilService,
-      private sensors: Sensors,
       private pageInfoService: PageInfoService,
       private navController: NavController,
       private alertCtrl: AlertController,
@@ -149,14 +147,9 @@ export class InsertPsychologicalScalePage implements OnInit {
     }, err => {
       this.loadingService.showLoading(false, '');
       if (err.code === ResponseCode.SURVEY_COMPLETE) {
-        // 설문 종료 및 조도 측정
-        if (type !== 'INIT') {
-          this.setLux(err.data);
-        } else {
-          this.resetAnswer();
-          this.surveyInfo = {};
-          this.surveyCompleteInfo = err.data;
-        }
+        this.resetAnswer();
+        this.surveyInfo = {};
+        this.surveyCompleteInfo = err.data;
       } else if (err.code === ResponseCode.EMPTY_ANSWER) {
         this.alertUtilService.showAlert(null, ResponseCode.EMPTY_ANSWER_MESSAGE);
       } else {
@@ -204,6 +197,10 @@ export class InsertPsychologicalScalePage implements OnInit {
   }
 
   addMultipleAnswers(type) {
+    if (!this.multipleAnswers.answer) {
+      this.alertUtilService.showAlert(null, '내용을 입력해주세요.');
+      return false;
+    }
     if (type === 'listText') {
       this.multipleAnswers.answers.push(this.multipleAnswers.answer);
       this.multipleAnswers.answer = '';
@@ -225,40 +222,6 @@ export class InsertPsychologicalScalePage implements OnInit {
     };
     this.surveyCompleteInfo = null;
     this.getSurveyInfo(paramData, 'GET_INFO');
-  }
-
-  // 조도센서
-  setLux(completeData): any {
-    let sum = 0;
-    let count = 0;
-    const lightSensor = setInterval(() => {
-      this.loadingService.showLoading(true, '조도를 측정하는 중입니다. 잠시만 기다려주세요.');
-      this.sensors.enableSensor('LIGHT');
-      const dd = this.sensors.getState();
-      dd.then(res => {
-        if (res) {
-          sum = sum + Number(res);
-          count++;
-        }
-      });
-    }, 200);
-
-    this.commonUtillService.delay(3000).then(() => {
-      this.loadingService.showLoading(false, '');
-      clearInterval(lightSensor);
-      this.sensors.disableSensor();
-      let aug = 0;
-      if (count !== 0) {
-        aug = Math.floor(sum / count);
-      }
-      this.surveyService.setLux(aug).subscribe(res => {
-      }, err => {
-        console.log(err);
-      });
-    });
-    this.resetAnswer();
-    this.surveyInfo = {};
-    this.surveyCompleteInfo = completeData;
   }
 
   resetAnswer() {

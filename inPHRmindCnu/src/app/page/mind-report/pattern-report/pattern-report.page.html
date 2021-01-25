@@ -1,6 +1,6 @@
-<ion-header>
+<ion-content>
   <ion-grid>
-    <ion-row class="lineHeight8vh">
+    <ion-row class="lineHeight3_5rem">
       <ion-col class="text_center align_center-grid" size="2" (click)="dismiss()">
         <img src="assets/image/arrow/Icon ionic-ios-arrow-back.svg">
       </ion-col>
@@ -10,12 +10,10 @@
       <ion-col size="2"></ion-col>
     </ion-row>
   </ion-grid>
-</ion-header>
-<ion-content>
   <ion-grid>
     <ion-row class="border-top border-bottom">
       <ion-col size="3" class="lifePatternTitle"><span>{{patternDetail.typeNm}}</span></ion-col>
-      <ion-col size="9" class="lineHeight12vh pdL4vw">
+      <ion-col size="9" class="lineHeight4_8rem pdL4vw">
         <span class="reportCountColor">{{patternAllDataList.length}}</span>
         <span class="lifePatternText"> 건</span>
       </ion-col>
@@ -126,10 +124,10 @@
                           <!--생리-->
                           <ion-grid [hidden]="patternDetail.type !== 'menstruation'">
                             <ion-row class="box_border_bottom">
-                              <ion-col size="4" class="pattern-report-label">
+                              <ion-col size="4" class="pattern-report-label align_center-flex">
                                 <span>{{patterns.menstruationDt}}</span>
                               </ion-col>
-                              <ion-col size="8" class="pattern-list-box-ex pdL3vw pdR3vw">
+                              <ion-col size="8" class="pattern-list-box-ex align_center-flex pdL3vw pdR3vw">
                                 <ion-grid>
                                   <ion-row>
                                     <ion-col class="periodText">

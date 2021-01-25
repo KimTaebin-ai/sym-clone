@@ -324,3 +324,5 @@ export class SignUpPage implements OnInit, OnDestroy {
     });
   }
 }
+
+

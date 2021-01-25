@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import {MindManager} from '../mind-module/mind.manager';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,7 @@ export class PageInfoService {
           }
         }
         const lastData = pageInfo[pageInfo.length - 2];
+        this.resetDatas(lastData.url, 'MOVE');
         url = lastData.url;
         pageInfo.pop();
         this.mindManager.setPageInfo(pageInfo);
@@ -86,6 +88,7 @@ export class PageInfoService {
   }
 
   async getToOtherPage(startUrl, lastUrl, title) {
+    this.resetDatas(lastUrl, 'MOVE');
     let pageInfo = this.mindManager.getPageInfo();
 
     const data = {
@@ -141,10 +144,14 @@ export class PageInfoService {
     if (data.length) {
       pageInfo.push(data);
     }
+    this.resetDatas(null, 'RESET');
     await this.mindManager.setPageInfo(pageInfo);
   }
 
   async moveToTab(url, title) {
+    if (url.indexOf('/main/main/diary') === -1) {
+      this.resetDatas(url, 'MOVE');
+    }
     const from = this.router.url;
     console.log(from);
     const fromArray = from.split('?');
@@ -154,11 +161,9 @@ export class PageInfoService {
           url: '/main/main/home',
           title: '메인페이지/홈'
         }
-      ]
+      ];
       await this.mindManager.setPageInfo(startData);
     } else {
-      console.log(url);
-      console.log(fromArray);
       if (fromArray[0].indexOf(url) === -1) {
         let pageInfo = this.mindManager.getPageInfo();
 
@@ -199,6 +204,25 @@ export class PageInfoService {
           await this.mindManager.setPageInfo(pageInfo);
         }
       }
+    }
+  }
+
+  // 데이터 초기화--------------
+  resetDatas(url, type) {
+    if (type === 'MOVE') {
+      // 다이어리 데이터
+      if (url.indexOf('/main/main/diary') === -1 && url.indexOf('/panic-diary') === -1 && url.indexOf('/pattern-drinking') === -1 && url.indexOf('/pattern-caffeine') === -1
+          && url.indexOf('/pattern-ex') === -1 && url.indexOf('/pattern-smoking') === -1 && url.indexOf('/pattern-meal') === -1 && url.indexOf('/pattern-period') === -1) {
+        const diaryDateInfo = this.mindManager.getDateBinding();
+        if (diaryDateInfo) {
+          if ('dirayDate' in diaryDateInfo) {
+            delete diaryDateInfo.dirayDate;
+          }
+          this.mindManager.setDateBinding(diaryDateInfo);
+        }
+      }
+    } else {
+      this.mindManager.setDateBinding({});
     }
   }
 

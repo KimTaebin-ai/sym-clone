@@ -2,7 +2,7 @@
 
 <ion-content>
   <div class="openedFab" *ngIf="fabButtonOpened"></div>
-  <ion-grid class="mgB10vh">
+  <ion-grid class="mgB4_5rem">
     <ion-row>
       <ion-col>
         <ion-grid>
@@ -197,7 +197,7 @@
                 </ion-grid>
                 <ion-infinite-scroll threshold="100px" (ionInfinite)="loadEmotionData($event)" >
                   <ion-infinite-scroll-content
-                          loadingSpinner="dots"
+                          loadingSpinner="bubbles"
                           loadingText="로딩중...">
                   </ion-infinite-scroll-content>
                 </ion-infinite-scroll>
@@ -261,13 +261,13 @@
                   </ion-row>
                 </ion-grid>
                 <ion-grid class="panicDetailBox" *ngFor="let panics of panicDataList; let i = index;">
-                  <ion-row class="panic-border-bottom pd3_8vw">
+                  <ion-row class="panic-border-bottom pd0_8rem">
                     <ion-col class="panicDetailText">
                       <span>{{panics.startDt}}</span>
                     </ion-col>
                   </ion-row>
                   <ion-row class="panic-border-bottom">
-                    <ion-col size="6" class="panicDetailText panic-border-right pd3_8vw">
+                    <ion-col size="6" class="panicDetailText panic-border-right pd0_8rem">
                       <ion-grid>
                         <ion-row>
                           <ion-col size="7" class="align_center-flex">
@@ -283,7 +283,7 @@
                         </ion-row>
                       </ion-grid>
                     </ion-col>
-                    <ion-col size="6" class="panicDetailText pd3_8vw">
+                    <ion-col size="6" class="panicDetailText pd0_8rem">
                       <ion-grid>
                         <ion-row>
                           <ion-col size="7" class="align_center-flex">
@@ -296,7 +296,7 @@
                       </ion-grid>
                     </ion-col>
                   </ion-row>
-                  <ion-grid class="pd3_8vw">
+                  <ion-grid class="pd0_8rem">
                     <ion-row>
                       <ion-col class="panicDetailText pdB1vh">동반증상</ion-col>
                     </ion-row>
@@ -312,7 +312,7 @@
                 </ion-grid>
                 <ion-infinite-scroll threshold="100px" (ionInfinite)="loadPanicData($event)" >
                   <ion-infinite-scroll-content
-                          loadingSpinner="dots"
+                          loadingSpinner="bubbles"
                           loadingText="로딩중...">
                   </ion-infinite-scroll-content>
                 </ion-infinite-scroll>
@@ -347,51 +347,51 @@
               <ion-grid *ngIf="patternAllDataLength !== 0">
                 <ion-row class="border-top border-bottom">
                   <ion-col size="3" class="lifePatternTitle"><span>음주</span></ion-col>
-                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                  <ion-col size="7" class="lineHeight4_8rem pdL4vw">
                     <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyDrinks}}</span>
                     <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
                     <span class="lifePatternText"> 건</span></ion-col>
-                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('drink')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                  <ion-col size="2" class="lineHeight4_8rem text_right pdR6vw" (click)="openPatternModal('drink')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
                 </ion-row>
                 <ion-row class="border-bottom">
                   <ion-col size="3" class="lifePatternTitle"><span>카페인</span></ion-col>
-                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                  <ion-col size="7" class="lineHeight4_8rem pdL4vw">
                     <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyCaffeines}}</span>
                     <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
                     <span class="lifePatternText"> 건</span></ion-col>
-                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('caffeine')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                  <ion-col size="2" class="lineHeight4_8rem text_right pdR6vw" (click)="openPatternModal('caffeine')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
                 </ion-row>
                 <ion-row class="border-bottom">
                   <ion-col size="3" class="lifePatternTitle"><span>운동</span></ion-col>
-                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                  <ion-col size="7" class="lineHeight4_8rem pdL4vw">
                     <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyExercises}}</span>
                     <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
                     <span class="lifePatternText"> 건</span></ion-col>
-                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('exercise')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                  <ion-col size="2" class="lineHeight4_8rem text_right pdR6vw" (click)="openPatternModal('exercise')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
                 </ion-row>
                 <ion-row class="border-bottom">
                   <ion-col size="3" class="lifePatternTitle"><span>흡연</span></ion-col>
-                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                  <ion-col size="7" class="lineHeight4_8rem pdL4vw">
                     <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailySmokes}}</span>
                     <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
                     <span class="lifePatternText"> 건</span></ion-col>
-                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('smoke')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                  <ion-col size="2" class="lineHeight4_8rem text_right pdR6vw" (click)="openPatternModal('smoke')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
                 </ion-row>
                 <ion-row class="border-bottom">
                   <ion-col size="3" class="lifePatternTitle"><span>식사</span></ion-col>
-                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                  <ion-col size="7" class="lineHeight4_8rem pdL4vw">
                     <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyMeals}}</span>
                     <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
                     <span class="lifePatternText"> 건</span></ion-col>
-                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal( 'meal')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                  <ion-col size="2" class="lineHeight4_8rem text_right pdR6vw" (click)="openPatternModal( 'meal')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
                 </ion-row>
                 <ion-row class="border-bottom">
                   <ion-col size="3" class="lifePatternTitle"><span>생리</span></ion-col>
-                  <ion-col size="7" class="lineHeight11vh pdL4vw">
+                  <ion-col size="7" class="lineHeight4_8rem pdL4vw">
                     <span class="reportCountColor" *ngIf="patternAllDataList">{{patternAllDataList.dailyMenstruations}}</span>
                     <span class="reportCountColor" *ngIf="!patternAllDataList">0</span>
                     <span class="lifePatternText"> 건</span></ion-col>
-                  <ion-col size="2" class="lineHeight11vh text_right pdR6vw" (click)="openPatternModal('menstruation')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
+                  <ion-col size="2" class="lineHeight4_8rem text_right pdR6vw" (click)="openPatternModal('menstruation')"><img src="assets/image/Icon_arrow_next.svg"></ion-col>
                 </ion-row>
               </ion-grid>
             </ion-col>
@@ -413,7 +413,7 @@
                 {{surveyCategory.titleKO}}({{surveyCategory.shortTitle}})
               </ion-col>
             </ion-row>
-            <ion-grid class="mgB2vh height30vh">
+            <ion-grid class="mgB2vh">
               <ion-row [hidden]="surveyCategoryList.length">
                 <ion-col class="pdT6vh">
                   <img src="assets/image/report/d_n_al.svg" class="noDataImg">
@@ -428,14 +428,17 @@
             <ion-row>
               <ion-col>
                 <ion-grid>
-                  <ion-row class="pdB3vh" *ngFor="let category of surveyCategoryList; let i = index" (click)="clickSurveyCategory(category)">
-                    <ion-col size="2" class="text_center align_center-grid">
+                  <ion-row class="pdB3vh" *ngFor="let category of surveyCategoryList; let i = index">
+                    <ion-col size="2" class="text_center align_center-grid" (click)="clickSurveyCategory(category)">
                       <img src="assets/image/Icon_checkcircle_n.svg" *ngIf="category.surveySeq !== surveyCategory.surveySeq">
                       <img src="assets/image/Icon_checkcircle.svg" *ngIf="category.surveySeq === surveyCategory.surveySeq">
                     </ion-col>
-                    <ion-col size="10" class="psychoStandardText align_center-grid"
+                    <ion-col size="10" class="psychoStandardText"
                              [class.psychoStandard_pick]="category.surveySeq === surveyCategory.surveySeq">
-                      {{category.surveyTitleKO}}({{category.surveyShortTitle}})
+                      <div>
+                        <span (click)="clickSurveyCategory(category)">{{category.surveyTitleKO}}({{category.surveyShortTitle}})</span>&nbsp;
+                        <span (click)="showCategoryInfo(category.surveyDescription)"><img src="assets/image/diary/Icon-info2.svg" class="vertical_textTop"></span>
+                      </div>
                     </ion-col>
                   </ion-row>
                 </ion-grid>

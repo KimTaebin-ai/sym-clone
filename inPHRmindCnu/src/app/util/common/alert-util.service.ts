@@ -36,6 +36,10 @@ export class AlertUtilService {
     await alert.present();
   }
 
+  dismiss() {
+    this.alertCtrl.dismiss();
+  }
+
   showToast(message) {
     this.toast.show('자동로그인을 설정하여야 잠금 화면을 이용할 수 있습니다.', '5000', 'bottom').subscribe(
         toast => {

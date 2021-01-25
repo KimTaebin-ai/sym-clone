@@ -168,8 +168,8 @@
     <ion-row>
       <ion-col>
         <button
-                [disabled]="!form.invalid || termList.length !== selectedTerm.length"
-                [ngClass]="!form.invalid || termList.length !== selectedTerm.length ? 'common_button' : 'common_button_active'"
+                [disabled]="!form.invalid || termList.length !== selectedTerm.length || checkInputValMessage.birthday"
+                [ngClass]="!form.invalid || termList.length !== selectedTerm.length  || checkInputValMessage.birthday ? 'common_button' : 'common_button_active'"
                 (click)="signUp()">
           가입완료
         </button>

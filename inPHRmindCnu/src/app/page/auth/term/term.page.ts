@@ -6,9 +6,9 @@ import {EventBusService} from '../../../services/event-bus.service';
 import {MindManager} from '../../../mind-module/mind.manager';
 import {PageInfoService} from '../../../services/page-info.service';
 import {SignatureModalPage} from '../../modal/signature-modal/signature-modal.page';
-import {LoadingService} from '../../../util/loading.service';
 import {Subscription} from 'rxjs';
 import {CommonUtilService} from '../../../util/common/common-util.service';
+import {LoadingService} from '../../../util/loading.service';
 
 @Component({
   selector: 'app-term',
@@ -27,7 +27,8 @@ export class TermPage implements OnInit, OnDestroy {
       private modalController: ModalController,
       private mindManager: MindManager,
       private pageInfoService: PageInfoService,
-      private commonUtilService: CommonUtilService
+      private commonUtilService: CommonUtilService,
+      private ladingService: LoadingService
   ) { }
 
   ngOnInit() {

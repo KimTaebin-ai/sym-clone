@@ -1,13 +1,19 @@
 <ion-header class="irb-modal-headerRow">
     <ion-grid>
         <ion-row>
-            <ion-col class="pdL4vw">
+            <ion-col class="pdL4vw" size="10">
                 <p class="irb-modal-header">{{title}}</p>
+            </ion-col>
+            <ion-col class="text_center align_center-grid" size="2" (click)="dismiss()">
+                <img src="assets/image/diary/Icon_del.svg">
             </ion-col>
         </ion-row>
     </ion-grid>
 </ion-header>
 
 <ion-content>
-   <div [innerHTML]="detail" class="irb-modal-body pd4vw"></div>
+    <div class="pd4vw" [innerHTML]="detail">
+
+    </div>
 </ion-content>
+<ion-footer class="modal-footer"></ion-footer>

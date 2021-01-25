@@ -1,6 +1,6 @@
 .symptom-text {
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -8,12 +8,25 @@
   text-align: left;
   color: #7e8da0;
 }
+
+.emotion-text {
+  font-family: Roboto;
+  font-size: 0.9rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.45px;
+  text-align: left;
+  color: #737373;
+}
+
 .symptom-point1{
   align-items: center;
   display: grid;
   background-color: #eeeff1;
-  width: 4vw;
-  height: 4vw;
+  width: 1rem;
+  height: 1rem;
   border-radius: 75px;
   text-align: center;
   font-family: Roboto;
@@ -30,8 +43,8 @@
   align-items: center;
   display: grid;
   background-color: #63e189;
-  width: 4vw;
-  height: 4vw;
+  width: 1rem;
+  height: 1rem;
   border-radius: 75px;
   text-align: center;
   font-family: Roboto;
@@ -48,8 +61,8 @@
   align-items: center;
   display: grid;
   background-color: #ffd072;
-  width: 4vw;
-  height: 4vw;
+  width: 1rem;
+  height: 1rem;
   border-radius: 75px;
   text-align: center;
   font-family: Roboto;
@@ -66,8 +79,8 @@
   align-items: center;
   display: grid;
   background-color: #ff9f4c;
-  width: 4vw;
-  height: 4vw;
+  width: 1rem;
+  height: 1rem;
   border-radius: 75px;
   text-align: center;
   font-family: Roboto;
@@ -84,8 +97,8 @@
   align-items: center;
   display: grid;
   background-color: #ff5d43;
-  width: 4vw;
-  height: 4vw;
+  width: 1rem;
+  height: 1rem;
   border-radius: 75px;
   text-align: center;
   font-family: Roboto;
@@ -102,8 +115,79 @@
   align-items: center;
   display: grid;
   background-color: #c41521;
-  width: 4vw;
-  height: 4vw;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 75px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  margin: auto;
+}
+
+.emotion-point1{
+  align-items: center;
+  display: grid;
+  background-color: #19d288;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 75px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  margin: auto;
+}
+
+
+.emotion-point2{
+  align-items: center;
+  display: grid;
+  background-color: #4bb5f2;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 75px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  margin: auto;
+}
+
+
+.emotion-point3{
+  align-items: center;
+  display: grid;
+  background-color: #836ae3;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 75px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 4vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  margin: auto;
+}
+
+
+.emotion-point4{
+  align-items: center;
+  display: grid;
+  background-color: #ff7661;
+  width: 0.9rem;
+  height: 0.9rem;
   border-radius: 75px;
   text-align: center;
   font-family: Roboto;
@@ -118,14 +202,55 @@
 .symptomInfoModal-footer {
   height: 10%;
   text-align: right;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  padding-left: 1rem;
+  padding-right: 1rem;
   align-items: center;
   display: flex;
 }
 
 .symptomInfo-list-box {
-  padding-left: 5vw;
-  padding-right: 5vw;
-  margin-top: 1.5vh;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 1rem;
+}
+
+.emotion-list-box {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 0.7rem;
+}
+
+.modalTitle {
+  font-family: Roboto;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.54px;
+  text-align: center;
+  color: #262626;
+  padding: 1.5rem 0;
+}
+
+.modalSubTitle {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: -0.9px;
+  text-align: left;
+  color: #262626;
+  padding: 0 1rem;
+}
+
+ion-footer {
+  display: block;
+  position: unset;
+  -ms-flex-order: 1;
+  order: 1;
+  width: 100%;
+  z-index: 10;
 }

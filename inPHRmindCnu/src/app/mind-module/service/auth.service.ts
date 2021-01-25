@@ -51,13 +51,22 @@ export class AuthService {
             loginId: reqVo.loginId,
             password: reqVo.password,
             snsType: 'D',
-            fcmTocken: ''
+            fcmToken: ''
         };
+        const deviceInfo = this.mindManager.getDeviceInfo();
+        if (deviceInfo) {
+            requestVo.fcmToken = deviceInfo.fcmToken;
+        }
     } else {
         requestVo = {
             id: reqVo.id,
-            snsType: reqVo.snsType
+            snsType: reqVo.snsType,
+            fcmToken: ''
         };
+        const deviceInfo = this.mindManager.getDeviceInfo();
+        if (deviceInfo) {
+            requestVo.fcmToken = deviceInfo.fcmToken;
+        }
     }
     return this.restApiService.postData(environment.simApi + this.urlService.loginUrl, requestVo).pipe(
         switchMap(res => {
@@ -186,13 +195,29 @@ export class AuthService {
         );
     }
 
+    // 추가 약관 동의
+    agreeNewTerm(reqVo): Observable<any> {
+        return this.restApiService.postData(environment.simApi + this.urlService.getTermInfoList, reqVo).pipe(
+            switchMap(res => {
+                if (res) {
+                    if (res.code === ResponseCode.OK) {
+                        return of('성공하였습니다.');
+                    } else {
+                        return throwError('추가 약관을 동의를 실패하였습니다.');
+                    }
+                } else {
+                    return throwError('추가 약관을 동의를 실패하였습니다.');
+                }
+            })
+        );
+    }
+
 
 
     /*비밀번호 찾기--------------------------------------------------------------------------------------------*/
   // 임시 비밀번호 발급
   sendTempPw(reqVo: any): Observable<any> {
-      console.log('eeeeee')
-    return this.restApiService.postData(environment.simApi + this.urlService.sendTempPw, reqVo).pipe(
+      return this.restApiService.postData(environment.simApi + this.urlService.sendTempPw, reqVo).pipe(
         switchMap(res => {
           console.log('resServ', res);
           if (res){
@@ -236,6 +261,7 @@ export class AuthService {
   updatePwAfterChk(reqVo: any): Observable<any> {
     return this.restApiService.postData(environment.simApi + this.urlService.updatePwAfterChk, reqVo).pipe(
         switchMap(res => {
+            console.log('res:', res);
           if (res){
                 if (res.code === ResponseCode.OK) {
                     const result: any = {
@@ -243,7 +269,7 @@ export class AuthService {
                         message: '<p class="alert-message-font">비밀번호가 변경되었습니다.</p>'
                     };
                     return of(result);
-                } else if (res.code === ResponseCode.NO_MATCHING) {
+                } else if (res.code === ResponseCode.NO_MATCHING || res.code === ResponseCode.NO_INFORMATION) {
                     const err: any = {
                         code: ResponseCode.NO_MATCHING,
                         message: '<p class="alert-message-font">임시 비밀번호를 잘못 입력하셨습니다.</p>'
@@ -411,6 +437,7 @@ export class AuthService {
   checkToken(token): Observable<any> {
     return this.restApiService.postData(environment.simApi + this.urlService.checkTokenInfo, {token}).pipe(
         switchMap(res => {
+            console.log(res)
             if (res) {
                 if (res.code === ResponseCode.OK) {
                     return of(res);
@@ -854,6 +881,12 @@ export class AuthService {
                     if (!item.insertData.content && item.insertData.diseaseCode && item.selected) {
                         returnData = false;
                         break;
+                    } else if (item.insertData.content && item.insertData.diseaseCode && item.selected) {
+                        const replaceVal = item.insertData.content.replace(/(\s*)/g, '');
+                        if (replaceVal.length === 0 ) {
+                            returnData = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -870,8 +903,13 @@ export class AuthService {
                     if (!params.educationEtc) {
                         returnData = false;
                         break;
+                    } else {
+                        const replaceVal = params.educationEtc.replace(/(\s*)/g, '');
+                        if (replaceVal.length === 0) {
+                            returnData = false;
+                            break;
+                        }
                     }
-
                 }
             }
         }
@@ -881,8 +919,13 @@ export class AuthService {
                     if (!params.jobEtc) {
                         returnData = false;
                         break;
+                    } else {
+                        const replaceVal = params.jobEtc.replace(/(\s*)/g, '');
+                        if (replaceVal.length === 0) {
+                            returnData = false;
+                            break;
+                        }
                     }
-
                 }
             }
         }
@@ -892,8 +935,13 @@ export class AuthService {
                     if (!params.religionEtc) {
                         returnData = false;
                         break;
+                    } else {
+                        const replaceVal = params.religionEtc.replace(/(\s*)/g, '');
+                        if (replaceVal.length === 0) {
+                            returnData = false;
+                            break;
+                        }
                     }
-
                 }
             }
         }
@@ -901,14 +949,13 @@ export class AuthService {
     }
 
 
-    // 가입 인증번호 발송 (이메일)
     getVersionInfo(reqVo): Observable<any> {
         return this.restApiService.getData(environment.simApi + this.urlService.version + '/' + reqVo.userType + '/' + reqVo.osType + '/' + reqVo.nowVersion).pipe(
             switchMap(res => {
                 if (res) {
                     console.log(res)
                     if (res.code === ResponseCode.OK) {
-                        return of(res.data);
+                        return of (res);
                     } else {
                         return throwError('데이터를 불러오는 도중 오류가 발생하였습니다.');
                     }

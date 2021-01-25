@@ -28,7 +28,7 @@ export class PatternMealPage implements OnInit {
     eatDt: this.selectedDate
   };
 
-  mealList: any = []
+  mealList: any = [];
 
   constructor(
       private alertCtrl: AlertController,
@@ -67,22 +67,22 @@ export class PatternMealPage implements OnInit {
 
         this.totalMealCount = 0;
         if(this.mealList.breakfast === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.lunch === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.dinner === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.snackMorning === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.snackAfternoon === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
         if(this.mealList.snackMidnight === 'Y'){
-          this.totalMealCount = this.totalMealCount + 1
+          this.totalMealCount = this.totalMealCount + 1;
         }
       }
     }, err =>{
@@ -139,7 +139,7 @@ export class PatternMealPage implements OnInit {
   // 식사 입력값 확인
   addMealDiaryChk(){
     if (this.insertVo.breakfast === 'N' && this.insertVo.lunch === 'N' && this.insertVo.dinner === 'N' && this.insertVo.snackMorning === 'N' && this.insertVo.snackAfternoon === 'N' && this.insertVo.snackMidnight === 'N') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">식사 여부를 선택해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '식사 여부를 선택해 주세요.');
       return false;
     }
     this.addMealDiaryAlert();
@@ -174,7 +174,7 @@ export class PatternMealPage implements OnInit {
     this.loadingService.showLoading(true, '생활패턴을 입력중입니다.');
     this.diaryService.addMealDiary(this.insertVo).subscribe(res => {
       this.loadingService.showLoading(false, '');
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">저장되었습니다.</p>');
+      this.alertUtilService.showAlert(null, '저장되었습니다.');
       this.getMealList();
     }, err =>{
       this.loadingService.showLoading(false, '');

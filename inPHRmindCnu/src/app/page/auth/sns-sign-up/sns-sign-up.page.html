@@ -225,7 +225,8 @@
     <ion-row>
       <ion-col>
         <button
-        [disabled]="form.invalid || termList.length !== selectedTerm.length || !conditionValue.certificationYn" [ngClass]="form.invalid || termList.length !== selectedTerm.length || !conditionValue.certificationYn ? 'common_button' : 'common_button_active'"
+        [disabled]="form.invalid || termList.length !== selectedTerm.length || !conditionValue.certificationYn || checkInputValMessage.birthday || checkInputValMessage.password || checkInputValMessage.passwordChk || checkInputValMessage.loginId === ''"
+        [ngClass]="form.invalid || termList.length !== selectedTerm.length || !conditionValue.certificationYn  || checkInputValMessage.birthday || checkInputValMessage.password || checkInputValMessage.passwordChk || checkInputValMessage.loginId === ''? 'common_button' : 'common_button_active'"
         (click)="signUpSns()">
           가입완료
         </button>

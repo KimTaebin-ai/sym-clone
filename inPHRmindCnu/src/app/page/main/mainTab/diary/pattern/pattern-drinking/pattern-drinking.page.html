@@ -75,12 +75,10 @@
               <ion-row *ngIf="insertVo.drinkCode">
                 <ion-col>
                   <ion-grid class="pattern-input-border">
-                    <ion-row class="height100Per align_center">
-                      <ion-col size="9">
+                    <ion-row class="height100Per width100Per align_center text_right">
+                      <ion-col>
                         <input class="pattern-input-box" type="number" maxlength="3" [(ngModel)]="insertVo.drinkAmount" *ngIf="insertVo.drinkCode">
-                      </ion-col>
-                      <ion-col size="3">
-                        <span class="text_center" *ngIf="insertVo.drinkCode">{{checkUnit(insertVo.drinkCode)}}</span>
+                        <span class="pdR3vw" *ngIf="insertVo.drinkCode">{{checkUnit(insertVo.drinkCode)}}</span>
                       </ion-col>
                     </ion-row>
                   </ion-grid>

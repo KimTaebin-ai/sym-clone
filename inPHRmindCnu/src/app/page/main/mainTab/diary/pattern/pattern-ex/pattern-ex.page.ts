@@ -33,7 +33,7 @@ export class PatternExPage implements OnInit {
     chkM : 'N',
     chkA : 'N',
     chkN : 'N'
-  }
+  };
 
   constructor(
       private alertCtrl: AlertController,
@@ -107,16 +107,16 @@ export class PatternExPage implements OnInit {
   // 운동 입력값 확인
   addExDiaryChk(){
     if (this.insertVo.exerciseWhen === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">운동한 시간대를 선택해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '운동한 시간대를 선택해 주세요.');
       return false;
     } else if (this.insertVo.exerciseCode === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">운동의 종류를 입력해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '운동의 종류를 입력해 주세요.');
       return false;
     } else if (this.insertVo.exerciseCode == this.etcCode && this.insertVo.exerciseEtc === null || this.insertVo.exerciseCode == this.etcCode && this.insertVo.exerciseEtc === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">기타 운동의 종류를 입력해 주세요.</p>')
+      this.alertUtilService.showAlert(null, '기타 운동의 종류를 입력해 주세요.');
       return false;
     } else if (this.insertVo.exerciseTime === '' || this.insertVo.exerciseTime === null) {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">운동한 시간을 입력해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '운동한 시간을 입력해 주세요.');
       return false;
     }
     this.addExDiaryAlert();
@@ -151,7 +151,7 @@ export class PatternExPage implements OnInit {
     this.loadingService.showLoading(true, '생활패턴을 입력중입니다.');
     this.diaryService.addExDiary(this.insertVo).subscribe(res => {
       this.loadingService.showLoading(false, '');
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">추가되었습니다.</p>');
+      this.alertUtilService.showAlert(null, '추가되었습니다.');
       this.getExList();
       this.dataReset();
     }, err =>{
@@ -189,10 +189,10 @@ export class PatternExPage implements OnInit {
       date : this.selectedDate,
       etc : exDetail.exerciseEtc,
       when : exDetail.exerciseWhen
-    }
+    };
     if(exDetail.exerciseCode === this.etcCode) {
       this.diaryService.deleteExDiaryEtc(deleteVo).subscribe(res => {
-        this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
+        this.alertUtilService.showAlert(null, '삭제되었습니다.');
         this.dataReset();
         this.getExList();
       }, err => {
@@ -200,7 +200,7 @@ export class PatternExPage implements OnInit {
       });
     } else {
       this.diaryService.deleteExDiary(deleteVo).subscribe(res => {
-        this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
+        this.alertUtilService.showAlert(null, '삭제되었습니다.');
         this.dataReset();
         this.getExList();
       }, err => {
@@ -223,6 +223,6 @@ export class PatternExPage implements OnInit {
       chkM : 'N',
       chkA : 'N',
       chkN : 'N'
-    }
+    };
   }
 }

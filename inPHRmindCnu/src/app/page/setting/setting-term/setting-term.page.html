@@ -1,16 +1,19 @@
 <app-page-header></app-page-header>
 <ion-content>
   <ion-grid *ngFor="let item of termInfoList">
-    <ion-row class="term-list-box"  (click)="selectList(item)">
-      <ion-col size="8">
+    <ion-row class="term-list-box" (click)="openModal(item.termName, item.termContent)" >
+      <ion-col size="7">
         <span>{{item.termName}}</span>
       </ion-col>
-      <ion-col size="4" class="text_right">
-        <img src="assets/image/Icon_arrow_d_up.svg" class="memberInfo-list-next" *ngIf="item.opened">
-        <img src="assets/image/Icon_arrow_dv.svg" class="memberInfo-list-next" *ngIf="!item.opened">
+      <ion-col size="5" class="reg-date">
+        <span>
+          {{item.agreeDt}}
+        </span>
+<!--        <img src="assets/image/Icon_arrow_d_up.svg" class="memberInfo-list-next" *ngIf="item.opened">
+        <img src="assets/image/Icon_arrow_dv.svg" class="memberInfo-list-next" *ngIf="!item.opened">-->
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="item.opened" class="content_base_line">
+    <!--<ion-row *ngIf="item.opened" class="content_base_line">
       <ion-col>
         <ion-grid>
           <ion-row class="reg-date-box">
@@ -36,6 +39,6 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-    </ion-row>
+    </ion-row>-->
   </ion-grid>
 </ion-content>

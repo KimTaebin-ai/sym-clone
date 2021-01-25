@@ -590,38 +590,11 @@ export class MindManager {
                 console.log('================================================================');
                 // 데이터가 있을 경우 라이프로그 동기화
                 // 데이터 없을 경우 마지막 동기화 일자만 업데이트
-                if (data != null && data.length > 0) {
-                    // 라이프로그 동기화 (서버 저장)
+                response.code = ResponseCode.OK;
+                response.data = data;
+                console.log(data, 'response.data = data;')
 
-                    response.code = ResponseCode.OK;
-                    response.data = data;
-                    console.log(data, 'response.data = data;')
-
-                    resolve(response);
-                    /*
-                    this.lifelogService.saveLifelogsSync(data).then(result => {
-                        if (response.code == '0') {
-                            // 마지막 동기화 일자 업데이트
-                            providerModel.lastSyncDt = lastSyncDt;
-                            this.memberService.updateProviderLastSync(providerModel);
-                        }
-                        response.code = result.code;
-                        response.message = result.messgae;
-                        resolve(response);
-                    }).catch(err => {
-                        response.code = ResponseCode.error;
-                        response.message = err.messgae;
-                        response.data = err;
-                        resolve(response);
-                    });*/
-                } else {
-                    // 마지막 동기화 일자 업데이트
-                    // fitbit 전용화
-                    // providerModel.lastSyncDt = lastSyncDt;
-                    // this.memberService.updateProviderLastSync(providerModel);
-                    response.code = ResponseCode.OK;
-                    resolve(response);
-                }
+                resolve(response);
             }, err => {
                 response.code = ResponseCode.error;
                 response.message = err.messgae;

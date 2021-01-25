@@ -1,0 +1,66 @@
+.term-page {
+  border-top: solid 1px #dcdcdc;
+}
+
+.term-list-box{
+  width: 100%;
+  border-radius: 4px;
+  border: solid 1px #ececec;
+  background-color: #ffffff;
+}
+
+.term-header {
+  width: 100%;
+  height: 7vh;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.term-list {
+  width: 100%;
+  min-height: 7vh;
+  border-radius: 4px;
+  border-top: solid 1px #ececec;
+  background-color: #ffffff;
+}
+
+
+.term-notice-font {
+  font-family: Roboto;
+  font-size: 2.2vh;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.45px;
+  text-align: center;
+  color: #909090;
+}
+
+.checkImg {
+  height: 5vw;
+}
+
+.header_Box {
+  width: 100%;
+  height: 4rem;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  border-bottom: solid 1px #dcdcdc;
+}
+
+.header_font {
+  font-family: Roboto;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.64px;
+  text-align: center;
+  color: #262626;
+}
+
+ion-header {
+  position: revert;
+}

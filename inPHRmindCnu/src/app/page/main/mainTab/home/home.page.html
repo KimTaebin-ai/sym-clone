@@ -24,7 +24,7 @@
                     <ion-grid class="main-header-box">
                       <ion-row>
                         <ion-col class="main-header-name pdL4vw">
-                          <span>{{userInfo.firstName}}{{userInfo.lastName}}님, 좋은 아침 입니다!</span>
+                          <span>{{userInfo.firstName}}{{userInfo.lastName}}님, 안녕하세요!</span>
                         </ion-col>
                       </ion-row>
                       <ion-row class="mgT1vh">
@@ -44,8 +44,19 @@
                               <ion-col class="text_left pdL4vw">
                                 <span>최근 증상</span>
                               </ion-col>
-                              <ion-col class="text_right pdR4vw" (click)="openModal()">
-                                <img src="assets/image/main/icon_help.svg">
+                            </ion-row>
+                            <ion-row>
+                              <ion-col>
+                                <ion-grid class="width100Per">
+                                  <ion-row class="main-card1-title">
+                                    <ion-col class="main-dis-type-font">
+                                      <span>공황</span>
+                                    </ion-col>
+                                    <ion-col class="notice-box" (click)="openModal('SCARE')">
+                                      <img src="assets/image/main/icon_help.svg">
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
                               </ion-col>
                             </ion-row>
                             <ion-row class="main-card1-body">
@@ -56,16 +67,16 @@
                                       <span>{{getDate('YYYY년 MM월')}}</span>
                                     </ion-col>
                                   </ion-row>
-                                  <ion-row class="main-card1-date2">
-                                    <ion-col *ngFor="let item of calendarInfo.weekDay; let i = index"
-                                             [ngClass]="setWeekDayColor('weekDay', i)">
-                                      <span>{{item.weekDay}}</span>
-                                    </ion-col>
-                                  </ion-row>
                                   <ion-row class="main-card1-date3">
                                     <ion-col *ngFor="let item of calendarInfo.day; let i = index"
                                              [ngClass]="setWeekDayColor('day', i)">
                                       <span>{{item.day}}</span>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row class="main-card1-date2">
+                                    <ion-col *ngFor="let item of calendarInfo.weekDay; let i = index"
+                                             [ngClass]="setWeekDayColor('weekDay', i)">
+                                      <span>{{item.weekDay}}</span>
                                     </ion-col>
                                   </ion-row>
                                   <ion-row>
@@ -82,7 +93,64 @@
                                 </ion-grid>
                               </ion-col>
                             </ion-row>
-                            <ion-row class="main-card1-psychological">
+                            <ion-row>
+                              <ion-col>
+                                <ion-grid class="width100Per">
+                                  <ion-row class="main-card1-title">
+                                    <ion-col class="main-dis-type-font">
+                                      <span>정서</span>
+                                    </ion-col>
+                                    <ion-col class="notice-box" (click)="openModal('EMOTION')">
+                                      <img src="assets/image/main/icon_help.svg">
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row class="position-relative">
+                              <ion-col>
+                                <ion-grid>
+                                  <ion-row class="nullBox" *ngIf="!dataChk">
+                                    <ion-col class="pdT1vh pdB1vh">
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row class="null_button_Box"  *ngIf="!dataChk">
+                                    <ion-col class="pdT1vh pdB1vh">
+                                      <ion-grid>
+                                        <ion-row>
+                                          <ion-col>
+                                            <span>
+                                              다이어리를 입력해주세요.
+                                            </span>
+                                          </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                          <ion-col>
+                                          </ion-col>
+                                          <ion-col class="null_button"  (click)="getToPage('diary')">
+                                            <span>
+                                              입력하기
+                                            </span>
+                                          </ion-col>
+                                          <ion-col>
+                                          </ion-col>
+                                        </ion-row>
+                                      </ion-grid>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row class="pdT1rem" style="padding-left: 0.5rem; padding-right: 0.5rem">
+                                    <ion-col class="pdT1vh pdB1vh">
+                                      <canvas #emotionCanvas></canvas>
+                                    </ion-col>
+                                  </ion-row>
+                                  <ion-row class="dateInfo pdB3vh pdR2vw">
+                                    <ion-col>* 차트 클릭 시 상세 정보가 출력됩니다.</ion-col>
+                                  </ion-row>
+                                </ion-grid>
+                              </ion-col>
+                            </ion-row>
+
+                            <!--<ion-row class="main-card1-psychological">
                               <ion-col size="2.9" class="pdL3vw main-card1-psychological-label">
                                 <span>기분</span>
                               </ion-col>
@@ -255,7 +323,7 @@
                                   <span>3</span>
                                 </div>
                               </ion-col>
-                            </ion-row>
+                            </ion-row>-->
                           </ion-grid>
                         </ion-col>
                       </ion-row>
@@ -363,10 +431,10 @@
                         <ion-col>
                           <ion-row>
                             <ion-col size="7" class="main-card3-list1">
-                              <span>오늘 설문</span>
+                              <span>다이어리</span>
                             </ion-col>
                             <ion-col size="4" class="main-card3-list2">
-                              <span>참여하기</span>
+                              <span>입력하기</span>
                             </ion-col>
                             <ion-col size="1" class="text_center">
                               <img src="assets/image/Icon_arrow_next.svg" class="main-card3-list-img">

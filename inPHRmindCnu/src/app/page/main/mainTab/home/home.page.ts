@@ -31,7 +31,7 @@ export class HomePage implements OnInit, OnDestroy {
   calendarInfo: any = {
     weekDay: [],
     day: []
-  }
+  };
 
   dailyEmotion: any = {
     energy: {
@@ -44,9 +44,17 @@ export class HomePage implements OnInit, OnDestroy {
     },
     petulance: null,
     unrest: null
-  }
+  };
 
   mainInfo: any = {};
+
+  /*정서불안 차트------------------*/
+  @ViewChild('emotionCanvas', {static: true}) emotionCanvas: ElementRef;
+  emotionCharts: any;
+  emotionWeekList: any = [];
+
+  dataChk = false;
+  /*----------------------------*/
 
   // ---------------------------------------------
   constructor(
@@ -78,18 +86,18 @@ export class HomePage implements OnInit, OnDestroy {
   setDayInfo() {
     const daysInfo = [];
     for (let i = 6; i >= 0; i--) {
+      const thisMonth = moment().format('MM');
       const weekDay: any = {
         weekDay: moment().subtract(i, 'd').format('ddd'),
-        data: {}
+        data: {},
+        thisMonth: moment().subtract(i, 'd').format('MM') === thisMonth ? true : false
       };
-      console.log(moment().format('YYYY-MM-DD'))
-      console.log(i)
       this.calendarInfo.weekDay.push(weekDay);
       const day: any = {
         day: moment().subtract(i, 'd').format('DD'),
-        data: {}
+        data: {},
+        thisMonth: moment().subtract(i, 'd').format('MM') === thisMonth ? true : false
       };
-      console.log(this.mainInfo)
       for (const item of this.mainInfo.panicInfos) {
         const formatType = 'YYYY-MM-DD';
         if (moment(item.panicDate).format(formatType) === moment().subtract(i, 'd').format(formatType)) {
@@ -97,8 +105,6 @@ export class HomePage implements OnInit, OnDestroy {
           weekDay.data = item;
         }
       }
-
-      console.log(moment().subtract(i, 'd').format('dd'))
       this.calendarInfo.day.push(day);
     }
 
@@ -117,17 +123,42 @@ export class HomePage implements OnInit, OnDestroy {
         unrest: dailyEmotion.unrest
       };
     }
-    console.log(this.dailyEmotion)
   }
 
   getMainInfo() {
     this.mainService.getMainInfo().subscribe(res => {
-      console.log('ddddddd', res)
       this.mainInfo = res;
       this.setDayInfo();
       if (res.weekSurveyPercent !== null) {
         this.createChart();
       }
+
+      /*정서불안 차트------------------*/
+      if (res.dailyEmotion != null) {
+        this.emotionWeekList = res.dailyEmotion;
+        // 3시 이전, 이후 계산
+        const compareTime = moment().format('YYYY-MM-DD') + ' 15:00:00';
+        for (const item of res.dailyEmotion) {
+          console.log('현재 시간 : ' + moment().format('YYYY년 MM월 DD일 HH:mm:ss'));
+          // 3시 이전 일때
+          if (moment(moment()).isBefore(compareTime)) {
+            if (moment().isSame(moment(item.setDt), 'day') || moment().subtract(1, 'days').isSame(moment(item.setDt), 'day')) {
+              this.dataChk = true;
+            }
+          } else {
+            if (moment().isSame(moment(item.setDt), 'day')) {
+              this.dataChk = true;
+            }
+          }
+        }
+        this.createEmotionChart('NOT_NULL');
+      } else {
+        this.createEmotionChart('NULL');
+      }
+
+
+      /*-----------------------------*/
+
     }, err => {
       this.setDayInfo();
     });
@@ -149,39 +180,8 @@ export class HomePage implements OnInit, OnDestroy {
     }
     // -------------------------------
 
-
-    Chart.pluginService.register({
-      beforeDraw(chart) {
-        // @ts-ignore
-        if (chart.config.options.chartType1){
-          const ctx = chart.ctx;
-          // @ts-ignore
-          const centerConfig = chart.config.options.elements.center;
-          const fontStyle =  'Arial';
-          const txt = centerConfig.text;
-          const color = '#3a4b5f';
-          /*const sidePadding = 20;*/
-          /*const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)*/
-          ctx.font = '5px ' + fontStyle;
-          /*              const stringWidth = ctx.measureText(txt).width;
-                    const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;*/
-          /*              const widthRatio = elementWidth / stringWidth;
-                    const newFontSize = Math.floor(20);*/
-          /*              const elementHeight = (chart.innerRadius * 2);
-                    const fontSizeToUse = Math.min(newFontSize, elementHeight);*/
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-          const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
-          ctx.font = 'bold 1.3rem ' + fontStyle;
-          ctx.fillStyle = color;
-          ctx.fillText(txt, centerX, centerY);
-        }
-      }
-    });
-
     for (let i = 0; i < this.mainInfo.weekSurveyPercent.length; i++) {
-      this.weekSurveyForChart.push(this.mainInfo.weekSurveyPercent[i].surveyInterval)
+      this.weekSurveyForChart.push(this.mainInfo.weekSurveyPercent[i].surveyInterval);
       if (i === 0) {
         // CHART1
         this.Chart1 = new Chart(this.chartView1.nativeElement, {
@@ -284,7 +284,6 @@ export class HomePage implements OnInit, OnDestroy {
                 font(context) {
                   const width = context.chart.width;
                   const size = Math.round(width / 32);
-                  alert(context)
                   return {
                     size,
                     weight: 600
@@ -342,7 +341,6 @@ export class HomePage implements OnInit, OnDestroy {
                 font(context) {
                   const width = context.chart.width;
                   const size = Math.round(width / 32);
-                  alert(context)
                   return {
                     size,
                     weight: 600
@@ -400,7 +398,6 @@ export class HomePage implements OnInit, OnDestroy {
                 font(context) {
                   const width = context.chart.width;
                   const size = Math.round(width / 32);
-                  alert(context)
                   return {
                     size,
                     weight: 600
@@ -415,14 +412,173 @@ export class HomePage implements OnInit, OnDestroy {
         });
       }
     }
+
+    Chart.pluginService.register({
+      beforeDraw(chart) {
+        // @ts-ignore
+        if (chart.config.options.chartType1){
+          const ctx = chart.ctx;
+          // @ts-ignore
+          const centerConfig = chart.config.options.elements.center;
+          const fontStyle =  'Arial';
+          const txt = centerConfig.text;
+          const color = '#3a4b5f';
+          /*const sidePadding = 20;*/
+          /*const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)*/
+          ctx.font = '5px ' + fontStyle;
+          /*              const stringWidth = ctx.measureText(txt).width;
+                    const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;*/
+          /*              const widthRatio = elementWidth / stringWidth;
+                    const newFontSize = Math.floor(20);*/
+          /*              const elementHeight = (chart.innerRadius * 2);
+                    const fontSizeToUse = Math.min(newFontSize, elementHeight);*/
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+          const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+          ctx.font = 'bold 1.3rem ' + fontStyle;
+          ctx.fillStyle = color;
+          ctx.fillText(txt, centerX, centerY);
+        }
+      }
+    });
+
+  }
+
+  // 정서불안 차트 생성
+  createEmotionChart(type){
+    if (this.emotionCharts){
+      this.emotionCharts.destroy();
+    }
+
+    const sixDaysAgo = moment().subtract(6, 'day').toDate();
+    const oneWeekTerm = [];
+    for (let i = 6; i >= 0; i--){
+      oneWeekTerm.push(moment(moment(new Date()).subtract( i, 'day').toDate()).format('dd'));
+    }
+
+    const emotionChartDataList: any = {
+      feelingData : [],
+      energyData : [],
+      unrestData: [],
+      petulanceData : []
+    };
+
+    // this.emotionWeekList = [];
+
+    for (let i = 0; i < 7; i++){
+      emotionChartDataList.feelingData.push([null]);
+      emotionChartDataList.energyData.push([null]);
+      emotionChartDataList.unrestData.push(null);
+      emotionChartDataList.petulanceData.push(null);
+    }
+    if (type === 'NOT_NULL') {
+      for (let i = 6; i >= 0; i--) {
+        for (let j = this.emotionWeekList.length - 1; j >= 0; j--){
+          if (this.emotionWeekList[j].setDt === moment(moment(sixDaysAgo).add(i, 'day').toDate()).format('YYYY-MM-DD')){
+            emotionChartDataList.feelingData[i][0] = this.emotionWeekList[j].feelingNegative;
+            emotionChartDataList.feelingData[i][1] = this.emotionWeekList[j].feelingPositive;
+            emotionChartDataList.energyData[i][0] = this.emotionWeekList[j].energyNegative;
+            emotionChartDataList.energyData[i][1] = this.emotionWeekList[j].energyPositive;
+            emotionChartDataList.unrestData[i] = this.emotionWeekList[j].unrest;
+            emotionChartDataList.petulanceData[i] = this.emotionWeekList[j].petulance;
+          }
+        }
+      }
+    } else {
+      for (let i = 6; i >= 0; i--) {
+        emotionChartDataList.feelingData[i][0] = 0;
+        emotionChartDataList.feelingData[i][1] = 0;
+        emotionChartDataList.energyData[i][0] = 0;
+        emotionChartDataList.energyData[i][1] = 0;
+        emotionChartDataList.unrestData[i] = 0;
+        emotionChartDataList.petulanceData[i] = 0;
+      }
+    }
+
+
+    const emotionDatasetList: any = [
+      {
+        label: '기분', // API 연동하면 typeNm으로
+        data: emotionChartDataList.feelingData,
+        backgroundColor: '#19d288',
+        borderWidth: 1
+      }, {
+        label: '에너지',
+        data: emotionChartDataList.energyData,
+        backgroundColor: '#4bb5f2',
+        borderWidth: 1
+      }, {
+        label: '불안',
+        data: emotionChartDataList.unrestData,
+        backgroundColor: '#836ae3',
+        borderWidth: 1
+      }, {
+        label: '짜증',
+        data: emotionChartDataList.petulanceData,
+        backgroundColor: '#ff7661',
+        borderWidth: 1
+      }
+    ];
+
+    this.emotionCharts = new Chart(this.emotionCanvas.nativeElement, {
+      type: 'bar',
+      data: {
+        labels: oneWeekTerm,
+        datasets: emotionDatasetList,
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            display: true,
+            ticks: {
+              fontColor: '#000000'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              display: true,
+              stepSize : 1,
+              suggestedMin: -3,
+              suggestedMax: 3
+            },
+            gridLines : {
+              display: true,
+              borderDash: [2, 2],
+            }
+          }]
+        },
+        responsive: true,
+        legend: {
+          position: 'bottom',
+          labels: {
+            boxWidth: 10,
+            usePointStyle: true,
+            padding: 15
+          }
+        },
+        title: {
+          display: false,
+          text: '정서리포트'
+        }
+      }
+    });
   }
 
 
-  async openModal() {
+  async openModal(type) {
+    this.mindManager.setModalONOff('ON');
     const modal = await this.modalController.create({
       component: SymptomInfoModalPage,
       cssClass: 'symptomInfoModal',
+      componentProps: {
+        type
+      }
     });
+    modal.onDidDismiss()
+        .then(() => {
+          this.mindManager.setModalONOff('OFF');
+        });
     return await modal.present();
   }
 
@@ -506,7 +662,7 @@ export class HomePage implements OnInit, OnDestroy {
         classNm = 'weekDay-today';
       } else {
         if ('data' in this.calendarInfo[type][index]) {
-          classNm = Object.keys(this.calendarInfo[type][index].data).length !== 0 ? 'weekDay-withData' : '';
+          classNm = this.calendarInfo[type][index].thisMonth ? 'weekDay-withData' : '';
         }
       }
     }
@@ -515,6 +671,15 @@ export class HomePage implements OnInit, OnDestroy {
 
   getToPage(type) {
     if (type === 'diary') {
+      const diaryDateInfo = this.mindManager.getDateBinding();
+      if (diaryDateInfo) {
+        diaryDateInfo.dirayDate = moment().format('YYYY-MM-DD');
+        this.mindManager.setDateBinding(diaryDateInfo);
+      } else {
+        this.mindManager.setDateBinding({
+          dirayDate : moment().format('YYYY-MM-DD')
+        });
+      }
       this.pageInfoService.moveToTab('/main/main/diary', '메인화면/다이어리').then(data => {
         this.eventBusService.tabInfo$.next('DIARY');
         this.navController.navigateRoot(['/main/main/diary']);
@@ -527,3 +692,5 @@ export class HomePage implements OnInit, OnDestroy {
     }
   }
 }
+
+

@@ -35,7 +35,7 @@ export class PatternCaffeinePage implements OnInit {
     chkM : 'N',
     chkA : 'N',
     chkN : 'N'
-  }
+  };
 
   constructor(
       private alertCtrl: AlertController,
@@ -117,16 +117,16 @@ export class PatternCaffeinePage implements OnInit {
   // 카페인 입력값 확인
   addCaffeineDiaryChk(){
     if (this.insertVo.caffeineWhen === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">카페인을 섭취한 시간을 선택해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '카페인을 섭취한 시간을 선택해 주세요.');
       return false;
     } else if (this.insertVo.caffeineCode === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">섭취한 카페인의 종류를 입력해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '섭취한 카페인의 종류를 입력해 주세요.');
       return false;
     } else if (this.insertVo.caffeineCode == this.etcCode && this.insertVo.caffeineEtc === null || this.insertVo.caffeineCode == this.etcCode && this.insertVo.caffeineEtc === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">기타 카페인의 종류를 입력해 주세요.</p>')
+      this.alertUtilService.showAlert(null, '기타 카페인의 종류를 입력해 주세요.');
       return false;
     } else if (this.insertVo.caffeineAmount === '' || this.insertVo.caffeineAmount === null) {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">섭취한 카페인의 양을 입력해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '섭취한 카페인의 양을 입력해 주세요.');
       return false;
     }
     this.addCaffeineDiaryAlert();
@@ -160,7 +160,7 @@ export class PatternCaffeinePage implements OnInit {
     this.loadingService.showLoading(true, '생활패턴을 입력중입니다.');
     this.diaryService.addCaffeineDiary(this.insertVo).subscribe(res => {
       this.loadingService.showLoading(false, '');
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">추가되었습니다.</p>');
+      this.alertUtilService.showAlert(null, '추가되었습니다.');
       this.getCaffeineList();
       this.dataReset();
     }, err =>{
@@ -198,10 +198,10 @@ export class PatternCaffeinePage implements OnInit {
       date : this.selectedDate,
       etc : caffeineDetail.caffeineEtc,
       when : caffeineDetail.caffeineWhen
-    }
+    };
     if(caffeineDetail.caffeineCode === this.etcCode) {
       this.diaryService.deleteCaffeineDiaryEtc(deleteVo).subscribe(res => {
-        this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
+        this.alertUtilService.showAlert(null, '삭제되었습니다.');
         this.dataReset();
         this.getCaffeineList();
       }, err => {
@@ -209,7 +209,7 @@ export class PatternCaffeinePage implements OnInit {
       });
     } else {
       this.diaryService.deleteCaffeineDiary(deleteVo).subscribe(res => {
-        this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
+        this.alertUtilService.showAlert(null, '삭제되었습니다.');
         this.dataReset();
         this.getCaffeineList();
       }, err => {
@@ -232,7 +232,7 @@ export class PatternCaffeinePage implements OnInit {
       chkM : 'N',
       chkA : 'N',
       chkN : 'N'
-    }
+    };
   }
 
 }

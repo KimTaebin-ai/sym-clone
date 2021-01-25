@@ -44,6 +44,7 @@ export class LockPage implements OnInit, OnDestroy {
         }
       }
     });
+    this.alertUtilService.dismiss();
   }
 
   ngOnDestroy(): void {

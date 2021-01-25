@@ -13,6 +13,7 @@ import {CodeService} from '../../../services/code.service';
 import {ValidationService} from '../../../services/validation.service';
 import {ResponseCode} from '../../../mind-module/data/response.data';
 import {StorageUtil} from '../../../mind-module/util/storage.util';
+import {LoadingService} from '../../../util/loading.service';
 
 @Component({
     selector: 'app-more-info',
@@ -91,13 +92,15 @@ export class MoreInfoPage implements OnInit {
         private authService: AuthService,
         private codeService: CodeService,
         private validationService: ValidationService,
-        private alertCtrl: AlertController
+        private alertCtrl: AlertController,
+        private ladingService: LoadingService
     ) {
     }
 
     ngOnInit() {
         this.getAgreed();
         this.route.queryParams.subscribe(params => {
+            console.log(params, 'paramsparamsparamsparamsparamsparamsparamsparamsparamsparams')
             if (this.router.getCurrentNavigation().extras.queryParams) {
                 if (this.router.getCurrentNavigation().extras.queryParams) {
                     const paramData: any = this.router.getCurrentNavigation().extras.queryParams;
@@ -295,6 +298,7 @@ export class MoreInfoPage implements OnInit {
 
     nextPage() {
         if (this.infoPage === 9) {
+            this.ladingService.showLoading(true, '최종 저장 중입니다.');
             this.insertMoreUserInfo('LAST');
         } else {
             this.content.scrollToTop();
@@ -313,14 +317,15 @@ export class MoreInfoPage implements OnInit {
                         return false;
                     }
                 } else {
+                    this.ladingService.showLoading(true, '중간 저장 중입니다.');
                     this.insertMoreUserInfo('ADD');
                 }
             } else if (this.infoPage === 1) {
-                this.mindManager.setLockState(false);
+                this.ladingService.showLoading(true, '중간 저장 중입니다.');
                 this.insertMoreUserInfo('ADD');
-            } else if (this.infoPage === 2) {
-                this.mindManager.setLockState(true);
-                this.insertMoreUserInfo('ADD');
+/*            } else if (this.infoPage === 2) {
+                this.ladingService.showLoading(true, '중간 저장 중입니다.');
+                this.insertMoreUserInfo('ADD');*/
             } else if (this.infoPage === 3) {
                 if (!this.authService.infoDiseaseValidation(this.pageInfo.infoDisease)) {
                     this.alertUtilService.showAlert(null, '상세 내용을 입력해주세요.');
@@ -330,6 +335,7 @@ export class MoreInfoPage implements OnInit {
                     if (subInfo === false) {
                         this.infoPage = this.infoPage + 2;
                     } else {
+                        this.ladingService.showLoading(true, '중간 저장 중입니다.');
                         this.insertMoreUserInfo('ADD');
                     }
                 }
@@ -349,49 +355,46 @@ export class MoreInfoPage implements OnInit {
                     this.alertUtilService.showAlert(null, '상세 내용을 모두 입력해주세요.');
                     return false;
                 } else {
+                    this.ladingService.showLoading(true, '중간 저장 중입니다.');
                     this.insertMoreUserInfo('ADD');
                 }
+
+            } else if (this.infoPage === 7) {
+                if (this.patientMoreInfo.drink === 'Y') {
+                    let alcohol = false;
+                    for (const item of this.pageInfo.alcohol) {
+                        if (item.insertData.drinkAmount) {
+                            alcohol = true;
+                        }
+                    }
+                    console.log(this.patientMoreInfo.drinkProblem)
+                    if (!alcohol || !this.patientMoreInfo.drinkProblem) {
+                        this.alertUtilService.showAlert(null, '음주 정보를 선택해주세요.');
+                        return false;
+                    }
+                }
+                if (this.patientMoreInfo.drinkNow === 'Y') {
+                    let alcoholNow = false;
+                    for (const item of this.pageInfo.alcohol) {
+                        if (item.insertData.drinkAmount) {
+                            alcoholNow = true;
+                        }
+                    }
+                    if (!alcoholNow) {
+                        this.alertUtilService.showAlert(null, '음주 정보를 선택해주세요.');
+                        return false;
+                    }
+                }
+                this.ladingService.showLoading(true, '중간 저장 중입니다.');
+                this.insertMoreUserInfo('ADD');
+            } else if (this.infoPage === 8) {
+                this.ladingService.showLoading(true, '중간 저장 중입니다.');
+                this.insertMoreUserInfo('ADD');
             } else {
+                this.ladingService.showLoading(true, '중간 저장 중입니다.');
                 this.insertMoreUserInfo('ADD');
             }
 
-        }
-        if (this.infoPage === 9) {
-            setTimeout(function() {
-                console.log('Works!');
-                const ionRangePin = document.querySelector('ion-range').shadowRoot.querySelector('.range-slider').querySelector('.range-pin');
-                const ionRangeSlider = document.querySelector('ion-range').shadowRoot.querySelector('.range-slider');
-                ionRangePin.setAttribute('style',
-                    '' +
-                    'align-items: center;' +
-                    'display: grid;position: relative;' +
-                    'top: -6vh;right: 27%;' +
-                    'transition: transform 0.12s ease 0s, -webkit-transform 0.12s ease 0s;' +
-                    'color: var(--ion-text-color,#000);' +
-                    'font-size: 1rem;text-align: center;' +
-                    'font-weight: 900;' +
-                    'width: 16vw;' +
-                    'height: 5vh;' +
-                    'border-radius: 4px;' +
-                    'padding: 0;' +
-                    'content: " %";' +
-                    'box-shadow: rgba(83, 85, 155, 0.18) 0px 1px 8px 0px;' +
-                    ''
-                );
-
-                ionRangePin.textContent = `0%`;
-                ionRangeSlider.querySelector('.range-knob-handle')
-                    .addEventListener('pointermove', function() {
-                        const value = this.getAttribute('aria-valuenow');
-                        this.querySelector('.range-pin').textContent = `${value}%`;
-                    });
-
-                ionRangeSlider.querySelector('.range-knob-handle').setAttribute('style', 'top: 0;');
-                ionRangeSlider.querySelector('.range-knob').setAttribute('style', 'border: 0.6vh solid #44bbc8;');
-
-            }, 1500);
-
-            /**/
         }
     }
 
@@ -412,9 +415,11 @@ export class MoreInfoPage implements OnInit {
     /*--IRB-----------------------------------------------------*/
     getAgreed() {
         this.irbService.getAgreed().subscribe(res => {
-            for (let i = 0; i < res.length; i++) {
+            for (const i in res) {
                 if (res[i].project.projectSeq === 1) {
-                    this.onlineIrb = true;
+                    if (res[i].useYn === 'Y') {
+                        this.onlineIrb = true;
+                    }
                 }
             }
             this.irbList = this.irbService.setIrbList(res);
@@ -550,12 +555,20 @@ export class MoreInfoPage implements OnInit {
     }
 
     insertMoreUserInfo(type) {
-        console.log(this.pageInfo, this.patientMoreInfo);
+
         const reqVo: any = this.authService.setMoreInfoInsertData(this.pageInfo, this.patientMoreInfo);
         this.authService.setMoreInfo(reqVo).subscribe(res => {
             console.log('결과', res)
             if (type === 'ADD') {
                 this.infoPage++;
+                const lockState = this.infoPage === 2 ? false : true;
+                this.mindManager.setLockState(lockState);
+                if (this.infoPage === 9) {
+                    this.setRange();
+                } else {
+                    this.ladingService.showLoading(false, '');
+                }
+
             } else if (type === 'LAST') {
                 this.alertUtilService.showAlert(null, '추가 정보 입력을 완료하였습니다.');
                 const paramVo = {
@@ -568,11 +581,14 @@ export class MoreInfoPage implements OnInit {
                     url: '/main/main/home',
                     title: '메인페이지/홈'
                 }
+                this.mindManager.setLockState(true);
+                this.ladingService.showLoading(false, '');
                 this.pageInfoService.resetPageInfo(data).then(() => {
                     this.navController.navigateRoot(['/main'], navigationExtras);
                 });
             }
         }, err => {
+            this.ladingService.showLoading(false, '');
             this.alertUtilService.showAlert(null, err);
         });
 
@@ -820,6 +836,70 @@ export class MoreInfoPage implements OnInit {
         });
     }
 
+    setRange() {
+        this.ladingService.showLoading(false, '');
+        const child = this;
+
+        setTimeout(function() {
+            console.log('Works!');
+            const ionRangePin = document.getElementById('rangeBox').querySelector('ion-range').shadowRoot.querySelector('.range-slider').querySelector('.range-pin');
+            const ionRangeSlider = document.getElementById('rangeBox').querySelector('ion-range').shadowRoot.querySelector('.range-slider');
+            console.log(ionRangePin);
+            console.log(ionRangeSlider);
+            ionRangePin.setAttribute('style',
+                '' +
+                'align-items: center;' +
+                'display: grid;position: relative;' +
+                'top: -6vh;right: 27%;' +
+                'transition: transform 0.12s ease 0s, -webkit-transform 0.12s ease 0s;' +
+                'color: var(--ion-text-color,#000);' +
+                'font-size: 1rem;text-align: center;' +
+                'font-weight: 900;' +
+                'width: 16vw;' +
+                'height: 5vh;' +
+                'border-radius: 4px;' +
+                'padding: 0;' +
+                'content: " %";' +
+                'box-shadow: rgba(83, 85, 155, 0.18) 0px 1px 8px 0px;' +
+                ''
+            );
+
+            // ionRangePin.textContent = `0%`;
+            console.log(child.patientMoreInfo)
+            let percent = '';
+            if (child.patientMoreInfo.drugNowTaking) {
+                ionRangePin.textContent = child.patientMoreInfo.drugNowTaking.toString() + '%';
+                percent = child.patientMoreInfo.drugNowTaking.toString() + '%';
+            } else {
+                ionRangePin.textContent = '0%';
+                percent = '0%';
+            }
+            ionRangeSlider.querySelector('.range-knob-handle')
+                .addEventListener('pointermove', function() {
+                    const value = this.getAttribute('aria-valuenow');
+                    this.querySelector('.range-pin').textContent = `${value}%`;
+
+                });
+
+            ionRangeSlider.querySelector('.range-knob-handle').setAttribute('style', 'top: 0; position: relative; left: ' + percent );
+            ionRangeSlider.querySelector('.range-knob').setAttribute('style', '' +
+                '    border: 0.2rem solid #44bbc8;\n' +
+                '    border-radius: var(--knob-border-radius);\n' +
+                '    left: calc(50% - var(--knob-size) / 2);\n' +
+                '    top: calc(63% - var(--knob-size) / 2);\n' +
+                '    position: absolute;\n' +
+                '    width: 0.8rem;\n' +
+                '    height: 0.8rem;\n' +
+                '    background: var(--knob-background);\n' +
+                '    box-shadow: var(--knob-box-shadow);\n' +
+                '    z-index: 2;\n' +
+                '    pointer-events: none;' +
+                '');
+        }, 1500);
+
+
+    }
+
     // maxlength 체크
     maxLengthCheck(type, maxlength) {
         if (this.patientMoreInfo[type]) {
@@ -828,6 +908,15 @@ export class MoreInfoPage implements OnInit {
             }
         }
         console.log(this.patientMoreInfo[type]);
+    }
+
+    // 공백 제어
+    keyPressForVal(event: any) {
+        const inputChar = String.fromCharCode(event.charCode);
+        const pattern = /^\s*/;
+        if (!pattern.test(inputChar)) {
+            event.preventDefault();
+        }
     }
 
 }

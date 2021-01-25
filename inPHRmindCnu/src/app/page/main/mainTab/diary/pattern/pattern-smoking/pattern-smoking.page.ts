@@ -61,7 +61,7 @@ export class PatternSmokingPage implements OnInit {
   // 흡연 입력값 확인
   addSmokeDiaryChk(){
     if (this.insertVo.smokeAmount === '' || this.insertVo.smokeAmount === null) {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">흡연한 담배의 갯수를 입력해주세요.</p>');
+      this.alertUtilService.showAlert(null, '흡연한 담배의 갯수를 입력해주세요.');
       return false;
     } else {
       this.addSmokeDiaryAlert();
@@ -98,8 +98,9 @@ export class PatternSmokingPage implements OnInit {
       this.loadingService.showLoading(false, '');
       this.getSmokeList();
       this.dataReset();
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">추가되었습니다.</p>');
+      this.alertUtilService.showAlert(null, '추가되었습니다.');
     }, err =>{
+      this.loadingService.showLoading(false, '');
       this.loadingService.showLoading(false, '');
       console.log('err', err);
     });
@@ -133,7 +134,7 @@ export class PatternSmokingPage implements OnInit {
     const date = this.selectedDate;
     this.diaryService.deleteSmokeDiary(date).subscribe(res => {
       console.log('resTs3', res);
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
+      this.alertUtilService.showAlert(null, '삭제되었습니다.');
       this.dataReset();
       this.getSmokeList();
     }, err => {

@@ -77,8 +77,8 @@ ion-col {
 }
 
 .symptomInfoModal .modal-wrapper {
-  height: 70%;
-  top: 15%;
+  height: 90%;
+  top: 5%;
   width: 90%;
   position: absolute;
   display: block;
@@ -245,7 +245,7 @@ ion-fab-button button {
   top: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
-  z-index: 1;
+  z-index: 2;
   backdrop-filter: blur(6px);
 }
 
@@ -266,7 +266,7 @@ ion-fab-button button {
 
 .irb-modal-title {
   font-family: Roboto;
-  font-size: 2.6vh;
+  font-size: 1rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -278,7 +278,7 @@ ion-fab-button button {
 
 .irb-modal-smaltitle {
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -290,7 +290,7 @@ ion-fab-button button {
 
 .irb-modal-notice {
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -303,7 +303,7 @@ ion-fab-button button {
 
 .irb-modal-text {
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -316,11 +316,11 @@ ion-fab-button button {
 
 .emotion_info_modal .modal-wrapper{
   width: 80%;
-  height: 46%;
+  height: 50%;
   left: 10%;
   right: 10%;
-  top: 27%;
-  bottom: 27%;
+  top: 25%;
+  bottom: 25%;
   border-radius: 10px;
   //border: 1px solid #454545;
   //box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
@@ -335,3 +335,4 @@ ion-fab-button button {
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px white inset;
 }
+

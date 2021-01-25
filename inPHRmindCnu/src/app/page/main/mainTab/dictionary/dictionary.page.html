@@ -22,7 +22,7 @@
                           <ion-grid>
                             <ion-row class="dictionary-input-box">
                               <ion-col size="11" class="pdB10">
-                                <input type="text" class="dictionary-input" placeholder="궁금한 증상을 입력해 주세요." [(ngModel)]="searchKey" (keydown)="enterEvent($event)">
+                                <input type="text" class="dictionary-input" placeholder="궁금한 증상을 입력해 주세요." [(ngModel)]="searchKey" (keydown)="enterEvent($event)" maxlength="30">
                               </ion-col>
                               <ion-col size="1" class="pdB10">
                                 <img src="assets/image/icon_search.svg" (click)="searchDictionary()">
@@ -35,7 +35,7 @@
                   </ion-col>
                 </ion-row>
               </ion-grid>
-              <ion-grid class="mgB10vh">
+              <ion-grid class="mgB4_5rem">
                 <ion-row>
                   <ion-col>
                     <ion-grid *ngIf="dictionaryList.length">
@@ -52,7 +52,7 @@
                     </ion-grid>
                     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="dictionaryList.length > 0">
                       <ion-infinite-scroll-content
-                              loadingSpinner="dots"
+                              loadingSpinner="bubbles"
                               loadingText="로딩중...">
                       </ion-infinite-scroll-content>
                     </ion-infinite-scroll>

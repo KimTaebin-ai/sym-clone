@@ -3,6 +3,7 @@ import {NavController} from '@ionic/angular';
 import {MindManager} from '../../../../mind-module/mind.manager';
 import {PageInfoService} from '../../../../services/page-info.service';
 import {EventBusService} from '../../../../services/event-bus.service';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-fab',
@@ -36,6 +37,16 @@ export class FabComponent implements OnInit {
   }
 
   goToPage(url, title, type) {
+    const diaryDateInfo = this.mindManager.getDateBinding();
+    if (diaryDateInfo) {
+      diaryDateInfo.dirayDate = moment().format('YYYY-MM-DD');
+      this.mindManager.setDateBinding(diaryDateInfo);
+    } else {
+      this.mindManager.setDateBinding({
+        dirayDate : moment().format('YYYY-MM-DD')
+      });
+    }
+
     if (type === 'TAB') {
       this.pageInfoService.moveToTab(url, title).then(data => {
         if (url === '/main/main/psychological-scale') {

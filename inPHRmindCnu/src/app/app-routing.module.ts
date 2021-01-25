@@ -208,6 +208,11 @@ const routes: Routes = [
     path: 'setting-term',
     loadChildren: () => import('./page/setting/setting-term/setting-term.module').then(m => m.SettingTermPageModule)
   },
+  {
+    path: 'new-term',
+    loadChildren: () => import('./page/auth/new-term/new-term.module').then(m => m.NewTermPageModule)
+  },
+
 
 ];
 @NgModule({

@@ -2,7 +2,21 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-grid>
+        <ion-grid *ngIf="type === 'SCARE'">
+          <ion-row>
+            <ion-col class="modalTitle">
+              <span>
+                공황
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="modalSubTitle">
+              <span>
+                최근 7일간의 공황 증상
+              </span>
+            </ion-col>
+          </ion-row>
           <ion-row>
             <ion-col class="mgT3vh pdL5vw pdR5vw">
               <img src="assets/image/main/tpmdsImage.svg" class="height100Per">
@@ -17,14 +31,6 @@
                   </ion-col>
                   <ion-col size="11" class="symptom-text">
                     <span class="pdL2vw">기록 없음</span>
-                  </ion-col>
-                </ion-row>
-                <ion-row class="symptomInfo-list-box">
-                  <ion-col size="1" class="mgAuto">
-                    <div class="symptom-point2"></div>
-                  </ion-col>
-                  <ion-col size="11" class="symptom-text">
-                    <span class="pdL2vw">증상없음</span>
                   </ion-col>
                 </ion-row>
                 <ion-row class="symptomInfo-list-box">
@@ -57,6 +63,86 @@
                   </ion-col>
                   <ion-col size="11" class="symptom-text">
                     <span class="pdL2vw">공황 4회 or 지속시간 1시간 30분 이상</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="type === 'EMOTION'">
+          <ion-row>
+            <ion-col class="modalTitle">
+              <span>
+                정서
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="mgT3vh pdL5vw pdR5vw">
+              <img src="assets/image/main/dscrpImage_2.svg" class="height100Per">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="emotion-point1"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">기분</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="emotion-list-box">
+                  <ion-col class="emotion-text">
+                    <span>
+                      양과 음의 값을 모두 표현. 하루 중 최고의 기분 상태와 최악의 기분 상태를 +3/-3의 값으로 표현.
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="emotion-point2"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">에너지</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="emotion-list-box">
+                  <ion-col class="emotion-text">
+                    <span>
+                      양과 음의 값을 모두 표현. 하루 중 최고로 기운이 넘쳤던 순간과 최악으로 기운이 없었던 순간을 +3/-3의 값으로 표현.
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="emotion-point3"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">불안</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="emotion-list-box">
+                  <ion-col class="emotion-text">
+                    <span>
+                      양의 값을 표현. 하루 중 가장 불안했던 순간을 0~3의 값으로 표현.
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="symptomInfo-list-box">
+                  <ion-col size="1" class="mgAuto">
+                    <div class="emotion-point4"></div>
+                  </ion-col>
+                  <ion-col size="11" class="symptom-text">
+                    <span class="pdL2vw">짜증</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="emotion-list-box">
+                  <ion-col class="emotion-text">
+                    <span>
+                      양의 값을 표현. 하루 중 가장 짜증났던 순간을 0~3의 값으로 표현
+                    </span>
                   </ion-col>
                 </ion-row>
               </ion-grid>

@@ -115,6 +115,14 @@
     padding-top: 15vh;
 }
 
+.pdT16{
+    padding-top: 16px;
+}
+
+.pdT1rem {
+    padding-top: 1rem;
+}
+
 .pdR1vw {
     padding-right: 1vw;
 }
@@ -213,6 +221,14 @@
 
 .botton8vh {
     bottom: 8vh;
+}
+/*rem*/
+.pd0_8rem {
+    padding: 0.8rem;
+}
+
+.mgB4_5rem {
+    margin-bottom: 4.5rem;
 }
 
 
@@ -395,6 +411,7 @@
 }
 
 
+
 /*공통 정렬 */
 .text_center {
     text-align: center;
@@ -415,6 +432,10 @@
 
 .vertical_middle {
     vertical-align: middle;
+}
+
+.vertical_textTop {
+    vertical-align: text-top;
 }
 
 .align_center-grid {

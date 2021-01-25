@@ -1,27 +1,33 @@
 .header_Box {
   width: 100%;
-  height: 8.5vh;
+  height: 3.5rem;
   align-items: center;
   display: flex;
   text-align: center;
   border-bottom: solid 1px #dcdcdc;
 }
 
+@media (max-width: 280px) {
+  .header_font {
+    font-size: 1.1rem !important;
+  }
+}
+
 .header_font {
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1.2rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   letter-spacing: -0.64px;
   text-align: center;
   color: #262626;
+  white-space: nowrap;
 }
-
 
 .diseaseNm {
   font-family: Roboto;
-  font-size: 6.5vw;
+  font-size: 1.4rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -36,7 +42,7 @@
 
 .main-Q {
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: 1rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -44,15 +50,17 @@
   letter-spacing: -0.51px;
   color: #2e2e2e;
   text-align: left;
-  padding: 0 4vw;
+  padding: 0 1rem;
   margin-bottom: 4vh;
   padding-top: 0;
   padding-right: 4vw;
+  padding-top: 2rem;
+  word-break: keep-all;
 }
 
 .sub-Q {
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: .9rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -60,14 +68,15 @@
   letter-spacing: -0.51px;
   text-align: left;
   color: #2e2e2e;
-  padding: 0 4vw;
+  padding: 0 1rem;
   margin-bottom: 4vh;
+  word-break: keep-all;
 }
 
 // 단답형 질문
 .inputType1 {
   width: 100%;
-  height: 8vh;
+  height: 3rem;
   padding: 13.5px 162px 13.5px 16px;
   border: solid 1px #d2d5dc;
   border-radius: 4px;
@@ -76,8 +85,8 @@
 // 서술형 질문
 .inputType2 {
   width: 100%;
-  height: 28vh;
-  padding: 4vw;
+  height: 3rem;
+  padding: .25rem;
   border: solid 1px #d2d5dc;
   border-radius: 4px;
 }
@@ -86,14 +95,14 @@
 .inputType3 {
   width: 100%;
   height: calc(((100vw - 8vw)/12)*2);
-  padding: 0 4vw;
+  padding: 0 .25rem;
   border: solid 1px #d2d5dc;
   border-radius: 4px;
 }
 
 
 .radioType1 {
-  font-size: 4vw;
+  font-size: .8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -108,15 +117,15 @@
 }
 
 .radioType2 {
-  width: 8vw;
-  height: 8vw;
+  width: 1rem;
+  height: 1rem;
   background-color: #eeeff1;
   border-radius: 50%;
   align-items: center;
   text-align: center;
   display: inline-grid;
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: .8rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -125,15 +134,15 @@
 }
 
 .radioType2-active {
-  width: 8vw;
-  height: 8vw;
+  width: 1rem;
+  height: 1rem;
   background-color: #44bbc8;
   border-radius: 50%;
   align-items: center;
   text-align: center;
   display: inline-grid;
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: .8rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -144,7 +153,7 @@
 // 단일 선택 질문 (드롭다운)
 .dropdownType1 {
   width: 100%;
-  height: 7vh;
+  height: 2.5rem;
   border: solid 1px #d2d5dc;
   background-color: #ffffff;
   align-items: center;
@@ -152,7 +161,7 @@
 
 .multiple-answers-list {
   width: 100%;
-  padding: 0 4vw;
+  padding: 0 1rem;
   border-radius: 4px;
   background-color: #f7f8f9;
   min-height: calc(((100vw - 8vw)/12)*1.8);
@@ -163,25 +172,25 @@
 
 .lastButton {
   width: 100%;
-  height: 54px;
+  height: 3.5rem;
   border-radius: 4px;
   background-color: #e7e8eb;
 }
 
 .nextButton {
   width: 100%;
-  height: 54px;
+  height: 3.5rem;
   border-radius: 4px;
   background-color: #44bbc8;
 }
 
 .lastButton-font1 {
   font-family: Roboto;
-  font-size: 5vw;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.33;
+  line-height: 1.5rem;
   letter-spacing: -0.11px;
   text-align: center;
   color: #262626;
@@ -189,11 +198,11 @@
 
 .nextButton-font1 {
   font-family: Roboto;
-  font-size: 5vw;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.33;
+  line-height: 1.5rem;
   letter-spacing: -0.11px;
   text-align: center;
   color: #ffffff;
@@ -201,14 +210,14 @@
 
 .listType1_1 {
   width: 100%;
-  height: 7vh;
-  padding: 0 4vw;
+  height: 2.5rem;
+  padding: 0 1rem;
   border: solid 1px #d2d5dc;
   background-color: #ffffff;
   border-radius: 4px;
   align-items: center;
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: .8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -221,14 +230,14 @@
 
 .listType1_2 {
   width: 100%;
-  height: 7vh;
-  padding: 0 4vw;
+  height: 2.5rem;
+  padding: 0 1rem;
   border: solid 1px #d2d5dc;
   background-color: #44bbc8;
   border-radius: 4px;
   align-items: center;
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: .8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -241,13 +250,13 @@
 
 .listType1_rank {
   width: calc((100vw - 8vw - 6vw)/3);
-  min-height: 7vh;
+  min-height: 2.5rem;
   border-radius: 4px;
   border: solid 1px #28a1ae;
   background-color: #effdff;
   align-items: center;
   display: grid;
-  padding: 0 4vw;
+  padding: 0 1rem;
   margin-right: 2vw;
   float: left;
   margin-top: 1vh;
@@ -255,7 +264,7 @@
 
 .date-inputBox1 {
   width: 100%;
-  height: 8vh;
+  height: 3.3rem;
   border: solid 1px #d2d5dc;
   margin-top: 1vh;
   border-radius: 4px;
@@ -265,7 +274,7 @@
 
 .datetimeType {
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: .8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -277,7 +286,7 @@
 
 .datetimeType-label {
   font-family: Roboto;
-  font-size: 4vw;
+  font-size: .8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -312,12 +321,12 @@
 }
 
 .surveyRadioButton_img {
-  height: 3.5vh;
+  height: 1.6rem
 }
 
 .completeTitle {
   font-family: Roboto;
-  font-size: 3.5vh;
+  font-size: 1.5rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -329,7 +338,7 @@
 
 .completecontent {
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: .9rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -338,16 +347,17 @@
   text-align: left;
   color: #2e2e2e;
   padding-top: 2vh;
+  word-break: keep-all;
 }
 
 .outcome-img {
   width: 100%;
   margin: 4vh 0;
-  padding: 0 4vw;
+  padding: 0 1rem;
 }
 
 .step-label {
-  padding: 0.5vh 4vw;
+  padding: 1rem;
   border-radius: 4px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08);
   border: solid 1px #ebebeb;
@@ -364,7 +374,7 @@ ion-footer {
 
 .outcome-button {
   width: 100%;
-  height: 9vh;
+  height: 3rem;
   border-radius: 4px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
@@ -372,7 +382,7 @@ ion-footer {
   display: grid;
   text-align: center;
   font-family: Roboto;
-  font-size: 3vh;
+  font-size: 1.15rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

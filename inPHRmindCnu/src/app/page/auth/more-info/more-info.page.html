@@ -1,3 +1,4 @@
+<app-loading></app-loading>
 <ion-header>
   <ion-grid class="header_Box">
     <ion-row class="width100Per">
@@ -136,7 +137,7 @@
               <ion-grid class="auth-input-box">
                 <ion-row class="height100Per">
                   <ion-col>
-                    <input placeholder="010-0000-0000" type="text" maxlength="200"
+                    <input placeholder="010-0000-0000" type="text" maxlength="13"
                            [ngClass]="conditionValue.mobileReadOnly? 'auth-input_dis' : 'auth-input'"
                            [(ngModel)]="usrInfo.mobileNum" [readOnly]="conditionValue.mobileReadOnly">
                   </ion-col>
@@ -345,7 +346,7 @@
           </ion-row>
           <ion-row>
             <ion-col class="pdR1vw moreInfo-ion-select">
-              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.income">
+              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.income" cancelText="닫기">
                 <ion-select-option value="">연 평균 가구 소득 선택</ion-select-option>
                 <ion-select-option [value]="1">1000만원 이하</ion-select-option>
                 <ion-select-option [value]="2">2000만원</ion-select-option>
@@ -367,7 +368,7 @@
           </ion-row>
           <ion-row>
             <ion-col class="pdR1vw moreInfo-ion-select">
-              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.educationCode">
+              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.educationCode" cancelText="닫기">
                 <ion-select-option value="">최종 학력 선택</ion-select-option>
                 <ion-select-option [value]="item.codeSeq" *ngFor="let item of pageInfo.infoEducation">{{item.codeName}}</ion-select-option>
               </ion-select>
@@ -433,7 +434,7 @@
           </ion-row>
           <ion-row>
             <ion-col class="pdR1vw moreInfo-ion-select">
-              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.jobCode">
+              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.jobCode" cancelText="닫기">
                 <ion-select-option value="">직종을 선택해주세요.</ion-select-option>
                 <ion-select-option [value]="item.codeSeq" *ngFor="let item of pageInfo.infoJob">{{item.codeName}}</ion-select-option>
               </ion-select>
@@ -444,7 +445,7 @@
               <ion-grid class="auth-input-box">
                 <ion-row class="height100Per">
                   <ion-col>
-                    <input class="auth-input" placeholder="직종을 입력해 주세요." [(ngModel)]="patientMoreInfo.jobEtc">
+                    <input class="auth-input" placeholder="직종을 입력해 주세요." [(ngModel)]="patientMoreInfo.jobEtc" maxlength="100">
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -464,7 +465,12 @@
               <ion-grid class="auth-input-box">
                 <ion-row class="height100Per">
                   <ion-col size="10">
-                    <input class="auth-input" placeholder="현재 자녀 수를 입력해 주세요."  [(ngModel)]="patientMoreInfo.children">
+                    <input class="auth-input" type="text"
+                           inputmode="numeric" pattern="[0-9]*" maxlength="3"
+                           [(ngModel)]="patientMoreInfo.children"
+                           appDigitOnly placeholder="현재 자녀 수를 입력해 주세요."
+                           (keypress)="keyPressForVal($event)"/>
+                    <!--<input class="auth-input" placeholder="현재 자녀 수를 입력해 주세요."  [(ngModel)]="patientMoreInfo.children">-->
                   </ion-col>
                   <ion-col size="2" class="text_center align_center-grid">
                     <span>
@@ -486,7 +492,7 @@
           </ion-row>
           <ion-row>
             <ion-col class="pdR1vw moreInfo-ion-select">
-              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.religionCode">
+              <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.religionCode" cancelText="닫기">
                 <ion-select-option value="">종교 선택</ion-select-option>
                 <ion-select-option [value]="item.codeSeq" *ngFor="let item of pageInfo.infoReligion">{{item.codeName}}</ion-select-option>
               </ion-select>
@@ -497,7 +503,7 @@
               <ion-grid class="auth-input-box">
                 <ion-row class="height100Per">
                   <ion-col>
-                    <input class="auth-input" placeholder="종교를 입력해 주세요." [(ngModel)]="patientMoreInfo.religionEtc">
+                    <input class="auth-input" placeholder="종교를 입력해 주세요." [(ngModel)]="patientMoreInfo.religionEtc" maxlength="100">
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -677,7 +683,7 @@
               <ion-grid class="width100Per">
                 <ion-row>
                   <ion-col class="moreInfo-ion-select">
-                    <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.dayOfSmoke">
+                    <ion-select value="notifications" interface="action-sheet" [(ngModel)]="patientMoreInfo.dayOfSmoke" cancelText="닫기">
                       <ion-select-option [value]="">일 평균 흡연량 선택</ion-select-option>
                       <ion-select-option [value]="5">5개비 미만</ion-select-option>
                       <ion-select-option [value]="10">10개비 이하</ion-select-option>
@@ -894,7 +900,12 @@
               <ion-grid class="auth-input-box">
                 <ion-row class="height100Per">
                   <ion-col size="10">
-                    <input class="auth-input" placeholder="만 나이를 입력해 주세요. ex)24" [(ngModel)]="patientMoreInfo.suicideWhen">
+                    <input class="auth-input" type="text"
+                           inputmode="numeric" pattern="[0-9]*" maxlength="3"
+                           [(ngModel)]="patientMoreInfo.suicideWhen"
+                           appDigitOnly placeholder="만 나이를 입력해 주세요. ex)24"
+                           (keypress)="keyPressForVal($event)"/>
+                    <!--<input class="auth-input" placeholder="만 나이를 입력해 주세요. ex)24" [(ngModel)]="patientMoreInfo.suicideWhen">-->
                   </ion-col>
                   <ion-col size="2" class="text_center align_center-grid">
                     <span>
@@ -919,7 +930,12 @@
               <ion-grid class="auth-input-box">
                 <ion-row class="height100Per">
                   <ion-col size="10">
-                    <input class="auth-input" placeholder="과거 자살기도 횟수를 입력해 주세요." [(ngModel)]="patientMoreInfo.suicideNum">
+                    <input class="auth-input" type="text"
+                           inputmode="numeric" pattern="[0-9]*" maxlength="3"
+                           [(ngModel)]="patientMoreInfo.suicideNum"
+                           appDigitOnly placeholder="과거 자살기도 횟수를 입력해 주세요."
+                           (keypress)="keyPressForVal($event)"/>
+                    <!--<input class="auth-input" placeholder="과거 자살기도 횟수를 입력해 주세요." [(ngModel)]="patientMoreInfo.suicideNum">-->
                   </ion-col>
                   <ion-col size="2" class="text_center align_center-grid">
                     <span>
@@ -1002,7 +1018,7 @@
               </span>
             </ion-col>
           </ion-row>
-          <ion-row style="position: static">
+          <ion-row style="position: static; padding-bottom: 0.5rem;">
             <ion-col>
               <div class="range-start"></div>
             </ion-col>
@@ -1011,7 +1027,7 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="pdR1vw rangeBox">
+            <ion-col class="pdR1vw rangeBox" id="rangeBox">
               <ion-range min="0%" max="100%" pin color="secondary" class="infoRange"  id="perRange"  [(ngModel)]="patientMoreInfo.drugNowTaking" >
               </ion-range>
             </ion-col>

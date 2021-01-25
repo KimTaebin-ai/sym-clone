@@ -1,14 +1,19 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import * as moment from "moment";
-import {AlertController, ModalController, NavController} from "@ionic/angular";
-import {PageInfoService} from "../../../../services/page-info.service";
-import {DiaryService} from "../../../../mind-module/service/diary.service";
-import {AlertUtilService} from "../../../../util/common/alert-util.service";
-import {EventBusService} from "../../../../services/event-bus.service";
-import {PatternReportPage} from "../../../mind-report/pattern-report/pattern-report.page";
-import {EmotionInfoModalPage} from "../../../modal/emotion-info-modal/emotion-info-modal.page";
-import {MindManager} from "../../../../mind-module/mind.manager";
+import * as moment from 'moment';
+import {AlertController, ModalController, NavController} from '@ionic/angular';
+import {PageInfoService} from '../../../../services/page-info.service';
+import {DiaryService} from '../../../../mind-module/service/diary.service';
+import {AlertUtilService} from '../../../../util/common/alert-util.service';
+import {EventBusService} from '../../../../services/event-bus.service';
+import {PatternReportPage} from '../../../mind-report/pattern-report/pattern-report.page';
+import {EmotionInfoModalPage} from '../../../modal/emotion-info-modal/emotion-info-modal.page';
+import {MindManager} from '../../../../mind-module/mind.manager';
 import {NavigationExtras} from "@angular/router";
+import {getLocaleTimeFormat} from "@angular/common";
+import {LoadingService} from '../../../../util/loading.service';
+import {Sensors} from '@ionic-native/sensors/ngx';
+import {CommonUtilService} from '../../../../util/common/common-util.service';
+import {PatientSurveyService} from '../../../../mind-module/service/patient-survey.service';
 
 @Component({
   selector: 'app-diary',
@@ -18,6 +23,7 @@ import {NavigationExtras} from "@angular/router";
 export class DiaryPage implements OnInit, OnDestroy {
   fabButtonOpened = false;
   today = new Date();
+  yesterday =  moment().subtract(1, 'day').toDate();
 
   allDiaryDataList: any = [];
 
@@ -26,7 +32,7 @@ export class DiaryPage implements OnInit, OnDestroy {
 
   /*공황------------------------*/
   panicDetailOpen = 'N';
-  panicDataList: any = []
+  panicDataList: any = [];
   totalPanicDuration: any = 0;
 
   /*---------------------------*/
@@ -40,7 +46,7 @@ export class DiaryPage implements OnInit, OnDestroy {
     unrest: '',
     petulance: '',
     setDt : moment(this.selectedDate).format('YYYY-MM-DD')
-  }
+  };
   emotionDataList: any = [];
 
   /*---------------------------*/
@@ -50,7 +56,7 @@ export class DiaryPage implements OnInit, OnDestroy {
     drinkDetailOpen: 'N',
     caffeineDetailOpen: 'N',
     exDetailOpen: 'N'
-  }
+  };
   drinkList: any = [];
   drinkCodeList: any = [];
 
@@ -68,17 +74,17 @@ export class DiaryPage implements OnInit, OnDestroy {
     chkM : 'N',
     chkA : 'N',
     chkN : 'N'
-  }
+  };
   chkCaffeineWhen = {
     chkM : 'N',
     chkA : 'N',
     chkN : 'N'
-  }
+  };
   chkExerciseWhen = {
     chkM : 'N',
     chkA : 'N',
     chkN : 'N'
-  }
+  };
   /*---------------------------*/
 
   constructor(
@@ -89,23 +95,42 @@ export class DiaryPage implements OnInit, OnDestroy {
       private pageInfoService: PageInfoService,
       private diaryService: DiaryService,
       private eventBusService: EventBusService,
-      private mindManager: MindManager
+      private mindManager: MindManager,
+      private loadingService: LoadingService,
+      private sensors: Sensors,
+      private commonUtillService: CommonUtilService,
+      private surveyService: PatientSurveyService,
   ) { }
 
   ngOnInit() {
     this.eventBusService.tabInfo$.next('DIARY');
-    console.log('Init');
     moment.locale('ko');
-    this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
     this.dataReset();
-    this.getDiaryList(this.selectedDate);
     this.getCodeList();
 
     // 날짜 정보 받아와서 selectedDate 설정
-    const dateBindingInfo = this.mindManager.getDateBinding();
-    if(dateBindingInfo) {
-      this.getDirayDateInfo(dateBindingInfo.dirayDate);
+    const diaryDateInfo = this.mindManager.getDateBinding();
+    console.log(Object.keys(diaryDateInfo).length)
+    if(Object.keys(diaryDateInfo).length) {
+      console.log('날짜 O : ', diaryDateInfo);
+      this.getDirayDateInfo(diaryDateInfo.dirayDate);
+    } else {
+      console.log('날짜X : ', diaryDateInfo)
+      // 오후 3시 이전이면 어제 / 이후이면 오늘
+      if(this.isBefore3()){
+        this.selectedDate = moment().subtract(1, 'day').toDate();
+      } else {
+        this.selectedDate = new Date();
+      }
+      this.getDirayDateInfo(this.selectedDate);
     }
+    console.log('3시 이전인가요?', this.isBefore3());
+  }
+
+  // 현재 오후 3시 이전인지 확인
+  isBefore3(): boolean {
+    const threeOclock = new Date().setHours(15,0,0);
+    return moment(new Date()).isBefore(threeOclock, 'hour');
   }
 
   getDirayDateInfo(date){
@@ -120,6 +145,8 @@ export class DiaryPage implements OnInit, OnDestroy {
 
   // 전체 다이어리 조회
   getDiaryList(date) {
+    this.dataReset();
+    console.log('emotion', this.emotionInsertVo);
     this.diaryService.getDiaryList(moment(date).format('YYYY-MM-DD')).subscribe(res => {
       if(res.data){
         this.allDiaryDataList = res.data;
@@ -159,6 +186,7 @@ export class DiaryPage implements OnInit, OnDestroy {
           }
         }
       }
+
       if(res.data.caffeines) {
         this.caffeineList = res.data.caffeines;
         for(let i = 0; i < this.caffeineList.length; i++){
@@ -173,6 +201,7 @@ export class DiaryPage implements OnInit, OnDestroy {
           }
         }
       }
+
       if(res.data.exercises) {
         this.exerciseList = res.data.exercises;
         for(let i = 0; i < this.exerciseList.length; i++){
@@ -260,7 +289,7 @@ export class DiaryPage implements OnInit, OnDestroy {
   moveLastDay() {
     this.selectedDate = moment(this.selectedDate).subtract(1, 'day').toDate();
     this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
-    this.dataReset();
+    this.dateBinding();
     this.getDiaryList(this.selectedDate);
   }
 
@@ -268,7 +297,7 @@ export class DiaryPage implements OnInit, OnDestroy {
   moveNextDay(){
     this.selectedDate = moment(this.selectedDate).add(1, 'day').toDate();
     this.selectedDateKo = moment(this.selectedDate).format('YYYY년 MM월 DD일 dddd');
-    this.dataReset();
+    this.dateBinding();
     this.getDiaryList(this.selectedDate);
   }
 
@@ -312,13 +341,13 @@ export class DiaryPage implements OnInit, OnDestroy {
   // 정서 저장/수정 확인창
   saveEmotionDataChk() {
     if(this.emotionInsertVo.feelingPositive ==='' && this.emotionInsertVo.feelingNegative ===''){
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">기분의 정도를 선택해주세요.</p>');
+      this.alertUtilService.showAlert(null, '기분의 정도를 선택해주세요.');
     } else if(this.emotionInsertVo.energyPositive ==='' && this.emotionInsertVo.energyNegative ===''){
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">에너지의 정도를 선택해주세요.</p>');
+      this.alertUtilService.showAlert(null, '에너지의 정도를 선택해주세요.');
     } else if(this.emotionInsertVo.unrest ===''){
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">불안의 정도를 선택해주세요.</p>');
+      this.alertUtilService.showAlert(null, '불안의 정도를 선택해주세요.');
     } else if(this.emotionInsertVo.petulance ===''){
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">짜증의 정도를 선택해주세요.</p>');
+      this.alertUtilService.showAlert(null, '짜증의 정도를 선택해주세요.');
     } else {
       this.saveEmotionDataAlert();
     }
@@ -363,11 +392,44 @@ export class DiaryPage implements OnInit, OnDestroy {
       this.emotionInsertVo.energyNegative = 0;
     }
     this.diaryService.saveEmotionDiary(this.emotionInsertVo).subscribe(res => {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">저장되었습니다.</p>');
-      this.getDiaryList(this.selectedDate);
+      this.setLux();
     }, err => {
       console.log('err', err);
     })
+  }
+
+
+  // 조도센서
+  setLux(): any {
+    let sum = 0;
+    let count = 0;
+    const lightSensor = setInterval(() => {
+      this.loadingService.showLoading(true, '조도를 측정하는 중입니다. 잠시만 기다려주세요.');
+      this.sensors.enableSensor('LIGHT');
+      const dd = this.sensors.getState();
+      dd.then(res => {
+        if (res) {
+          sum = sum + Number(res);
+          count++;
+        }
+      });
+    }, 200);
+
+    this.commonUtillService.delay(3000).then(() => {
+      this.loadingService.showLoading(false, '');
+      clearInterval(lightSensor);
+      this.sensors.disableSensor();
+      let aug = 0;
+      if (count !== 0) {
+        aug = Math.floor(sum / count);
+      }
+      this.alertUtilService.showAlert(null, '저장되었습니다.');
+      this.getDiaryList(this.selectedDate);
+      this.surveyService.setLux(aug).subscribe(res => {
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
 
@@ -441,19 +503,25 @@ export class DiaryPage implements OnInit, OnDestroy {
   // 페이지 이동
   goToPage(url, title) {
     this.pageInfoService.getToOtherPage('/main/main/diary', url, title).then(() => {
-      const diaryDateInfo = this.mindManager.getDateBinding();
-      if (diaryDateInfo) {
-        diaryDateInfo.dirayDate = moment(this.selectedDate).format('YYYY-MM-DD');
-        this.mindManager.setDateBinding(diaryDateInfo);
-      } else {
-        this.mindManager.setDateBinding({
-          dirayDate : moment(this.selectedDate).format('YYYY-MM-DD')
-        });
-      }
+      this.dateBinding();
       this.navController.navigateRoot([url]);
     });
   }
 
+  // selectDate 셋팅
+  dateBinding(){
+    const diaryDateInfo = this.mindManager.getDateBinding();
+    if (diaryDateInfo) {
+      diaryDateInfo.dirayDate = moment(this.selectedDate).format('YYYY-MM-DD');
+      this.mindManager.setDateBinding(diaryDateInfo);
+    } else {
+      this.mindManager.setDateBinding({
+        dirayDate : moment(this.selectedDate).format('YYYY-MM-DD')
+      });
+    }
+  }
+
+  // 데이터 초기화
   dataReset(){
     this.allDiaryDataList = [];
 
@@ -469,14 +537,14 @@ export class DiaryPage implements OnInit, OnDestroy {
       unrest: '',
       petulance: '',
       setDt : moment(this.selectedDate).format('YYYY-MM-DD')
-    }
+    };
     this.emotionDataList = [];
 
     this.openYn = {
       drinkDetailOpen: 'N',
       caffeineDetailOpen: 'N',
       exDetailOpen: 'N'
-    }
+    };
     this.drinkList = [];
     this.drinkList= [];
     this.smokeList = {};
@@ -491,16 +559,16 @@ export class DiaryPage implements OnInit, OnDestroy {
       chkM : 'N',
       chkA : 'N',
       chkN : 'N'
-    }
+    };
     this.chkCaffeineWhen = {
       chkM : 'N',
       chkA : 'N',
       chkN : 'N'
-    }
+    };
     this.chkExerciseWhen = {
       chkM : 'N',
       chkA : 'N',
       chkN : 'N'
-    }
+    };
   }
 }

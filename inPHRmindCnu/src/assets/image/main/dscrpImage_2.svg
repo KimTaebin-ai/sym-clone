@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="291" height="133.086" viewBox="0 0 291 133.086">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:#7c828a;font-size:11px}.cls-1{font-family:NunitoSans-Regular,Nunito Sans}.cls-2{font-family:Roboto-Regular,Roboto}.cls-3{fill:none;stroke-miterlimit:10;stroke:#bacce3;stroke-dasharray:2 3}.cls-5{font-size:12px;font-family:MalgunGothic,Malgun Gothic}.cls-7{fill:#4bb5f2}.cls-8{fill:#19d288}.cls-9{fill:#836ae3}.cls-10{fill:#ff7661}
+        </style>
+    </defs>
+    <g id="dscrpImage_2" transform="translate(-36 -183)">
+        <g id="그룹_3843">
+            <g id="그룹_3835" transform="translate(36 183)">
+                <g id="y-axis">
+                    <text id="_25K" class="cls-1" transform="translate(0 101.217)">
+                        <tspan x="3.486" y="11">-3</tspan>
+                    </text>
+                    <text id="_25K-2" class="cls-1" transform="translate(0 84.672)">
+                        <tspan x="3.486" y="11">-2</tspan>
+                    </text>
+                    <text id="_25K-3" class="cls-1" transform="translate(0 67.154)">
+                        <tspan x="3.486" y="11">-1</tspan>
+                    </text>
+                    <text id="_50K" class="cls-2">
+                        <tspan x="8.584" y="12">3</tspan>
+                    </text>
+                    <text id="_50K-2" class="cls-2" transform="translate(0 16.545)">
+                        <tspan x="8.584" y="12">2</tspan>
+                    </text>
+                    <text id="_50K-3" class="cls-2" transform="translate(0 34.064)">
+                        <tspan x="8.584" y="12">1</tspan>
+                    </text>
+                    <text id="_50K-4" class="cls-2" transform="translate(0 50.609)">
+                        <tspan x="8.584" y="12">0</tspan>
+                    </text>
+                </g>
+                <path id="Line" d="M.5 1h265.017" class="cls-3" transform="translate(25.483 108.175)"/>
+                <path id="Line-2" fill="none" stroke="#7c828a" stroke-dasharray="1 0" stroke-miterlimit="10" d="M.5 1h265.017" transform="translate(25.237 57.081)"/>
+                <path id="Line-3" d="M.5 1h265.017" class="cls-3" transform="translate(25.483 6.138)"/>
+                <path id="Line-4" d="M.5 1h265.017" class="cls-3" transform="translate(25.483 22.683)"/>
+                <path id="Line-5" d="M.5 1h265.017" class="cls-3" transform="translate(25.483 39.228)"/>
+                <path id="Line-6" d="M.5 1h265.017" class="cls-3" transform="translate(25.483 73.626)"/>
+                <path id="Line-7" d="M.5 1h265.017" class="cls-3" transform="translate(25.483 91.478)"/>
+                <g id="UI_Element_Column_charts_Single_chart_03" transform="translate(28.997 6.911)">
+                    <g id="Chart">
+                        <g id="x-axis" transform="translate(5.299 110.176)">
+                            <text id="M" class="cls-5" transform="translate(6 13)">
+                                <tspan x="-6" y="0">금</tspan>
+                            </text>
+                            <text id="T" class="cls-5" transform="translate(43.148 13)">
+                                <tspan x="-6" y="0">토</tspan>
+                            </text>
+                            <text id="W" class="cls-5" transform="translate(81.341 13)">
+                                <tspan x="-6" y="0">일</tspan>
+                            </text>
+                            <text id="T-2" class="cls-5" transform="translate(117.874 13)">
+                                <tspan x="-6" y="0">월</tspan>
+                            </text>
+                            <text id="F" class="cls-5" transform="translate(156.621 13)">
+                                <tspan x="-6" y="0">화</tspan>
+                            </text>
+                            <text id="S" class="cls-5" transform="translate(194.445 13)">
+                                <tspan x="-6" y="0">수</tspan>
+                            </text>
+                            <text id="S-2" fill="#28a1ae" font-family="MalgunGothicBold, Malgun Gothic" font-size="12px" transform="translate(232.27 13)">
+                                <tspan x="-6" y="0">목</tspan>
+                            </text>
+                        </g>
+                        <g id="columns" transform="translate(225.101 16.509)">
+                            <g id="Column_07" transform="translate(5.78 34.706)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6">
+                                    <path id="Rectangle_Copy_35" d="M0 0H4.933V16.21H0z" class="cls-7"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-2" transform="translate(0 16.617)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-2">
+                                    <path id="Rectangle_Copy_35-2" d="M0 0H4.933V17.612H0z" class="cls-8"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-3" transform="translate(11.559 16.617)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-3">
+                                    <path id="Rectangle_Copy_35-3" d="M0 0H4.933V17.612H0z" class="cls-9"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-4" transform="translate(17.339)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-4">
+                                    <path id="Rectangle_Copy_35-4" d="M0 0H4.933V34.669H0z" class="cls-10"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="columns-2" transform="translate(188.199)">
+                            <g id="Column_07-5" transform="translate(5.78 16.845)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-5">
+                                    <path id="Rectangle_Copy_35-5" d="M0 0H4.933V33.893H0z" class="cls-7"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-6" transform="translate(0 51.215)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-6">
+                                    <path id="Rectangle_Copy_35-6" d="M0 0H4.933V16.359H0z" class="cls-8"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-7" transform="translate(11.559 16.845)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-7">
+                                    <path id="Rectangle_Copy_35-7" d="M0 0H4.933V33.893H0z" class="cls-9"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-8" transform="translate(17.339)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-8">
+                                    <path id="Rectangle_Copy_35-8" d="M0 0H4.933V51.621H0z" class="cls-10"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="columns-3" transform="translate(150.375 16.489)">
+                            <g id="Column_07-9" transform="translate(5.78 16.513)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-9">
+                                    <path id="Rectangle_Copy_35-9" d="M0 0H4.933V17.726H0z" class="cls-7"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-10" transform="translate(0 34.725)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-10">
+                                    <path id="Rectangle_Copy_35-10" d="M0 0H4.933V16.359H0z" class="cls-8"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-11" transform="translate(11.559)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-11">
+                                    <path id="Rectangle_Copy_35-11" d="M0 0H4.933V34.249H0z" class="cls-9"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-12" transform="translate(17.339 16.554)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-12">
+                                    <path id="Rectangle_Copy_35-12" d="M0 0H4.933V17.726H0z" class="cls-10"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="columns-4" transform="translate(112.55 16.586)">
+                            <g id="Column_07-13" transform="translate(5.78 16.387)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-13">
+                                    <path id="Rectangle_Copy_35-13" d="M0 0H4.933V17.756H0z" class="cls-7"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-14">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-14">
+                                    <path id="Rectangle_Copy_35-14" d="M0 0H4.933V34.152H0z" class="cls-8"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-15" transform="translate(11.559 16.387)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-15">
+                                    <path id="Rectangle_Copy_35-15" d="M0 0H4.933V17.76H0z" class="cls-9"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-16" transform="translate(17.339 16.428)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-16">
+                                    <path id="Rectangle_Copy_35-16" d="M0 0H4.933V17.756H0z" class="cls-10"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="columns-5" transform="translate(75.649 16.575)">
+                            <g id="Column_07-17" transform="translate(5.78 34.16)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-17">
+                                    <path id="Rectangle_Copy_35-17" d="M0 0H4.933V34.749H0z" class="cls-7"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-18" transform="translate(0 17.08)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-18">
+                                    <path id="Rectangle_Copy_35-18" d="M0 0H4.933V17.079H0z" class="cls-8"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-19" transform="translate(11.559)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-19">
+                                    <path id="Rectangle_Copy_35-19" d="M0 0H4.933V34.16H0z" class="cls-9"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-20" transform="translate(17.339 17.12)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-20">
+                                    <path id="Rectangle_Copy_35-20" d="M0 0H4.933V17.075H0z" class="cls-10"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="columns-6" transform="translate(37.824 16.538)">
+                            <g id="Column_07-21" transform="translate(5.78)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-21">
+                                    <path id="Rectangle_Copy_35-21" d="M0 0H4.933V34.197H0z" class="cls-7"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-22" transform="translate(0 16.582)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-22">
+                                    <path id="Rectangle_Copy_35-22" d="M0 0H4.933V17.613H0z" class="cls-8"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-23" transform="translate(11.559)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-23">
+                                    <path id="Rectangle_Copy_35-23" d="M0 0H4.933V34.197H0z" class="cls-9"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-24" transform="translate(17.339 16.623)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-24">
+                                    <path id="Rectangle_Copy_35-24" d="M0 0H4.933V17.609H0z" class="cls-10"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="columns-7" transform="translate(0 16.56)">
+                            <g id="Column_07-25" transform="translate(5.78 34.175)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-25">
+                                    <path id="Rectangle_Copy_35-25" d="M0 0H4.933V16.999H0z" class="cls-7"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-26" transform="translate(0 16.485)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-26">
+                                    <path id="Rectangle_Copy_35-26" d="M0 0H4.933V17.688H0z" class="cls-8"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-27" transform="translate(11.559)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-27">
+                                    <path id="Rectangle_Copy_35-27" d="M0 0H4.933V34.175H0z" class="cls-9"/>
+                                </g>
+                            </g>
+                            <g id="Column_07-28" transform="translate(17.339 16.526)">
+                                <g id="Charts_Columns_Bars_Single-column-size02_Copy_6-28">
+                                    <path id="Rectangle_Copy_35-28" d="M0 0H4.933V17.684H0z" class="cls-10"/>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

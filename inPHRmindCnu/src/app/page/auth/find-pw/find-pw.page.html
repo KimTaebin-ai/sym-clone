@@ -48,6 +48,11 @@
                     </button>
                   </ion-col>
                 </ion-row>
+                <ion-row *ngIf="!loginIdCheck()">
+                  <ion-col class="pdT0_5vh">
+                    <span class="errorMessage">{{confirmInfo.errMessage}}</span>
+                  </ion-col>
+                </ion-row>
               </ion-grid>
             </ion-col>
           </ion-row>

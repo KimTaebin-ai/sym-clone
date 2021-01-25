@@ -14,7 +14,8 @@ export class FindPwPage implements OnInit {
 
   form: FormGroup;
   confirmInfo: any = {
-    userId: false
+    userId: false,
+    errMessage: ''
   };
   tempPwInfo: any = {
     pwType: 'password',
@@ -74,6 +75,17 @@ export class FindPwPage implements OnInit {
       this.newPwInfo.pwType = 'text';
     } else {
       this.newPwInfo.pwType = 'password'
+    }
+  }
+
+  //아이디 유효성 확인
+  loginIdCheck(){
+    if(this.form.get('loginId').value !== '') {
+      if (this.form.get('loginId').value == '') {
+        this.confirmInfo.errMessage = '';
+        return false;
+      }
+      return true;
     }
   }
 

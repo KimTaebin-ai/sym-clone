@@ -1,13 +1,13 @@
 // FONT
 .psychological-header {
   width: 100%;
-  height: 8vh;
+  height: 3.2rem;
   background-color: #3a4b5f;
 }
 
 .psychological-title{
   font-family: Roboto;
-  font-size: 2.6vh;
+  font-size: 1.063rem;
   font-weight: bold;
   line-height: 1.35;
   letter-spacing: -0.51px;
@@ -15,12 +15,12 @@
   color: #ffffff;
   align-items: center;
   display: grid;
-  padding-left: 4vw;
+  padding-left: 1rem;
 }
 
 .psychological-fon1 {
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -33,7 +33,7 @@
 
 .psychological-fon2 {
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: .895rem;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -61,7 +61,7 @@
 .psychological-progress {
   --progress-background: #1178b4;
   --buffer-background: #eeeff1;
-  height: 1.5vh;
+  height: .5rem;
   border-radius: 15px;
 }
 

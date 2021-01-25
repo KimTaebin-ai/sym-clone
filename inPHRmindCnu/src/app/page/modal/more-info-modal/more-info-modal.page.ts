@@ -4,6 +4,7 @@ import {AlertUtilService} from '../../../util/common/alert-util.service';
 import {DateService} from '../../../util/common/date.service';
 import {EventBusService} from '../../../services/event-bus.service';
 import {Subscription} from 'rxjs';
+import {LoadingService} from '../../../util/loading.service';
 
 @Component({
   selector: 'app-more-info-modal',
@@ -31,7 +32,8 @@ export class MoreInfoModalPage implements OnInit {
       public modalCtrl: ModalController,
       private alertUtilService: AlertUtilService,
       private dateService: DateService,
-      private eventBusService: EventBusService
+      private eventBusService: EventBusService,
+      private loadingUtilService: LoadingService
   ){}
 
   ngOnInit() {
@@ -92,6 +94,12 @@ export class MoreInfoModalPage implements OnInit {
       if (!this.moreInfoData.insertData.content && this.moreInfoData.userInput === 'Y') {
         this.alertUtilService.showAlert(null, '증상을 입력해주세요.');
         return false;
+      } else if (this.moreInfoData.insertData.content && this.moreInfoData.userInput === 'Y') {
+        const replaceVal = this.moreInfoData.insertData.content.replace(/(\s*)/g, '');
+        if (replaceVal.length === 0) {
+          this.alertUtilService.showAlert(null, '증상을 입력해주세요.');
+          return false;
+        }
       }
 
       if (!this.moreInfoData.insertData.state) {
@@ -171,4 +179,13 @@ export class MoreInfoModalPage implements OnInit {
   }
 
   /*=============================================*/
+
+  // 공백 제어
+  keyPressForVal(event: any) {
+    const inputChar = String.fromCharCode(event.charCode);
+    const pattern = /^\s*/;
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 }

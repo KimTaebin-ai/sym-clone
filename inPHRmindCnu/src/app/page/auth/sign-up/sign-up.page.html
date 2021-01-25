@@ -26,7 +26,7 @@
           <ion-col size="3" class="pdL1vw">
             <button [ngClass]="form.controls.loginId.invalid || form.controls.certificationYn.value === 'Y'? 'common_button' : 'common_button_active'"
               [disabled]="form.controls.loginId.invalid || form.controls.certificationYn.value === 'Y'" (click)="emailCertification()">
-              인증
+              {{conditionValue.showEmailAuthNum && form.controls.certificationYn.value !== 'Y' ? '재인증' : '인증'}}
             </button>
           </ion-col>
         </ion-row>
@@ -219,7 +219,8 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button [disabled]="form.invalid" [ngClass]="form.invalid? 'common_button' : 'common_button_active'"
+        <button [disabled]="form.invalid || checkInputValMessage.birthday || checkInputValMessage.password || checkInputValMessage.passwordChk || checkInputValMessage.loginId"
+                [ngClass]="form.invalid || checkInputValMessage.birthday || checkInputValMessage.password || checkInputValMessage.passwordChk || checkInputValMessage.loginId? 'common_button' : 'common_button_active'"
                 (click)="signUp()">가입완료</button>
       </ion-col>
     </ion-row>

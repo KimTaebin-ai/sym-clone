@@ -11,6 +11,7 @@ import {FileService} from '../../../mind-module/service/file.service';
 import {IrbAgreeModalPage} from '../../modal/irb-agree-modal/irb-agree-modal.page';
 import {IrbPageInfoModel} from '../../../mind-module/model/irbPageInfo.model';
 import {PageInfoService} from '../../../services/page-info.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-irb-agree',
@@ -18,9 +19,9 @@ import {PageInfoService} from '../../../services/page-info.service';
   styleUrls: ['./irb-agree.page.scss'],
 })
 export class IrbAgreePage implements OnInit {
-
+  symUrlForImg = environment.simApi + '/api/file/';
   irbPageInfo: IrbPageInfoModel;
-
+  memberInfo: any = this.mindManager.getMemberModel();
   agreeVo: any = {
     agree1 : false,
     agree2 : false,

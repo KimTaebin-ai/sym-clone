@@ -8,6 +8,7 @@ import { MoreInfoModalPageRoutingModule } from './more-info-modal-routing.module
 
 import { MoreInfoModalPage } from './more-info-modal.page';
 import {LoadingPageModule} from '../../common/loading/loading.module';
+import {DirectivesModule} from '../../../util/common/directives.module';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {LoadingPageModule} from '../../common/loading/loading.module';
         FormsModule,
         IonicModule,
         MoreInfoModalPageRoutingModule,
-        LoadingPageModule
+        LoadingPageModule,
+        DirectivesModule
     ],
   declarations: [MoreInfoModalPage]
 })

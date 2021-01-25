@@ -43,12 +43,10 @@ export class UpdateIrbPage implements OnInit {
 
   getAgreed() {
     this.irbService.getAgreed().subscribe(res => {
-      for (let i = 0; i < res.length; i++) {
+      for (const i in res) {
         if (res[i].project.projectSeq === 1) {
           if (res[i].useYn === 'Y') {
             this.onlineIrb = true;
-          } else {
-            this.onlineIrb = false;
           }
         }
       }

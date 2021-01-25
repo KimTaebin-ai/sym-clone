@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../mind-module/service/auth.service';
+import {TermModalPage} from '../../modal/term-modal/term-modal.page';
+import {MindManager} from '../../../mind-module/mind.manager';
+import {ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-setting-term',
@@ -12,6 +15,8 @@ export class SettingTermPage implements OnInit {
 
   constructor(
       private authService: AuthService,
+      private mindManager: MindManager,
+      private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -27,7 +32,21 @@ export class SettingTermPage implements OnInit {
     });
   }
 
-  selectList(item) {
-    item.opened = !item.opened;
+
+  async openModal(term, detail) {
+    this.mindManager.setModalONOff('ON');
+    const modal = await this.modalController.create({
+      component: TermModalPage,
+      cssClass: 'modal60per',
+      componentProps: {
+        termTitle: term,
+        termDetail: detail
+      }
+    });
+    modal.onDidDismiss()
+        .then(() => {
+          this.mindManager.setModalONOff('OFF');
+        });
+    return await modal.present();
   }
 }

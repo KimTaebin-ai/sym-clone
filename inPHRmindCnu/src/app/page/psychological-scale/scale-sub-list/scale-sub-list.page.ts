@@ -90,7 +90,7 @@ export class ScaleSubListPage implements OnInit {
                 data: JSON.stringify(item)
             }
         };
-        this.pageInfoService.getToOtherPage('/scale-sub-list', '/insert-psychological-scale', '주간 심리 기분 척도').then(() => {
+        this.pageInfoService.getToOtherPage('/scale-sub-list', '/insert-psychological-scale', item.surveyTitleKO).then(() => {
             this.navController.navigateRoot(['/insert-psychological-scale'], navigationExtras);
         });
     }

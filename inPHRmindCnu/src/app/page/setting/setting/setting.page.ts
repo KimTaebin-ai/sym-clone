@@ -31,12 +31,14 @@ export class SettingPage implements OnInit {
 
   compareVersion() {
     let returnVal = '';
-    const serverVersion = Number(this.versionInfo.version.toString().replace('.', ''));
-    const nowVersion = Number(this.nowVersion.toString().replace('.', ''));
-    if (nowVersion >= serverVersion) {
-      returnVal = '최신버전';
-    } else if (serverVersion > nowVersion) {
-      returnVal = 'ver' + nowVersion.toString();
+    if (this.versionInfo) {
+      const serverVersion = Number(this.versionInfo.version.toString().replace('.', ''));
+      const nowVersion = Number(this.nowVersion.toString().replace('.', ''));
+      if (nowVersion >= serverVersion) {
+        returnVal = '최신버전';
+      } else if (serverVersion > nowVersion) {
+        returnVal = 'ver' + nowVersion.toString();
+      }
     }
     return returnVal;
   }

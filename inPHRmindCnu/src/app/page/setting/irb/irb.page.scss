@@ -6,7 +6,7 @@
   padding-left: 4vw;
   padding-right: 4vw;
   width: 100%;
-  height: 11vh;
+  height: 4.5rem;
   align-items: center;
   display: flex;
   font-family: Roboto;
@@ -18,6 +18,7 @@
   letter-spacing: -0.95px;
   color: #333333;
   border-bottom: solid 1px #dcdcdc;
+  word-break: keep-all;
 }
 
 .memberInfo-list-next {
@@ -41,7 +42,7 @@
   white-space: -moz-pre-wrap;
   white-space: pre-line;
   white-space: -o-pre-wrap;
-  word-break: break-all;
+  word-break: keep-all;
   padding: 6vw 4vw 6vw 4vw;
 }
 

@@ -19,6 +19,8 @@ export class LoginPage implements OnInit {
   password: string;
 
 
+
+  
   constructor(
    private configApiService: ConfigAPIService
   ) { 
@@ -33,4 +35,9 @@ export class LoginPage implements OnInit {
       this.configApiService.Login(id, pw);
     }
   }
+}
+
+class LoginVo {
+  id: string;
+  password: string;
 }

@@ -1,11 +1,11 @@
 .reportTitleNav{
-  height: 8vh;
+  height: 3.2rem;
   background-color: #3a4b5f;
 }
 
 .reportTitleText1{
   font-family: Roboto;
-  font-size: 2.6vh;
+  font-size: 1.063rem;
   font-weight: bold;
   line-height: 1.35;
   letter-spacing: -0.51px;
@@ -13,18 +13,18 @@
   color: #ffffff;
   align-items: center;
   display: grid;
-  padding-left: 4vw;
+  padding-left: 1rem;
 }
 
 .reportTopNav{
-  height: 8vh;
+  height: 3.2rem;
   background-color: #fdfdfd;
-  padding: 3vw;
+  padding: 0.75rem;
 }
 
 .pickMindType{
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: bold;
   color: #28a1ae;
   align-items: center;
@@ -33,22 +33,22 @@
 
 .reportTopNavText{
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   color: #3a4b5f;
   align-items: center;
   display: grid;
 }
 
 .reportCountColor{
-  font-size: 3.3vh;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #44bbc8;
 }
 
 .reportTerm{
   text-align: center;
-  font-size: 2.4vh;
-  padding: 2vw;
+  font-size: 1rem;
+  padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #cfd3d9;
   color: #3a4b5f;
@@ -57,9 +57,9 @@
 
 .reportTerm_pick{
   text-align: center;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: bold;
-  padding: 2vw;
+  padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #44bbc8;
   color: #28a1ae;
@@ -72,14 +72,14 @@
 }
 
 .dateInfo{
-  font-size: 2vh;
+  font-size: 0.8rem;
   text-align: right;
   color: #848484;
 }
 
 .noDataFont {
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -91,7 +91,7 @@
 
 /*정서불안------------------*/
 .emoMiddleNav{
-  height: 7.8vh;
+  height: 3.1rem;
   padding: 13px 16px 14px;
   background-color: #ffffff;
   border-top: 1px solid #d2d5dc;
@@ -114,12 +114,12 @@
 }
 
 .emotionDataText {
+  font-size: 2.2vh; //rem적용x
   text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate( -50%, -50% );
-  font-size: 3.9vw;
 }
 
 .emotionSquare{
@@ -162,12 +162,12 @@
 
 .panicCount {
   text-align: center;
-  line-height: 12vh;
+  line-height: 4.8rem;
   border-right: 1px solid #eaebef;
 }
 
 .panicDetailBox{
-  margin: 6vw 5vw;
+  margin: 1.5rem 1.25rem;
   border-radius: 12px;
   box-shadow: 0 3px 7px 0 rgba(72, 74, 82, 0.16);
   background-color: #ffffff;
@@ -175,7 +175,7 @@
 
 .panicDetailText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   color: #262626;
   align-items: center;
   display: flex;
@@ -188,7 +188,7 @@
 
 .symtomText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: -0.56px;
   text-align: left;
@@ -208,9 +208,9 @@
 
 /*생활패턴------------------*/
 .lifePatternMiddleNav{
-  height: 8vh;
+  height: 3.2rem;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: bold;
   //line-height: 1.31;
   letter-spacing: -0.59px;
@@ -224,7 +224,7 @@
   align-items: center;
   display: grid;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: bold;
   color: #454545;
   border-right: 1px solid #eaebef;
@@ -232,7 +232,7 @@
 
 .lifePatternText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   line-height: 1.31;
   letter-spacing: -0.59px;
   text-align: left;
@@ -246,11 +246,11 @@
   text-align: center;
   align-items: center;
   display: grid;
-  padding-top: 1.3vh;
-  padding-bottom: 1.3vh;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
   border: 1px solid #cfd3d9;
   font-family: Roboto;
-  font-size: 2.2vh;
+  font-size: 1rem;
   color: #3a4b5f;
   background-color: #ffffff;
 }
@@ -260,18 +260,18 @@
   text-align: center;
   align-items: center;
   display: grid;
-  padding-top: 1.3vh;
-  padding-bottom: 1.3vh;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
   border: 1px solid #28a1ae;
   font-family: Roboto;
-  font-size: 2.2vh;
+  font-size: 1rem;
   color: #28a1ae;
   background-color: #effdff;
 }
 
 .psychoStandardTitleText{
   font-family: Roboto;
-  font-size: 2.6vh;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.32;
   letter-spacing: -0.31px;
@@ -281,7 +281,7 @@
 
 .psychoStandardText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   line-height: 1.33;
   letter-spacing: -0.48px;
   text-align: left;
@@ -290,7 +290,7 @@
 
 .psychoStandard_pick{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   font-weight: bold;
   line-height: 1.33;
   letter-spacing: -0.48px;
@@ -316,12 +316,8 @@
   border-left: 1px solid #eaebef;
 }
 
-.height30vh{
-  height: 30vh;
-}
-
-.lineHeight11vh{
-  line-height: 11vh;
+.lineHeight4_8rem{
+  line-height: 4.8rem;
 }
 
 .border-bottom-dashed {

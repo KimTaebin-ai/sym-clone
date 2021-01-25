@@ -16,6 +16,7 @@ import {NavigationExtras, Router} from '@angular/router';
 import {StorageUtil} from './mind-module/util/storage.util';
 import {EventBusService} from './services/event-bus.service';
 import {AuthService} from './mind-module/service/auth.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 const TimePeriodToExit = 2000;
 @Component({
   selector: 'app-root',
@@ -62,7 +63,8 @@ export class AppComponent {
       private router: Router,
       private eventBusService: EventBusService,
       private authService: AuthService,
-      private alertCtrl: AlertController
+      private alertCtrl: AlertController,
+      private screenOrientation: ScreenOrientation
   ) {
     this.initializeApp();
     this.platform.backButton.subscribeWithPriority(0, () => {
@@ -85,6 +87,8 @@ export class AppComponent {
         this.getLiveSession ();
       }));
 
+      // 세로 고정
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
 
       // 디바이스 정보 설정
       if (this.platform.is('cordova')) {
@@ -108,7 +112,6 @@ export class AppComponent {
 
       this.getCodeList()
       this.systemSetting();
-      this.getVersionInfo();
       this.generateFcmToken();
     });
 
@@ -122,11 +125,10 @@ export class AppComponent {
 
   getLiveSession() {
     let from = this.router.url;
-    if (from !== '/' && !from.startsWith('/term') && !from.startsWith('/login') && !from.startsWith('/sign-up') && !from.startsWith('/find-pw')) {
+    if (from !== '/' && !from.startsWith('/term') && !from.startsWith('/login') && !from.startsWith('/sign-up') && !from.startsWith('/find-pw') && !from.startsWith('/new-term')) {
       if (!from){
         from = '/main/main/home';
       }
-      console.log(from)
       const autoLogin = this.mindManager.getSystemInfo();
       const lockState = this.mindManager.getLockState();
       // 오토로그인 체크 && 잠금화면 ON(true) 인 경우
@@ -252,47 +254,6 @@ export class AppComponent {
       }
     }*/
 
-  // 버전 정보 조회
-  getVersionInfo() {
-    if (this.platform.is('cordova')) {
-      let version = '';
-      this.appVersion.getVersionNumber().then(response => {
-        localStorage.setItem('versionNumber', response);
-        version = response;
-        console.log('버전 정보 조회:', response);
-        const reqVo: any = {
-          osType: '',
-          userType: 'P',
-          nowVersion: version
-        }
-        reqVo.osType = this.deviceInfo.platform === 'Android' ? 'A' : 'I';
-        this.authService.getVersionInfo(reqVo).subscribe(res => {
-          this.mindManager.setLastVersionInfo(res);
-          // 업그레이드 여부 확인
-          if (this.deviceInfo.platform === 'Android' && res.osType === 'A') {
-            if (res.forceYn === 'Y') {
-              this.updateVersionAlert('COMPULSORY', res.url);
-            }else{
-              this.updateVersionAlert('NON-COMPULSORY', res.url);
-            }
-          }
-        }, err => {
-
-        });
-      });
-      this.appVersion.getVersionCode().then(response => {
-        localStorage.setItem('versionCode', response.toString());
-      });
-    } else {
-      localStorage.setItem('versionNumber', '1.0.0');
-      localStorage.setItem('versionCode', '100000');
-      const versionInfo = {
-        version : '1.1.1',
-        downloadUrl : 'https://www.inphrcare.com'
-      };
-      this.mindManager.setLastVersionInfo(versionInfo);
-    }
-  }
 
   backButtonController() {
     const lastUrl = this.pageInfoService.getToBack();
@@ -317,6 +278,7 @@ export class AppComponent {
               }
             };
             this.navController.navigateRoot(['/scale-sub-list'], navigationExtras);
+          } else if (from.startsWith('new-term')) {
           } else {
             this.navController.navigateRoot([lastUrl]);
           }
@@ -366,47 +328,6 @@ export class AppComponent {
     });
   }
 
-  // 버전확인
-  async updateVersionAlert(type, downUrl) {
-    if (type === 'COMPULSORY'){
-      const alert = await this.alertCtrl.create({
-        header: '최신버전 업데이트',
-        message: '현재 앱 버전이<br>최신버전이 아닙니다.<br>업데이트 후 이용 바랍니다.',
-        buttons: [
-          {
-            text: '확인',
-            handler: data => {
-              window.open(downUrl, '_system');
-              navigator['app'].exitApp();
-            }
-          }
-        ],
-        backdropDismiss: false
-      });
-      await alert.present();
-    } else {
-      const alert = await this.alertCtrl.create({
-        header: '최신버전 업데이트',
-        message: '현재 앱 버전이 최신버전이 아닙니다.<br>업데이트 하시겠습니까?',
-        buttons: [
-          {
-            text: '확인',
-            handler: data => {
-              window.open(downUrl, '_system');
-              /*this.iab.create(downUrl, "_system");*/
-            }
-          },
-          {
-            text: '취소',
-            role: 'cancel',
-            handler: data => {
-            }
-          }
-        ],
-        backdropDismiss: false
-      });
-      await alert.present();
-    }
-  }
+
 
 }

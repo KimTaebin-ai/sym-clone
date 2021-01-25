@@ -1,11 +1,11 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {MindManager} from "../../../../../mind-module/mind.manager";
-import {AlertController, NavController} from "@ionic/angular";
-import {DiaryService} from "../../../../../mind-module/service/diary.service";
+import {MindManager} from '../../../../../mind-module/mind.manager';
+import {AlertController, NavController} from '@ionic/angular';
+import {DiaryService} from '../../../../../mind-module/service/diary.service';
 import * as moment from 'moment';
-import {AlertUtilService} from "../../../../../util/common/alert-util.service";
-import {LoadingService} from "../../../../../util/loading.service";
-import {ActivatedRoute} from "@angular/router";
+import {AlertUtilService} from '../../../../../util/common/alert-util.service';
+import {LoadingService} from '../../../../../util/loading.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-panic-diary',
@@ -22,12 +22,12 @@ export class PanicDiaryPage implements OnInit {
       panicTime : '',
       panicIntensity : 0,
       symptoms : [],
-    }
+    };
     panicInsertEtc = {
       etcValueYn : 'N',
       etcValue : '',
       etcCode : ''
-    }
+    };
     panicDataList: any = [];
 
     // 동반증상 리스트
@@ -41,8 +41,9 @@ export class PanicDiaryPage implements OnInit {
       private mindManager: MindManager,
       private diaryService: DiaryService,
       private loadingService: LoadingService,
-      private route: ActivatedRoute
   ) { }
+
+    @ViewChild('panicChild') private panic;
 
   ngOnInit() {
     const dateBindingInfo = this.mindManager.getDateBinding();
@@ -64,13 +65,14 @@ export class PanicDiaryPage implements OnInit {
       const date = this.selectedDate;
       console.log('date', date);
         this.diaryService.getPanicList(date).subscribe(res => {
-            console.log('resTs', res);
+            console.log('resTs', res, res.data);
             if(res.data) {
                 this.panicDataList = res.data;
             }
         }, err => {
             console.log('err', err);
         })
+
     }
 
     // 공황 동반증상 리스트 조회
@@ -134,19 +136,19 @@ export class PanicDiaryPage implements OnInit {
             this.panicInsertVo.symptoms.push({symptomCode: this.panicInsertEtc.etcCode, symptomEtc: this.panicInsertEtc.etcValue}); // 기타입력값까지 삽입
         }
          if(this.panicInsertVo.startTime === ''){
-             this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">시작시간을 선택해 주세요.</p>');
+             this.alertUtilService.showAlert(null, '시작시간을 선택해 주세요.');
             return false;
         } else if(this.panicInsertVo.panicTime === ''){
-            this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">지속시간을 선택해 주세요.</p>');
+            this.alertUtilService.showAlert(null, '지속시간을 선택해 주세요.');
             return false;
         } else if(this.panicInsertVo.panicIntensity === 0){
-            this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">증상강도를 선택해 주세요.</p>');
+            this.alertUtilService.showAlert(null, '증상강도를 선택해 주세요.');
             return false;
         } else if(this.panicInsertVo.symptoms.length == 0){
-            this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">동반증상을 선택해 주세요.</p>');
+            this.alertUtilService.showAlert(null, '동반증상을 선택해 주세요.');
             return false;
         } else if(this.panicInsertEtc.etcValueYn === 'Y' && this.panicInsertEtc.etcValue === ''){
-            this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">기타 공황 동반증상을 입력해 주세요.</p>');
+            this.alertUtilService.showAlert(null, '기타 공황 동반증상을 입력해 주세요.');
             return false;
         } else {
             const alert = await this.alertCtrl.create({
@@ -174,25 +176,29 @@ export class PanicDiaryPage implements OnInit {
     }
 
     // 공황 추가
-    addPanicDiary(){
+    async addPanicDiary(){
           const reqVo = {
               startDt : this.selectedDate + ' ' + moment(this.panicInsertVo.startTime).format('HH:mm'),
               panicTime : this.panicInsertVo.panicTime,
               panicIntensity : this.panicInsertVo.panicIntensity,
               symptoms : this.panicInsertVo.symptoms
-          }
+          };
           console.log('reqVo', reqVo);
           this.loadingService.showLoading(true, '공황 다이어리를 입력중입니다.');
-          this.diaryService.addPanicDiary(reqVo).subscribe(res => {
-              this.loadingService.showLoading(false, '');
-              this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">추가되었습니다.</p>');
-              this.dataReset();
-              this.getPanicList();
-          }, err => {
-              this.loadingService.showLoading(false, '');
-              console.log('err', err);
-          })
 
+        //   this.diaryService.addPanicDiary(reqVo).subscribe(() => {
+        //       this.getPanicList();
+        //   }, err => {
+        //       this.loadingService.showLoading(false, '');
+        //       console.log('err', err);
+        //   })
+
+        this.diaryService.addPanicDiary(reqVo);
+        this.getPanicList();
+            this.loadingService.showLoading(false, '');
+            this.alertUtilService.showAlert(null, '추가되었습니다.');
+            this.dataReset();
+            await this.scrollBottom();
     }
 
     // 공황 삭제 확인창
@@ -223,7 +229,7 @@ export class PanicDiaryPage implements OnInit {
     // 공황 삭제
     deletePanicDiary(panicSeq){
       this.diaryService.deletePanicDiary(panicSeq).subscribe(res => {
-          this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
+          this.alertUtilService.showAlert(null, '삭제되었습니다.');
           this.getPanicList();
       }, err => {
           console.log('err', err);
@@ -236,18 +242,24 @@ export class PanicDiaryPage implements OnInit {
           panicTime : '',
           panicIntensity : 0,
           symptoms : [],
-      }
+      };
       this.panicInsertEtc = {
           etcValueYn : 'N',
           etcValue : '',
           etcCode : ''
-      }
+      };
       this.panicDataList = [];
 
       this.symptomClickList = [];
       for(let i = 0; i < this.panicSymptomList.length; i++){
-          this.symptomClickList.push('N');
+        this.symptomClickList.push('N');
       }
+    }
+
+    scrollBottom() {
+        console.log('스크롤 함');
+        
+        this.panic.scrollToBottom();
     }
 
 }

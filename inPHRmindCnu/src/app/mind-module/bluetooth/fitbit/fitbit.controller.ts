@@ -49,7 +49,7 @@ export class FitbitController extends BasePlatformController {
     private endpoint = {
         // summary: "/1/user/:userId/activities/date/:date.json",
         activityLogs: '/1/user/:userId/activities/list.json?afterDate=:startDate&sort=:sort&offset=:offset&limit=:limit',
-        sleepLogs: '/1/user/:userId/sleep/date/:startDate.json',
+        sleepLogs: '/1.2/user/:userId/sleep/date/:startDate.json',
         // sleepLogs: '/1.2/user/:userId/sleep/date/:startDate/:endDate.json',
         // sleepLogs: '/1.2/user/:userId/sleep/date/2020-11-02/2020-12-20.json',
         /*steps: '/1.2/user/:userId/activities/steps/date/today/1d/1min.json',*/
@@ -179,6 +179,7 @@ export class FitbitController extends BasePlatformController {
                 if (count === 1) {
                     console.log(2)
                     this.syncProvider = null;
+                    console.log(data, 'FITBIT 데이터 data');
                     observer.next(data);
                     observer.complete();
                     clearInterval(interval);
@@ -187,7 +188,7 @@ export class FitbitController extends BasePlatformController {
                     const searchDate = {
                         startDate: providerModel.startDate,
                         endDate: providerModel.endDate
-                    }
+                    };
                     Promise.all([
                         // 발걸음, 혈압의 Intraday Time Series가 개인용앱에서만 가져오게 되어 있어서 동기화 안함
                         // 종합데이터밖에 안들어옴, 핏빗쪽에 데이터 접근권한 요청함
@@ -197,15 +198,25 @@ export class FitbitController extends BasePlatformController {
                     ]).then(values => {
                         if (values != null && values.length > 0) {
                             console.log('데이터 있음');
+                            console.log(values, 'FITBIT 데이터');
+
                             for (const item of values) {
+                                console.log(item.lifelogTypeCd)
                                 if (item.lifelogTypeCd === 'STEP') {
-                                    data.step = item.data.length > 0 ? item.data : {};
+                                    console.log(1111111111111111111111)
+                                    console.log(item.data.length)
+                                    console.log(item)
+                                    data.step = item.data ? item : {};
+                                    console.log(data)
                                 } else if (item.lifelogTypeCd === 'SLEEP') {
-                                    data.sleep = item.data.length > 0 ? item.data : {};
+                                    console.log(222222222222222)
+                                    data.sleep = item.data ? item : {};
                                 } else if (item.lifelogTypeCd === 'PULSE') {
-                                    data.pulse = item.data.length > 0 ? item.data : {};
+                                    console.log(3333333333333333)
+                                    data.pulse = item.data ? item : {};
                                 }
                             }
+                            console.log(data, '데이터');
                         }
                         count++;
                     });
@@ -284,8 +295,11 @@ export class FitbitController extends BasePlatformController {
         return new Promise<any>((resolve, reject) => {
             const stepData: any = {};
             const items = [];
-            const days = moment.duration(searchDate.endDate.diff(searchDate.startDate)).asDays()
+/*            const days = moment.duration(searchDate.endDate.diff(searchDate.startDate)).asDays()
             for (let i = 0; i < days; i++) {
+                items.push(moment(searchDate.endDate).subtract(i, 'd').format('YYYY-MM-DD'));
+            }*/
+            for (let i = 0; i < 7; i++) {
                 items.push(moment(searchDate.endDate).subtract(i, 'd').format('YYYY-MM-DD'));
             }
             if (items.length > 0) {
@@ -312,7 +326,7 @@ export class FitbitController extends BasePlatformController {
                 }
             }
             console.log('stepData = ', stepData)
-            resolve({stepData});
+            resolve(stepData);
         });
     }
 
@@ -349,7 +363,7 @@ export class FitbitController extends BasePlatformController {
                 }
             }
             console.log('pulseData = ', pulseData)
-            resolve({pulseData});
+            resolve(pulseData);
         });
     }
 
@@ -384,7 +398,7 @@ export class FitbitController extends BasePlatformController {
                     }
                 });
             }
-            resolve({sleepData});
+            resolve(sleepData);
     });
     }
 

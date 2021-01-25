@@ -30,6 +30,7 @@ import {Health} from '@ionic-native/health/ngx';
 import {HealthKit} from '@ionic-native/health-kit/ngx';
 import {TokenInterceptorService} from './mind-module/http/token-interceptor.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @NgModule({
     declarations: [
         AppComponent,
@@ -43,6 +44,7 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
         HttpClientModule
     ],
     providers: [
+        ScreenOrientation,
         StatusBar,
         SplashScreen,
         Device,

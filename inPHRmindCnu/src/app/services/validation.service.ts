@@ -17,8 +17,8 @@ export class ValidationService {
 
   constructor() {
     // 8자리 이상 20자리 이하의 영어와 숫자와 특수문자가 혼합인 비밀번호 정규식
-    this.passwordValidator = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).[^/<>:\\]{7,19}$/;
-
+    this.passwordValidator = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[#$^+=!*()@%&`~,./?-_=+]).[^/<>:\\]{7,19}$/;
+    
     // 5자리 이상 20자리 이하의 첫글자가 영어로 시작하고 영어와 숫자가 혼합인 아이디 정규식
     this.idValidator = /^[a-zA-Z](?=.{0,18}[0-9])[0-9a-zA-Z]{4,19}$/;
 
@@ -38,7 +38,7 @@ export class ValidationService {
     this.bodyVal = /^-?(\d{1,3}([.]\d{0,2})?)?$/;
 
     // 휴대폰 번호
-    this.phoneNumber = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
+    this.phoneNumber = /(^01([0|1|6|7|8|9]{1}?))-([0-9]{3,4})-([0-9]{4})$/;
 
     // 생년월일
     this.birthDay = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
@@ -174,8 +174,6 @@ export class ValidationService {
     return result;
   }
 
-
-
   irbAgree(type, data) {
     // 동의 체크 확인
     if (type === 'CHECKBOX') {
@@ -226,6 +224,29 @@ export class ValidationService {
         if (text.length !== 8 || !this.birthDay.test(text)) {
           result.value = false;
           result.message = '년(4자) 월(2자) 일(2자) 형식으로 입력해주세요.';
+        }
+        if (text.length === 8) {
+          const year = text.substring(0, 4);
+          const month = text.substring(4, 6);
+          const day = text.substring(6);
+          console.log(year, month, day);
+          if (month === '02' && Number(day) > 29) {
+            result.value = false;
+            result.message = '2월은 29까지 존재 합니다';
+          } else if (month === '04' && Number(day) > 30) {
+            result.value = false;
+            result.message = '4월은 30까지 존재 합니다';
+          } else if (month === '06' && Number(day) > 30) {
+            result.value = false;
+            result.message = '6월은 30까지 존재 합니다';
+          } else if (month === '09' && Number(day) > 30) {
+            result.value = false;
+            result.message = '9월은 30까지 존재 합니다';
+          } else if (month === '11' && Number(day) > 30) {
+            result.value = false;
+            result.message = '11월은 30까지 존재 합니다';
+          }
+
         }
       } else if (type === 'password' || type === 'passwordChk') {
         const val = this.passwordValidator.test(text);

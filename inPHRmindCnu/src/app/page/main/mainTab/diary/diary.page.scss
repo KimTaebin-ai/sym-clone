@@ -1,16 +1,16 @@
 // 공통
-.lineHeight11vh{
-  line-height: 11vh;
+.lineHeight4_8rem{
+  line-height: 4.8rem;
 }
 
 .diaryTopNav{
-  height: 8vh;
+  height: 3.2rem;
   background-color: #3a4b5f;
 }
 
 .diaryTopText1{
   font-family: Roboto;
-  font-size: 2.6vh;
+  font-size:  1.063rem;
   font-weight: bold;
   line-height: 1.35;
   letter-spacing: -0.51px;
@@ -18,26 +18,13 @@
   color: #ffffff;
   align-items: center;
   display: grid;
-  padding-left: 4vw;
-}
-
-.diaryTopText2{
-  font-family: Roboto;
-  font-size: 2.5vh;
-  font-weight: 300;
-  line-height: 1.35;
-  letter-spacing: -0.48px;
-  text-align: right;
-  color: #ffffff;
-  align-items: center;
-  display: grid;
-  padding-right: 4vw;
+  padding-left: 1rem;
 }
 
 .diaryMiddleNav{
-  height: 8vh;
+  height: 3.2rem;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: bold;
   //line-height: 1.31;
   letter-spacing: -0.59px;
@@ -47,14 +34,13 @@
 }
 
 .diaryTitleRow{
-  //height: 7.8vh;
   padding: 13px 16px 14px;
   background-color: #efefef;
 }
 
 .diaryTitleText{
   font-family: Roboto;
-  font-size:  2.5vh;
+  font-size:  1.063rem;
   font-weight: bold;
   line-height: 1.18;
   letter-spacing: -0.95px;
@@ -66,14 +52,15 @@
 
 .diaryCountColor{
   font-family: Roboto;
-  font-size: 3.3vh;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #44bbc8;
 }
 
 .diaryMovePageBtn{
   text-align: center;
-  line-height: 11vh;
+  align-items: center;
+  display: grid;
 }
 
 .border-bottom{
@@ -86,13 +73,13 @@
 /*공황---------------------*/
 .panicCount {
   text-align: center;
-  line-height: 11vh;
+  line-height: 4.8rem;
   border-right: 1px solid #eaebef;
 }
 
 .panicText{
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   letter-spacing: -0.51px;
   text-align: left;
   color: #454545;
@@ -106,7 +93,7 @@
 
 .panicDetailText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   color: #262626;
   align-items: center;
   display: flex;
@@ -119,7 +106,7 @@
 
 .symtomText{
   font-family: Roboto;
-  font-size: 2.2vh;
+  font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: -0.56px;
   text-align: left;
@@ -139,7 +126,7 @@
 /*정서---------------------*/
 .emotionDetailText{
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: -0.45px;
@@ -149,7 +136,7 @@
 
 .emotionInfoText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 0.875rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -164,42 +151,32 @@
 }
 
 .emotionDegree{
-  /*height: 6.2vh;
-  padding: 1.6vw;
-  text-align: center;
-  align-items: center;
-  display: block;
-  background-color: #eeeff1;
-  font-family: Roboto;
-  font-size: 2.6vh;
-  font-weight: bold;
-  color: #7e8da0;
-  border-radius: 50%;*/
   align-items: center;
   display: grid;
   background-color: #eeeff1;
+  weight: 10.3vw;
   height: 10.3vw;
   border-radius: 50%;
   text-align: center;
   font-family: Roboto;
-  font-size: 2.2vh;
+  font-size: 0.9375rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   letter-spacing: -0.48px;
   color: #7e8da0;
-  padding-bottom: 0.5vh;
 }
 
 .emotionDegreePick{
   align-items: center;
   display: grid;
   background-color: #44bbc8;
+  weight: 10.3vw;
   height: 10.3vw;
   border-radius: 50%;
   text-align: center;
   font-family: Roboto;
-  font-size: 2.2vh;
+  font-size: 0.9375rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -209,20 +186,20 @@
 
 .saveBtn{
   width: 100%;
-  height: 7.5vh;
+  height: 3.2rem;
   border-radius: 4px;
   background-color: #44BBC8;
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1.125rem;
   color: #ffffff;
 }
 .cancelBtn{
   width: 100%;
-  height: 7.5vh;
+  height: 3.2rem;
   border-radius: 4px;
   background-color: #eeeff1;
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1.125rem;
   color: #3a4b5f;
 }
 /*------------------------*/
@@ -233,7 +210,7 @@
   align-items: center;
   display: grid;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: bold;
   color: #454545;
   border-right: 1px solid #eaebef;
@@ -249,12 +226,12 @@
 .pattern-report-header {
   border-bottom: solid 1px #eeeff1;
   width: 100%;
-  height: 8vh;
+  height: 3.2rem;
   align-items: center;
   padding-left: 5vw;
   padding-right: 5vw;
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -264,11 +241,11 @@
 }
 
 .pattern-report-label {
-  min-height: 8vh;
+  min-height: 3.2rem;
   background-color: #eff1f5;
   text-align: left;
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -281,11 +258,11 @@
 }
 
 .pattern-list-box {
-  min-height: 8vh;
+  min-height: 3.2rem;
   align-items: center;
   display: flex;
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -302,7 +279,7 @@
 
 .countText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 1rem;
   line-height: 1.31;
   letter-spacing: -0.59px;
   color: #262626;
@@ -322,7 +299,7 @@
 .periodText{
   align-items: center;
   display: grid;
-  font-size: 2.3vh;
+  font-size: 1rem;
   font-weight: bold;
   color: #44bbc8;
 }

@@ -1,7 +1,6 @@
 .reportTitleText{
-  height: 7vh;
   font-family: Roboto;
-  font-size: 3.1vh;
+  font-size: 1.25rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -16,21 +15,21 @@
   align-items: center;
   display: grid;
   font-family: Roboto;
-  font-size: 2.5vh;
+  font-size: 1.063rem;
   font-weight: bold;
   color: #454545;
   border-right: 1px solid #eaebef;
 }
 
 .reportCountColor{
-  font-size: 3.4vh;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #44bbc8;
 }
 
 .lifePatternText{
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   line-height: 1.31;
   letter-spacing: -0.59px;
   color: #454545;
@@ -44,11 +43,11 @@
 }
 
 .pattern-report-label {
-  min-height: 8vh;
+  min-height: 3.2rem;
   background-color: #fcfcfc;
   text-align: left;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -60,11 +59,11 @@
 }
 
 .pattern-list-box {
-  min-height: 8vh;
+  min-height: 3.2rem;
   align-items: center;
   display: flex;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -78,7 +77,7 @@
   align-items: center;
   display: flex;
   font-family: Roboto;
-  font-size: 2.4vh;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -94,7 +93,7 @@
 
 .mealText{
   font-family: Roboto;
-  font-size: 2.3vh;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: -0.56px;
   text-align: center;
@@ -108,7 +107,7 @@
 .periodText{
   align-items: center;
   display: grid;
-  font-size: 2.5vh;
+  font-size: 1rem;
   font-weight: bold;
   color: #44bbc8;
 }
@@ -117,24 +116,23 @@
 .border-top{
   border-top: 1px solid #eaebef;
 }
+
 .border-bottom{
   border-bottom: 1px solid #eaebef;
 }
+
 .box_border_bottom{
   border-bottom: 1px solid #eeeff1;
 }
-.height8vh{
-  height: 8vh;
+
+.lineHeight3_5rem{
+  line-height: 3.5rem;
 }
-.height12vh{
-  height: 12vh;
+
+.lineHeight4_8rem{
+  line-height: 4.8rem;
 }
-.lineHeight8vh{
-  line-height: 8vh;
-}
-.lineHeight12vh{
-  line-height: 12vh;
-}
+
 .bkcolor_fcfcfd{
   height: 100%;
   background-color: #fcfcfd;

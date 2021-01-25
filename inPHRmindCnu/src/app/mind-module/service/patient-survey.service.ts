@@ -290,11 +290,18 @@ export class PatientSurveyService {
                 data.surveyAnswer[data.questionType].values.numberValue !== '' ?
                     [{numberValue: data.surveyAnswer[data.questionType].values.numberValue}] : null;
             } else {
-                arrayData =
-                    data.surveyAnswer[data.questionType].values.displayOrder === null ||
-                    data.surveyAnswer[data.questionType].values.displayOrder === undefined ||
-                    !data.surveyAnswer[data.questionType].values.displayOrder ?
-                        null : [data.surveyAnswer[data.questionType].values];
+                if (data.questionType === 'stepGrid') {
+                    arrayData =
+                        data.surveyAnswer[data.questionType].values.displayOrder === null ||
+                        data.surveyAnswer[data.questionType].values.displayOrder === undefined ?
+                            null : [data.surveyAnswer[data.questionType].values];
+                } else {
+                    arrayData =
+                        data.surveyAnswer[data.questionType].values.displayOrder === null ||
+                        data.surveyAnswer[data.questionType].values.displayOrder === undefined ||
+                        !data.surveyAnswer[data.questionType].values.displayOrder ?
+                            null : [data.surveyAnswer[data.questionType].values];
+                }
             }
 
             if (direction === 'forward') {

@@ -6,6 +6,7 @@ import {ResponseCode} from '../../../mind-module/data/response.data';
 import {MindManager} from '../../../mind-module/mind.manager';
 import {Toast} from '@ionic-native/toast/ngx';
 import {LoadingController} from '@ionic/angular';
+import {PlatformService} from '../../../mind-module/service/platform.service';
 
 @Component({
   selector: 'app-device-connection',
@@ -29,9 +30,18 @@ export class DeviceConnectionPage implements OnInit {
       private mindManager: MindManager,
       private toastUtil: Toast,
       private loadingController: LoadingController,
+      private platformService: PlatformService
   ) { }
 
   ngOnInit() {
+      this.platformService.getPlatformList().subscribe(res => {
+          console.log(res)
+          for (const i in res.healthProviderVoList) {
+              if (res.healthProviderVoList[i].providerName === 'fitbit') {
+                  this.fitbitInfo = res.healthProviderVoList[i];
+              }
+          }
+      });
   }
 
 
@@ -166,12 +176,13 @@ export class DeviceConnectionPage implements OnInit {
   getStepsFromMiBand(): Promise<any> {
     return new Promise<any>((resolve) => {
       const startDt = moment('2020-11-20').format('YYYY-MM-DD') + ' 00:00:00';
-      this.health.query({
+      this.health.queryAggregated({
         /*startDate: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000),*/
         startDate: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
         endDate: new Date(), // now
-        // filtered: true,
-        dataType: 'steps'
+        filtered: true,
+        dataType: 'steps',
+        bucket: 'hour'
       })
           .then(res => {
             alert(JSON.stringify(res))
@@ -219,7 +230,7 @@ export class DeviceConnectionPage implements OnInit {
 
   async syncFitbit() {
     const provider = this.fitbitInfo;
-    provider.startDate = '2020-11-15';
+    provider.startDate = '2020-11-10';
     provider.endDate = '2020-12-20';
     // provider.memberSeq = this.mindManager.getgetMemberModel().inphrMemberSeqNo;
 

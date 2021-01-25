@@ -29,7 +29,6 @@ export class PatternPeriodPage implements OnInit {
       private mindManager: MindManager,
       private diaryService: DiaryService,
       private loadingService: LoadingService,
-      private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -67,7 +66,7 @@ export class PatternPeriodPage implements OnInit {
   // 생리 입력값 확인
   addPeriodDiaryChk(){
     if (this.insertVo.menstruationYn === '' || this.insertVo.menstruationYn === null) {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">생리 여부를 선택해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '생리 여부를 선택해 주세요.');
       return false;
     }
     this.addPeriodDiaryAlert();
@@ -103,7 +102,7 @@ export class PatternPeriodPage implements OnInit {
     this.diaryService.addPeriodDiary(this.insertVo).subscribe(res => {
       this.loadingService.showLoading(false, '');
       this.getPeriodList();
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">저장되었습니다.</p>');
+      this.alertUtilService.showAlert(null, '저장되었습니다.');
     }, err =>{
       this.loadingService.showLoading(false, '');
       console.log('err', err);

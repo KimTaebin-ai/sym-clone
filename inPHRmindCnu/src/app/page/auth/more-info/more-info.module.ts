@@ -9,6 +9,7 @@ import { MoreInfoPageRoutingModule } from './more-info-routing.module';
 import { MoreInfoPage } from './more-info.page';
 import {SignUpPageModule} from '../sign-up/sign-up.module';
 import {DirectivesModule} from '../../../util/common/directives.module';
+import {LoadingPageModule} from '../../common/loading/loading.module';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import {DirectivesModule} from '../../../util/common/directives.module';
         IonicModule,
         MoreInfoPageRoutingModule,
         SignUpPageModule,
-        DirectivesModule
+        DirectivesModule,
+        LoadingPageModule
     ],
   declarations: [MoreInfoPage]
 })

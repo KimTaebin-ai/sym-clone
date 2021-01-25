@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalController, NavController} from "@ionic/angular";
-import {MindManager} from "../../../mind-module/mind.manager";
-import {ActivatedRoute, NavigationExtras} from "@angular/router";
-import * as moment from "moment";
-import {ResponseCode} from "../../../mind-module/data/response.data";
-import {ReportService} from "../../../report.service";
-import {PageInfoService} from "../../../services/page-info.service";
-import {Subscription} from "rxjs";
-import {EventBusService} from "../../../services/event-bus.service";
+import {ModalController, NavController} from '@ionic/angular';
+import {MindManager} from '../../../mind-module/mind.manager';
+import {ActivatedRoute, NavigationExtras} from '@angular/router';
+import * as moment from 'moment';
+import {ResponseCode} from '../../../mind-module/data/response.data';
+import {ReportService} from '../../../report.service';
+import {PageInfoService} from '../../../services/page-info.service';
+import {Subscription} from 'rxjs';
+import {EventBusService} from '../../../services/event-bus.service';
 
 @Component({
   selector: 'app-pattern-report',

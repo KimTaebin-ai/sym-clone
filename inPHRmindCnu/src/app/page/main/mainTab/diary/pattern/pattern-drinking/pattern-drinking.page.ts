@@ -33,7 +33,7 @@ export class PatternDrinkingPage implements OnInit {
     chkM : 'N',
     chkA : 'N',
     chkN : 'N'
-  }
+  };
 
   constructor(
       private alertCtrl: AlertController,
@@ -116,16 +116,16 @@ export class PatternDrinkingPage implements OnInit {
   // 음주 입력값 확인
   addDrinkDiaryChk(){
     if (this.insertVo.drinkWhen === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">음주한 시간을 선택해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '음주한 시간을 선택해 주세요.');
       return false;
     } else if (this.insertVo.drinkCode === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">술의 종류를 입력해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '술의 종류를 입력해 주세요.');
       return false;
     } else if (this.insertVo.drinkCode == this.etcCode && this.insertVo.drinkEtc === null || this.insertVo.drinkCode == this.etcCode && this.insertVo.drinkEtc === '') {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">기타 술의 종류를 입력해 주세요.</p>')
+      this.alertUtilService.showAlert(null, '기타 술의 종류를 입력해 주세요.');
       return false;
     } else if (this.insertVo.drinkAmount === '' || this.insertVo.drinkAmount === null) {
-      this.alertUtilService.showAlert(null, '<p class="alert-message-font">술의 양을 입력해 주세요.</p>');
+      this.alertUtilService.showAlert(null, '술의 양을 입력해 주세요.');
       return false;
     }
 
@@ -160,7 +160,7 @@ export class PatternDrinkingPage implements OnInit {
     this.loadingService.showLoading(true, '생활패턴을 입력중입니다.');
     this.diaryService.addDrinkDiary(this.insertVo).subscribe(res => {
       this.loadingService.showLoading(false, '');
-      this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">추가되었습니다.</p>');
+      this.alertUtilService.showAlert(null, '추가되었습니다.');
       this.getDrinkList();
       this.dataReset();
     }, err =>{
@@ -198,10 +198,10 @@ export class PatternDrinkingPage implements OnInit {
       date : this.selectedDate,
       etc : drinkDetail.drinkEtc,
       when : drinkDetail.drinkWhen
-    }
+    };
     if(drinkDetail.drinkCode === this.etcCode) {
       this.diaryService.deleteDrinkDiaryEtc(deleteVo).subscribe(res => {
-        this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
+        this.alertUtilService.showAlert(null, '삭제되었습니다.');
         this.dataReset();
         this.getDrinkList();
       }, err => {
@@ -209,7 +209,7 @@ export class PatternDrinkingPage implements OnInit {
       });
     } else {
       this.diaryService.deleteDrinkDiary(deleteVo).subscribe(res => {
-        this.alertUtilService.showAlert(null, '<p class="alert-message-center-font">삭제되었습니다.</p>');
+        this.alertUtilService.showAlert(null, '삭제되었습니다.');
         this.dataReset();
         this.getDrinkList();
       }, err => {
@@ -226,13 +226,13 @@ export class PatternDrinkingPage implements OnInit {
       drinkDt : this.selectedDate,
       drinkEtc : null,
       drinkWhen : ''
-    }
+    };
     this.drinkList = [];
     this.chkWhen = {
       chkM : 'N',
       chkA : 'N',
       chkN : 'N'
-    }
+    };
   }
 
 }

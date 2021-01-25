@@ -16,7 +16,7 @@
             </ion-grid>
           </ion-col>
         </ion-row>
-        <ion-row class="psychological-list-box" *ngFor="let item of surveyList" (click)="getToSubList(item)">
+        <ion-row class="psychological-list-box"  [ngClass]="i === surveyList.length - 1  ? ' mgB15vh' : ''" *ngFor="let item of surveyList; let i = index" (click)="getToSubList(item)">
           <ion-col size="10.5">
             <ion-grid>
               <ion-row>
