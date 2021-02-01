@@ -80,7 +80,6 @@ export class DigitOnlyDirective implements OnChanges {
             if (newValue.split(this.decimalSeparator).length > 2) {
                 // has two or more decimal points
                 e.preventDefault();
-                
                 return;
             } else {
                 console.log(1111)
