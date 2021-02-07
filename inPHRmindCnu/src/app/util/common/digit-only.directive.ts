@@ -71,7 +71,6 @@ export class DigitOnlyDirective implements OnChanges {
             ((e.key === 'x' || e.code === 'KeyX') && e.metaKey === true) // 허용: Cmd+X (Mac)
         ) {
             // 작동 제어
-         
             return;
         }
 
