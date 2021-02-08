@@ -11,7 +11,6 @@ export class AlertUtilService {
       private alertCtrl: AlertController,
       private toast: Toast
       ) {
-        
   }
 
 
