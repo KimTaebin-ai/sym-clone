@@ -11,9 +11,8 @@ export class AlertUtilService {
       private alertCtrl: AlertController,
       private toast: Toast
       ) {
-        
-  }
 
+  }
 
   // 알림창
   async showAlert(header: string, message: string) {
