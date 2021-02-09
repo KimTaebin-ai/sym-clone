@@ -10,6 +10,7 @@ export class AlertUtilService {
   constructor(
       private alertCtrl: AlertController,
       private toast: Toast
+      
       ) {
 
   }
