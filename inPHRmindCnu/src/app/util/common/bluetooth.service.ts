@@ -54,6 +54,7 @@ export class BluetoothService {
           response.data = data;
         }
         if (response.data) {
+          
           observer.next(response);
         }
       }, err => {
